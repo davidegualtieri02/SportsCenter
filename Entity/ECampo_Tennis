@@ -1,0 +1,6 @@
+<?php
+class ECampo_Tennis extends ECampo{
+    private String $terreno;
+
+    public 
+}
