@@ -6,7 +6,7 @@ class EUtente{
     protected  String $cognome;
     protected String $email;
     protected String $password;
-    protected String $id_Utente;
+    protected int $id_Utente;
 
     private static $entità = EUtente::class;//Quando usi EPerson::class in PHP, ottieni il nome completamente qualificato della classe EPerson. 
     //Quindi, se EPerson è definita nel namespace App\Entities,
@@ -64,8 +64,8 @@ class EUtente{
     public function setHashPassword($hashPassword){
         $this->password = $hashPassword;
     }
-    public function setEmail($e){
-        $this->email = $e;
+    public function setEmail($email){
+        $this->email = $email;
     }
     
 }
