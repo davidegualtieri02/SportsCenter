@@ -25,5 +25,5 @@ class EAttrezzatura_Padel extends EAttrezzatura{
     public function setNumRacchetta_Padel($numRacchetta){
         $this->numRacchetta_Padel= $numRacchetta;
     }
-    
+     //metodo toString esiste predefinito
 }

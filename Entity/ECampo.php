@@ -24,4 +24,5 @@ class ECampo {
     public function getEntità():string {
         return self::$entità;
     }
+     //metodo toString esiste predefinito
 }

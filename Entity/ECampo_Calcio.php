@@ -9,7 +9,5 @@ class ECampo_Calcio {
         $this->copertura =$copertura;
         $this->id_campo = $id_campo;
     }
-    public static getEntità():string{
-        
-    }
+     //metodo toString esiste predefinito
 }

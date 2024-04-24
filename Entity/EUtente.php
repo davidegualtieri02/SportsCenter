@@ -67,5 +67,5 @@ class EUtente{
     public function setEmail($email){
         $this->email = $email;
     }
-    
+     //metodo toString esiste predefinito
 }

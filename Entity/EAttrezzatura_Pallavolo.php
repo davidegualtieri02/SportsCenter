@@ -18,4 +18,5 @@ class EAttrezzatura_Pallavolo extends EAttrezzatura{
     public function setNumPalla_Pallavolo($numpalla){
         $this->numPalla_Pallavolo = $numpalla;
     }
+     //metodo toString esiste predefinito
 }

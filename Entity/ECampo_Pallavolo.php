@@ -17,5 +17,5 @@ class ECampo_Pallavolo extends ECampo{
     public function setPavimento($pavimento){
         $this->pavimento = $pavimento;
     }
-    
+     //metodo toString esiste predefinito
 }

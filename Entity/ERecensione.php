@@ -33,4 +33,5 @@ class ERecensione{
     public static function getEntità(){
         return self::$entità;
     }
+     //metodo toString esiste predefinito
 }

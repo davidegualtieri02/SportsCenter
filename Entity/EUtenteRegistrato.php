@@ -22,7 +22,7 @@ class EUtenteRegistrato extends EUtente{
     public function setBan($boolean){
         $this->ban= $boolean;
     }
-    
+     //metodo toString esiste predefinito
     
 
 }

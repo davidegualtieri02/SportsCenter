@@ -25,4 +25,5 @@ class EAttrezzatura_Calcio extends EAttrezzatura{
     public function setNumCasacca($numCasacca){
         $this->numCasacca= $numCasacca;
     }
+     //metodo toString esiste predefinito
 }

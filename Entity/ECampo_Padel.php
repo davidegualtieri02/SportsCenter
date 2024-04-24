@@ -5,5 +5,5 @@ class ECampo_Padel extends ECampo{
     public static function getEntità() :string {
         return self ::$entità;
         }
-    
+     //metodo toString esiste predefinito
 }

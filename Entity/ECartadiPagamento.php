@@ -51,5 +51,5 @@ class ECartadiPagamento{
     public static function getEntità():string{
         return self::$entità;
     }
-    
+     //metodo toString esiste predefinito
 }

@@ -17,5 +17,5 @@ class ECampo_basket extends ECampo{
     public function setPavimento($pavimento){
         $this->pavimento = $pavimento;
     }
-    
+     //metodo toString esiste predefinito
 }

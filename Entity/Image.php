@@ -21,5 +21,5 @@ class Image {
         $this->lunghezza = $lunghezza;
     }
     
-
+ //metodo toString esiste predefinito
 }
