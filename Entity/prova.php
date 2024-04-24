@@ -1,9 +1,9 @@
 <?php
 include ("EUtente.php");
-$utente= new EUtente("lorenzo","Fracassi","lor.frac@gmail.com","ciao",101);
+$utente= new EUtente("Francesco","Pea","fra.pea@gmail.com","ciao",102);
+ echo $utente->getNome();
+ 
 
-
-supercalifragilistichespiralidoso
 
 
 
