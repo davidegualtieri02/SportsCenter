@@ -1,0 +1,7 @@
+<?php 
+class EAttrezzatura_Tennis extends EAttrezzatura{
+    private int $numPalla_Tennis;
+    private int $numRacchetta_Tennis;
+
+    private static $entit
+}
