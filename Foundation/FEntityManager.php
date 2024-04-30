@@ -56,9 +56,49 @@ class FEntityManager{
         static ::$istanza = null; // questa riga di codice imposta il valore di istanza a null cioè distrugge l'istanza corrente della classe entitymanager.
     }
     /**
-     * metodo che mi rida la connessione al db cioè PDO
+     * metodo che mi rida la connessione al db cioè PDO,la variabile che contiene la connessione è db
      */
      public static function getdb(){
+        return self::$db;
+
+    }
+    /**
+     * metodo che recupera un oggetto da un database utilizzando PDO
+     * (è un metodo static,può essere richiamato senza istanziare un oggetto della classe)
+     */
+    public static function recuperaOggetto($tabella,$campo,$id){ 
+        try{
+            $query = "SELECT * FROM".$tabella. "WHERE".$campo."=".$id .";";
+            $dichiarazione =self::$db->prepare($query);//questa riga sta preparando la query SQL per la propria esecuzione 
+            // self::$db si riferisce all'oggetto $db che rappresenta una comnnessione al database
+            //l'oggetto dichiarazione viene creato quando si prepara una query SQL utilizzando il metodo prepare() di un oggetto PDO
+            //Il metodo prepare() restituisce un ogettto dichiarazione che incapsula la query SQL
+            //questo oggetto dichiarazione può essere utilizzato per eseguire la query SQL
+            $dichiarazione->execute();// esecuzione della query
+            $countRighe = $dichiarazione->rowCount()//restituisce il numero di tuple(righe) presenti in una tabella del database
+            if($countRighe >0){ // verifica se il numero di tuple è > 0 , cioè verifica se la query ha restituito almeno un risultato
+                $risultato = array();// se c'è almeno un risultato viene creato un array vuoto chiamato $risultato.
+                //$risulato sarà un array che contiene i risultati della query 
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//questa riga imposta la modalità di recupero dei risultati della query su PDO::FETCH_ASSOC, cioè significa  che i risultati saranno recuperati come array associativi.
+                //l'array associativo che otteniamo come risultato varà una struttura di questo tipo:
+                /**
+                 * ogni chiave è il nome di una colonna del risulato della query e ogni valore è il valore di quella colonna per la riga corrispondente 
+                 * per esempio: se avessimo una tabella con attributi : id , nome, email
+                 * se campo = id ( cioè se l'id posto come parametro è uguale a uno della tabella , allora tale tupla viene considerata e ogni atrributo sarà la chiave del valore associato a quell attributo nella riga consideraata)
+                 * la tupla sarà rappresentata cosi nell'array,attraverso 3 elementi:
+                 * ["id" =>123," nome"=>"lorenzo" ,"email"=>"lor.frac@gmail.com"]
+                 */
+                while ($righe = $dichiarazione->fetch()){ //il metodo fetch() restituirà nel nostro codice le prossime tuple(righe che verificano la condizione dell'if) come un array associativo 
+                    // questo ciclo while si ripete fino a che ci sono righe da recuperare dal risulatto della query.Ogni riga viene recuperata come un array associativo e assegnata alla varibile $righe .   
+                    $risultato[] = $righe; //per ogni 
+
+
+                }
+
+                   
+
+            }     
+        }
 
     }
 }
