@@ -63,8 +63,11 @@ class FEntityManager{
 
     }
     /**
-     * metodo che recupera un oggetto da un database utilizzando PDO
+     * metodo che recupera le tuple tramite una query SELECT FROM @tabella WHERE @campo = @id
      * (è un metodo static,può essere richiamato senza istanziare un oggetto della classe)
+     * @param String $tabella fa riferimento ad una tabella del database
+     * @param String $campo fa riferimento al campo nella tabella 
+     * @param mixed $id fa riferimento al valore nella clausola where
      */
     public static function recuperaOggetto($tabella,$campo,$id){ 
         try{
@@ -84,21 +87,51 @@ class FEntityManager{
                 /**
                  * ogni chiave è il nome di una colonna del risulato della query e ogni valore è il valore di quella colonna per la riga corrispondente 
                  * per esempio: se avessimo una tabella con attributi : id , nome, email
-                 * se campo = id ( cioè se l'id posto come parametro è uguale a uno della tabella , allora tale tupla viene considerata e ogni atrributo sarà la chiave del valore associato a quell attributo nella riga consideraata)
+                 * se campo = id ( cioè se l'id posto come parametro si trova in una tupla sotto un certo attributo(campo, attributo che ha come colonna gli id), allora tale tupla viene considerata e ogni atrributo sarà la chiave del valore associato a quell attributo nella riga consideraata)
+                 * field è un attributo della tabella 
                  * la tupla sarà rappresentata cosi nell'array,attraverso 3 elementi:
                  * ["id" =>123," nome"=>"lorenzo" ,"email"=>"lor.frac@gmail.com"]
                  */
                 while ($righe = $dichiarazione->fetch()){ //il metodo fetch() restituirà nel nostro codice le prossime tuple(righe che verificano la condizione dell'if) come un array associativo 
                     // questo ciclo while si ripete fino a che ci sono righe da recuperare dal risulatto della query.Ogni riga viene recuperata come un array associativo e assegnata alla varibile $righe .   
-                    $risultato[] = $righe; //per ogni 
-
-
+                    $risultato[] = $righe;// ogni volta righe assume un valore diverso e aggiungo in questo modo tutti i valori che assume righe nell'array risultato creando un array con n elementi , tutti assunti da righe 
                 }
+                return $risultato;                   
 
-                   
-
+            }else{
+                return array();// se  in risultato non c'e nessun valore , cioè è un array vuoto , ritorno l'array vuoto.
             }     
+        }catch (PDOException $errore){// se si verifica un errore durante l'esecuzione della query , viene generata un eccezione gestita dalla classe PDOException . $errore contiene i dettagli dell'eccezione.
+            echo "ERRORE".$errore->getMessage();
+            return array();//viene ritornato l'array vuoto
         }
 
     }
+    /**
+     * Metodo che ritorna tuple da una query SELECT FROM WHERE con 2 campi
+     * @param String $tabella fa riferimento alla tabella nel database
+     * @param String $campo1 fa riferimento al primo attributo in base al quale prendiamo uno o più tuple
+     * @param mixed $id1 fa riferimento al valore nella clausala where
+     * @param String $campo2 fa riferimento al secondo attributo  in base al quale prendiamo le tuple (o una sola)
+     * @param mixed $id2 fa riderimento al valore nella clausola where
+     */
+    public static getOggdaattributi($tabella,$campo1,$id1,$campo2,$id2){
+        try{
+            $query = "SELECT * FROM " .$tabella. "WHERE".$campo1 . " = ".$id1. " AND" .$campo2. " = " . $id2.";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
+            $dichiarazione = self::$db->prepare($query);// cosi si prepara la query
+            $dichiarazione->execute();// con il metodo execute() viene eseguita la query 
+            $countrighe = $dichiarazione->rowCount();//conta le righe restituite dalla query
+            if($countrighe>0){//l'if mi dice che se il numero di righe è maggiore di zero , viene impostata la modalità di recupero PDO::FETCH_ASSOC per ottenere i risultati come un array associativo
+                $risultato = array();//creo un arary vuoto(inizialmente)
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);
+                while($righe = $dichiarazione->fetch()){//il metodo fetch recupera tutte le righe una per una con il metodo fetch e le aggiunge all'array $risultato.
+                    $risultato[] = $righe;
+                }
+
+            }
+
+       }
+
+    }
+
 }
