@@ -28,7 +28,7 @@ class FEntityManager{
             // per la connessione .Questo set definisce l’insieme dei caratteri che possono essere memorizzati e identificati nel database durante le operazioni di inserimento, estrazione e manipolazione dei dati
             //Se la connessione ha successo l'oggetto $db conterrà la connessione attiva al database
         } catch(PDOException $errore){
-            echo "ERRORE".$errore->getMEssage(); // se c'è un errore di accesso al database vero eseguito il codice sotto 
+            echo "ERRORE".$errore->getMessage(); // se c'è un errore di accesso al database vero eseguito il codice sotto 
             // a catch , verrà stampato l'echo , quindi la stringa ERRORE e insieme a tale stringa verrà stamapato il metodo getMessage() che darà informazioni 
             //sulla natura dell'errore di connessione.
             // se c'è un errore di connessione al db viene eseguito il codice sotto il catch che gestisce l'eccezione.
