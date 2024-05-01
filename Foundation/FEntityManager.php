@@ -78,7 +78,7 @@ class FEntityManager{
             //Il metodo prepare() restituisce un ogettto dichiarazione che incapsula la query SQL
             //questo oggetto dichiarazione può essere utilizzato per eseguire la query SQL
             $dichiarazione->execute();// esecuzione della query
-            $countRighe = $dichiarazione->rowCount()//restituisce il numero di tuple(righe) presenti in una tabella del database
+            $countRighe = $dichiarazione->rowCount();//restituisce il numero di tuple(righe) presenti in una tabella del database
             if($countRighe >0){ // verifica se il numero di tuple è > 0 , cioè verifica se la query ha restituito almeno un risultato
                 $risultato = array();// se c'è almeno un risultato viene creato un array vuoto chiamato $risultato.
                 //$risulato sarà un array che contiene i risultati della query 
