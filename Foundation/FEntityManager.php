@@ -65,8 +65,8 @@ class FEntityManager{
     /**
      * metodo che recupera le tuple tramite una query SELECT FROM @tabella WHERE @campo = @id
      * (è un metodo static,può essere richiamato senza istanziare un oggetto della classe)
-     * @param String $tabella fa riferimento ad una tabella del database
-     * @param String $campo fa riferimento al campo nella tabella 
+     * @param string $tabella fa riferimento ad una tabella del database
+     * @param string $campo fa riferimento al campo nella tabella 
      * @param mixed $id fa riferimento al valore nella clausola where
      */
     public static function recuperaOggetto($tabella,$campo,$id){ 
@@ -109,15 +109,15 @@ class FEntityManager{
     }
     /**
      * Metodo che ritorna tuple da una query SELECT FROM WHERE con 2 campi
-     * @param String $tabella fa riferimento alla tabella nel database
-     * @param String $campo1 fa riferimento al primo attributo in base al quale prendiamo uno o più tuple
+     * @param string $tabella fa riferimento alla tabella nel database
+     * @param string $campo1 fa riferimento al primo attributo in base al quale prendiamo uno o più tuple
      * @param mixed $id1 fa riferimento al valore nella clausala where
-     * @param String $campo2 fa riferimento al secondo attributo  in base al quale prendiamo le tuple (o una sola)
+     * @param string $campo2 fa riferimento al secondo attributo  in base al quale prendiamo le tuple (o una sola)
      * @param mixed $id2 fa riderimento al valore nella clausola where
      */
-    public static getOggdaattributi($tabella,$campo1,$id1,$campo2,$id2){
+    public static function getOggdaattributi($tabella, $campo1, $id1, $campo2, $id2){
         try{
-            $query = "SELECT * FROM " .$tabella. "WHERE".$campo1 . " = ".$id1. " AND" .$campo2. " = " . $id2.";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
+            $query = "SELECT * FROM " . $tabella . "WHERE". $campo1 . " = " . $id1 . " AND" . $campo2 . " = " . $id2 .";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
             $dichiarazione = self::$db->prepare($query);// cosi si prepara la query
             $dichiarazione->execute();// con il metodo execute() viene eseguita la query 
             $countrighe = $dichiarazione->rowCount();//conta le righe restituite dalla query
@@ -127,6 +127,7 @@ class FEntityManager{
                 while($righe = $dichiarazione->fetch()){//il metodo fetch recupera tutte le righe una per una con il metodo fetch e le aggiunge all'array $risultato.
                     $risultato[] = $righe;
                 }
+                return $risultato;
 
             }
 
