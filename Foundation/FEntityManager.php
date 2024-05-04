@@ -195,7 +195,33 @@ class FEntityManager{
 
 
     }
+    /**
+     * Metodo per memomirizzare un oggetto(riga) nel Database utilizzando l'id dell'oggetto,cioè questo metodo prende una riga e un ID come parametri e crea una nuova riga nel database.
+     * @param string $ClasseFound si riferisce al nome della classe Foundation , attraverso tale classe possiamo ottenere la tabella e i valori associati agli attributi della tabella .
+     */
+    public static function SalvaOggdaID($ClasseFound,$ogg,$id){// classeFound può assumere come valore il valore di una classe entity riscritta nel package Foundation 
+        try{
+            $query = " INSERT INTO". $ClasseFound::getTable(). " VALUES". $ClasseFound::getValue();//tramite classeFound::getTable() accedo alla tabella relativa a quella classe di Foundation e classeFound::getValue()  mi restituisce i valori degli attributi da porre nella riga che stiamo aggiungendo. Questi valori che aggiungiamo alla tupla della tabella  sono i valori dati agli attributi della classe in Foundation, valori dati dall'utente o da noi.
+             $dichiarazione = self::$db->prepare($query);
+             $ClasseFound::bind($dichiarazione,$ogg,$id); // questo metodo viene utilizzato per legare i parametri alla dichiarazione SQL preparata
+               $dichiarazione->execute();
+               return true;// ritorna true il metodo se la riga e l'id sono stati aggiunti ad una tabella del database.
+        }catch(Exception $errore){// se si verifica un eccezione il metodo ritorna un eccezione.
+            echo " ERRORE :" . $errore->getMessage();
+            return false;
+        }
+    }
     
+    /**
+     * Metodo che ritorna le righe da una SELCT FROM WHERE ma se il campo removed = 0, cioè è un metodo che esegue una query per ottenere una lista di oggetti da una tabella specificata che non sono stati rimossi.
+     * @param string $tabella si riferisce alla tabella del database.
+     * @param string $campo si riferisce al campo nella tabella 
+     * @param mixed $id si riferisce al valore nella clausola where
+     */
+    public static function ListaOggnorimossi($tabella,$campo,$id){
+        $query = " SELECT * FROM ".$tabella. "WHERE ".$campo. " = ".$id. " ' AND removed = 0 ;"; //il punto e virgola dentro i doppi apici indicano la fine della query.( è un pò il punto e virgola di php).
+
+    }
 
 
 }
