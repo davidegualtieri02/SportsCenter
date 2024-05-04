@@ -28,7 +28,7 @@ class FEntityManager{
             // per la connessione .Questo set definisce l’insieme dei caratteri che possono essere memorizzati e identificati nel database durante le operazioni di inserimento, estrazione e manipolazione dei dati
             //Se la connessione ha successo l'oggetto $db conterrà la connessione attiva al database
         } catch(PDOException $errore){
-            echo "ERRORE".$errore->getMessage(); // se c'è un errore di accesso al database vero eseguito il codice sotto 
+            echo "ERRORE:".$errore->getMessage(); // se c'è un errore di accesso al database vero eseguito il codice sotto 
             // a catch , verrà stampato l'echo , quindi la stringa ERRORE e insieme a tale stringa verrà stamapato il metodo getMessage() che darà informazioni 
             //sulla natura dell'errore di connessione.
             // se c'è un errore di connessione al db viene eseguito il codice sotto il catch che gestisce l'eccezione.
@@ -73,7 +73,7 @@ class FEntityManager{
         try{
             $query = "SELECT * FROM".$tabella. "WHERE".$campo."=".$id .";";
             $dichiarazione =self::$db->prepare($query);//questa riga sta preparando la query SQL per la propria esecuzione 
-            // self::$db si riferisce all'oggetto $db che rappresenta una comnnessione al database
+            // self::$db si riferisce all'oggetto $db che rappresenta una connessione al database
             //l'oggetto dichiarazione viene creato quando si prepara una query SQL utilizzando il metodo prepare() di un oggetto PDO
             //Il metodo prepare() restituisce un ogettto dichiarazione che incapsula la query SQL
             //questo oggetto dichiarazione può essere utilizzato per eseguire la query SQL
@@ -83,11 +83,11 @@ class FEntityManager{
                 $risultato = array();// se c'è almeno un risultato viene creato un array vuoto chiamato $risultato.
                 //$risulato sarà un array che contiene i risultati della query 
                 $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//questa riga imposta la modalità di recupero dei risultati della query su PDO::FETCH_ASSOC, cioè significa  che i risultati saranno recuperati come array associativi.
-                //l'array associativo che otteniamo come risultato varà una struttura di questo tipo:
+                //l'array associativo che otteniamo come risultato avrà una struttura di questo tipo:
                 /**
-                 * ogni chiave è il nome di una colonna del risulato della query e ogni valore è il valore di quella colonna per la riga corrispondente 
+                 * ogni chiave è il nome di una colonna del risulato(ogni chiave è un attributo) della query e ogni valore è il valore di quella colonna per la riga corrispondente (ovvero ogni valore associato alla chiave è il valore di quell'attributo di quella determinata tupla)
                  * per esempio: se avessimo una tabella con attributi : id , nome, email
-                 * se campo = id ( cioè se l'id posto come parametro si trova in una tupla sotto un certo attributo(campo, attributo che ha come colonna gli id), allora tale tupla viene considerata e ogni atrributo sarà la chiave del valore associato a quell attributo nella riga consideraata)
+                 * se campo = id ( cioè se l'id posto come parametro si trova in una tupla sotto un certo attributo(campo, attributo che ha come colonna gli id), allora tale tupla viene considerata e ogni attributo sarà la chiave del valore associato a quell attributo nella riga considerata)
                  * field è un attributo della tabella 
                  * la tupla sarà rappresentata cosi nell'array,attraverso 3 elementi:
                  * ["id" =>123," nome"=>"lorenzo" ,"email"=>"lor.frac@gmail.com"]
@@ -102,7 +102,7 @@ class FEntityManager{
                 return array();// se  in risultato non c'e nessun valore , cioè è un array vuoto , ritorno l'array vuoto.
             }     
         }catch (PDOException $errore){// se si verifica un errore durante l'esecuzione della query , viene generata un eccezione gestita dalla classe PDOException . $errore contiene i dettagli dell'eccezione.
-            echo "ERRORE".$errore->getMessage();
+            echo "ERRORE:".$errore->getMessage();
             return array();//viene ritornato l'array vuoto
         }
 
@@ -115,7 +115,7 @@ class FEntityManager{
      * @param string $campo2 fa riferimento al secondo attributo  in base al quale prendiamo le tuple (o una sola)
      * @param mixed $id2 fa riderimento al valore nella clausola where
      */
-    public static function getOggdaattributi($tabella, $campo1, $id1, $campo2, $id2){
+    public static function getOggdaAttributi($tabella, $campo1, $id1, $campo2, $id2){
         try{
             $query = "SELECT * FROM " . $tabella . "WHERE". $campo1 . " = " . $id1 . " AND" . $campo2 . " = " . $id2 .";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
             $dichiarazione = self::$db->prepare($query);// cosi si prepara la query
@@ -124,15 +124,78 @@ class FEntityManager{
             if($countrighe>0){//l'if mi dice che se il numero di righe è maggiore di zero , viene impostata la modalità di recupero PDO::FETCH_ASSOC per ottenere i risultati come un array associativo
                 $risultato = array();//creo un arary vuoto(inizialmente)
                 $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);
-                while($righe = $dichiarazione->fetch()){//il metodo fetch recupera tutte le righe una per una con il metodo fetch e le aggiunge all'array $risultato.
+                while($righe = $dichiarazione->fetch()){//il metodo fetch recupera tutte le righe una per una e le aggiunge all'array $risultato.
                     $risultato[] = $righe;
                 }
                 return $risultato;
 
+            } else{ //se $countrighe = 0 , cioè la query non ha avuto risultati , viene ritornato un array vuoto.
+                return array();
             }
 
-       }
+        }catch (PDOException $errore){// se invece si verifica un eccezione durante l'esecuzione della query viene eseguita questa parte di codice.
+            echo "ERRORE:".$errore->getMEssage();
+            return array();
+        }
 
     }
+    /**
+     * Metodo per verificare se la query restituisce o meno una riga
+     * @param array $Risultatoquery è l'output di una query .
+     * @return bool
+     */
+    public static function esisteNelDB($Risultatoquery){//public indica che il metodo per essere richiamato in qualsiasi classe non solo nella stessa Entity Manager, static indica che la funzione può essere richiamata senza creare un'istanza della classe.
+        if(count($Risultatoquery)>0){// se il numero di elementi nell'array Risultatoquery,ovvero l'array che contiene le righe ottenute dalla query, è >0 allora il metodo restituisce true
+            return true;
+        }else{// altrimenti il metodo restituisce false
+            return false;
+        }
+    }
+    /**
+     * Metodo per aggiornare(cambiare)un attributo e  il valore di tale attributo utilizzando una query di questo tipo:UPDATE table(nome tabella) SET field(attributo) = fieldvalue WHERE condizione = valoreCondizione
+     * @param string $tabella si riferisce alla tabella del database
+     * @param string $campo si riferisce all'attributo da cambiare dove viene rispettata la condizione 
+     * @param mixed $campoValore è il valore da aggiornare a quell'attributo aggiornato , cioè è il valore da dare a quell'attributo cambiato 
+     * @param string $condizione si riferisce al condizione del clausola WHERE
+     * @param mixed $valoreCondizione si riferisce al valore della condizione in base alla quale dobbiamo cambiare l'attributo e il valore dell'attributo.
+     * @return bool
+     */
+    public static function updateOgg($tabella,$campo,$campoValore,$condizione,$valoreCondizione){
+        try{
+            $query = "UPDATE".$tabella ."SET".$campo." = '".$campoValore. " 'WHERE ".$condizione." = '".$valoreCondizione . "';"; // Questa è la query che sarà eseguita via SQL. In SQL le stringhe per esempio " = ' " vengono messe sempre tra un apice singolo (') e quindi mettiamo sia " " che sono gli apici di php e poi poniamo ' che è l'apice per le stringhe in SQL.
+            $dichiarazione = self::$db->prepare($query);// self::$db si riferisce a una variabile di classe statica cioè $db che dovrebbe essere un'istanza di un oggetto di connessione al db. il metodo prepare è un metodo dell'oggetto di connessione al database che prepara la query SQL per l'esecuzione . La query da preparare è quella contenuta nella variabile $query.
+            $dichiarazione->execute();
+            return true; //se l'attributo e il valore dell'attributo vengono aggiornati il metodo ritorna true , altrinenti se avviene un errore , viene ritornato false.
+        }catch (Exception $errore){// invece di PDOException poniamo Exception che è una classe di eccezioni in php che gestisce tutti i tipi di errori. L'uso di  Exception al posto di PDOException mi dice che qualsiasi tipo di errore si verifica nel blocco try sarà catturato , non solo gli errori specifici PDO .
+            echo "ERRORE: " .$errore->getMessage();
+            return false;
+        }
+    }
+    /**
+     * Metodo per salvare un oggetto nel database usando la query INSERT TO.
+     *@param string $ClasseFound si riferisce al nome di una classe foundation , in modo da ottenere la tabella relativa alla classe foundation in cui inserire una tupla e il valore della tupla nei diversi attributi 
+     *@param object $ogg si riferisce all'Oggetto Entity da salvare nel database , per oggetto intendiamo una tupla che vogliamo salvare in una tabella del database.
+     *@return int| null 
+     */
+    public static function SalvaOgg($ClasseFound,$ogg){
+        try{
+            $query = " INSERT INTO". $ClasseFound::getTable() ." VALUES" . $ClasseFound::getValue();// query viene posta uguale a questa stringa che inizia la query SQL. INSERT INTO  è un comando SQL che viene utilizzato per inserire nuove righe in una tabella del database
+            // $ClasseFound ::getTable() è un metodo statico della classe indicata dalla variabile $classefound( cioè è il metodo di una classe entity contenuta in foundation),questo metodo restituisce il nome della tabella del database in cui si desidera inserire la nuova riga.
+            // Values è un costrutto SQL che precede i valori da inserire nella riga per ogni attributo.
+            //$ClasseFound::getValue() è un metodo statico xkè invocato con ::, questo metodo restituisce i valori da inserire nella riga da aggiungere  per ogni attributo .
+            $dichiarazione = self ::$db->prepare($query); // prende come parametro la query da preparare
+            $ClasseFound::bind($dichiarazione,$ogg);// metodo presente nella classe entity poste in foundation
+            $dichiarazione->execute();
+            $id = self::$db->lastInsertId(); // Dopo l'esecuzione della query , questa linea  di codice recupera l'ID dell'ultima riga inserita in una tabella del db. Recuperare tale ID e restituirlo con return $id è utile per verificare che la riga sia stata aggiunta correttamanete alla tabella del db in questione.
+            return $id;
+         } catch (Exception $errore){
+            echo " ERRORE: " . $errore->getMessage();// errore->getMEssage() è un metodo della classe Exception che mi rida l'origine dell'errore.
+            return null;
+         }
+
+
+    }
+    
+
 
 }
