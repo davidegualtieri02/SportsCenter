@@ -204,8 +204,8 @@ class FEntityManager{
             $query = " INSERT INTO". $ClasseFound::getTable(). " VALUES". $ClasseFound::getValue();//tramite classeFound::getTable() accedo alla tabella relativa a quella classe di Foundation e classeFound::getValue()  mi restituisce i valori degli attributi da porre nella riga che stiamo aggiungendo. Questi valori che aggiungiamo alla tupla della tabella  sono i valori dati agli attributi della classe in Foundation, valori dati dall'utente o da noi.
              $dichiarazione = self::$db->prepare($query);
              $ClasseFound::bind($dichiarazione,$ogg,$id); // questo metodo viene utilizzato per legare i parametri alla dichiarazione SQL preparata
-               $dichiarazione->execute();
-               return true;// ritorna true il metodo se la riga e l'id sono stati aggiunti ad una tabella del database.
+             $dichiarazione->execute();
+             return true;// ritorna true il metodo se la riga e l'id sono stati aggiunti ad una tabella del database.
         }catch(Exception $errore){// se si verifica un eccezione il metodo ritorna un eccezione.
             echo " ERRORE :" . $errore->getMessage();
             return false;
@@ -213,15 +213,65 @@ class FEntityManager{
     }
     
     /**
-     * Metodo che ritorna le righe da una SELCT FROM WHERE ma se il campo removed = 0, cioè è un metodo che esegue una query per ottenere una lista di oggetti da una tabella specificata che non sono stati rimossi.
+     * Metodo che ritorna le righe da una SELCT FROM WHERE ma se il campo removed = 0,ovvero  il metodo restituisce le righe da una tabella specificata($tabella) dove un certo campo = id e il campo removed è impostato su 0, cioè fa recuperare dalla tabella tutti quelle righe che non sono state rimosse.
      * @param string $tabella si riferisce alla tabella del database.
      * @param string $campo si riferisce al campo nella tabella 
      * @param mixed $id si riferisce al valore nella clausola where
      */
-    public static function ListaOggnorimossi($tabella,$campo,$id){
-        $query = " SELECT * FROM ".$tabella. "WHERE ".$campo. " = ".$id. " ' AND removed = 0 ;"; //il punto e virgola dentro i doppi apici indicano la fine della query.( è un pò il punto e virgola di php).
+    public static function ListaOggnonrimossi($tabella,$campo,$id){
+        try{
+            $query = " SELECT * FROM ".$tabella. "WHERE ".$campo. " = ".$id. " ' AND removed = 0 ;"; //il punto e virgola dentro i doppi apici indicano la fine della query.( è un pò il punto e virgola di php).
+            $dichiarazione = self::$db->prepare($query);// dichiarazione diventa la variabile con la quale richiamo un oggetto connessione al db e preparo la query
+            $dichiarazione->execute();//attraverso dichiarazione posso eseguire la query , siccome dichiarazione punta ad un oggetto connessione al db
+            $countrighe = $dichiarazione->rowCount(); // countrighe è il numero di righe della tabella che ho ottenuto come risultato dalla query.
+            if($countrighe > 0 ){// se tale numero di righe è >0
+                $risultato = array(); // creo un array.Utilizzando PDO::FETCH_ASSOC come parametro a setFetchMode() significa che ogni riga sarà restituita come un array associativo . Le chiavi degli array saranno gli attributi della tabella.
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//con setFetchMode recupero tutti i risultati della query (cioè tutte le righe) e le pongo in un array
+                while ($righe = $dichiarazione->fetch()){// Con fetch() recupero una alla volta tutte le righe dalla tabella ottenuta come risultato e quando non ci sono più righe da recuperare restituisce false. il metodo fetch() dentro il ciclo while significa che stiamo recuperando una alla volta tutte le righe fino a che non sono state recuperate tutte le righe dalla tabella
+                    $risultato[] = $righe;// scrivendo questo significa  che ogni array che contiene una riga della tabella viene aggiunta una alla volta nell'array $risultato ottenendo un array multidimensionale.
+            }
+                self::chiusuraConnessione();// indica la chiusura della connesione al db(metodo fatto in precedenza)
+                return $risultato;// ritorna l'array multidimensionale
+            }else{
+                return array();// se non viene prelevata nessuna riga della tabella corrispondente , viene ritornato un arry vuoto
+            }
+
+        }catch(Exception $errore){ // solita gestione dell'eccezioni.
+            echo " ERRORE :".$errore->getMessage();
+            return array();
+        }
 
     }
-
-
+    /**
+     * Metodo per eliminare una riga dal database con la query DELETE FROM WHERE.
+     * @param string $tabella si riferisce alla tabella del Database
+     * @param string $campo si riferisce al campo della tabella 
+     * @param mixed $id si riferisce al valore nella clausola where
+     * @return boolean
+     */
+    public static function deleteOgginDB($tabella,$id,$campo){// la funzione costruisce una stringa di query SQL per eliminare una tupla da una tabella specificata(ovvero $tabella) dove un certo campo(attributo) $campo ha come valore un certo valore $id che non è necessariamente l'id di qualcosa ma può essere un qualsiasi valore per esempio il nome mario , cioè $campo = nome e $id = mario ,cosi eliminiamo tutte quelle tuple che hanno come valore dell'attributo 'nome' il nome 'mario' 
+        try{
+            $query = "DELETE FROM" . $tabella . "WHERE" . $campo . " = '".$id."';";// query DELETE per eliminare una tupla da una tabella del db
+            $dichiarazione = self::$db->prepare($query);//self::$db è un oggetto della classe PDO
+            $dichiarazione->execute();
+            return true;// se viene eliminata la tupla che rispetta la clausola WHERE con successo il metodo ritorna true.
+        }catch(Exception $errore){ // se si verifica una eccezione il metodo ritorna false
+            echo " ERRORE :".$errore->getMessage(); // messaggio di errore dato da getMEssage() + ERRORE se si verifica un eccezione. 
+            return false;
+        }
+    }
+    /**
+     *metodo che controlla se l'id di una certa tupla di una tabella del database è uguale all'id posto come parametro
+     *@param array $risultatoQuery
+     *@param int $idUtente 
+     *@return bool
+     */
+    public static function VerificaCreatore($risultatoQuery,$idUtente){//risultatoQuery è il risultato di una query , IdUtente è l'id dell'utente. Questo metodo verifica se  l'id dell'utente posto come parametro al metodo è uguale ad un id posto in una tupla di una tabella  del database, cioè stiamo vedendo se per esempio un commento di un utente che ha un certo id è stato fatto da quell'utente controllando l'id posto come parametro agli id posti nelle tuple della tabella commenti.
+        if(self::esisteNelDB($risultatoQuery) && $risultatoQuery[0] [FUtente::getChiave() == $idUtente]){ // self::esisteNelDB(risultatoQuery) questa funzione controlla se il risultatoQuery esiste nel database, cioè controlla che i dati restituiti dalla query (cioè risultatoQuery)corrispondono effettivamente a delle tuple presenti nel database
+            //  se il risultato della query esiste nel db,con $risultatoQuery[0] ect... si controlla se l'ID dell'utente nel primo elemento (della tupla)(dell'array , Id utente è il valore  nella prima colonna della tupla) del risultato della query (cioè un array) corrisponde a $idUtente.
+            return true; // se gli id corrispondono
+        }else{
+            return false;//se non corrispondono si ritorna false
+        }
+    }
 }
