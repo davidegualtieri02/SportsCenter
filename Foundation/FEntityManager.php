@@ -266,12 +266,76 @@ class FEntityManager{
      *@param int $idUtente 
      *@return bool
      */
-    public static function VerificaCreatore($risultatoQuery,$idUtente){//risultatoQuery è il risultato di una query , IdUtente è l'id dell'utente. Questo metodo verifica se  l'id dell'utente posto come parametro al metodo è uguale ad un id posto in una tupla di una tabella  del database, cioè stiamo vedendo se per esempio un commento di un utente che ha un certo id è stato fatto da quell'utente controllando l'id posto come parametro agli id posti nelle tuple della tabella commenti.
-        if(self::esisteNelDB($risultatoQuery) && $risultatoQuery[0] [FUtente::getChiave() == $idUtente]){ // self::esisteNelDB(risultatoQuery) questa funzione controlla se il risultatoQuery esiste nel database, cioè controlla che i dati restituiti dalla query (cioè risultatoQuery)corrispondono effettivamente a delle tuple presenti nel database
+    /**
+     * Questa funzione VerificaCreatore() accede solo alla prima tupla perchè è progettata per verificare un singolo risultato della query, cioè è progettata per verificare il risultato di una query che dovrebbe restituire una singola riga e quindi accede solo alla prima riga(array) dell'array multidimensionale perchè ho un solo array interno all'array multidimensionale e accedo all'id di questa tupla per verificare i due id.
+     * Con $risultatoQuery[0] accedo alla prima riga (array) contenuta nell'arraymultimediale e con [FUtente::getChiave()] accedo alla chiave dell'id , cioè accedo all'attributo id della tupla
+     * quindi con $risultatoQuery[0][FUtente::getChiave()==$idUtente] accedo al valore dell'id della prima tupla(e unica) contenuta nell'arraymultimediale e ponendo [FUtente::getChiave() ==$idUtente] controllo se l'id dell'utente nella prima tupla del risultato della query è lo stesso id posto come parametro nel metodo
+     * il metodo fa questo dunque:controlla se l'id dell'utente nella prima tupla del risultato della query è lo stesso id posto come parametro nel metodo.
+     * se si ritorna true altrimenti false.
+     */
+    public static function VerificaCreatore($risultatoQuery,$idUtente){//risultatoQuery è il risultato di una query , IdUtente è l'id dell'utente. Questo metodo verifica se  l'id dell'utente posto come parametro al metodo è uguale ad un id posto in una tupla di una tabella  del database, cioè stiamo vedendo se per esempio un commento di un utente che ha un certo id è stato fatto da quell'utente controllando l'id posto come parametro con id posti nelle tuple della tabella commenti.
+        if(self::esisteNelDB($risultatoQuery) && $risultatoQuery[0] [FUtente::getChiave() == $idUtente]){ // self::esisteNelDB(risultatoQuery) questa funzione controlla se il risultatoQuery, che è un array dove ogni elemento dell'array è un array a sua volta che contiene delle tuple, esiste nel database, cioè controlla che i dati restituiti dalla query (cioè risultatoQuery)corrispondono effettivamente a delle tuple presenti nel database
             //  se il risultato della query esiste nel db,con $risultatoQuery[0] ect... si controlla se l'ID dell'utente nel primo elemento (della tupla)(dell'array , Id utente è il valore  nella prima colonna della tupla) del risultato della query (cioè un array) corrisponde a $idUtente.
-            return true; // se gli id corrispondono
+            return true; // se gli id corrispondono si ritorna true
         }else{
             return false;//se non corrispondono si ritorna false
+        }
+    }
+    /**
+     * Metodo che ritorna un array con dentro le tuple che hanno una certa stringa specificata nel parametro del metodo come valore di un certo attributo delle tuple stesse , attributo specificato anche esso nei parametri del metodo.
+     * @param string $tabella si riferisce alla tabella del db da cui si vuole recuperare i dati.
+     * @param string $campo si riferisce al campo della/e tupla/e
+     * @param string $stringa si riferisce al valore del campo in base a cui selezioniamo (prendiamo) la/e tupla/e che hanno quella stringa nel field $campo.
+     * @return array 
+     */
+    public static function getOggCercato($tabella,$campo,$stringa){
+        try{
+            $query = " SELECT * FROM ".$tabella."WHERE".$campo." LIKE '%".$stringa." %'";
+            $dichiarazione = self::$db->prepare($query);
+            $dichiarazione->execute();
+            $countRighe= $dichiarazione->rowCount();
+            if($countRighe>0){
+                $risultato = array();
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);
+                while ($riga = $dichiarazione->fetch()){
+                    $risultato = $riga;
+                }
+                self::chiusuraConnessione();
+                return $risultato;
+            }else{
+                return array();
+            }
+        }catch (Exception $errore){
+            echo " ERRORE :".$errore->getMessage();
+            return array();
+        }
+
+    }
+    /**
+     * Metodo che ritorna le tuple da una SELECT FROM WHERE in cui un certo @campoha vlore NULL
+     * @param string $tabella si riferisce alla tabella del database
+     * @param string $campo si riferisce al campo della tabella, in una certa tupla  ,da passare come parametro che ha il campo = NULL
+     * @return array();
+     */
+    public static function ListaOggCampoNULL($tabella,$campo){
+        try{
+            $query = " SELECT * FROM ".$tabella." WHERE" .$campo." IS NULL;";
+            $dichiarazione = self::$db->prepare($query);
+            $dichiarazione->execute();
+            $countRighe = $dichiarazione->rowCount();
+            if($countRighe>0){
+                $risultato = array();
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);
+                while($riga = $dichiarazione->fetch()){
+                    $risultato[] = $riga;
+                }
+                return $risultato;
+            }else{
+                return array();
+            }
+        }catch(PDOException $errore){// credo che in ogni metodo potrei mettere Exception o PDOException perchè PDOException è una classe per la gestione di eccezioni della classe PDO mentre Excpetion è una classe che gestisce tutti i tipi di eccezione tra cui anche quelli della classe PDO.
+            echo " ERRORE: ".$errore->getMessage();
+            return array();      
         }
     }
 }
