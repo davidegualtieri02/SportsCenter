@@ -58,7 +58,7 @@ class FEntityManager{
     /**
      * metodo che mi rida la connessione al db cioè PDO,la variabile che contiene la connessione è db
      */
-     public static function getdb(){
+     public static function getdb(){//getdb mi da un riferimento al database , cioè mi da un oggetto che rappresenta un database 
         return self::$db;
 
     }
