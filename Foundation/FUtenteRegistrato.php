@@ -87,10 +87,10 @@ class FUtenteRegistrato{
                     //SalvaOggdaID restituisce true o false se l'oggetto è stato salvato o no quindi $salvaUtente è = true o false a seconda se l'utente è stato salvato o no.
                     FEntityManager::getIstanza()->getdb()->commit(); // fino a commit con l'oggetto Entity Manager richiamo il metodo getDB che mi rida un riferimento al db , cioè tramite ciò otteniamo un oggetto db ovvero un db, tramite il metodo commit() le modifiche che abbiamo fatto al database aggiungendo un oggetto Utente registrato tramite il suo ID vengono rese permanenti finchè non viene richiamato il metodo commit() di nuovo.
                     //le modifiche vengono fatte in una transazione temporanea . Queste modifiche non diventano permanenti finchè non si richiama il metodo commit().
-                    if($salvaUtente){// se il metodo salvaOggdaID mi rida true, cioè l'oggetto utente viene salavto nel DB, viene ritornato l'id dell'utente salvato.
+                    if($salvaUtente){// se il metodo salvaOggdaID mi rida true, cioè l'oggetto utente viene salvato nel DB, viene ritornato l'id dell'utente salvato.
                         return $salvaUtenteRegistrato;
                     }else{
-                        return false;
+                        return false;//se il metodo salvaOggdaID mi rida false, cioè l'oggetto utente non viene salvato nel DB, ritorna false.
                     }
                 }else{
                     return false; // se  l'oggetto utente non è stato salvato e si ritorna false.
