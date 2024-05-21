@@ -80,7 +80,7 @@ class FUtenteRegistrato{
         if($fieldArray ===null){
             try{
                 FEntityManager::getIstanza()->getdb()->beginTransaction();//tramite l'unico oggetto entity manager viene richiamato il metodo getdb() che mi rida un riferimento ad un database ovvero mi rida una variabile o oggetto che rappresenta il database e tramite tale variabile(variabile e non oggetto perchè senno credo che non potevo richiamre il metodo begintransaction()) richiamo il metodo begintransaction().
-            //begintransaction() viene richiamato per iniziare una nuova transazione . Una transazione è un insieme di operazionii sul database che vengono eseguite come un'unità , cioè come un unica azione. Se una delle operazioni fallisce , tutte le altre operazioni nella transazione vengono annullate e il database rimane invariato.
+                //begintransaction() viene richiamato per iniziare una nuova transazione . Una transazione è un insieme di operazionii sul database che vengono eseguite come un'unità , cioè come un unica azione. Se una delle operazioni fallisce , tutte le altre operazioni nella transazione vengono annullate e il database rimane invariato.
                 $salvaUtenteRegistrato = FEntityManager::getIstanza()->SalvaOgg(FUtente::getClasse(),$ogg);//Questa riga salva l'oggetto utente Registrato nel database nella tabella Utente e restituisce l'ID dell'oggetto appena inserito. Questo ID viene assegnato alla variabile $salvaUtenteRegistrato
                 if($salvaUtenteRegistrato !==null){
                     $salvaUtente = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$ogg,$salvaUtenteRegistrato);//se $salvaUtenteRegistrato non è null ma è pari all'id dell'utente registrato, salviamo l'oggetto utente registrato  tramite l'id nel database. L'oggetto da salvare è contenuto nella variabile $salvautenteregistrato.
@@ -90,28 +90,28 @@ class FUtenteRegistrato{
                     if($salvaUtente){// se il metodo salvaOggdaID mi rida true, cioè l'oggetto utente viene salavto nel DB, viene ritornato l'id dell'utente salvato.
                         return $salvaUtenteRegistrato;
                     }else{
-                        return false; // se  l'oggetto utente non è stato salvato e si ritorna false.
+                        return false;
                     }
-                    
+                }else{
+                    return false; // se  l'oggetto utente non è stato salvato e si ritorna false.
                 }
-        }catch (PDOException $errore){// se si verifica un eccezione(errore) durante il salvaggio di un oggetto UtenteRegistrato nel db viene eseguito questo codice
-            echo " ERRORE" . $errore->getMessage();
-            FEntityManager::getIstanza()->getdb()->rollBack();//FentityManager::getIstanza() richiama l'istanza dell'oggetto entity manager , se non esiste la crea, il metodo getdb() restituisce un'istanza del database a cui FentityManager è attualmente connesso
-            // il metodo rollBack() usato con l'istanza del db , annulla tutte le modifiche non salvate nel db effettuate durante l'attuale transazione SQL sulla connessione al database gestita da FentityManager.
-            return false;// restituendo false indichiamo che si è verificato un errore.
-        }finally{//la clausola finally viene eseguita indipendentemente dal fatto che un'eccezione sia stata sollevata o meno 
-            FEntityManager::getIstanza()->chiusuraConnessione();// questa metodo chiude la connessione al db
 
-        }
+            }catch (PDOException $errore){// se si verifica un eccezione(errore) durante il salvaggio di un oggetto UtenteRegistrato nel db viene eseguito questo codice
+                echo "ERRORE" . $errore->getMessage();
+                FEntityManager::getIstanza()->getdb()->rollBack();//FentityManager::getIstanza() richiama l'istanza dell'oggetto entity manager , se non esiste la crea, il metodo getdb() restituisce un'istanza del database a cui FentityManager è attualmente connesso
+                // il metodo rollBack() usato con l'istanza del db , annulla tutte le modifiche non salvate nel db effettuate durante l'attuale transazione SQL sulla connessione al database gestita da FentityManager.
+                return false;// restituendo false indichiamo che si è verificato un errore.
+            }finally{//la clausola finally viene eseguita indipendentemente dal fatto che un'eccezione sia stata sollevata o meno 
+                FEntityManager::getIstanza()->chiusuraConnessione();// questa metodo chiude la connessione al db
+            }
         }else{//se l'array $fieldArray ha uno o più valori da aggiornare  per  uno o più campi di una tabella , cioè non ha valore null
             try{
                 FEntityManager::getIstanza()->getdb()->beginTransaction();
                 foreach($fieldArray as $array){//una alla volta tutti gli elementi di $fieldArray li pongo pari a $array
                     //$array avrà due elementi l'elemento zero che il campo e l'elemento 1 che è il valore del campo.
                     if($array[0]!='password'){// aggiorno il valore di un campo se il campo non è pari alla password
-                        FEntityManager::getIstanza()->updateOgg(FUtenteRegistrato::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
-                     //il metodo updateOgg prende come parametro la tabella in cui vogliamo cambiare il valore del campo , $array[0] rappresenta il campo di cui vogliamo aggiornare il valore , $array[1] rappresenta il valore del campo da aggiornare , self::getChiave() rappresenta la condizione del metodo cioè cambiamo il valore del campo dove la chiave primaria ha un determinato valore , l'ultimo parametro rappresenta il valore della chiave primaria , cioè il valore dell'id
-                     //quindi il metodo aggiorna il valore del campo di una tupla dove la chiave primaria cioè l'id ha un determinato valore dato da $ogg->getId.
+                        FEntityManager::getIstanza()->updateOgg(FUtenteRegistrato::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());                            //il metodo updateOgg prende come parametro la tabella in cui vogliamo cambiare il valore del campo , $array[0] rappresenta il campo di cui vogliamo aggiornare il valore , $array[1] rappresenta il valore del campo da aggiornare , self::getChiave() rappresenta la condizione del metodo cioè cambiamo il valore del campo dove la chiave primaria ha un determinato valore , l'ultimo parametro rappresenta il valore della chiave primaria , cioè il valore dell'id
+                        //quindi il metodo aggiorna il valore del campo di una tupla dove la chiave primaria cioè l'id ha un determinato valore dato da $ogg->getId.
                     
                     }else{
                         FEntityManager::getIstanza()->updateOgg(FUtente::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
@@ -119,16 +119,17 @@ class FUtenteRegistrato{
                         //ovviamente aggiorniamo solo il valore del campo password della tupla che ha un certo ID.
                     }
                 }
-                    FEntityManager::getIstanza()->getdb()->commit();// commit lo uso per salvare le modifiche
-                    return true;//ritorna true se il valore aggiornato è stato aggiornato correttamente.
+                FEntityManager::getIstanza()->getdb()->commit();// commit lo uso per salvare le modifiche
+                return true;//ritorna true se il valore aggiornato è stato aggiornato correttamente.
             }catch(PDOException $errore){
-                echo " ERRORE" . $errore->getMessage();
+                echo "ERRORE" . $errore->getMessage();
                 FEntityManager::getIstanza()->getdb()->rollBack();
                 return false;
             }finally{
                 FEntityManager::getIstanza()->chiusuraConnessione();
-
             }
         }
     }
+
+
 }
