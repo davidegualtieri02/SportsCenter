@@ -41,5 +41,16 @@ class FImage{
     public static function bind($dichiarazione, $image){
         $dichiarazione->bindValue(":nome", $image->getNome(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":grandezza", $image->getGrandezza(), PDO::PARAM_INT);
+        $dichiarazione->bindValue(":tipi", $image->getTipo(), PDO::PARAM_STR);
+        $dichiarazione->bindValue(":imageData", $image->getImageData(), PDO::PARAM_LOB);
+        if($image->getRecensione() !== null){
+            $dichiarazione->bindValue(":idRecensione", $image->getRecensione()->getId(), PDO::PARAM_INT);
+        }else{
+            $dichiarazione->bindValue(":idPost", null, PDO::PARAM_NULL);
+        }
+    }
+
+    public static function getOgg($id){
+        
     }
 }
