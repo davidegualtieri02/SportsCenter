@@ -2,15 +2,15 @@
 class ERecensione{
     private int $valutazione;
     private string $commento;
-    private Image $foto;
-    private int $id_recensione;
+    private $image;
+    private int $idRecensione;
     private static $entità = ERecensione::class;
 
-    public function __construct($valutazione,$commento,$foto,$id_recensione){
+    public function __construct($valutazione,$commento,$image,$idRecensione){
         $this->valutazione = $valutazione;
         $this->commento = $commento;
-        $this->foto=$foto;
-        $this->id_recensione = $id_recensione;
+        $this->image=$image;
+        $this->id_recensione = $idRecensione;
     }
     public function getValutazione(){
         return $this->valutazione;
@@ -24,11 +24,11 @@ class ERecensione{
     public function setCommento($commento){
         $this->commento = $commento;
     }
-    public function getFoto(){
-        return $this->foto;
+    public function getImage(){
+        return $this->image;
     }
-    public function setFoto($foto){
-        $this->foto = $foto;
+    public function setImage($image){
+        $this->foto = $image;
     }
     public static function getEntità(){
         return self::$entità;
