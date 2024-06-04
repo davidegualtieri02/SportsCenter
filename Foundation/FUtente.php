@@ -25,6 +25,32 @@ class FUtente{
     public static function getChiave(){
         return self::$chiave;
     }
+
+    public static function creaOggUtente($risultatoQuery){
+        if(count($risultatoQuery) == 1){
+            $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), "IDUtente", $risultatoQuery[0]['IDUtente']);
+
+            $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password'], $risultatoQuery[0]['id']);
+            $utente->setId($risultatoQuery[0]['id_Utente']);
+            $utente->setHashPassword($risultatoQuery[0]['password']);
+            $utente->setBan($ban[0]['ban']);
+            return $utente;
+        }elseif(count($risultatoQuery) > 1){
+            $utenti = array();
+            for($i = 0; $i < count($risultatoQuery); $i++){
+                $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), 'IDUtente', $risultatoQuery[$i]['IDUtente']);
+
+                $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password'], $risultatoQuery[0]['id']);
+                $utente->setId($risultatoQuery[0]['id_Utente']);
+                $utente->setHashPassword($risultatoQuery[0]['password']);
+                $utente->setBan($ban[0]['ban']);
+                $utenti[] = $utente;
+            }
+            return $utenti;
+        }else{
+            return array();
+        }
+    }
     /**
      * questo metodo lega il valore dei parametri nome,cognome,email e password  agli attributi nome ,cognome , password e email dell'oggetto utente della classe EUtente 
      * quando creiamo un utente con un certo nome,cognome , una certa email e una certa password attraverso il metodo bind il valore dei segnaposti nome,cognome,password,email vengono sostituiti con i valori posti da noi nell'inizializzazione dell'oggetto utente creato in precedenza 
@@ -50,4 +76,15 @@ class FUtente{
     //FentityManager::getIstanza() è un metodo che viene utilizzato per ottenere un'istanza(oogetto) della classe FEntityManager, questo è un esempio di singleton .
     // Quando scriviamo FentityManager::getIstanza() stiamo facendo riferimento all'unico oggetto  FentityManager che esiste nel nostro programma(applicazione).  Questo singleton permette di utilizzare lo stesso oggetto FEntityManager in diverse parti del codice senza dover creare un tale oggetto ogni volta che ci serve.
     // una volta che abbiamo ottenuto un'oggetto FentityManager tramite il metodo recuperoOggetto() recuperimo un oggetto(non una tupla ma proprio il valore di un certo campo di una certa tupla specificati nei parametri del metodo recuperoOggetto) ponendo in tale metodo recuperaOggetto una certa tabella , un certo campo e un certo valore del campo stesso(id).
+
+    public static function getOgg($id_Utente){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_Utente);
+        if(count($risultato) > 0){
+            $utente = self::creaOggUtente($risultato);
+            return $utente;
+        }else{
+            return null;
+        }
+
+    }
 }
