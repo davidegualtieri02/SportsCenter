@@ -1,6 +1,6 @@
 <?php
 class FUtenteRegistrato{
-    private static $tabella = " UtenteRegistrato";
+    private static $tabella = "UtenteRegistrato";
      /**
      * All'attributo $valore viene assegnata una stringa di parametri utilizzata in una query SQL per l'inserimento di dati in un database
      * NULL è usato per un campo(attributo del database) auto-incrementante  come l'ID, il database assegna automaticamente il prossimo numero disponibile.

@@ -1,11 +1,12 @@
 <?php
+
 class FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Attrezzatura"; 
     private static $valore = "(NULL,:id_attrezzatura)";
     private static $chiave = "IDAttrezzatura";
 
-    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave
+    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){
         return self::$tabella;
     }
@@ -48,7 +49,7 @@ class FAttrezzatura{
         }
     }
 
-    //Metodo public che lega valori (in questo caso solo l'ID dell'attrezzatura) ai rispettivi parametri nella dichiarazione SQL
+    //Metodo public che lega i valori (in questo caso solo l'ID dell'attrezzatura) ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura){
         //Lega l'ID dell'attrezzatura al parametro ":id_attrezzatura" nella dichiarazione SQL
         $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura->getId_attrezzatura(),PDO::PARAM_INT);

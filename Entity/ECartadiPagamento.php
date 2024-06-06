@@ -1,9 +1,11 @@
-<?php 
+<?php
+use DateTime; //Utilizzo di una classe di default
+
 class ECartadiPagamento{
     private String $Nome_Titolare;
     private String $Cognome_Titolare;
     private int $Numero_Carta;
-    private Data $Data_Scadenza;
+    private DateTime $Data_Scadenza;
     private int $CVV;
     private int $Id_Carta;
 
@@ -35,6 +37,12 @@ class ECartadiPagamento{
     }
     public function setNumeroCarta($numerocarta){
         $this->Numero_Carta = $numerocarta;
+    }
+    public function getDataScadenza(): DateTime {
+        return $this->Data_Scadenza;
+    }
+    public function setDataScadenza(DateTime $Data_Scadenza) {
+        $this->Data_Scadenza = $Data_Scadenza;
     }
     public function getCVV(){
         return $this->CVV;

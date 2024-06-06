@@ -1,8 +1,10 @@
 <?php
+use DateTime; //Utilizzo di una classe di default
 use Doctrine\ORM \Mapping as ORM;
+
 class EPrenotazione {
-    private Data $data;
-    private Int $orario;
+    private DateTime $data;
+    private Int $orario; //L'orario non è di tipo DateTime perchè gli orari disponibili saranno predefiniti all'ora spaccata (es. ore 18, ore 19, ore 20, etc.)
     private bool $pagata;
     private int $id_prenotazione;
     private $id_campo; //ID dell'oggetto Campo
@@ -18,10 +20,10 @@ class EPrenotazione {
         $this->id_attrezzatura = $id_attrezzatura;
 
     }
-    public function getData(){
+    public function getData(): DateTime{
         return $this->data;
     }
-    public function setData($data):void{
+    public function setData(DateTime $data):void{
         $this->data = $data;
     
     }

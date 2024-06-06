@@ -4,9 +4,9 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
     //Definizione delle variabili private che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Attrezzatura_Tennis"; 
     private static $valore = "(NULL,:id_attrezzatura,:numPalla_Tennis,:numRacchetta_Tennis)";
-    private static $chiave = "IDAttrezzatura";
+    private static $chiave = "IDAttrezzaturaTennis";
 
-    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave
+    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){
         return self::$tabella;
     }
@@ -20,32 +20,32 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
         return self::$chiave;
     }
 
-    //Metodo public che crea un oggetto attrezzatura a partire dai risultati di una query
+    //Metodo public che crea un oggetto attrezzatura da tennis a partire dai risultati di una query
     public static function creaOggAttrezzatura_Tennis($risultatoQuery){
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
-            //Crea un nuovo oggetto attrezzatura
+            //Crea un nuovo oggetto attrezzatura da tennis
             $attrezzatura_tennis = new EAttrezzatura_Tennis($risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numPalla_Tennis'], $risultatoQuery[0]['numRacchetta_Tennis']);
-            //Restituisce l'oggetto attrezzatura
+            //Restituisce l'oggetto attrezzatura da tennis
             return $attrezzatura_tennis;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
             //Crea un array vuoto
             $attrezzature_tennis = array();
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
-                //Crea un nuovo oggetto attrezzatura
+                //Crea un nuovo oggetto attrezzatura da tennis
                 $attrezzatura_tennis = new EAttrezzatura_Tennis($risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['numPalla_Tennis'], $risultatoQuery[$i]['numRacchetta_Tennis']);
-                //Aggiunge l'oggetto attrezzatura nell'array
+                //Aggiunge l'oggetto attrezzatura da tennis nell'array
                 $attrezzature_tennis[] = $attrezzatura_tennis;
             }
-            //Restituisce l'array di oggetti attrezzatura
+            //Restituisce l'array di oggetti attrezzatura da tennis
             return $attrezzature_tennis;
         }else{ //Altrimenti (se la query non restituisce risultati) restituisce un array vuoto
             return array();
         }
     }
 
-    //Metodo public che lega valori ai rispettivi parametri nella dichiarazione SQL
+    //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_tennis){
         $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_tennis->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Tennis",$attrezzatura_tennis->getNumPalla_Tennis(),PDO::PARAM_INT);
@@ -60,15 +60,15 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }
 
-    //Metodo public che recupera un oggetto attrezzatura dal DB
+    //Metodo public che recupera un oggetto attrezzatura da tennis dal DB
     public static function getOgg($id_attrezzatura){
         //Recupera l'oggetto dal DB
         $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzatura);
         //Se la query restituisce almeno un risultato
         if(count($risultato) > 0){
-            //Crea un oggetto attrezzatura a partire dai risultati della query
+            //Crea un oggetto attrezzatura da tennis a partire dai risultati della query
             $attrezzatura_tennis = self::creaOggAttrezzatura_Tennis($risultato);
-            //Restituisce l'oggetto attrezzatura
+            //Restituisce l'oggetto attrezzatura da tennis
             return $attrezzatura_tennis;
         }else{ //Se la query non restituisce risultati, restituisci null
             return null;

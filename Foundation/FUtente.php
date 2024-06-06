@@ -1,4 +1,5 @@
 <?php
+
 class FUtente{
     //questi attributi sono statici perchè possiamo creare gli oggetti riferiti a tale attributi solo nella classe stessa FUtente .Lo stesso vale per i metodi sono statici e quindi possono essere richiamati senza dover istanziare un oggetto della classe.
     private static $tabella = "Utente"; 

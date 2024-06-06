@@ -2,7 +2,7 @@
 class FAmministratore{ // self è una parola chiave che si riferisce alla classe stessa che stiamo implementando,attraverso self accediamo ai metodi o attributi statici della classe stessa.
     private static $tabella = "Amministratore";
     private static $valore = " (:idUtente)";
-    private static $chiave = " idUtente";
+    private static $chiave = "IDAmministratore";
 
     public static function getTabella(){
         return self::$tabella;//tramite self accediamo all'attributo statico tabella della classe e ritorniamo tale elemento una volta che abbiamo ottenuto l'elemento.
@@ -64,14 +64,13 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * @param $obj si riferisce all'oggetto amministratore da salvare nel db
      * 
      */
-    public static function SalvaOggetto($obj){
+    public static function SalvaOgg($obj){
         $salvaUtente = FEntityManager::getIstanza()->SalvaOgg(FUtente::getClasse(),$obj); // tramite FentityManager::getIstanza() richiamo l unica istanza della classe entity manager, tramite questa istanza richiamo il metodo SalvaOgg() e passo come parametro a questo metodo la classe dell'oggetto da salvare e l'oggetto stesso. Scrivo FUtente::getClasse() perchè la classe FAmministratore è una estensione della classe FUtente e dunque utilizzo FUtente getclasse() per generalizzare ma credo che sia corretto anche scrivere FAmministratore al posto di FUtente. Quindi $salvaUtente contiene un id //$salvaUtente contiene un id
         if($salvaUtente !== null){// se $salvaUtente è diversa da null ,cioè ha come valore un id 
             $salvaAmm = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$obj,$salvaUtente);//$salvaAmm salva un oggetto amministratore nel database tramite l'id. Accedo all'unico oggetto FentityManager e tramite esso richiamo il metodo saveOggdaID con cui salvo l'oggetto tramite il suo id
             return $salvaAmm;// $salvaAmm ritorna l'output del metodo SalvaOggdaID , cioè $salvaAmm contiene true e dunque return $salvaAmm ritorna true se l'oggetto viene salvato nel db , altrimenti si ritorna false.
         }else{
-            return false; // se non ha salvato l'oggetto amministratore, viene ritornato fasle
-
+            return false; // se non ha salvato l'oggetto amministratore, viene ritornato false
         }
     }
     

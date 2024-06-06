@@ -3,11 +3,11 @@
 //Definisco la classe FRecensione
 class FRecensione{
     //Dichiaro le variabili statiche private che contengono i nomi della tabella, i valori e la chiave primaria
-    private static $tabella = "recensione";
+    private static $tabella = "Recensione";
     private static $valore = "(NULL, :commento, :valutazione, :DataOra, :removed, :id_Utente)";
-    private static $chiave = "idRecensione";
+    private static $chiave = "IDRecensione";
 
-    //Funzioni getter 
+    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){
         return self::$tabella;
     }
@@ -30,7 +30,7 @@ class FRecensione{
             $recensioni = array();
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
-                //Creazione di un nuovo oggetto ERecensione con i dati ottenuti dalla query
+                //Creazione di un nuovo oggetto Recensione con i dati ottenuti dalla query
                 $rec = new ERecensione($risultatoQuery[$i]['commento'],$risultatoQuery[$i]['valutazione']);
                 //Imposto l'ID della recensione
                 $rec->setId($risultatoQuery[$i]['idRecensione']);
@@ -45,8 +45,7 @@ class FRecensione{
             }
             //ritorna array delle recensioni
             return $recensioni;
-        }else{
-            //Se il risultato della query non contiene elementi, ritorna un array vuoto
+        }else{ //Se il risultato della query non contiene elementi, ritorna un array vuoto
             return array();
         }
     }
@@ -71,8 +70,7 @@ class FRecensione{
             $recensione = self::CreaOggRecensione($risultato);
             //Restituisci l'oggetto Recensione
             return $recensione;
-        }else{
-            //Se il risultato non contiene elementi, allora restituisci null
+        }else{ //Se il risultato non contiene elementi, allora restituisci null
             return null;
         }
     }
@@ -87,8 +85,7 @@ class FRecensione{
             if($salvaRecensione !== null){
                 //Se è stato salvato correttamente, restituisci l'oggetto
                 return $salvaRecensione;
-            }else{
-                //Se non è stato salvato nulla, restituisci false
+            }else{ //Se non è stato salvato nulla, restituisci false
                 return false;
             }
         }else{
@@ -116,7 +113,7 @@ class FRecensione{
     }
 
     //Funzione per eliminare una recensione dal DB
-    public static function eliminaRecensioneDalDB($idRecensione, $id_Utente){ 
+    public static function eliminaRecensioneDalDB($idRecensione, $id_Utente){
         //Inizia una transazione       
         try{
             FEntityManager::getIstanza()->getdb()->beginTransaction();
@@ -135,8 +132,7 @@ class FRecensione{
                 //Conferma le modifiche al DB
                 FEntityManager::getIstanza()->getdb()->commit();
                 return true;
-            }else{
-                //Se la recensione non esiste o l'utente non è il creatore, allora annulla le modifiche dal DB
+            }else{ //Se la recensione non esiste o l'utente non è il creatore, allora annulla le modifiche dal DB
                 FEntityManager::getIstanza()->getdb()->commit();
                 return false;
             }

@@ -4,9 +4,9 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Attrezzatura_Calcio"; 
     private static $valore = "(NULL,:id_attrezzatura,:numPalloni_Calcio,:numCasacca)";
-    private static $chiave = "IDAttrezzatura";
+    private static $chiave = "IDAttrezzaturaCalcio";
 
-    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave
+    //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){
         return self::$tabella;
     }
@@ -20,32 +20,32 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
         return self::$chiave;
     }
 
-    //Metodo public che crea un oggetto attrezzatura a partire dai risultati di una query
+    //Metodo public che crea un oggetto attrezzatura da calcio a partire dai risultati di una query
     public static function creaOggAttrezzatura_Calcio($risultatoQuery){
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
-            //Crea un nuovo oggetto attrezzatura
+            //Crea un nuovo oggetto attrezzatura da calcio
             $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numPalloni_Calcio'], $risultatoQuery[0]['numCasacca']);
-            //Restituisce l'oggetto attrezzatura
+            //Restituisce l'oggetto attrezzatura da calcio
             return $attrezzatura_calcio;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
             //Crea un array vuoto
             $attrezzature_calcio = array();
-            //Ciclo if per ogni risultato della query
+            //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
-                //Crea un nuovo oggetto attrezzatura
+                //Crea un nuovo oggetto attrezzatura da calcio
                 $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['numPalloni_Calcio'], $risultatoQuery[$i]['numCasacca']);
-                //Aggiunge l'oggetto attrezzatura nell'array
+                //Aggiunge l'oggetto attrezzatura da calcio nell'array
                 $attrezzature_calcio[] = $attrezzatura_calcio;
             }
-            //Restituisce l'array di oggetti attrezzatura
+            //Restituisce l'array di oggetti attrezzatura da calcio
             return $attrezzature_calcio;
         }else{ //Altrimenti (se la query non restituisce risultati) restituisce un array vuoto
             return array();
         }
     }
 
-    //Metodo public che lega valori ai rispettivi parametri nella dichiarazione SQL
+    //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_calcio){
         $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_calcio->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalloni_Calcio",$attrezzatura_calcio->getNumPalloni_Calcio(),PDO::PARAM_INT);
@@ -60,15 +60,15 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }
 
-    //Metodo public che recupera un oggetto attrezzatura dal DB
+    //Metodo public che recupera un oggetto attrezzatura da calcio dal DB
     public static function getOgg($id_attrezzatura){
         //Recupera l'oggetto dal DB
         $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzatura);
         //Se la query restituisce almeno un risultato
         if(count($risultato) > 0){
-            //Crea un oggetto attrezzatura a partire dai risultati della query
+            //Crea un oggetto attrezzatura da calcio a partire dai risultati della query
             $attrezzatura_calcio = self::creaOggAttrezzatura_Calcio($risultato);
-            //Restituisce l'oggetto attrezzatura
+            //Restituisce l'oggetto attrezzatura da calcio
             return $attrezzatura_calcio;
         }else{ //Se la query non restituisce risultati, restituisci null
             return null;
