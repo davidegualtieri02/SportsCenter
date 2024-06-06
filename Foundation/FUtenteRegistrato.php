@@ -9,7 +9,7 @@ class FUtenteRegistrato{
     private static $valore = "(NULL,:nome,:cognome,:password,:email,:ban)";
 
 
-    private static $chiave = "IDUtenteRegistrato";
+    private static $chiave = "id_utenteRegistrato";
 
     public static function getTabella(){
         return self::$tabella;

@@ -5,7 +5,7 @@ class FRecensione{
     //Dichiaro le variabili statiche private che contengono i nomi della tabella, i valori e la chiave primaria
     private static $tabella = "Recensione";
     private static $valore = "(NULL, :commento, :valutazione, :DataOra, :removed, :id_Utente)";
-    private static $chiave = "IDRecensione";
+    private static $chiave = "id_recensione";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){

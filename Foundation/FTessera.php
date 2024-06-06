@@ -4,7 +4,7 @@ class FTessera{
     //Dichiarazione di variabili private statiche che contengono informazioni sulla tabella del DB, i valori e la chiave primaria
     private static $tabella = "Tessera"; 
     private static $valore = "(NULL,:Codice_Tessera,:Id_Tessera)";
-    private static $chiave = "Id_Tessera";
+    private static $chiave = "id_tessera";
 
     //Metodi per ottenere il nome della tabella, i valori, la classe e la chiave primaria
     public static function getTabella(){

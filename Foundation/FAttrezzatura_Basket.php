@@ -2,9 +2,9 @@
 
 class FAttrezzatura_Basket extends FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
-    private static $tabella = "Attrezzatura_Basket"; 
+    private static $tabella = "AttrezzaturaBasket"; 
     private static $valore = "(NULL,:id_attrezzatura,:numPalla_Basket,:numCasacca)";
-    private static $chiave = "IDAttrezzaturaBasket";
+    private static $chiave = "id_attrezzaturaBasket";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
     public static function getTabella(){

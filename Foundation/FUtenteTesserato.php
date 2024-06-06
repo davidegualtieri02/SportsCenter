@@ -4,7 +4,7 @@ class FUtenteTesserato{
     //Definizione delle variabili statistiche
     private static $tabella = "UtenteTesserato"; //Nome della tabella nel DB
     private static $valore = "(NULL,:nome,:cognome,:password,:email,:ban)"; //Valori da inserire nella tabella
-    private static $chiave = "IDUtenteTesserato"; //Chiave primaria della tabella
+    private static $chiave = "id_utenteTesserato"; //Chiave primaria della tabella
 
     //Metodi getter per le variabili statistiche
     public static function getTabella(){

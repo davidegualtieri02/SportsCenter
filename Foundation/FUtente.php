@@ -12,7 +12,7 @@ class FUtente{
     private static $valore = "(NULL,:nome,:cognome,:password,:email)";
 
 
-    private static $chiave = "IDUtente";
+    private static $chiave = "id_utente";
 
     public static function getTabella(){
         return self::$tabella;

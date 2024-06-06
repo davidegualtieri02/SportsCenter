@@ -10,8 +10,8 @@ CREATE TABLE Utente(
 --COLLATE = utf8_unicode_ci questo imposta il collation predefinito per la tabella.Un collation determina come i dati di stringa vengono confrontati e ordinati
 --utf8_unicode_ci è una collation che confronta le syringhe in modo case-sensitive, cioè non si fa distinzione tra lettere maiuscole e minuscole.
 CREATE TABLE UtenteRegistrato(
-    ' id_UtenteRegistrato' INT PRIMARY KEY,
-     'nome'VARCHAR (50),
+    'id_utenteRegistrato' INT PRIMARY KEY,
+    'nome'VARCHAR (50),
     'cognome' VARCHAR (50),
     'pass' VARCHAR(50),
     'email' VARCHAR(50),
@@ -19,20 +19,20 @@ CREATE TABLE UtenteRegistrato(
     --il NOT NULL vicino a tinyint mi dice che la colonna ban non può avere valori null in una delle tuple della tabella.
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE UtenteTesserato(
-    ' id_UtenteTesserato' INT PRIMARY KEY,
-     'nome'VARCHAR (50),
+    'id_utenteTesserato' INT PRIMARY KEY,
+    'nome'VARCHAR (50),
     'cognome' VARCHAR (50),
     'pass'VARCHAR (50),
     'email' VARCHAR(50),
-    ' ban ' TINYINT NOT NULL; 
+    'ban ' TINYINT NOT NULL; 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Amministratore(
-    ' id_Amministratore' INT PRIMARY KEY,
-     'nome'VARCHAR (50),
+    'id_amministratore' INT PRIMARY KEY,
+    'nome'VARCHAR (50),
     'cognome' VARCHAR (50),
     'pass'VARCHAR (50),
     'email' VARCHAR(50),
-    ' ban ' TINYINT(1) NOT NULL;
+    'ban ' TINYINT(1) NOT NULL;
  )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Tessera(
     'id_tessera' INT PRIMARY KEY,
@@ -49,38 +49,38 @@ CREATE TABLE Attrezzatura(
     'id_attrezzatura' INT PRIMARY KEY;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE AttrezzaturaCalcio(
-    ' idAttrezzatura_calcio' INT PRIMARY KEY,
-    ' palloneCalcio' INT,
-    ' casacca' INT;
+    'id_attrezzaturaCalcio' INT PRIMARY KEY,
+    'palloneCalcio' INT,
+    'casacca' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE AttrezzaturaTennis(
-    ' idAttrezzatura_tennis' INT PRIMARY KEY,
-    ' pallaTennis' INT ,
+    'id_attrezzaturaTennis' INT PRIMARY KEY,
+    'pallaTennis' INT ,
     'racchettaTennis' INT ;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE AttrezzaturaPadel(
-    ' idAttrezzatura_padel' INT PRIMARY KEY,
-    ' pallaPadel' INT,
-    ' racchettaPadel' INT;
+    'id_attrezzaturaPadel' INT PRIMARY KEY,
+    'pallaPadel' INT,
+    'racchettaPadel' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE AttrezzaturaBasket(
-    ' idAttrezzatura_basket' INT PRIMARY KEY,
-    ' pallaBAsket' INT,
-    ' casacca' INT;
+    'id_attrezzaturaBasket' INT PRIMARY KEY,
+    'pallaBasket' INT,
+    'casacca' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE AttrezzaturaPallavolo(
-    ' idAttrezzatura_Calcio' INT PRIMARY KEY,
+    'id_attrezzaturaPallavolo' INT PRIMARY KEY,
     'pallonePallavolo' INT,
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Prenotazione(
     'id_prenotazione' INT PRIMARY KEY,
     'data' DATE ,
-    ' orario ' INT,
+    'orario ' INT,
     'pagata' TINYINT(1);
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CartaPagamento(
-    ' idCarta' INT
-    ' nomeTitolare' VARCHAR(50),
+CREATE TABLE CartadiPagamento(
+    'id_cartadiPagamento' INT
+    'nomeTitolare' VARCHAR(50),
     'cognomeTitolare' VARCHAR (50),
     'numeroCarta' INT,
     'DataScadenza' DATE,
