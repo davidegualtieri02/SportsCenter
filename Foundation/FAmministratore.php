@@ -1,7 +1,7 @@
 <?php
 class FAmministratore{ // self è una parola chiave che si riferisce alla classe stessa che stiamo implementando,attraverso self accediamo ai metodi o attributi statici della classe stessa.
     private static $tabella = "Amministratore";
-    private static $valore = " (:idUtente)";
+    private static $valore = "(NULL, :nome, :cognome, :password, :email, :id_utente)";
     private static $chiave = "id_amministratore";
 
     public static function getTabella(){
@@ -27,8 +27,8 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * credo che l'array multidimensionale sia fatto cosi [['idUtente'->'1000','nome'->'mario','cognome'->rossi , 'password'->'123']], quindi con $risultato[0]['idUtente'] accediamo al valore della chiave idUtente nel primo elemento dell'array multidimensionale che è a sua volta un array(nell'array multidimensionale ho solo un array che contiene i dati dell'unico Amministratore).
      */
     public static function CreaOggAmministratore($risultatoQuery){
-        if(count($risultatoQuery)>0){// se ci sono elementi nell'array risultatoQuery ,se c'e ne è, c'è ne è solo uno perchè abbiamo un solo amministratore.
-            $amm = new EAmministratore($risultatoQuery[0]['idUtente'], $risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password']);
+        if(count($risultatoQuery)>0){ // se ci sono elementi nell'array risultatoQuery ,se c'e ne è, c'è ne è solo uno perchè abbiamo un solo amministratore.
+            $amm = new EAmministratore($risultatoQuery[0]['id_amministratore'], $risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['id_utente']);
            // $amm->setId($risultatoQuery[0]['IdUtente']);senza specificare(mettere) l'id nella creazione dell'oggetto mi da errore, specificando l'id nell'inizializzazione dell'oggetto non mi da l'errore
             $amm->setHashPassword($risultatoQuery[0]['password']);
             return $amm;
@@ -41,8 +41,8 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * @param $dichiarazione è la variabile con cui preparo le query . Utilizziamo il metodo preprae su un oggetto PDO per preparare la dichiarazione SQL ovvero in questo modo: $dichiarazione = $q->preprae($query) . Infine si richiama il metodo execute() sull'oggetto dichiarazione  per eseguire la query.
      * @param $id contiene l'oggetto id ( cioè il valore dell'id ) da associare al segnoposto "idUtente"-.
      */
-    public static function bind ($dichiarazione,$id){
-        $dichiarazione->bindValue(":idUtente",$id,PDO::PARAM_INT); // PDO::_PARAM_INT mi dice di che tipo è il parametro (oggetto) assegnato al segnaposto, in questo caso è un intero. 
+    public static function bind ($dichiarazione,$amministratore){
+        $dichiarazione->bindValue(":id_amministratore",$amministratore,PDO::PARAM_INT); // PDO::_PARAM_INT mi dice di che tipo è il parametro (oggetto) assegnato al segnaposto, in questo caso è un intero. 
     }
     /**
      * Questo metodo ritorna un oggetto Amministratore.
@@ -50,8 +50,8 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * il metodo fa si che $result sia un array che contiene tutte le tuple(contenute in altri array interni) prese dalla tabella utente che hanno come valore della chiave(attributo) = " idUtente" pari all id posto come parametro , cioè contenuto in $id. Siccome c'è un solo amministratore $result contiene un array i cui elementi sono i dati dell'amministratore che ha quell'id posto come parametro al metodo.
      *  Ricordiamo che il nostro Database è implementato in questo modo : Table per Hierarchy: In questo caso, avresti una sola tabella per tutte le classi nella gerarchia. La tabella avrebbe colonne per tutti i campi di tutte le classi. Quindi, se la classe Amministratore estende la classe Utente e ha un campo extra chiamato AmministratoreField, la nostra tabella utente avrebbe una colonna per AmministratoreField. Potremmo avere un’altra colonna per indicare il tipo di ogni riga.
      */
-    public static function getOgg($id){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto( FUtente::getTabella(),FAmministratore::getChiave(),$id);//il metodo recuperaOggetto mi rida un array . FentityManager::getIstanza() è un metodo statico che mi rida l'unica istanza della classe entity manager con la quale richiamo il metodo recuperaOgetto(). A tale metodo passo come parametro una tabella contenuta nel database cioè la tabella Utente, con FAmministratore::getChiave() accedo al campo id , cioè accedo alla colonna degli id (potrei farlo sia con  FAmministraotore che con FUtente visto che sia  Famministratore che FUtente hanno gli stessi attributi tra cui l'attributo  id e dunque pongo FAmministratore::getChiave per risaltare il fatto che sto accedendo al valore dell'id dell'amministratore nella tabella Utente del database che ha gli stessi attributi di Amministratore)
+    public static function getOgg($id_amministratore){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto( FUtente::getTabella(),FAmministratore::getChiave(),$id_amministratore);//il metodo recuperaOggetto mi rida un array . FentityManager::getIstanza() è un metodo statico che mi rida l'unica istanza della classe entity manager con la quale richiamo il metodo recuperaOgetto(). A tale metodo passo come parametro una tabella contenuta nel database cioè la tabella Utente, con FAmministratore::getChiave() accedo al campo id , cioè accedo alla colonna degli id (potrei farlo sia con  FAmministraotore che con FUtente visto che sia  Famministratore che FUtente hanno gli stessi attributi tra cui l'attributo  id e dunque pongo FAmministratore::getChiave per risaltare il fatto che sto accedendo al valore dell'id dell'amministratore nella tabella Utente del database che ha gli stessi attributi di Amministratore)
         if (count($risultato)>0){// se $result contiene l'unico array con i dati dell'unico amministratore  , cioè se $risultato contiene almeno un elemento
             $amm = self::CreaOggAmministratore($risultato);// cosi con self usiamo un metodo della classe amministratore che crea un oggetto amministratore passando al metodo CreaOggAmministratore() l'array multidimensionale $risultato
             return $amm;

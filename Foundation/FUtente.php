@@ -10,8 +10,6 @@ class FUtente{
      * :nome,:cognome,:email,:password  : questi sono dei segnaposto . Ogni segnaposto sarà poi sostituito con un valore reale quando la query viene eseguita.
      */
     private static $valore = "(NULL,:nome,:cognome,:password,:email)";
-
-
     private static $chiave = "id_utente";
 
     public static function getTabella(){
@@ -29,22 +27,22 @@ class FUtente{
 
     public static function creaOggUtente($risultatoQuery){
         if(count($risultatoQuery) == 1){
-            $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), "IDUtente", $risultatoQuery[0]['IDUtente']);
+            $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), "id_utente", $risultatoQuery[0]['id_utente']);
 
-            $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password'], $risultatoQuery[0]['id']);
-            $utente->setId($risultatoQuery[0]['id_Utente']);
+            $utente = new EUtente($risultatoQuery[0]['id_utente'], $risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
+            $utente->setId($risultatoQuery[0]['id_utente']);
             $utente->setHashPassword($risultatoQuery[0]['password']);
             $utente->setBan($ban[0]['ban']);
             return $utente;
         }elseif(count($risultatoQuery) > 1){
             $utenti = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), 'IDUtente', $risultatoQuery[$i]['IDUtente']);
+                $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), 'id_utente', $risultatoQuery[$i]['id_utente']);
 
-                $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password'], $risultatoQuery[0]['id']);
-                $utente->setId($risultatoQuery[0]['id_Utente']);
-                $utente->setHashPassword($risultatoQuery[0]['password']);
-                $utente->setBan($ban[0]['ban']);
+                $utente = new EUtente($risultatoQuery[$i]['id_utente'], $risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
+                $utente->setId($risultatoQuery[$i]['id_utente']);
+                $utente->setHashPassword($risultatoQuery[$i]['password']);
+                $utente->setBan($ban[$i]['ban']);
                 $utenti[] = $utente;
             }
             return $utenti;
@@ -61,6 +59,7 @@ class FUtente{
      * PDO::PARAM_INT/STR sono costanti che mi dicono di che tipo è quel parametro.Per esempio tale costante nella prima riga del metodo , mi dice di che tipo è "nome" ciòè una stringa.
      */
     public static function bind($dichiarazione,$utente){
+        $dichiarazione ->bindValue(":id_utente",$utente->getId(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":name",$utente->getNome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
@@ -70,16 +69,16 @@ class FUtente{
      * Metodo che verifica se un certo oggetto esiste nel database
      * 
      */
-    public static function verifica($campo,$id){
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+    public static function verifica($campo,$id_utente){
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_utente);
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery); // il metodo verifica tramite un oggetto FEntityMAnager che richiama il metodo esisteNelDB() restituisce true se esiste l'oggetto che cerchiamo nel db  altrimenti false .
     }
     //FentityManager::getIstanza() è un metodo che viene utilizzato per ottenere un'istanza(oogetto) della classe FEntityManager, questo è un esempio di singleton .
     // Quando scriviamo FentityManager::getIstanza() stiamo facendo riferimento all'unico oggetto  FentityManager che esiste nel nostro programma(applicazione).  Questo singleton permette di utilizzare lo stesso oggetto FEntityManager in diverse parti del codice senza dover creare un tale oggetto ogni volta che ci serve.
     // una volta che abbiamo ottenuto un'oggetto FentityManager tramite il metodo recuperoOggetto() recuperimo un oggetto(non una tupla ma proprio il valore di un certo campo di una certa tupla specificati nei parametri del metodo recuperoOggetto) ponendo in tale metodo recuperaOggetto una certa tabella , un certo campo e un certo valore del campo stesso(id).
 
-    public static function getOgg($id_Utente){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_Utente);
+    public static function getOgg($id_utente){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_utente);
         if(count($risultato) > 0){
             $utente = self::creaOggUtente($risultato);
             return $utente;

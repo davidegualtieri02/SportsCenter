@@ -1,14 +1,27 @@
 <?php
+
 use Doctrine \ORM\Mapping as ORM;
+
 require_once "EUtente";
 class EAmministratore extends EUtente{
+
+    private static $id_amministratore;
+
     private static string $entità = EAmministratore::class;
     
-    public function __construct($name, $surname, $mail, $password, $id){
-        parent::__construct($name,$surname ,$mail,$password,$id);
- }
-    public static function getEntità():string {
+    public function __construct($id_amministratore, $nome, $cognome, $email, $password, $id_utente){
+        parent::__construct($nome, $cognome, $email, $password, $id_utente);
+        $this->id_amministratore = $id_amministratore;
+    }
+    public static function getEntità():string{
         return self::$entità;
+    }
+    public function getIdAmministratore(){
+        return $this->id_amministratore;
+    }
+    public function setIdAmministratore($id_amministratore){
+
+        $this->id_amministratore = $id_amministratore;
     }
  //metodo toString esiste predefinito
 }

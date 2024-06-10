@@ -3,7 +3,7 @@
 class FAttrezzatura_Basket extends FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "AttrezzaturaBasket"; 
-    private static $valore = "(NULL,:id_attrezzatura,:numPalla_Basket,:numCasacca)";
+    private static $valore = "(NULL,:numPalla_Basket,:numCasacca,:id_attrezzatura)";
     private static $chiave = "id_attrezzaturaBasket";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -25,7 +25,7 @@ class FAttrezzatura_Basket extends FAttrezzatura{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da basket
-            $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numPalla_Basket'], $risultatoQuery[0]['numCasacca']);
+            $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[0]['id_attrezzaturaBasket'], $risultatoQuery[0]['numPalla_Basket'], $risultatoQuery[0]['numCasacca'], $risultatoQuery[0]['id_attrezzaturaBasket']);
             //Restituisce l'oggetto attrezzatura da basket
             return $attrezzatura_basket;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Basket extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da basket
-                $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['numPalla_Basket'], $risultatoQuery[$i]['numCasacca']);
+                $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[$i]['id_attrezzaturaBasket'], $risultatoQuery[$i]['numPalla_Basket'], $risultatoQuery[$i]['numCasacca'], $risultatoQuery[$i]['id_attrezzaturaBasket']);
                 //Aggiunge l'oggetto attrezzatura da basket nell'array
                 $attrezzature_basket[] = $attrezzatura_basket;
             }
@@ -47,23 +47,24 @@ class FAttrezzatura_Basket extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_basket){
-        $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_basket->getId_attrezzatura(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_attrezzaturaBasket",$attrezzatura_basket->getIdAttrezzaturaBasket(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Basket",$attrezzatura_basket->getNumPalla_Basket(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numCasacca",$attrezzatura_basket->getNumCasacca(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_basket->getId_attrezzatura(),PDO::PARAM_INT);
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB
-    public static function verifica($campo,$id){
+    public static function verifica($campo,$id_attrezzaturaBasket){
         //Recupera l'oggetto dal DB
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_attrezzaturaBasket);
         //Verifica se l'oggetto esiste nel DB
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }
 
     //Metodo public che recupera un oggetto attrezzatura da basket dal DB
-    public static function getOgg($id_attrezzatura){
+    public static function getOgg($id_attrezzaturaBasket){
         //Recupera l'oggetto dal DB
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzatura);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzaturaBasket);
         //Se la query restituisce almeno un risultato
         if(count($risultato) > 0){
             //Crea un oggetto attrezzatura da basket a partire dai risultati della query

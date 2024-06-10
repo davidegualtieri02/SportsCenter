@@ -2,7 +2,7 @@
 use DateTime;
 
 class ERecensione{
-    private int $idRecensione;
+    private int $id_recensione;
     private string $commento;
     private int $valutazione;
     private DateTime $DataOra;
@@ -11,23 +11,23 @@ class ERecensione{
     private $images;
     private static $entità = ERecensione::class;
 
-    public function __construct($valutazione,$commento){
+    public function __construct($valutazione, $commento){
         $this->valutazione = $valutazione;
         $this->commento = $commento;
         $this->setTime();
-        $this->images= [];
+        $this->images = [];
     }
 
-    public static function getEntità(): string{
+    public static function getEntità():string{
         return self::$entità;
     }
 
-    public function getId(){
-        return $this->idRecensione;
+    public function getIdRecensione(){
+        return $this->id_recensione;
     }
 
-    public function setId($id){
-        $this->idPost = $id;
+    public function setIdRecensione($id_recensione){
+        $this->id_recensione = $id_recensione;
     }
     public function getValutazione(){
         return $this->valutazione;
@@ -58,11 +58,11 @@ class ERecensione{
         $this->DataOra = $DataOra;
     }
 
-    public function isBanned(): bool{
+    public function isBanned():bool{
         return $this->removed;
     }
 
-    public function setBan(bool $removed): void{
+    public function setBan(bool $removed):void{
         $this->removed = $removed;
     }
 

@@ -3,7 +3,7 @@
 class FAttrezzatura_Pallavolo extends FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "AttrezzaturaPallavolo"; 
-    private static $valore = "(NULL,:id_attrezzatura,:numPalla_Pallavolo)";
+    private static $valore = "(NULL,:numPalla_Pallavolo,:id_attrezzatura)";
     private static $chiave = "id_attrezzaturaPallavolo";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -25,7 +25,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
         //Se la query restituisce un solo risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da pallavolo
-            $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numPalla_Pallavolo']);
+            $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[0]['id_attrezzaturaPallavolo'], $risultatoQuery[0]['numPalla_Pallavolo'], $risultatoQuery[0]['id_attrezzatura']);
             //Restituisce l'oggetto attrezzatura da pallavolo
             return $attrezzatura_pallavolo;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da pallavolo
-                $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['numPalla_Pallavolo']);
+                $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[$i]['id_attrezzaturaPallavolo'], $risultatoQuery[$i]['numPalla_Pallavolo'], $risultatoQuery[$i]['id_attrezzatura']);
                 //Aggiunge l'oggetto attrezzatura da pallavolo nell'array
                 $attrezzature_pallavolo[] = $attrezzatura_pallavolo;
             }
@@ -47,22 +47,23 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_pallavolo){
-        $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_pallavolo->getId_attrezzatura(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_attrezzaturaPallavolo",$attrezzatura_pallavolo->getIdAttrezzaturaPallavolo(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Pallavolo",$attrezzatura_pallavolo->getNumPalla_Pallavolo(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_pallavolo->getId_attrezzatura(),PDO::PARAM_INT);
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB
-    public static function verifica($campo,$id){
+    public static function verifica($campo,$id_attrezzaturaPallavolo){
         //Recupera l'oggetto dal DB
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_attrezzaturaPallavolo);
         //Verifica se l'oggetto esiste nel DB
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }
 
     //Metodo public che recupera un oggetto attrezzatura da pallavolo dal DB
-    public static function getOgg($id_attrezzatura){
+    public static function getOgg($id_attrezzaturaPallavolo){
         //Recupera l'oggetto dal DB
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzatura);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_attrezzaturaPallavolo);
         //Se la query restituisce almeno un risultato
         if(count($risultato) > 0){
             //Crea un oggetto attrezzatura da pallavolo a partire dai risultati della query

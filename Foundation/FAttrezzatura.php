@@ -56,9 +56,9 @@ class FAttrezzatura{
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB
-    public static function verifica($campo,$id){
+    public static function verifica($campo,$id_attrezzatura){
         //Recupera l'oggetto dal DB
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_attrezzatura);
         //Verifica se l'oggetto esiste nel DB
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }

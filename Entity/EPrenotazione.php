@@ -11,8 +11,8 @@ class EPrenotazione {
     private $id_attrezzatura; //ID dell'oggetto Attrezzatura
     private static $entità = EPrenotazione::class;
 
-    public function __construct($data,$orario,$pagata,$id_prenotazione, $id_campo, $id_attrezzatura){
-        $this->data =$data;
+    public function __construct($data, $orario, $pagata, $id_prenotazione, $id_campo, $id_attrezzatura){
+        $this->data = $data;
         $this->orario = $orario;
         $this->pagata = $pagata;
         $this->id_prenotazione = $id_prenotazione;
@@ -20,7 +20,7 @@ class EPrenotazione {
         $this->id_attrezzatura = $id_attrezzatura;
 
     }
-    public function getData(): DateTime{
+    public function getData():DateTime{
         return $this->data;
     }
     public function setData(DateTime $data):void{
@@ -30,7 +30,7 @@ class EPrenotazione {
     public function getOrario(){
         return $this->orario;
     }
-    public function setOrario($orario):void {
+    public function setOrario($orario):void{
         $this->giorno = $orario;
     }
     public function getPagata(){
@@ -54,7 +54,7 @@ class EPrenotazione {
     }
 
     public function setIdCampo($id_campo){
-        $this->id_campo =$id_campo;
+        $this->id_campo = $id_campo;
     }
 
     public function getIdAttrezzatura(){

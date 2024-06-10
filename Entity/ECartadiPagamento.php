@@ -7,17 +7,17 @@ class ECartadiPagamento{
     private int $Numero_Carta;
     private DateTime $Data_Scadenza;
     private int $CVV;
-    private int $Id_Carta;
+    private int $id_cartadiPagamento;
 
     private static $entità = ECartadiPagamento::class;
 
-    public function __construct($Nome_Titolare,$Cognome_Titolare,$Numero_Carta,$Data_Scadenza,$CVV,$Id_Carta){
+    public function __construct($Nome_Titolare, $Cognome_Titolare, $Numero_Carta, $Data_Scadenza, $CVV, $id_cartadiPagamento){
         $this->Nome_Titolare = $Nome_Titolare;
         $this->Cognome_Titolare = $Cognome_Titolare;
         $this->Numero_Carta = $Numero_Carta;
-        $this->Data_Scadenza= $Data_Scadenza;
-        $this->$CVV= $CVV;
-        $this->Id_Carta= $Id_Carta;
+        $this->Data_Scadenza = $Data_Scadenza;
+        $this->$CVV = $CVV;
+        $this->id_cartadiPagamento = $id_cartadiPagamento;
     }
     public function getNomeTitolare(){
         return $this->Nome_Titolare;
@@ -38,23 +38,23 @@ class ECartadiPagamento{
     public function setNumeroCarta($numerocarta){
         $this->Numero_Carta = $numerocarta;
     }
-    public function getDataScadenza(): DateTime {
+    public function getDataScadenza():DateTime{
         return $this->Data_Scadenza;
     }
-    public function setDataScadenza(DateTime $Data_Scadenza) {
+    public function setDataScadenza(DateTime $Data_Scadenza){
         $this->Data_Scadenza = $Data_Scadenza;
     }
     public function getCVV(){
         return $this->CVV;
     }
     public function setCVV($CVV){
-        $this->$CVV= $CVV;
+        $this->CVV = $CVV;
     }
     public function getIdCarta(){
-        return $this->Id_Carta;
+        return $this->id_cartadiPagamento;
     }
-    public function setIdCarta($Id_Carta){
-        $this->Id_Carta= $Id_Carta;
+    public function setIdCarta($id_cartadiPagamento){
+        $this->id_cartadiPagamento = $id_cartadiPagamento;
     }
     public static function getEntità():string{
         return self::$entità;

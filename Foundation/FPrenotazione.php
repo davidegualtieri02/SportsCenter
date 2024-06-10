@@ -4,7 +4,7 @@
 class FPrenotazione {
     //Definisco le variabili statiche private che contengono i nomi della tabella, i valori e la chiave primaria
     private static $tabella = "Prenotazione";
-    private static $valore = "(NULL, :data, :orario, :pagata, :id_prenotazione, :id_campo, :id_attrezzatura)";
+    private static $valore = "(NULL, :data, :orario, :pagata, :id_campo, :id_attrezzatura)";
     private static $chiave = "id_prenotazione";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -53,9 +53,9 @@ class FPrenotazione {
     }
 
     //Funzione per ottenere un oggetto Prenotazione dal DB
-    public static function getOgg($id){
+    public static function getOgg($id_prenotazione){
         //Recupero dell'oggetto Prenotazione dal DB
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_prenotazione);
         //Verifica se il risultato contiene almeno un elemento
         if(count($risultato) > 0){
             //Crea un oggetto Prenotazione dal risultato
@@ -105,16 +105,16 @@ class FPrenotazione {
     }
 
     //Funzione per eliminare una Prenotazione dal DB
-    public static function eliminaPrenotazioneDalDB($idPrenotazione, $id_Utente){
+    public static function eliminaPrenotazioneDalDB($id_prenotazione, $id_utente){
         //Inizia una transizione
         try{
             FEntityManager::getIstanza()->getdb()->beginTransaction();
             //Recupera l'oggetto Prenotazione dal DB
-            $queryResult = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $idPrenotazione);
+            $queryResult = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_prenotazione);
             //Verifica se l'oggetto esiste nel DB e se l'utente è il creatore dell'oggetto
-            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_Utente)){
+            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_utente)){
                 //Elimina la recensione dal DB
-                FEntityManager::getIstanza()->deleteOggInDb(self::getTabella(), self::getChiave(), $idPrenotazione);
+                FEntityManager::getIstanza()->deleteOggInDb(self::getTabella(), self::getChiave(), $id_prenotazione);
                 //Conferma le modifiche al DB
                 FEntityManager::getIstanza()->getdb()->commit();
                 return true;

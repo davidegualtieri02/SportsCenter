@@ -13,7 +13,7 @@ class ECampo {
         return $this->copertura;
     }
     public function setCopertura($coper){
-        $this->copertura= $coper;
+        $this->copertura = $coper;
     }
     public function getId_campo(){
         return $this->id_campo;
@@ -21,7 +21,7 @@ class ECampo {
     public function setId_campo($id){
         $this->id_campo = $id;
     }
-    public function getEntità():string {
+    public function getEntità():string{
         return self::$entità;
     }
      //metodo toString esiste predefinito

@@ -3,7 +3,7 @@
 class FUtenteTesserato{
     //Definizione delle variabili statistiche
     private static $tabella = "UtenteTesserato"; //Nome della tabella nel DB
-    private static $valore = "(NULL,:nome,:cognome,:password,:email,:ban)"; //Valori da inserire nella tabella
+    private static $valore = "(NULL,:nome,:cognome,:password,:email,:ban,:id_utente)"; //Valori da inserire nella tabella
     private static $chiave = "id_utenteTesserato"; //Chiave primaria della tabella
 
     //Metodi getter per le variabili statistiche
@@ -28,11 +28,11 @@ class FUtenteTesserato{
         //Se la query restituisce un solo risultato
         if (count($risultatoQuery)==1){
             //Recupera gli attributi dell'oggetto
-            $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"IDUtenteTesserato",$risultatoQuery[0]['IDUtenteTesserato']);
+            $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteTesserato",$risultatoQuery[0]['id_utenteTesserato']);
             //Crea un nuovo oggetto UtenteTesserato
-            $utenteTesserato = new EUtenteTesserato($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'],$risultatoQuery[0]['IDUtenteTesserato'], $risultatoQuery[0]['ban']);
+            $utenteTesserato = new EUtenteTesserato($risultatoQuery[0]['id_utenteTesserato'], $risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['ban'], $risultatoQuery[0]['id_utente']);
             //Imposta l'ID e lo stato del ban
-            $utenteTesserato->setId($risultatoQuery[0]['IDUtenteTesserato']);
+            $utenteTesserato->setId($risultatoQuery[0]['id_utenteTesserato']);
             $utenteTesserato->setBan($attributi[0]['ban']);
             //Restituisce l'oggetto creato
             return $utenteTesserato;
@@ -43,11 +43,11 @@ class FUtenteTesserato{
             //Per ogni risultato della query
             for($i=0;$i<count($risultatoQuery);$i++){
                 //Recupera gli attributi dell'oggetto
-                $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella()," IDUtenteTesserato",$risultatoQuery[$i]['IDUtenteTesserato']);
+                $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella()," id_utenteTesserato",$risultatoQuery[$i]['id_utenteTesserato']);
                 //Crea un nuovo oggetto UtenteTesserato
-                $utenteTesserato = new EUtenteTesserato($risultatoQuery[$i]['name'],$risultatoQuery[$i]['surname'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'],$risultatoQuery[$i]['IdUtentetesserato'],$risultatoQuery[$i]['ban']);
+                $utenteTesserato = new EUtenteTesserato($risultatoQuery[$i]['id_utenteTesserato'], $risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'], $risultatoQuery[$i]['ban'], $risultatoQuery[$i]['id_utente']);
                 //Imposta l'ID e lo stato del ban
-                $utenteTesserato->setId(($risultatoQuery[$i]['IDUtentetesserato']));
+                $utenteTesserato->setId(($risultatoQuery[$i]['id_utentetesserato']));
                 $utenteTesserato->setBan(($attributi[0]['ban']));
                 //Aggiunge l'oggetto all'array
                 $utentiTesserati[] = $utenteTesserato; 

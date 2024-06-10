@@ -3,7 +3,7 @@
 class FTessera{
     //Dichiarazione di variabili private statiche che contengono informazioni sulla tabella del DB, i valori e la chiave primaria
     private static $tabella = "Tessera"; 
-    private static $valore = "(NULL,:Codice_Tessera,:Id_Tessera)";
+    private static $valore = "(NULL,:Codice_Tessera)";
     private static $chiave = "id_tessera";
 
     //Metodi per ottenere il nome della tabella, i valori, la classe e la chiave primaria
@@ -24,14 +24,14 @@ class FTessera{
     public static function creaOggTessera($risultatoQuery){
         //Se c'è solo un risultato, crea un singolo oggetto tessera
         if(count($risultatoQuery) == 1){
-            $tessera = new ETessera($risultatoQuery[0]['Codice_Tessera'], $risultatoQuery[0]['Id_Tessera']);
-            $tessera->setIdTessera($risultatoQuery[0]['Id_Tessera']);
+            $tessera = new ETessera($risultatoQuery[0]['Codice_Tessera'], $risultatoQuery[0]['id_tessera']);
+            $tessera->setIdTessera($risultatoQuery[0]['id_tessera']);
             return $tessera;
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti Tessera
             $tessere = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
                 $tessera = new ETessera($risultatoQuery[$i]['Codice_Tessera'], $risultatoQuery[$i]['Id_Tessera']);
-                $tessera->setIdTessera($risultatoQuery[$i]['Id_Tessera']);
+                $tessera->setIdTessera($risultatoQuery[$i]['id_tessera']);
                 $tessere[] = $tessera;
             }
             return $tessere;
@@ -43,18 +43,18 @@ class FTessera{
     //Metodo per associare i valori dell'oggetto Tessera ai parametri della dichiarazione SQL
     public static function bind($dichiarazione,$tessera){
         $dichiarazione ->bindValue(":Codice_Tessera",$tessera->getCodiceTessera(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue(":Id_Tessera",$tessera->getIdTessera(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_tessera",$tessera->getIdTessera(),PDO::PARAM_INT);
     }
 
     //Metodo per verificare se un oggetto esiste nel DB
-    public static function verifica($campo,$id){
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+    public static function verifica($campo,$id_tessera){
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_tessera);
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }
 
     //Metodo per ottenere un oggetto Tessera dal DB
-    public static function getOgg($Id_Tessera){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $Id_Tessera);
+    public static function getOgg($id_tessera){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_tessera);
         if(count($risultato) > 0){
             $tessera = self::creaOggTessera($risultato);
             return $tessera;

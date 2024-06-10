@@ -4,8 +4,8 @@ class FImage{
 
     // Dichiarazione delle variabili private statiche
     private static $tabella = "image";
-    private static $valore = "(NULL, :nome, :grandezza, :tipi, :imageData, :idPost)";
-    private static $chiave = "idImage";
+    private static $valore = "(NULL, :nome, :grandezza, :tipi, :imageData, :id_recensione)";
+    private static $chiave = "id_image";
 
     // Metodo per ottenere il valore della variabile $tabella
     public static function getTabella(){
@@ -32,8 +32,8 @@ class FImage{
         if(count($risultatoQuery) > 0){
             $images = array();
             for ($i = 0; $i < count($risultatoQuery); $i++){
-                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipi'], $risultatoQuery[$i]['imageData']);
-                $im->setId($risultatoQuery[$i]['idImage']);
+                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipi'], $risultatoQuery[$i]['imageData'], $risultatoQuery[$i]['id_recensione'], $risultatoQuery[$i]['id_image']);
+                $im->setId($risultatoQuery[$i]['id_image']);
                 $images[] = $im;
             }
             return $images;
@@ -48,16 +48,17 @@ class FImage{
         $dichiarazione->bindValue(":grandezza", $image->getGrandezza(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":tipi", $image->getTipo(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":imageData", $image->getImageData(), PDO::PARAM_LOB);
+        $dichiarazione->bindValue(":id_image", $image->getId(), PDO::PARAM_INT);
         if($image->getRecensione() !== null){
             $dichiarazione->bindValue(":idRecensione", $image->getRecensione()->getId(), PDO::PARAM_INT);
         }else{
-            $dichiarazione->bindValue(":idPost", null, PDO::PARAM_NULL);
+            $dichiarazione->bindValue(":idRecensione", null, PDO::PARAM_NULL);
         }
     }
 
     // Metodo per ottenere un oggetto immagine a partire dal suo id
-    public static function getOgg($id){
-        $risultato =FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id);
+    public static function getOgg($id_image){
+        $risultato =FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_image);
         if(count($risultato) > 0){
             $image = self::CreaOggImage($risultato);
             if(count($image) == 1){
@@ -80,8 +81,8 @@ class FImage{
     }
 
     // Metodo per ottenere un oggetto immagine a partire dall'id di una recensione
-    public static function getOggDaIdRecensione($idRecensione){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), FRecensione::getChiave(), $idRecensione);
+    public static function getOggDaIdRecensione($id_recensione){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), FRecensione::getChiave(), $id_recensione);
         if(count($risultato) > 0){
             $image = self::CreaOggImage($risultato);
             return $image;

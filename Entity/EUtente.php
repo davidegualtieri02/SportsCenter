@@ -7,7 +7,7 @@ class EUtente{
     protected String $cognome;
     protected String $email;
     protected String $password;
-    protected int $id_Utente;
+    protected int $id_utente;
 
     private static $entità = EUtente::class;//Quando usi EPerson::class in PHP, ottieni il nome completamente qualificato della classe EPerson. 
     //Quindi, se EPerson è definita nel namespace App\Entities,
@@ -16,7 +16,7 @@ class EUtente{
     // in modo sicuro e coerente, senza dover preoccuparti di conflitti di nomi o di dover ricordare il namespace esatto in cui una classe è definita.
     //namespace  è un modo per incapsulare gli elementi di un codice ,namespace è tipo un contenitore che contiene le classi , si comporta come un directory 
     // con i files 
-    public function __construct($nome,$cognome,$email,$password,$id){
+    public function __construct($nome, $cognome, $email, $password, $id_utente){
         $hashPassword = password_hash($password,PASSWORD_DEFAULT);//password_hash crea un hash di una password,$password è la password che vogliamo hashare
         // PASSWORD_DEFAULT :Questo è un algoritmo di hashing predefinito che PHP userà per creare l’hash della password. 
         //$hashpassword = password_hash(..) ect..la riga crea un has e assegna alla variabile $hashpassword , l'hash stesso.
@@ -26,11 +26,11 @@ class EUtente{
         $this->cognome = $cognome;
         $this ->email = $email;
         $this->password = $hashPassword; 
-        $this->id_Utente = $id;
+        $this->id_utente = $id_utente;
     }
-    public static function getEntità():string {// static indica che il metodo è statico
+    public static function getEntità():string{// static indica che il metodo è statico
         //cioè non appartiene ad un oggetto della classe ma alla classe stessa 
-        return self ::$entità;// questo return fa assumere ad $entità il valore di una stringa 
+        return self::$entità;// questo return fa assumere ad $entità il valore di una stringa 
         // che è il nome della classe stessa. self specifica che si sta parlando della classe stessa che stiamo creando cioè EUtente
     }
 
@@ -41,10 +41,10 @@ class EUtente{
         self::$ban = $bool;
     }
     public function getId(){
-        return $this->id_Utente;
+        return $this->id_utente;
     }
     public function getNome(){
-        return  $this->nome;
+        return $this->nome;
     }
     public function getCognome(){
         return $this->cognome;
@@ -56,14 +56,14 @@ class EUtente{
     public function getPassword(){
         return $this->password;
     }
-    public function setId($id){
-        $this->id_Utente = $id;
+    public function setId($id_utente){
+        $this->id_utente = $id_utente;
     }
-    public function setNome($name){
-        $this->nome = $name;
+    public function setNome($nome){
+        $this->nome = $nome;
     }
-    public function setCognome($surname){
-        $this->cognome = $surname ;
+    public function setCognome($cognome){
+        $this->cognome = $cognome;
     }
     public function setPassword($password){
         $hashPassword = password_hash($password,PASSWORD_DEFAULT);

@@ -1,19 +1,19 @@
 <?php
 class ETessera{
-    private int $codice_tessera;
+    private int $Codice_Tessera;
     private int $id_tessera;
     private static $entità = ETessera ::class;
 
-    public function __construct($cod,$id){
-        $this->codice_tessera = $cod;
+    public function __construct($cod, $id){
+        $this->Codice_Tessera = $cod;
         $this->id_tessera = $id;
     }
     public function getCodiceTessera(){
-        return $this->codice_tessera;
+        return $this->Codice_Tessera;
     }
     public function setCodiceTessera($cod){
 
-        $this->codice_tessera= $cod;
+        $this->Codice_Tessera = $cod;
     
     }
     public function getIdTessera(){
@@ -21,7 +21,7 @@ class ETessera{
     }
     public function setIdTessera($id){
 
-        $this->id_tessera= $id;
+        $this->id_tessera = $id;
     }
     public static function getEntità():string{
         return self::$entità;

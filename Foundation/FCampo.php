@@ -52,9 +52,9 @@ class FCampo{
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB
-    public static function verifica($campo,$id){
+    public static function verifica($campo,$id_campo){
         //Recupera l'oggetto dal DB
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_campo);
         //Verifica se l'oggetto esiste nel DB
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery);
     }

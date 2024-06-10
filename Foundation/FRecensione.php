@@ -4,7 +4,7 @@
 class FRecensione{
     //Dichiaro le variabili statiche private che contengono i nomi della tabella, i valori e la chiave primaria
     private static $tabella = "Recensione";
-    private static $valore = "(NULL, :commento, :valutazione, :DataOra, :removed, :id_Utente)";
+    private static $valore = "(NULL, :commento, :valutazione, :DataOra, :removed, :id_utente)";
     private static $chiave = "id_recensione";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -33,7 +33,7 @@ class FRecensione{
                 //Creazione di un nuovo oggetto Recensione con i dati ottenuti dalla query
                 $rec = new ERecensione($risultatoQuery[$i]['commento'],$risultatoQuery[$i]['valutazione']);
                 //Imposto l'ID della recensione
-                $rec->setId($risultatoQuery[$i]['idRecensione']);
+                $rec->setIdRecensione($risultatoQuery[$i]['idRecensione']);
                 //Creo un oggetto DateTime dal formato Giorno-mese-anno Ora-minuto-secondo
                 $DataOra = DateTime::createFromFormat('D-m-y H:i:s', $risultatoQuery[$i]['DataOra']);
                 //Imposto la data e l'ora della recensione
@@ -61,9 +61,9 @@ class FRecensione{
     }
 
     //Funzione per ottenere un oggetto Recensione dal DB
-    public static function getOgg($id){
+    public static function getOgg($id_recensione){
         //Recupero l'oggetto Recensione dal DB
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_recensione);
         //Verifica se il risultato contiene almeno un elemento
         if(count($risultato) > 0){
             //Creo un oggetto Recensione dal risultato
@@ -113,22 +113,22 @@ class FRecensione{
     }
 
     //Funzione per eliminare una recensione dal DB
-    public static function eliminaRecensioneDalDB($idRecensione, $id_Utente){
+    public static function eliminaRecensioneDalDB($id_recensione, $id_utente){
         //Inizia una transazione       
         try{
             FEntityManager::getIstanza()->getdb()->beginTransaction();
             //Recupera l'oggetto Recensione dal DB
-            $queryResult = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $idRecensione);
+            $queryResult = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_recensione);
             //Verifica se l'oggetto esiste nel DB e se l'utente è il creatore dell'oggetto
-            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_Utente)){
+            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_utente)){
                 //Recupera la lista delle immagini associate alla recensione
-                $imagesList = FEntityManager::getIstanza()->recuperaOggetto(FImage::getTabella(), self::getChiave(), $idRecensione);
+                $imagesList = FEntityManager::getIstanza()->recuperaOggetto(FImage::getTabella(), self::getChiave(), $id_recensione);
                 //Elimina tutte le immagini associate alla recensione dal DB
                 for($i = 0; $i < count($imagesList); $i++){
                     FEntityManager::getIstanza()->deleteOggInDb(FImage::getTabella(), FImage::getChiave(), $imagesList[$i][FImage::getChiave()]);
                 }
                 //Elimina la recensione dal DB
-                FEntityManager::getIstanza()->deleteOggInDb(self::getTabella(), self::getChiave(), $idRecensione);
+                FEntityManager::getIstanza()->deleteOggInDb(self::getTabella(), self::getChiave(), $id_recensione);
                 //Conferma le modifiche al DB
                 FEntityManager::getIstanza()->getdb()->commit();
                 return true;
@@ -148,9 +148,9 @@ class FRecensione{
     }
 
     //Funzione statica pubblica che restituisce una lista di recensioni non bannate
-    public static function listaRecensioniNonBannate($id_Utente){
+    public static function listaRecensioniNonBannate($id_utente){
         //Recupera la lista delle recensioni non bannate di un utente
-        $risultatoQuery = FEntityManager::getIstanza()->ListaOggnonrimossi(self::getTabella(), FUtente::getChiave(), $id_Utente);
+        $risultatoQuery = FEntityManager::getIstanza()->ListaOggnonrimossi(self::getTabella(), FUtente::getChiave(), $id_utente);
         //Crea gli oggetti Recensione a partire dai risultati della query
         $recensioni = self::getRecensioneCompleta($risultatoQuery);
         return $recensioni;
@@ -166,9 +166,9 @@ class FRecensione{
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Recupera l'ID dell'utente
-                $id_Utente = $risultatoQuery[$i][FUtente::getChiave()];
+                $id_utente = $risultatoQuery[$i][FUtente::getChiave()];
                 //Recupera l'oggetto utente a partire dall'ID
-                $utente = FUtente::getOgg($id_Utente);
+                $utente = FUtente::getOgg($id_utente);
                 //Associa l'utente alla recensione
                 $recensioni[$i]->setUtente($utente);
             }
@@ -188,14 +188,14 @@ class FRecensione{
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Recupera l'ID dell'utente
-                $id_Utente = $risultatoQuery[$i][FUtente::getChiave()];
+                $id_utente = $risultatoQuery[$i][FUtente::getChiave()];
                 //Recupera l'oggetto Utente a partire dall'ID
-                $utente = FUtente::getOgg($id_Utente);
+                $utente = FUtente::getOgg($id_utente);
                 //Associa l'utente alla recensione
                 $recensioni[$i]->setUtente($utente);
 
                 //Recupera le immagini associate alla recensione
-                $images = FImage::getOggDaIdRecensione($recensioni[$i]->getId());
+                $images = FImage::getOggDaIdRecensione($recensioni[$i]->getIdRecensione());
                 //Se ci sono immagini
                 if($images !== null){
                     //Per ogni immagine

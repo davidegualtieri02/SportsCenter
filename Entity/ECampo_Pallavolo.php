@@ -1,15 +1,24 @@
 <?php
 class ECampo_Pallavolo extends ECampo{
+    private static $id_campoPallavolo;
     private String $pavimento;
     private static $entità = ECampo_Pallavolo::class;
 
-    public function __construct($copertura, $id_campo,$pavimento){
+    public function __construct($id_campoPallavolo, $copertura, $id_campo,$pavimento){
+        $this->id_campoPallavolo = $id_campoPallavolo;
         $this->copertura = $copertura;
         $this->id_campo = $id_campo;
         $this->pavimento = $pavimento;
     }
-    public static function getEntità(): string{
-        return self ::$entità;
+    public static function getEntità():string{
+        return self::$entità;
+    }
+    public function getIdCampoPallavolo(){
+        return $this->id_campoPallavolo;
+    }
+    public function setIdCampoPallavolo($id_campoPallavolo){
+
+        $this->id_campoPallavolo = $id_campoPallavolo;
     }
     public function getPavimento(){
         return $this->pavimento;

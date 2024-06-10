@@ -1,17 +1,26 @@
 <?php 
 class EAttrezzatura_Tennis extends EAttrezzatura{
+    private static $id_attrezzaturaTennis;
     private int $numPalla_Tennis;
     private int $numRacchetta_Tennis;
 
     private static $entità = EAttrezzatura_Tennis::class;
 
-    public function __construct($id_attrezzatura,$numPalla_Tennis,$numRacchetta_Tennis){
-        $this->id_attrezzatura = $id_attrezzatura;
+    public function __construct($id_attrezzaturaTennis, $numPalla_Tennis, $numRacchetta_Tennis, $id_attrezzatura){
+        $this->id_attrezzaturaTennis = $id_attrezzaturaTennis;
         $this->numPalla_Tennis = $numPalla_Tennis;
         $this->numRacchetta_Tennis = $numRacchetta_Tennis;
+        $this->id_attrezzatura = $id_attrezzatura;
     }
-    public static function getEntità():string {
+    public static function getEntità():string{
         return self::$entità;
+    }
+    public function getIdAttrezzaturaTennis(){
+        return $this->id_attrezzaturaTennis;
+    }
+    public function setIdAttrezzaturaTennis($id_attrezzaturaTennis){
+
+        $this->id_attrezzaturaTennis = $id_attrezzaturaTennis;
     }
     public function getNumPalla_Tennis(){
         return $this->numPalla_Tennis;
@@ -23,7 +32,7 @@ class EAttrezzatura_Tennis extends EAttrezzatura{
         return $this->numRacchetta_Tennis;
     }
     public function setNumRacchetta_Tennis($numRacchetta){
-        $this->numRacchetta_Tennis= $numRacchetta;
+        $this->numRacchetta_Tennis = $numRacchetta;
     }
      //metodo toString esiste predefinito
 }

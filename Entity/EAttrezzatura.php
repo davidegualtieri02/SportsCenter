@@ -12,7 +12,7 @@ class EAttrezzatura{
     public function setId_attrezzatura($id){
         $this->id_attrezzatura = $id;
     }
-    public static function getEntità():string {
+    public static function getEntità():string{
         return self::$entità;
     }
      //metodo toString esiste predefinito
