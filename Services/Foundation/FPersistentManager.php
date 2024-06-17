@@ -53,20 +53,20 @@ class FPersistentManager{
         $classeFound = "F" . substr(get_class($ogg),1);
         //get_class è un metodo di php che mi rida la classe dell'oggetto passato come paarmetro .
         //per il resto il metodo è molto simile a quello sopra solo che mi aggiorna lo stato di un oggetto nel db
-        $metodoStatico = "SalvaOgg";
+        $metodoStatico = "salvaOgg";
         $risultato = call_user_func([$classeFound,$metodoStatico],$ogg);// viene richiamato con questo metodo il metodo contenuto in $metodoStatico di una delle classi foundation contenute in $classeFound.
-        // in questo caso viene richiamato il metodo SalvaOgg , infatti carichiamo l'oggetto $ogg nel db .
+        // in questo caso viene richiamato il metodo salvaOgg , infatti carichiamo l'oggetto $ogg nel db .
         return $risultato;
     }
 
-    //-----------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------Recensione----------------------------------------------------------------------
     /**
      * Metodo che ritorna una lista di recensioni per ogni campo
      * @param $idcampo si riferisce all'id del campo di cui vogliamo leggere le recensioni
      */
     public static function getListaRecensioni($idCampo){
         $risultato = FRecensione::ListarecensioniNonBannate($idCampo);
-        return $risultato;
+        return $risultato; // il metodo ListaRecensioniNonBannate mi rida una lista di recensioni per un determinato campo 
     }
 
 
@@ -79,6 +79,25 @@ class FPersistentManager{
         $risultato = FRecensione::eliminaRecensioneDalDB($idRecensione,$idUtente);
          return $risultato; // ritorna true se la recensione è stata eleiminata correttamente.
     }
+    
+
+
+    //------------------------------------------------------Prenotazione------------------------------------------------------------------------
+                               
+    /**
+     * Metodo che elimina una prenotazione dal db
+     * @param $idPrenotazione si riferisce alla prenotazione che vogliamo annullare
+     * @param $idUtente si riferisce all'utente che ha eseguito la prenotazione
+     */
+    public static function deletePrenotazione($idPrenotazione,$idUtente){
+        $risultato = FPrenotazione::eliminaPrenotazioneDalDB($idPrenotazione,$idUtente);
+        return $risultato;
+    }
+    public static function  SalvaPrenotazione($Prenotazione,$fieldArray){
+        $risultato= FPrenotazione::salvaOgg($Prenotazione,$fieldArray);
+    }
+
+   //------------------------------------------------------------------------------------------------------------------------------------ 
 
 
 }

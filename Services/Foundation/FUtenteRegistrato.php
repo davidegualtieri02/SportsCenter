@@ -74,7 +74,7 @@ class FUtenteRegistrato{
      * @param $fieldArray si riferisce all'array formato da array interni formati da due elementi : il nome del campo da aggiornare e il nuovo valore del campo.
      * @return int : il metodo ritorna l'id dell'utente registrato salvato se qualche valore di qualche campo non deve essere aggiornato , si ritorna l'id e l'utente viene salvato.Se non viene salvato l'utente si ritorna false . Se si aggiorna qualche valore di qualche campo di un utenteRegistrato viene ritornato true , se si verifica un eccezione nell'aggiornamento di un valore di un campo  nella tabella Utente viene ritornato false.
      */
-    public static function saveOgg($ogg,$fieldArray = null){// $fieldArray è un array che contiene altri array che hanno due elementi ciascuno : il nome del campo da aggiornare e il nuovo valore del campo.
+    public static function salvaOgg($ogg,$fieldArray = null){// $fieldArray è un array che contiene altri array che hanno due elementi ciascuno : il nome del campo da aggiornare e il nuovo valore del campo.
     //dire che $fieldArray è null significa dire che non ha valore iniziale.
     // nel metodo se $fieldArray è null , l'oggetto $ogg viene salvato nel database senza apportare alcuna modifica ai suoi campi. Se $fieldArray non è null , i campi specificati in $fieldArray vengono aggiornati per l'oggetto quando viene salvato nel database.
         if($fieldArray ===null){
