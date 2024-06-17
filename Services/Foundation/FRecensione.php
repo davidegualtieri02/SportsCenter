@@ -148,9 +148,9 @@ class FRecensione{
     }
 
     //Funzione statica pubblica che restituisce una lista di recensioni non bannate
-    public static function listaRecensioniNonBannate($id_utente){
+    public static function listaRecensioniNonBannate($id_campo){
         //Recupera la lista delle recensioni non bannate di un utente
-        $risultatoQuery = FEntityManager::getIstanza()->ListaOggnonrimossi(self::getTabella(), FUtente::getChiave(), $id_utente);
+        $risultatoQuery = FEntityManager::getIstanza()->ListaOggnonrimossi(self::getTabella(), FCampo::getChiave(), $id_campo);
         //Crea gli oggetti Recensione a partire dai risultati della query
         $recensioni = self::getRecensioneCompleta($risultatoQuery);
         return $recensioni;
