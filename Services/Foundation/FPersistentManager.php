@@ -192,9 +192,29 @@ class FPersistentManager{
     $risultato = FUtente::verifica($campo,$idUtente);
     return $risultato;
    }
+   //-----------------------------------------------------Amministratore-------------------------------------------------------------------------------
+   /**
+    * Metodo che crea un amministratore
+    * @param $risultatoQuery è il risultato della query
+    * @return EAmministratore
+    */
+
+    public static function CreaAmministratore($risultatoQuery){
+        $risultato = FAmministratore::CreaOggAmministratore($risultatoQuery);
+        return $risultato;
+       }
+    
+        /**
+         * Metodo per impostare i valori degli attributi di un amministratore
+         * @param $dichiarazione è la dichiarazione del db
+         * @param $amministratore è l'amministratore stesso
+         */
+        public static function bindAmministratore($dichiarazione,$amministratore){
+            FAmministratore::bind($dichiarazione,$amministratore);
+        }
 
 
-   //-----------------------------------------------------UtenteRegistrato--------------------------------------------------------------------
+   //-----------------------------------------------------UtenteRegistrato-------------------------------------------------------------------------------
    /**
     * Metodo che crea un utente registrato
     * @param $risultatoQuery è il risultato della query
@@ -624,6 +644,6 @@ class FPersistentManager{
     $risultato = FAttrezzatura_Basket::verifica($campo,$idAttrezzatura);
    return $risultato;
    }
-   
+
 }
 
