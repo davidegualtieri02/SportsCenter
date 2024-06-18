@@ -14,7 +14,7 @@ require_once(__DIR__ . '/../../../../config/config.php');
     private static $istanza;
 
     private function __construct(){
-        session_set_cookie_params(COOKIE_EXP_TIME); // Questo metodo imposta i parametri del cookie di sessione. 
+        session_set_cookie_params(TEMPO_COOKIE); // Questo metodo imposta i parametri del cookie di sessione. 
         session_start(); //avvia la sessione
     }
     public static function getIstanza(){
