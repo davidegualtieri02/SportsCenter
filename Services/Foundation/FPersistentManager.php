@@ -48,6 +48,7 @@ class FPersistentManager{
    /**
     * Metodo che carica un oggetto nel database
     * @param object $ogg si riferisce all'oggetto da caricare nel db
+    *@return int|null (ritorna l'id dell'oggetto aggiunta se tale oggetto è stato aggiunto al db)
     */
     public static function uploadOgg($ogg){
         $classeFound = "F" . substr(get_class($ogg),1);
@@ -76,6 +77,7 @@ class FPersistentManager{
     *@param $campoValore è il valore del campo da sostituire
     *@param $condizione è la condizione presente nella clausola where , aggiorniamo l'elemento solo se la clausola è vera 
     *@param $Valorecondizione è il valore della clausola where
+    *@return bool
     */
     public static function UpdateOgg($tabella,$campo,$campoValore,$condizione,$Valorecondizione){
         $risultato = FEntityManager::updateOgg($tabella,$campo,$campoValore,$condizione,$Valorecondizione);
@@ -86,8 +88,28 @@ class FPersistentManager{
 
     //-------------------------------------------------------Recensione----------------------------------------------------------------------
     /**
+     * Metodo che crea una recensione
+     * @param $risultatoQuery
+     * @return array
+     */
+     public static function CreaRecensione($risultatoQuery){
+        $risultato = FRecensione::CreaOggRecensione($risultatoQuery);
+        return $risultato;
+    }
+   
+    /**
+     * Metodo per impostare i valori degli attributi di una Recensione 
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $recensione è la recensione stessa
+     */
+    public static function bindRecensione($dichiarazione,$recensione){
+        FRecensione::bind($dichiarazione,$recensione);
+    }
+   
+    /**
      * Metodo che ritorna una lista di recensioni per ogni campo
      * @param $idcampo si riferisce all'id del campo di cui vogliamo leggere le recensioni
+     * @return array
      */
     public static function getListaRecensioni($idCampo){
         $risultato = FRecensione::ListarecensioniNonBannate($idCampo);
@@ -99,6 +121,7 @@ class FPersistentManager{
     * Metodo che richiama un metodo per eliminare una recensione dal database
     * @param $idRecensione si riferisce all'id della recensione che vogliamo elimanare
     *@param $idUtente si riferisce all'utente che ha scritto la recensione che bisogna eliminare
+    *@return bool
     */
     public static function deleteRecensione($idRecensione,$idUtente){
         $risultato = FRecensione::eliminaRecensioneDalDB($idRecensione,$idUtente);
@@ -108,11 +131,29 @@ class FPersistentManager{
 
 
     //------------------------------------------------------Prenotazione------------------------------------------------------------------------
-                               
+    /**
+     * Metodo che crea una prenotazione
+     * @param $risultatoQuery è il risultato della query che crea la prenotazione.
+     * @return array
+     */
+    public static function CreaPrenotazione($risultatoQuery){
+        $risultato =FPrenotazione::CreaOggPrenotazione($risultatoQuery);
+        return $risultato; // ritorna una lista di prenotazioni o una sola se è stata fatta solo una 
+    }
+     /**
+     * Metodo per impostare i valori degli attributi di una prenotazione
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $prenotazione è la  prenotazione stessa
+     */
+    public static function bindPrenotazione($dichiarazione,$prenotazione){
+        FPrenotazione::bind($dichiarazione,$prenotazione);
+    }
+    
     /**
      * Metodo che elimina una prenotazione dal db
      * @param $idPrenotazione si riferisce alla prenotazione che vogliamo annullare
      * @param $idUtente si riferisce all'utente che ha eseguito la prenotazione
+     * @return bool
      */
     public static function deletePrenotazione($idPrenotazione,$idUtente){
         $risultato = FPrenotazione::eliminaPrenotazioneDalDB($idPrenotazione,$idUtente);
@@ -122,17 +163,129 @@ class FPersistentManager{
 
    //-------------------------------------------------------Utente----------------------------------------------------------------------------- 
    /**
+    * Metodo che crea un utente
+    * @param $risultatoQuery è il risultato della query
+    * @return EUtente
+    */
+
+   public static function CreaUtente($risultatoQuery){
+    $risultato = FUtente::creaOggUtente($risultatoQuery);
+    return $risultato;
+   }
+
+    /**
+     * Metodo per impostare i valori degli attributi di un utente
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $utente è l'utente stesso
+     */
+    public static function bindUtente($dichiarazione,$utente){
+        FUtente::bind($dichiarazione,$utente);
+    }
+
+   /**
     * Metodo che verifica se esiste l'id di un'utente nella tabella Utente del db
     *@param $campo è il campo ID
     *@param $idUtente è il valore dell'ID
+    *@return bool
     */
    public static function Verifica($campo,$idUtente){
     $risultato = FUtente::verifica($campo,$idUtente);
     return $risultato;
    }
 
-   //
 
+   //-----------------------------------------------------UtenteRegistrato--------------------------------------------------------------------
+   /**
+    * Metodo che crea un utente registrato
+    * @param $risultatoQuery è il risultato della query
+    *@return EUtenteRegistrato
+    */
+   public static function  CreaUtenteRegistrato($risultatoQuery){
+    $risultato = FUtenteRegistrato::CreaOggUtenteRegistrato($risultatoQuery);
+    return $risultato;
+   }
+
+    /**
+     * Metodo per impostare i valori degli attributi di un utente registrato
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $utente è l'utente registrato stesso
+     * @param $id è l'id dell'utente registrato
+     */
+    public static function bindUtenteRegistrato($dichiarazione,$utente,$id){
+        FUtenteRegistrato::bind($dichiarazione,$utente,$id);
+    }
+    
+  //------------------------------------------------------UtenteTesserato---------------------------------------------------------------------
+   
+    /**
+    * Metodo che crea un utente tesserato
+    * @param $risultatoQuery è il risultato della query
+    *@return EUtentetesserato
+    */
+  public static function CreaUtenteTesserato($risultatoQuery){
+    $risultato = FUtenteTesserato::CreaOggUtenteTesserato($risultatoQuery);
+    return $risultato;
+  }
+
+   /**
+     * Metodo per impostare i valori degli attributi di un utente tesserato
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $utente è l'utente tesserato stesso
+     * @param $id è l'id dell'utente tesserato
+     */
+    public static function bindUtenteTesserato($dichiarazione,$utente,$id){
+        FUtenteTesserato::bind($dichiarazione,$utente,$id);
+    }
+//--------------------------------------------------------Image----------------------------------------------------------------------------------
+
+/**
+ * Metodo che crea un immagine
+ * @param $risultatoQuery è il risultato della query da cui otteniamo l'immagine
+ * @return array
+ */
+ public static function CreaImmagine($risultatoQuery){
+    $risultato = FImage::CreaOggImage($risultatoQuery);
+    return $risultato;
+ }
+
+  /**
+     * Metodo per impostare i valori degli attributi di un immagine
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $immagine è l'immagine stessa
+     */
+    public static function bindImage($dichiarazione,$immagine){
+        FImage::bind($dichiarazione,$immagine);
+    }
+
+ //-----------------------------------------------------Carta di Pagamento----------------------------------------------------------------------
+
+ /**
+ * Metodo che crea una carta di pagamento
+ * @param $risultatoQuery è il risultato della query da cui otteniamo la carta
+ * @return array
+ */
+public static function CreaCartaPagamento($risultatoQuery){
+    $risultato = FCartadiPagamento::creaOggCartadiPagamento($risultatoQuery);
+    return $risultato;
+ }
+ /**
+  * Metodo che verifica l'esistenza di una carta nel db
+  *@param $campo è il campo ID 
+  *@param $idCarta è il valore dell'ID 
+  *@return bool
+  */
+public static function VerificaCarta($campo,$idCarta){
+    $risultato = FCartadiPagamento::verifica($campo,$idCarta);
+    return $risultato;
+}
+ /**
+     * Metodo per impostare i valori degli attributi di una carta di pagamento
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $carta è la carta di pagamento stessa
+     */
+    public static function bindCartaPagamento($dichiarazione,$carta){
+        FCartadiPagamento::bind($dichiarazione,$carta);
+    }
 
 
 }

@@ -80,7 +80,7 @@ class FRecensione{
         //Verifica se l'array dei campi è null
         if($fieldArray === null){
             //Salva l'oggetto nel DB
-            $salvaRecensione = FEntityManager::getIstanza()->salvaOgg(self::getClasse(), $ogg);
+            $salvaRecensione = FEntityManager::getIstanza()->SalvaOgg(self::getClasse(), $ogg);
             //Verifica se l'oggetto contiene elementi
             if($salvaRecensione !== null){
                 //Se è stato salvato correttamente, restituisci l'oggetto
