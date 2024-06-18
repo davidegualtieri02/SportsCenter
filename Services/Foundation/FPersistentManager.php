@@ -264,28 +264,194 @@ class FPersistentManager{
  * @param $risultatoQuery è il risultato della query da cui otteniamo la carta
  * @return array
  */
-public static function CreaCartaPagamento($risultatoQuery){
-    $risultato = FCartadiPagamento::creaOggCartadiPagamento($risultatoQuery);
-    return $risultato;
+    public static function CreaCartaPagamento($risultatoQuery){
+        $risultato = FCartadiPagamento::creaOggCartadiPagamento($risultatoQuery);
+        return $risultato;
  }
- /**
-  * Metodo che verifica l'esistenza di una carta nel db
-  *@param $campo è il campo ID 
-  *@param $idCarta è il valore dell'ID 
-  *@return bool
-  */
-public static function VerificaCarta($campo,$idCarta){
-    $risultato = FCartadiPagamento::verifica($campo,$idCarta);
-    return $risultato;
-}
- /**
-     * Metodo per impostare i valori degli attributi di una carta di pagamento
-     * @param $dichiarazione è la dichiarazione del db
-     * @param $carta è la carta di pagamento stessa
+   /**
+    * Metodo che verifica l'esistenza di una carta nel db
+    *@param $campo è il campo ID 
+    *@param $idCarta è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCarta($campo,$idCarta){
+         $risultato = FCartadiPagamento::verifica($campo,$idCarta);
+        return $risultato;
+    }
+//----------------------------------------------------Campo------------------------------------------------------------------------------------
+    /**
+     * Metodo che crea un oggetto Campo
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
      */
-    public static function bindCartaPagamento($dichiarazione,$carta){
-        FCartadiPagamento::bind($dichiarazione,$carta);
+    public static function CreaCampo($risultatoQuery){
+        $risultato = FCampo::creaOggCampo($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto campo
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo
+     */
+    public static function bindCampo($dichiarazione,$campo){
+        FCampo::bind($dichiarazione,$campo);
+    }
+     /**
+    * Metodo che verifica l'esistenza di un campo nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampo($campo,$idCampo){
+    $risultato = FCampo::verifica($campo,$idCampo);
+   return $risultato;
+   }
+
+//----------------------------------------------------CampoTennis---------------------------------------------------------------------------
+ /**
+     * Metodo che crea un oggetto Campo da tennis
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaCampotennis($risultatoQuery){
+        $risultato = FCampo_Tennis::creaOggCampo_Tennis($risultatoQuery);
+        return $risultato;
     }
 
+    /**
+     * Metodo che associa valori ad un oggetto campo da tennis
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo da tennis
+     */
+    public static function bindCampoTennis($dichiarazione,$campo){
+        FCampo_Tennis::bind($dichiarazione,$campo);
+    }
 
+     /**
+    * Metodo che verifica l'esistenza di un campo da tennis nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampoTennis($campo,$idCampo){
+    $risultato = FCampo_Tennis::verifica($campo,$idCampo);
+   return $risultato;
+   }
+
+   //-------------------------------------------------CampoPallavolo---------------------------------------------------------------------------
+    /**
+     * Metodo che crea un oggetto Campo da pallavolo
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaCampoPallavolo($risultatoQuery){
+        $risultato = FCampo_Pallavolo::creaOggCampo_Pallavolo($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto campo da pallavolo
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo da pallavolo
+     */
+    public static function bindCampoPallavolo($dichiarazione,$campo){
+        FCampo_Pallavolo::bind($dichiarazione,$campo);
+    }
+     /**
+    * Metodo che verifica l'esistenza di un campo da pallavolo nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampoPallavolo($campo,$idCampo){
+    $risultato = FCampo_Pallavolo::verifica($campo,$idCampo);
+   return $risultato;
+   }
+
+   //-----------------------------------------------CampoPadel-----------------------------------------------------------------------------------
+    /**
+     * Metodo che crea un oggetto Campo da padel
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaCampoPadel($risultatoQuery){
+        $risultato = FCampo_Padel::creaOggCampo_Padel($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto campo da padel
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo da padel
+     */
+    public static function bindCampoPadel($dichiarazione,$campo){
+        FCampo_Padel::bind($dichiarazione,$campo);
+    }
+     /**
+    * Metodo che verifica l'esistenza di un campo da padel nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampoPadel($campo,$idCampo){
+    $risultato = FCampo_Padel::verifica($campo,$idCampo);
+   return $risultato;
+   }
+
+   //-----------------------------------------------Campocalcio---------------------------------------------------------------------------------
+    /**
+     * Metodo che crea un oggetto Campo da calcio
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaCampoCalcio($risultatoQuery){
+        $risultato = FCampo_Calcio::creaOggCampo_Calcio($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto campo da calcio
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo da calcio
+     */
+    public static function bindCampoCalcio($dichiarazione,$campo){
+        FCampo_Calcio::bind($dichiarazione,$campo);
+    }
+     /**
+    * Metodo che verifica l'esistenza di un campo da calcio nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampoCalcio($campo,$idCampo){
+    $risultato = FCampo_Calcio::verifica($campo,$idCampo);
+   return $risultato;
+   }
+   //---------------------------------------------Campobasket--------------------------------------------------------------------------------------
+
+    /**
+     * Metodo che crea un oggetto Campo da basket
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaCampoBasket($risultatoQuery){
+        $risultato = FCampo_Basket::creaOggCampo_Basket($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto campo da basket
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $campo si riferisce all'oggetto campo da basket
+     */
+    public static function bindCampoBasket($dichiarazione,$campo){
+        FCampo_Basket::bind($dichiarazione,$campo);
+    }
+     /**
+    * Metodo che verifica l'esistenza di un campo da basket nel db
+    *@param $campo è il campo ID 
+    *@param $idCampo è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaCampoBasket($campo,$idCampo){
+    $risultato = FCampo::verifica($campo,$idCampo);
+   return $risultato;
+   }
 }
+
