@@ -157,7 +157,7 @@ class FEntityManager{
      * @param string $campo si riferisce all'attributo da cambiare dove viene rispettata la condizione 
      * @param mixed $campoValore è il valore da aggiornare a quell'attributo aggiornato , cioè è il valore da dare a quell'attributo cambiato 
      * @param string $condizione si riferisce al condizione del clausola WHERE
-     * @param mixed $valoreCondizione si riferisce al valore della condizione in base alla quale dobbiamo cambiare l'attributo e il valore dell'attributo.
+     * @param mixed $valoreCondizione si riferisce al valore della condizione in base alla quale dobbiamo cambiare l'attributo.
      * @return bool
      */
     public static function updateOgg($tabella,$campo,$campoValore,$condizione,$valoreCondizione){

@@ -59,6 +59,31 @@ class FPersistentManager{
         return $risultato;
     }
 
+/**
+ * Metodo che elimina un elemento dal db
+ * @param $tabella è la tabella da cui vogliamo eliminare un elemento
+ * @param $id è il valore del campo nella clausola where , se tale campo è uguale al valore contenuto in $id viene eliminata la tupla
+ * @param $campo è il campo del valore contenuto in $id
+ */
+    public static function deleteOgg($tabella,$id,$campo){
+        $risultato = FEntityManager::deleteOgginDB($tabella,$id,$campo);
+        return $risultato;
+    }
+   /**
+    * Metodo che aggiorna il valore di un attributo di una tupla in base ad una certa condizione where.
+    *@param $tabella è la tabella da cui vogliamo aggiornare il valore di un campo
+    *@param $campo è il campo che vogliamo sostituire ad un altro
+    *@param $campoValore è il valore del campo da sostituire
+    *@param $condizione è la condizione presente nella clausola where , aggiorniamo l'elemento solo se la clausola è vera 
+    *@param $Valorecondizione è il valore della clausola where
+    */
+    public static function UpdateOgg($tabella,$campo,$campoValore,$condizione,$Valorecondizione){
+        $risultato = FEntityManager::updateOgg($tabella,$campo,$campoValore,$condizione,$Valorecondizione);
+        return $risultato; // ritorna true se l'elemento viene aggiornato correttamente altrimenti false.
+
+
+    }
+
     //-------------------------------------------------------Recensione----------------------------------------------------------------------
     /**
      * Metodo che ritorna una lista di recensioni per ogni campo
@@ -93,11 +118,21 @@ class FPersistentManager{
         $risultato = FPrenotazione::eliminaPrenotazioneDalDB($idPrenotazione,$idUtente);
         return $risultato;
     }
-    public static function  SalvaPrenotazione($Prenotazione,$fieldArray){
-        $risultato= FPrenotazione::salvaOgg($Prenotazione,$fieldArray);
-    }
+   
 
-   //------------------------------------------------------------------------------------------------------------------------------------ 
+   //-------------------------------------------------------Utente----------------------------------------------------------------------------- 
+   /**
+    * Metodo che verifica se esiste l'id di un'utente nella tabella Utente del db
+    *@param $campo è il campo ID
+    *@param $idUtente è il valore dell'ID
+    */
+   public static function Verifica($campo,$idUtente){
+    $risultato = FUtente::verifica($campo,$idUtente);
+    return $risultato;
+   }
+
+   //
+
 
 
 }

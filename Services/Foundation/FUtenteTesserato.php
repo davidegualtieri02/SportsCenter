@@ -80,7 +80,7 @@ class FUtenteTesserato{
     }
 
     //Metodo per salvare un oggetto nel database
-    public static function saveOgg($ogg,$fieldArray = null){
+    public static function salvaOgg($ogg,$fieldArray = null){
         //Se non sono specificati campi particolari da aggiornare
         if($fieldArray ===null){
             try{
