@@ -64,7 +64,7 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * @param $obj si riferisce all'oggetto amministratore da salvare nel db
      * 
      */
-    public static function SalvaOgg($obj){
+    public static function salvaOgg($obj){
         $salvaUtente = FEntityManager::getIstanza()->SalvaOgg(FUtente::getClasse(),$obj); // tramite FentityManager::getIstanza() richiamo l unica istanza della classe entity manager, tramite questa istanza richiamo il metodo SalvaOgg() e passo come parametro a questo metodo la classe dell'oggetto da salvare e l'oggetto stesso. Scrivo FUtente::getClasse() perchè la classe FAmministratore è una estensione della classe FUtente e dunque utilizzo FUtente getclasse() per generalizzare ma credo che sia corretto anche scrivere FAmministratore al posto di FUtente. Quindi $salvaUtente contiene un id //$salvaUtente contiene un id
         if($salvaUtente !== null){// se $salvaUtente è diversa da null ,cioè ha come valore un id 
             $salvaAmm = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$obj,$salvaUtente);//$salvaAmm salva un oggetto amministratore nel database tramite l'id. Accedo all'unico oggetto FentityManager e tramite esso richiamo il metodo saveOggdaID con cui salvo l'oggetto tramite il suo id

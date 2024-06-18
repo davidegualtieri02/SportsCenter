@@ -453,5 +453,177 @@ class FPersistentManager{
     $risultato = FCampo::verifica($campo,$idCampo);
    return $risultato;
    }
+//---------------------------------------------------Attrezzatura-------------------------------------------------------------------------------------
+
+ /**
+     * Metodo che crea un oggetto attrezzatura
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzatura($risultatoQuery){
+        $risultato = FAttrezzatura::creaOggAttrezzatura($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura
+     */
+    public static function bindAttrezzatura($dichiarazione,$attrezzatura){
+        FAttrezzatura::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzatura($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+   //---------------------------------------------AttrezzaturaTennis----------------------------------------------------------------------------------
+   /**
+     * Metodo che crea un oggetto attrezzatura da tennis
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzaturaTennis($risultatoQuery){
+        $risultato = FAttrezzatura_Tennis::creaOggAttrezzatura_Tennis($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura da tennis
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura da tennis
+     */
+    public static function bindAttrezzaturaTennis($dichiarazione,$attrezzatura){
+        FAttrezzatura_Tennis::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura da tennis nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzaturaTennis($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura_Tennis::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+
+   //------------------------------------------------AttrezzaturaPallavolo----------------------------------------------------------------------
+   /**
+     * Metodo che crea un oggetto attrezzatura da pallavolo
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzaturaPallavolo($risultatoQuery){
+        $risultato = FAttrezzatura_Pallavolo::creaOggAttrezzatura_Pallavolo($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura da Pallavolo
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura da pallavolo
+     */
+    public static function bindAttrezzaturaPallavolo($dichiarazione,$attrezzatura){
+        FAttrezzatura_Pallavolo::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura da pallavolo nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzaturaPallavolo($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura_Pallavolo::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+   //--------------------------------------------AttrezzaturaPadel---------------------------------------------------------------------------------
+   /**
+     * Metodo che crea un oggetto attrezzatura da padel
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzaturaPadel($risultatoQuery){
+        $risultato = FAttrezzatura_Padel::creaOggAttrezzatura_Padel($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura da padel
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura da padel
+     */
+    public static function bindAttrezzaturaPadel($dichiarazione,$attrezzatura){
+        FAttrezzatura_Padel::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura da padel nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzaturaPadel($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura_Padel::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+
+   //------------------------------------------------AttrezzaturaCalcio----------------------------------------------------------------------------
+   /**
+     * Metodo che crea un oggetto attrezzatura da calcio
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzaturaCalcio($risultatoQuery){
+        $risultato = FAttrezzatura_Calcio::creaOggAttrezzatura_Calcio($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura da calcio
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura da calcio
+     */
+    public static function bindAttrezzaturaCalcio($dichiarazione,$attrezzatura){
+        FAttrezzatura_Calcio::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura da calcio nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzaturaCalcio($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura_Calcio::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+   //---------------------------------------------AttrezzaturaBasket------------------------------------------------------------------------------
+   /**
+     * Metodo che crea un oggetto attrezzatura da basket
+     * @param $risultatoQuery si riferisce al risultato della query
+     * @return array
+     */
+    public static function CreaAttrezzaturaBasket($risultatoQuery){
+        $risultato = FAttrezzatura_Basket::creaOggAttrezzatura_Basket($risultatoQuery);
+        return $risultato;
+    }
+    /**
+     * Metodo che associa valori ad un oggetto attrezzatura da basket
+     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
+     * @param $attrezzatura si riferisce all'oggetto attrezzatura da basket
+     */
+    public static function bindAttrezzaturaBasket($dichiarazione,$attrezzatura){
+        FAttrezzatura_Basket::bind($dichiarazione,$attrezzatura);
+    }
+     /**
+    * Metodo che verifica l'esistenza di una attrezzatura da basket nel db
+    *@param $campo è il campo ID 
+    *@param $idAttrezzatura è il valore dell'ID 
+    *@return bool
+    */
+   public static function VerificaAttrezzaturaBasket($campo,$idAttrezzatura){
+    $risultato = FAttrezzatura_Basket::verifica($campo,$idAttrezzatura);
+   return $risultato;
+   }
+   
 }
 
