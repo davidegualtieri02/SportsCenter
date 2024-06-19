@@ -39,7 +39,7 @@ require_once(__DIR__ . '/../../../../config/config.php');
 
     }
     /**
-     * metodo che elimina un elemento solo dell'array $_SESSION
+     * metodo che elimina un elemento dall'array $_SESSION
      */
     public static function eliminaElementoSessione($id){ 
         unset($_SESSION[$id]); //elimina il valore dell'elemento associato a tale id(chiave) nell'array superglobale $_SESSION . Cioè viene eliminato l'elemento avente $id come chiave 
@@ -76,5 +76,18 @@ require_once(__DIR__ . '/../../../../config/config.php');
             return false;//altrienti false
         }
     }
-
+    /**
+     * Metodo che legge un elemento del vettore session tramite chiave identificativa 
+     * @param  string $chiave
+     * @return mixed 
+     */
+    public function LeggiValore($chiave){
+        if(isset($_SESSION[$chiave])){ // se esiste il valore $_SESSIOn[$chiave], cioè il valore associato ad una chiave contenuta in $_SESSION , cioè se esiste il valore associato alla chiave dell'array $chiave 
+            return $_SESSION[$chiave];// il metodo ritorna tale valore associato alla chiave a cui punta $chiave contenuta in $_SESSION. $_SESSION[$chiave]  è un valore contenuto nell'array $_SESSION che ha come chiave la chiave identificativa contenuta in $chiave
+        }
+        else{
+            return false;
+        }
+    }
+    
  }
