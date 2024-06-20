@@ -1,11 +1,11 @@
 <?php
-class FAmministratore{ // self è una parola chiave che si riferisce alla classe stessa che stiamo implementando,attraverso self accediamo ai metodi o attributi statici della classe stessa.
+class FAmministratore{ // self è una parola chiave che si riferisce alla classe stessa che stiamo implementando, attraverso self accediamo ai metodi o attributi statici della classe stessa.
     private static $tabella = "Amministratore";
     private static $valore = "(NULL, :nome, :cognome, :password, :email, :id_utente)";
     private static $chiave = "id_amministratore";
 
     public static function getTabella(){
-        return self::$tabella;//tramite self accediamo all'attributo statico tabella della classe e ritorniamo tale elemento una volta che abbiamo ottenuto l'elemento.
+        return self::$tabella;//tramite self accediamo all'attributo statico tabella della classe e restituiamo tale elemento una volta che abbiamo ottenuto l'elemento.
     }
     public static function getValore(){
         return self::$valore;
