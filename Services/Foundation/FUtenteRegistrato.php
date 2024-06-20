@@ -26,9 +26,9 @@ class FUtenteRegistrato{
     public static function CreaOggUtenteRegistrato($risultatoQuery){
         if (count($risultatoQuery)==1){// se l'array ottenuto come risultato dalla query ha un solo elemento viene creato un solo oggetto UtenteRegistrato con i dati presenti nel primo ed unico elemento  nell'array risultatoquery
             $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteRegistrato",$risultatoQuery[0]['id_utenteRegistrato']);//questo metodo recupera la tupla che ha nella colonna IDUtenteRegistrato il valore dell'id presente nell'array $risultatoQuery nel primo elemento cioè [0] e in corrispondenza della chiave IDUtenteRegistrato.
-            $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[0]['id_utenteRegistrato'],$risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['ban'], $risultatoQuery[0]['id_utente']);
+            $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['ban']);
             $utenteRegistrato->setId($risultatoQuery[0]['id_utenteRegistrato']);
-            $utenteRegistrato->setHashPassword($risultatoQuery[0]['id_utenteRegistrato']);
+            $utenteRegistrato->setHashPassword($risultatoQuery[0]['password']);
             $utenteRegistrato->setBan($attributi[0]['ban']);//qui al posto di $risultatoQuery utilizziamo $arrayUtente anche se entrambi gli array contengono un solo elemento cioè quell'utente che ci interessa
             return $utenteRegistrato;
         }
@@ -36,7 +36,7 @@ class FUtenteRegistrato{
             $utentiRegistrati= array();
             for($i=0;$i<count($risultatoQuery);$i++){//ripeto il ciclo un numero di volte  pari al numero di elementi contenuti in $risultatoquery
                 $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteRegistrato",$risultatoQuery[$i]['id_utenteRegistrato']);//la funzione recuperaOggetto viene chiamata per ogni utente nell'array $risultatoQuery e restitusce un array di attributi per quell'utente specifico 
-                $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[$i]['id_utenteRegistrato'], $risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'],$risultatoQuery[$i]['ban'],$risultatoQuery[$i]['id_utente']);// per ogni elemento di $risultatoQuery viene creato un Utente registrato. Per esempio iò secondo elemento dell'array avra un certo nome in corrispondenza della chiave nome , un certo cognome in corrispondenza della chiave cognome ect per ogni nome , cognome ect viene creato un elemento diverso.
+                $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'],$risultatoQuery[$i]['ban']);// per ogni elemento di $risultatoQuery viene creato un Utente registrato. Per esempio iò secondo elemento dell'array avra un certo nome in corrispondenza della chiave nome , un certo cognome in corrispondenza della chiave cognome ect per ogni nome , cognome ect viene creato un elemento diverso.
                 $utenteRegistrato->setId(($risultatoQuery[$i]['id_utenteregistrato']));
                 $utenteRegistrato->setBan(($attributi[0]['ban']));// scriviamo attributi[0] perchè per ogni iterazione del ciclo $attributi contiene un solo elemento (cioè un array di attributi) quindi si usa $attributi [0] per accedere a quell'array di attributi che ha un solo elemento cioè  gli attributi dell 'utente che stiamo analizzando in quella iterazione del ciclo 
                 $utentiRegistrati[] = $utenteRegistrato; // ad ogni iterazione ogni utente viene posto nella lista utenti registrati

@@ -16,7 +16,7 @@ class EUtente{
     // in modo sicuro e coerente, senza dover preoccuparti di conflitti di nomi o di dover ricordare il namespace esatto in cui una classe è definita.
     //namespace  è un modo per incapsulare gli elementi di un codice ,namespace è tipo un contenitore che contiene le classi , si comporta come un directory 
     // con i files 
-    public function __construct($nome, $cognome, $email, $password, $id_utente){
+    public function __construct($nome, $cognome, $email, $password){
         $hashPassword = password_hash($password,PASSWORD_DEFAULT);//password_hash crea un hash di una password,$password è la password che vogliamo hashare
         // PASSWORD_DEFAULT :Questo è un algoritmo di hashing predefinito che PHP userà per creare l’hash della password. 
         //$hashpassword = password_hash(..) ect..la riga crea un has e assegna alla variabile $hashpassword , l'hash stesso.
@@ -26,7 +26,7 @@ class EUtente{
         $this->cognome = $cognome;
         $this ->email = $email;
         $this->password = $hashPassword; 
-        $this->id_utente = $id_utente;
+        
     }
     public static function getEntità():string{// static indica che il metodo è statico
         //cioè non appartiene ad un oggetto della classe ma alla classe stessa 

@@ -4,16 +4,14 @@ require_once "EUtente";
 
 class EUtenteTesserato extends EUtente{
     protected bool $ban;
-
-    private static $id_utenteTesserato;
+    protected int $id_utenteTesserato;
     
     private static $entità = EUtenteTesserato::class;
     
-    public function __construct($id_utenteTesserato, $nome, $cognome, $email, $password, $ban, $id_utente){
-        parent::__construct($nome, $cognome, $email, $password, $id_utente);//parent::__construct è un modo per richiamare il costruttore di EUtente 
+    public function __construct($nome, $cognome, $email, $password, $ban){
+        parent::__construct($nome, $cognome, $email, $password);//parent::__construct è un modo per richiamare il costruttore di EUtente 
         // in modo che il costruttore di EUtenteRegistato ottenga come parametri i parametri del costruttore
         // di EUtente + $id_utenteTesserato e $ban 
-        $this->id_utenteTesserato = $id_utenteTesserato;
         $this->ban = $ban;
     }
     public static function getEntità():string{
