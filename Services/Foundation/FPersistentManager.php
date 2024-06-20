@@ -657,7 +657,7 @@ class FPersistentManager{
    }
    
    public static function VerificaPasswordUtente($pass){
-    $risultato = FUtente::verifica(('password', $pass));
+    $risultato = FUtente::verifica('password', $pass);
     return $risultato;
     
    }
