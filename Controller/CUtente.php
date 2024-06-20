@@ -54,12 +54,24 @@ class CUtente {
             header('Location : /SportsCenter/Utente/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
         }
         $view = new VUtente();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
-        $view->mostraLoginform();
+        $view->mostraLoginForm();
 
     }
+    /**
+     * Metodo che verifica se l'email e la password esistono e crea un utente.
+     * @return void
+     */
     public static function registrazione(){
-        $view = newVUtente();
-        if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email')==false) && FPersistentManager::)
+        $view = new VUtente();
+        if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false && FPersistentManager::getIstanza()->VerificaPasswordUtente(UMetodiHTTP::post('password'))==false){// in questa riga di codice vengono verificate le credenziali
+            // nell'if viene verificato se l'email , la password non sono gia state utilizzate , cioè sono uguali a false , se non sono state utilizzate  viene creato un utente con tali credenziali 
+            $utente = new EUtente(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('password'),UMetodiHTTP::post('email')); // creazione utente con le credenziali fornite
+            FPersistentManager::getIstanza()->uploadOgg($utente);// viene caricato l'utente nel db tramite uploadOgg
+            $view->mostraLoginForm();// metodo da implementare in VUtente , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
+        }else{
+            $view->erroreRegistrazione();//metodo da implementare in VUtente. Se le credenziali esistono viene restituito un errore di registrazione 
+        }
+
 
 
     }
