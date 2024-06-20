@@ -100,7 +100,7 @@ class CUtente {
                     USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getIdUtenteRegistrato());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
-                    header ('Location : /SportsCenter/Utente/home');
+                    header ('Location : /SportsCenter/UtenteRegistrato/home');
                 }
             }else {
                 $view->erroreLogin();
@@ -109,5 +109,19 @@ class CUtente {
             $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
         }
     }
+    /**
+     * Metodo che fa compilare una form e aggiorna la password dell'utente
+     */
     
+     public static function setPassword(){
+        if(CUtente::Loggato()){
+            $utenteId = USession::getIstanza()->getElementoSessione('utenteRegistrato');//mi da l'id dell'utente autenticato dalla sessione, le cui informazioni sono memorizzate nella sessione
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(),$utenteId);
+            $NuovaPass = UMetodiHTTP::post('password'); // la nuova password viene posta come valore della chiave password nell'array $_POST
+            $utente->setPassword($NuovaPass);
+            FPersistentManager::getIstanza()->updatePasswordUtente($utente);
+            header ('Location : /SportsCenter/UtenteRegistrato/home');
+
+        }
+     }
 }

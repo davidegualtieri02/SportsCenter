@@ -666,6 +666,14 @@ class FPersistentManager{
     $risultato= FUtenteRegistrato::getUtenteByEmail($email);
     return $risultato;
    }
+   public static function updatePasswordUtente($utenteRegistrato){
+    $campo = [['password',$utenteRegistrato->getPassword()]];// campo è un arraymultidimensionale che ha una coppia chiave valore che sono 'password' (chiave) e $utenteRegistrato->getPassword() (valore)
+    $risultato= FUtenteRegistrato::salvaOgg($utenteRegistrato,$campo);
+    return $risultato;
+
+
+
+   }
 
 }
 
