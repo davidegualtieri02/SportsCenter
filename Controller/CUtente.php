@@ -63,4 +63,16 @@ class CUtente {
 
 
     }
+
+
+
+
+
+
+    public static function logout(){
+        USession::getIstanza();
+        USession::annullaSessione();
+        USession::distruggiSessione();
+        header(‘Location: /SportsCenter/Utente/login’);
+    }
 }
