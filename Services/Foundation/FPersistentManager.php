@@ -234,6 +234,7 @@ class FPersistentManager{
     public static function bindUtenteRegistrato($dichiarazione,$utente,$id){
         FUtenteRegistrato::bind($dichiarazione,$utente,$id);
     }
+    public 
     
   //------------------------------------------------------UtenteTesserato---------------------------------------------------------------------
    
@@ -659,7 +660,11 @@ class FPersistentManager{
    public static function VerificaPasswordUtente($pass){
     $risultato = FUtente::verifica('password', $pass);
     return $risultato;
-    
+   }
+   //---------------------------------------------------------------------------------------------------------------------------------------------------
+   public static function recuperaUtenteDaEmail($email){
+    $risultato= FUtenteRegistrato::getUtenteByEmail($email);
+    return $risultato;
    }
 
 }

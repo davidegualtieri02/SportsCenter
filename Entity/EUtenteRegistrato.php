@@ -3,7 +3,7 @@ use Doctrine\ORM\Mapping as ORM;
 require_once "EUtente";
 
 class EUtenteRegistrato extends EUtente{
-    protected bool $ban;
+    protected bool $ban = false;
 
     protected int $id_utenteRegistrato;
     private static $entità = EUtenteRegistrato::class;

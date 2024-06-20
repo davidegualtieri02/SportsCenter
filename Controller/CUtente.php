@@ -13,7 +13,7 @@ class CUtente {
                 USession::getIstanza();// questa riga di codice ,questo metodo crea la sessione
             }
         }
-        if (USession::isSetElementoSessione('Utente')){// isSetElementoSessione('Utente') controlla se esiste un elemento chiamato 'Utente' nell'array superglobale $_SESSION ovvero nella sessione PHP corrente
+        if (USession::isSetElementoSessione('utenteRegistrato')){// isSetElementoSessione('Utente') controlla se esiste un elemento chiamato 'Utente' nell'array superglobale $_SESSION ovvero nella sessione PHP corrente
             //se questo elemento esiste , significa che l'utente è loggato e $loggato viene impostato a true
             $loggato= true;
             self::Bannato();// se loggato = true attraverso questo metodo Bannato() vediamo se l'utente è stato bannato 
@@ -30,9 +30,9 @@ class CUtente {
       */
     public static function Bannato()
     {
-        $IDUtente = USession::getElementoSessione('Utente');//IDUtente assume come valore il valore della chiave Utente in $_SESSION , cioè assume come valore il valore dell'ID dell'utente
-        $Utente = FPersistentManager::getIstanza()->recuperaOggetto(EUtente::getEntità(), $IDUtente); // $Utente punterà ad utente , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
-        if($Utente->Bannato()){
+        $IDUtente = USession::getElementoSessione('utenteRegistrato');//IDUtente assume come valore il valore della chiave Utente in $_SESSION , cioè assume come valore il valore dell'ID dell'utente
+        $utenteRegistrato = FPersistentManager::getIstanza()->recuperaOggetto(EUtenteRegistrato::getEntità(), $IDUtente); // $Utenteregistrato punterà ad utente registrato , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
+        if($utenteRegistrato->Bannato()){
             $view = new VUtenteRegistrato(); // se l'utente è bannato viene creato un oggetto VUtente e viene chiusa e distrutta la sessione perchè giustamente un utente bannato non può prenotare un campo 
             USession::annullaSessione();
             USession::distruggiSessione();
@@ -50,8 +50,8 @@ class CUtente {
 
             }
         }
-        if(USession ::isSetElementoSessione('Utente')){//verifica se un elemento con chiave Utente è stato inserito nell'array superglobale $_SESSION
-            header('Location : /SportsCenter/Utente/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
+        if(USession ::isSetElementoSessione('utenteRegistrato')){//verifica se un elemento con chiave utenteRegistrato è stato inserito nell'array superglobale $_SESSION
+            header('Location : /SportsCenter/UtenteRegistrato/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
         }
         $view = new VUtenteRegistrato();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
         $view->mostraLoginForm();
@@ -65,7 +65,7 @@ class CUtente {
         $view = new VUtenteRegistrato();
         if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false && FPersistentManager::getIstanza()->VerificaPasswordUtente(UMetodiHTTP::post('password'))==false){// in questa riga di codice vengono verificate le credenziali
             // nell'if viene verificato se l'email , la password non sono gia state utilizzate , cioè sono uguali a false , se non sono state utilizzate  viene creato un utente con tali credenziali 
-            $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('password'),UMetodiHTTP::post('email'),UMetodiHTTP::post('ban')=false); // creazione utente con le credenziali fornite
+            $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('password'),UMetodiHTTP::post('email'),UMetodiHTTP::post('ban')); // creazione utente con le credenziali fornite
             FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);// viene caricato l'utente nel db tramite uploadOgg
             $view->mostraLoginForm();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
         }else{
@@ -81,4 +81,33 @@ class CUtente {
         USession::distruggiSessione();
         header('Location: /SportsCenter/Utente/login');
     }
+
+/**
+ * metodo che verifica se esiste l'email inserita  e per questa email verifica la password. Se tutto è corretto , viene creata la sessione e l'utente registrato
+ * viene reindirizzato alla homepage
+ */
+    public static function VerificaLogin(){
+        $view = new VUtenteRegistrato();
+        $email = FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'));
+        if($email){
+            $utenteRegistrato = FPersistentManager::getIstanza()->recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
+            //questo if qui sotto controlla se la password di un utenteregistrato ottenuta da getpassword è uguale ad una password digitata dall'utente ed inviata tramite una richiesta HTTP POST al server 
+            if(password_verify(UMetodiHTTP::post('password'),$utenteRegistrato->getPassword())){
+                if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
+                    $view->loginBan; // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
+                }elseif(USession::getStatoSessione()==PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
+                    USession::getIstanza();// viene ridata un istanza sessione 
+                    USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getIdUtenteRegistrato());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
+                    //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
+                    //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
+                    header ('Location : /SportsCenter/Utente/home');
+                }
+            }else {
+                $view->erroreLogin();
+            }
+        }else{
+            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
+        }
+    }
+    
 }

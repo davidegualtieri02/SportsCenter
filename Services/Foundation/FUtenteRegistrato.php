@@ -130,6 +130,15 @@ class FUtenteRegistrato{
             }
         }
     }
+    public static function getUtenteByEmail($email){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtente::getTabella(),'email',$email);//viene recuperato un oggetto dalla tabella utente avente nel campo email un valore dell'email contenuto in $email
+        if(count($risultato)>0){ // se esiste un utente con quella email crea un utente registrato con quella email
+            $Utente = self::CreaOggUtenteRegistrato($risultato);//se esiste l'utente viene 
+            return $Utente;
+        }else{// se non esiste ritorna null
+            return null;
+        }
+    }
 
 
 }
