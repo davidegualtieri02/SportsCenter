@@ -648,7 +648,7 @@ class FPersistentManager{
 
    //--------------------------------------------------Verifica--------------------------------------------------------------------------------------------
    /**
-    * Metodo che verifica un email se si trova nel db
+    * Metodo che verifica un'email se si trova nel db
     *@param $email è l'id dell'email 
     *@return boolean
     */
