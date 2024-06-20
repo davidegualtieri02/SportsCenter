@@ -645,5 +645,22 @@ class FPersistentManager{
    return $risultato;
    }
 
+   //--------------------------------------------------Verifica--------------------------------------------------------------------------------------------
+   /**
+    * Metodo che verifica un email se si trova nel db
+    *@param $email è l'id dell'email 
+    *@return boolean
+    */
+   public static function VerificaEmailUtente($email){
+    $risultato = FUtente::verifica('email',$email);
+    return $risultato;
+   }
+   
+   public static function VerificaPasswordUtente($pass){
+    $risultato = FUtente::verifica(('password', $pass));
+    return $risultato;
+    
+   }
+
 }
 

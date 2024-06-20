@@ -38,5 +38,29 @@ class CUtente {
             USession::distruggiSessione();
             $view->loginBan();
         }
+
+    }
+    /**
+     * Metodo che permette all'utente di compilare una form per accedere al proprio account
+     */
+    public static function login(){
+        if(UCookie::cookieSettato('PHPSESSID')){// verifica se un cookie con chiave 'PHPSESSID' è presente nell'array $_COOKIE, cioè è stato settato
+            if(session_status()==PHP_SESSION_NONE){//  se la sessione non è iniziata
+                USession::getIstanza();//crea un'istanza della sessione
+
+            }
+        }
+        if(USession ::isSetElementoSessione('Utente')){//verifica se un elemento con chiave Utente è stato inserito nell'array superglobale $_SESSION
+            header('Location : /SportsCenter/Utente/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
+        }
+        $view = new VUtente();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
+        $view->mostraLoginform();
+
+    }
+    public static function registrazione(){
+        $view = newVUtente();
+        if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email')==false) && FPersistentManager::)
+
+
     }
 }
