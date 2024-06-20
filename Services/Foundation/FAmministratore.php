@@ -73,6 +73,16 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
             return false; // se non ha salvato l'oggetto amministratore, viene ritornato false
         }
     }
+    public static function getAmmByEmail($email){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FAmministratore::getTabella(),'email',$email);//viene recuperato un oggetto dalla tabella  amministratore avente nel campo email un valore dell'email contenuto in $email
+        if(count($risultato)>0){ // se esiste un utente con quella email crea un utente registrato con quella email
+            $amm = self::CreaOggAmministratore($risultato);//se esiste l'utente viene 
+            return $amm;
+        }else{// se non esiste ritorna null
+            return null;
+        }
+
+    }
     
     
 
