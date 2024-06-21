@@ -124,6 +124,7 @@ CREATE TABLE Prenotazione(
     'pagata' TINYINT(1),
     'id_campo' INT,
     'id_attrezzatura' INT;
+    'id_utente' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CartadiPagamento(
     'id_cartadiPagamento' INT
