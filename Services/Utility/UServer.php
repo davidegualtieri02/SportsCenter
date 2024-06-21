@@ -31,7 +31,7 @@ class UServer {
         public static function getRichiestaMetodo(){
             return $_SERVER['REQUEST_METHOD'];// $_SERVER['REQUEST_METHOD'] è una variabile superglobale che contiene il metodo di richiesta utilizzato per accedere ad una pagina.
             // i valori associati alla chiave 'REQUEST_METHOD nell'array $_SERVER posso essere:
-            //GET: Utilizzato per richiedere dati da un server.
+            //GET: Utilizzato per richiedere al server.
             //POST: Utilizzato per inviare dati al server per elaborazione.
             //HEAD: Simile a GET, ma viene utilizzato per ottenere solo le intestazioni di risposta, senza il corpo della risposta.
             //PUT: Utilizzato per caricare un'entità specificata su una risorsa destinata all'URI di destinazione.
