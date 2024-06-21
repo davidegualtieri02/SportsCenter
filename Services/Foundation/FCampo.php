@@ -79,7 +79,7 @@ class FCampo{
      * 
      */
     public static function CampoDisponibile($pdo,$idCampo,$Dprenotazione,$Oprenotazione){
-        $sql = "SELECT id FROM Prenotazione WHERE id_campo = :id_campo AND orario = :orario AND data= :data";
+        $sql = "SELECT id_campo FROM Prenotazione WHERE id_campo = :id_campo AND orario = :orario AND data= :data";
         $dichiarazione = $pdo->prepare($sql);// prepara la query per essere esguita
         $dichiarazione->execute([':id_campo' => $idCampo,':data'=> $Dprenotazione,':orario'=>$Oprenotazione]);// esegue la query prendendo l'id del campo che è quello contenuto in $idCampo, con la data cche è quella contenuta in $Dprenotazione e con l'orario che è quello contenuto in $Oprenotazione
         return $dichiarazione->rowCount()===0;//ritorna true se non ci sono righe nell'array dichiarazione , cioè se il campo è libero in quella data e in quell'orario

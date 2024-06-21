@@ -160,6 +160,11 @@ class FPersistentManager{
         $risultato = FPrenotazione::eliminaPrenotazioneDalDB($idPrenotazione,$idUtente);
         return $risultato;
     }
+    public static function VerificaUtenteprenotazione($pdo, $idPrenotazione, $utenteId){
+        $risultato = FPrenotazione::VerificaUtentePrenotazione($pdo, $idPrenotazione, $utenteId);
+        return $risultato;
+
+    }
    
 
    //-------------------------------------------------------Utente----------------------------------------------------------------------------- 

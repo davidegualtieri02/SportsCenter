@@ -131,5 +131,18 @@ class FPrenotazione {
             //Chiudi la connessione al DB
             FEntityManager::getIstanza()->chiusuraConnessione();
         }
-    }    
+    } 
+    
+    /**
+     * Metodo che verifica se la prenotazione è di un utente loggato
+     */
+    public static function VerificaUtentePrenotazione($pdo, $idPrenotazione, $utenteId) {
+        $sql = "SELECT id_utente FROM Prenotazione WHERE id_utente = :id_prenotazione AND id_utente = :id_utente";
+        $dichiarazione = $pdo->prepare($sql);
+        $dichiarazione->execute([
+            ':id_prenotazione' => $idPrenotazione,
+            ':id_utente' => $utenteId
+        ]);
+        return $dichiarazione->rowCount() > 0;// verifica se la query ha restituita almeno una riga , cioè se quell'utente ha prenotato almeno una prenotazione 
+    }
 }
