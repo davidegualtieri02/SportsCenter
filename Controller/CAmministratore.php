@@ -88,4 +88,20 @@ class CAmministratore{
             }
         }
     }
+    
+    /**
+     * Questo metodo invia un email di spiegazione per il ban ricevuto da un utente
+     * @param $ragione è il ban  dell'utente, la ragione è il ban e $ogg  è un oggetto EUtenteRegistrato
+     */
+    public static function EmailBan($ogg,$ragione){
+        $intestazione = "From: noreply@Sportscenter.com";//$intestazione è un 'intestazione specifica del protocollo SMTP che si occupa di inviare email e mi sta dicendo da chi viene inviata l'email cioè da noreply@SportsCenter.com
+        if($ragione == "ban"){
+            $a= $ogg->getEmail();
+            $oggetto = "Bannato da SportsCenter";
+            $messaggio = " Tu".$ogg->getNome().$ogg->getCognome(). "sei stato bannato permanentemente dal sito SportsCenter , perchè stai violando le nostre linee guida come:Violenza e contenuti offensivi";
+        }
+        mail($a,$oggetto,$messaggio,$intestazione);//metodo di php che invia un email
+    }
+
+
 }

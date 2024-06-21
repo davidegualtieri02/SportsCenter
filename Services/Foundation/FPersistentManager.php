@@ -127,6 +127,7 @@ class FPersistentManager{
         $risultato = FRecensione::eliminaRecensioneDalDB($idRecensione,$idUtente);
          return $risultato; // ritorna true se la recensione è stata eleiminata correttamente.
     }
+
     
 
 
@@ -680,6 +681,11 @@ class FPersistentManager{
         $risultato = FUtenteRegistrato::salvaOgg($utente, $field);
         return $risultato;
     }
+
+
+
+
+    
 
 }
 
