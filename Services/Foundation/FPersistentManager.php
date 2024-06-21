@@ -328,6 +328,18 @@ class FPersistentManager{
     $risultato = FCampo::verifica($campo,$idCampo);
    return $risultato;
    }
+   
+   /**
+    * Metodo che verifica la disponibilità del campo 
+    *@param $idCampo è l'id del campo
+    *@param $Dprenotazione è a data della prenotazione 
+    *@param $Oprenotazione è l'orario della prenotazione
+    *@return boolean
+    */
+    public static function campoDisponibile($pdo,$idCampo,$Dprenotazione,$Oprenotazione){
+        $risultato = Fcampo::CampoDisponibile($pdo,$idCampo,$Dprenotazione,$Oprenotazione);
+        return $risultato;
+   }
 
 //----------------------------------------------------CampoTennis---------------------------------------------------------------------------
  /**
