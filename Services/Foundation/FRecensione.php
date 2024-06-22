@@ -209,6 +209,15 @@ class FRecensione{
         //Restituisci recensioni
         return $recensioni;
     }
+    /**
+     * Metodo che aggiunge ad una recensione uno o più immagini
+     */
+    public function addImagesARecensione(ERecensione $recensione, array $images): void {
+        foreach ($images as $image) {
+            $recensione->addImage($image);
+        
+       }
 
     
+    }
 }

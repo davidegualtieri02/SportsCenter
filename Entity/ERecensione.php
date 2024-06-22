@@ -80,21 +80,24 @@ class ERecensione{
     public function setImage($image){
         $this->foto = $image;
     }
-
-    public function addImage(EImage $image): void{
+   /**
+    * Metodo che aggiunge una o più immagini ad una recensione non permettendo l'inserimento di una stessa immagine
+    *@param $image è l'immagine da aggiungere
+    */
+    public function addImage(EImage $image): void {
         $idImg = $image->getId();
 
-        //Ora controllo se l'immagine è già presente nell'array tramite il suo ID
+        // Ora controllo se l'immagine è già presente nell'array tramite il suo ID
         $imageExists = false;
-        foreach($this->images as $existingImage){
-            if ($existingImage->getId() === $idImg){
+        foreach ($this->images as $existingImage) {
+            if ($existingImage->getId() === $idImg) {
                 $imageExists = true;
-                break; //interrompi l'esecuzione del ciclo se viene trovato un ID corrispondente
+                break; // interrompi l'esecuzione del ciclo se viene trovato un ID corrispondente
             }
         }
 
-        //Se l'immagine non esiste nell'array, aggiungila
-        if (!$imageExists){
+        // Se l'immagine non esiste nell'array, aggiungila
+        if (!$imageExists) {
             $this->images[] = $image;
             $image->setRecensione($this);
         }
