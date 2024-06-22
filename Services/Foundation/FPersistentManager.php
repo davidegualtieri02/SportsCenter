@@ -705,7 +705,7 @@ class FPersistentManager{
     return $risultato;
 }
     public static function updateBanUtente($utente){
-         $field = [['ban', $utente->isBanned()]];
+        $field = [['ban', $utente->isBanned()]];
         $risultato = FUtenteRegistrato::salvaOgg($utente, $field);
         return $risultato;
     }

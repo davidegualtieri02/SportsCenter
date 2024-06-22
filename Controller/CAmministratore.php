@@ -17,7 +17,7 @@ class CAmministratore{
             $loggato= true;
         }
         if(!$loggato){
-            header('Location : /SportsCenter/Amministratore/login');
+            header('Location: /SportsCenter/Amministratore/login');
             exit;
         }
         return true;
