@@ -7,15 +7,20 @@ class ERecensione{
     private int $valutazione;
     private DateTime $DataOra;
     private $removed = false;
+    private int $id_campo;
+    private array $images;
     protected EUtente $utente;
-    private $images;
+    
+    
     private static $entità = ERecensione::class;
 
-    public function __construct($valutazione, $commento){
+    public function __construct($valutazione, $commento,$id_campo,$id_utente,$ora){
         $this->valutazione = $valutazione;
         $this->commento = $commento;
-        $this->setTime();
-        $this->images = [];
+        $this->id_campo=$id_campo;
+        $this->utente->getId() = $id_utente;
+        $this->setTime() = $ora;
+       
     }
 
     public static function getEntità():string{
@@ -73,13 +78,19 @@ class ERecensione{
     public function setUtente(EUtente $utente): void{
         $this->utente = $utente;
     }
+    public function getIdCampo(){
+        return $this->id_campo;
+    }
+    public function getIdUtente(){
+        return $this->utente->getId();
+    }
+    public function setImages($images){
+        $this->images= $images;
 
-    public function getImages(){
-        return $this->images;
+
     }
-    public function setImage($image){
-        $this->foto = $image;
-    }
+
+    
    /**
     * Metodo che aggiunge una o più immagini ad una recensione non permettendo l'inserimento di una stessa immagine
     *@param $image è l'immagine da aggiungere

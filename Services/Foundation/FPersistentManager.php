@@ -127,7 +127,14 @@ class FPersistentManager{
         $risultato = FRecensione::eliminaRecensioneDalDB($idRecensione,$idUtente);
          return $risultato; // ritorna true se la recensione è stata eleiminata correttamente.
     }
-
+    /**
+     * Metodo che aggiunge uno o più foto in una recensione
+     * @param $recensione si riferisce alla recensione in cui aggiungere la/le immagini
+     * @param $images si riferisce all'array di immagini
+     */
+    public static function AggiungiImmagini($recensione,$images){
+        FRecensione::addImagesARecensione($recensione,$images);
+    }
     
 
 

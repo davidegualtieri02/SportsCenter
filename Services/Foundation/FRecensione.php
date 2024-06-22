@@ -210,13 +210,13 @@ class FRecensione{
         return $recensioni;
     }
     /**
-     * Metodo che aggiunge ad una recensione uno o più immagini
+     * Metodo che aggiunge ad una recensione uno o più immagini e salva la recensione nel db
      */
-    public function addImagesARecensione(ERecensione $recensione, array $images): void {
+    public static function addImagesARecensione(ERecensione $recensione, array $images): void {
         foreach ($images as $image) {
             $recensione->addImage($image);
-        
-       }
+    }
+        FRecensione::salvaOgg($recensione);
 
     
     }
