@@ -28,8 +28,14 @@ class CPrenotaCampo{
                 $orario = UMetodiHTTP::post('orario');
                 //e invia anche l'attrezzatura che vorrebbe
                 $idAttrezzatura = UMetodiHTTP::post('id_attrezzatura');
+                $numeroCarta = UMetodiHTTP::post('Numero_Carta');
+                $scadenzaCarta = UMetodiHTTP::post('Data_Scadenza');
+                $cvvCarta = UMetodiHTTP::post('CVV');
+                $nome = UMetodiHTTP::post('Nome_Titolare');
+                $cognome = UMetodiHTTP::post('Cognome_Titolare');
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
                 if(FPersistentManager::campoDisponibile($pdo,$idCampo,$data,$orario)){
+                   if(FPersistentManager::ProcessoPag($nome,$cognome,$numeroCarta,$scadenzaCarta,$cvvCarta)){// se il pagamento è avvenuto con successo
                     //eseguiamo l'inserimento della prenotazione nel database
                     $sql = "INSERT INTO 'Prenotazione' ('data','orario','id_campo','id_attrezzatura','id_utente') VALUES (:data,:orario,:id_campo,:id_attrezzatura,:id_utente)";
                     $dichiarazione = $pdo->prepare($sql);
@@ -43,6 +49,7 @@ class CPrenotaCampo{
             }else{
                 header('Location: /SportsCenter/Utente/login');
                 exit;
+                }
             }
         }
     }

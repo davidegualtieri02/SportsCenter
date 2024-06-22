@@ -74,14 +74,17 @@ class FCartadiPagamento{
        $parti = explode('/',$scadenza);//explode divide la stringa $scadenza in due parti ,utilizzando il carattere '/' come delimitatore, : il mese e l'anno
        //il metodo explode restituisce un array $parti contenente due elementi : il mese e l'anno
        if(count($parti)!==2){//se l'array $parti ha un numero di elementi diverso da 2 significa che non è stato messo il delimitatore / tra le due stringhe
-        return "per favore porre il delimitatore '/' tra il mese e l'anno di scadenza della carta di pagamento";
+        print("per favore porre il delimitatore '/' tra il mese e l'anno di scadenza della carta di pagamento");
+        exit;
+        
        }
        $mese= intval($parti[0]);// converte la stringa del mese in un numero intero utilizzando la funzione intval
        $anno = intval($parti[1]);//converte la stringa dell'anno in un numero intero utilizzando intval
        if($mese<1||$mese>12){// se il mese è minore di 1 e maggiore di 12
-        return " Mese non esistente";
+        print(" Mese non esistente");
+        exit;
         }
-        if($anno>1){// consideriamo l'anno corretto se è espresso con due cifre o con 4 . Se l'anno è espresso con due cifre aggiunge automaticamente 2000 per ottenere l'anno con 4 cifre per confrontarlo con l'anno attuale ottenuto da una funzione di php
+        if($anno<100){//Se l'anno è minore di 100 significa che l'utente invece di aver inserito 2024 ha inserito 24 .consideriamo l'anno corretto se è espresso con due cifre o con 4 . Se l'anno è espresso con due cifre aggiunge automaticamente 2000 per ottenere l'anno con 4 cifre per confrontarlo con l'anno attuale ottenuto da una funzione di php
             $anno +=2000;
         }
         //otteniamo tramite date l'anno e il mese corrente e li trasformiamo in interi tramite intval per confrontarli con $anno e  $mese inseriti dall'utente
@@ -89,26 +92,35 @@ class FCartadiPagamento{
         $meseCorrente = intval(date('m'));
         // se l'anno posto dall'utente è minore dell'anno corrente o l'anno  posto dall'utente è = all'anno corrente e il mese posto dall'utente è minore del mese corrente allora la carta è scaduta
         if ($anno < $annoCorrente || ($anno === $annoCorrente && $mese < $meseCorrente)) {
-            return " Carta di pagamento scaduta";
+            print (" Carta di pagamento scaduta");
+            exit;
         }
         return " Carta Valida ";
 
         }
 
     
-
-    public static function processodiPagamento($numeroCarta,$scadenza,$cvvCarta){
+    /**
+     * Metodo che verifica se la carta non è scaduta e se le credenziali della carta sono corrette
+     * 
+     */
+    public static function processodiPagamento($nomeProprietario,$cognomeProprietario,$numeroCarta,$scadenza,$cvvCarta){
         //Controlliamo se il numero della carta è valido (se ha 16 cifre)
         if(!preg_match('/^\d{16}$/',$numeroCarta)){// se il numero della carta non ha 16 cifre 
-            return "il numero della carta è errato ";
+            print ("il numero della carta è errato ");
+            exit;// esce dall'esecuzione dello script
         }
         //Controlliamo se la data di scadenza non è scaduta 
         if (!self::DataScadenza($scadenza)){// se la carta non è valida 
-            return " Data di scadenza non valida";
+            print(" Data di scadenza non valida");
+            exit;
         }
         //verifica se il codice cvv ha 3 cifre (numeri)
         if (!preg_match('/^\d{3}$/', $cvvCarta)) {
-            return " Codice Cvv errato";
+            print(" Codice Cvv errato");
+            exit;
         } 
+        return "Pagamento validato";
+        
     }
 }

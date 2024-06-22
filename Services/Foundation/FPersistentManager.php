@@ -305,6 +305,17 @@ class FPersistentManager{
          $risultato = FCartadiPagamento::verifica($campo,$idCarta);
         return $risultato;
     }
+    /**
+     * Metodo per verficare se il pagamento è andato a buon fine 
+     * @param $numeroCarta si riferisce al numero della carta
+     * @param $scadenza si riferisce alla data di scadenza della carta
+     * @param $cvvCarta ri riferisce al codice CVV della carta
+     */
+    public static function ProcessoPag($nomeProprietario,$cognomeProprietario,$numeroCarta,$scadenza,$cvvCarta){
+        $risultato = FCartadiPagamento::processodiPagamento($nomeProprietario,$cognomeProprietario,$numeroCarta,$scadenza,$cvvCarta);
+        return $risultato;
+
+    }
 //----------------------------------------------------Campo------------------------------------------------------------------------------------
     /**
      * Metodo che crea un oggetto Campo
