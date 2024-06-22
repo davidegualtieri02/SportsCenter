@@ -141,7 +141,8 @@ CREATE TABLE Recensione(
     'DataOra' DATETIME,
     'removed' TINYINT(1),
     'id_utente' INT,
-    'images' ARRAY(image);
+    'images' ARRAY(image)
+    'id_campo' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE image(
     'id_image' INT PRIMARY KEY,
