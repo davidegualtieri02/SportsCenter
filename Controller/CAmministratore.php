@@ -114,7 +114,7 @@ class CAmministratore{
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'amministratore che sta effettuando la prenotazione
             if(CAmministratore::Loggato()){// se l'utente è loggato
-                //$utente = unserialize($sessione->LeggiValore('utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
+                $utente = unserialize($sessione->LeggiValore('utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
                 $view ->MostraFormPrenotazione($campo);//viene mostrata la form per la prenotazione
             }else{// se l'amministratore non è loggato viene reindirizzato alla pagina di login 
                 header('Location: /SportsCenter/Amministratore/login');
@@ -124,7 +124,9 @@ class CAmministratore{
         if (UServer::getRichiestaMetodo()=="POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
             if(CAmministratore::Loggato()){
                 // l'amministratore invia per l'utente la data e l'orario  in cui vorrebbe prenotare il campo al server 
-                // a prescinde dall'utente che prenota il campo , l'amministra
+                // a prescinde dall'utente che prenota il campo
+                $amministratore = unserialize($sessione->LeggiValore('utente'));
+                $idAmm = $amministratore->getId();
                 $data = UMetodiHTTP::post('data'); 
                 $orario = UMetodiHTTP::post('orario');
                 //e invia anche l'attrezzatura che vorrebbe prenotare l'utente
@@ -134,7 +136,7 @@ class CAmministratore{
                     //eseguiamo l'inserimento della prenotazione nel database
                     $sql = "INSERT INTO 'Prenotazione' ('data','orario','id_campo','id_attrezzatura','id_utente') VALUES (:data,:orario,:id_campo,:id_attrezzatura,:id_utente)";
                     $dichiarazione = $pdo->prepare($sql);
-                    $dichiarazione->execute([':id_utente'=>$idUtente,':id_campo' => $idCampo,':data'=> $data,':orario'=>$orario,':id_attrezzatura'=>$idAttrezzatura]);
+                    $dichiarazione->execute([':id_utente'=>$idAmm,':id_campo' => $idCampo,':data'=> $data,':orario'=>$orario,':id_attrezzatura'=>$idAttrezzatura]);
                     $view->MostraMessaggioConferma("Campo prenotato con successo!");
                 }
                 else{
@@ -155,18 +157,17 @@ class CAmministratore{
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-
         if (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            if (CUtente::Loggato()) { // Verifica se l'utente è loggato
-                $utente = unserialize($sessione->LeggiValore('utente'));
+            if (CAmministratore::Loggato()) { // Verifica se l'utente è loggato
+                $amministratore = unserialize($sessione->LeggiValore('utente'));
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
                 // Richiama il metodo isUserBookingOwner dalla classe CBooking
-                if ($pm::VerificaUtenteprenotazione($pdo, $idPrenotazione, $utente->getId())) {
+                if ($pm::VerificaUtenteprenotazione($pdo, $idPrenotazione, $amministratore->getId())) {
                     $sql = "DELETE FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utente = :id_utente";
                     $dichiarazione = $pdo->prepare($sql);
                     $dichiarazione->execute([
                         ':id_prenotazione' => $idPrenotazione,
-                        ':id_utente' => $utente->getId()
+                        ':id_utente' => $amministratore->getId()
                     ]);
 
                     // Controlla se la cancellazione è avvenuta , DELETE restituisce le righe rimosse e rowCount conta tali righe 
