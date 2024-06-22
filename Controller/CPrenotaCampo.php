@@ -1,6 +1,10 @@
 <?php
 
 class CPrenotaCampo{
+    /**
+     * Metodo per prenotare un campo sportivo
+     * @param $idCampo è l'id del campo che l'utente vuole prenotare
+     */
     public static function prenotaCampo($idCampo){ //Con GET il server invia la form di prenotazione 
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente
@@ -22,12 +26,14 @@ class CPrenotaCampo{
                 // l'utente invia la data e l'orario  in cui vorrebbe prenotare il campo al server 
                 $data = UMetodiHTTP::post('data'); 
                 $orario = UMetodiHTTP::post('orario');
+                //e invia anche l'attrezzatura che vorrebbe
+                $idAttrezzatura = UMetodiHTTP::post('id_attrezzatura');
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
                 if(FPersistentManager::campoDisponibile($pdo,$idCampo,$data,$orario)){
                     //eseguiamo l'inserimento della prenotazione nel database
-                    $sql = "INSERT INTO 'Prenotazione' ('id_utente','id_campo','data','orario') VALUES (:id_utente,:id_campo,:data,:orario)";
+                    $sql = "INSERT INTO 'Prenotazione' ('data','orario','id_campo','id_attrezzatura','id_utente') VALUES (:data,:orario,:id_campo,:id_attrezzatura,:id_utente)";
                     $dichiarazione = $pdo->prepare($sql);
-                    $dichiarazione->execute([':id_utente'=>$idUtente,':id_campo' => $idCampo,':data'=> $data,':orario'=>$orario]);
+                    $dichiarazione->execute([':id_utente'=>$idUtente,':id_campo' => $idCampo,':data'=> $data,':orario'=>$orario,':id_attrezzatura'=>$idAttrezzatura]);
                     $view->MostraMessaggioConferma("Campo prenotato con successo!");
                 }
                 else{
@@ -42,6 +48,7 @@ class CPrenotaCampo{
     }
     /**
      * Metodo per annullare una prenotazione
+     * @param $idPrenotazione è l'id della prenotazione che l'utente vuole annullare
      */
     public static function annullaPrenotazione($idPrenotazione) {
         $pm = FPersistentManager::getIstanza();

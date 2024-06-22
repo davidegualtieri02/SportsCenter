@@ -66,4 +66,49 @@ class FCartadiPagamento{
             return null;
         }
     }
+    /**
+     * Metodo che verifica se una carta di pagamento è scaduta
+     * @param $scadenza si riferisce alla scadenza della carta
+     */
+    public  static function DataScadenza($scadenza){
+       $parti = explode('/',$scadenza);//explode divide la stringa $scadenza in due parti ,utilizzando il carattere '/' come delimitatore, : il mese e l'anno
+       //il metodo explode restituisce un array $parti contenente due elementi : il mese e l'anno
+       if(count($parti)!==2){//se l'array $parti ha un numero di elementi diverso da 2 significa che non è stato messo il delimitatore / tra le due stringhe
+        return "per favore porre il delimitatore '/' tra il mese e l'anno di scadenza della carta di pagamento";
+       }
+       $mese= intval($parti[0]);// converte la stringa del mese in un numero intero utilizzando la funzione intval
+       $anno = intval($parti[1]);//converte la stringa dell'anno in un numero intero utilizzando intval
+       if($mese<1||$mese>12){// se il mese è minore di 1 e maggiore di 12
+        return " Mese non esistente";
+        }
+        if($anno>1){// consideriamo l'anno corretto se è espresso con due cifre o con 4 . Se l'anno è espresso con due cifre aggiunge automaticamente 2000 per ottenere l'anno con 4 cifre per confrontarlo con l'anno attuale ottenuto da una funzione di php
+            $anno +=2000;
+        }
+        //otteniamo tramite date l'anno e il mese corrente e li trasformiamo in interi tramite intval per confrontarli con $anno e  $mese inseriti dall'utente
+        $annoCorrente = intval(date('Y'));
+        $meseCorrente = intval(date('m'));
+        // se l'anno posto dall'utente è minore dell'anno corrente o l'anno  posto dall'utente è = all'anno corrente e il mese posto dall'utente è minore del mese corrente allora la carta è scaduta
+        if ($anno < $annoCorrente || ($anno === $annoCorrente && $mese < $meseCorrente)) {
+            return " Carta di pagamento scaduta";
+        }
+        return " Carta Valida ";
+
+        }
+
+    
+
+    public static function processodiPagamento($numeroCarta,$scadenza,$cvvCarta){
+        //Controlliamo se il numero della carta è valido (se ha 16 cifre)
+        if(!preg_match('/^\d{16}$/',$numeroCarta)){// se il numero della carta non ha 16 cifre 
+            return "il numero della carta è errato ";
+        }
+        //Controlliamo se la data di scadenza non è scaduta 
+        if (!self::DataScadenza($scadenza)){// se la carta non è valida 
+            return " Data di scadenza non valida";
+        }
+        //verifica se il codice cvv ha 3 cifre (numeri)
+        if (!preg_match('/^\d{3}$/', $cvvCarta)) {
+            return " Codice Cvv errato";
+        } 
+    }
 }
