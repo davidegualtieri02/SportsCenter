@@ -1,5 +1,10 @@
 <?php
 class CRecensione{
+    /**
+     * Metodo che permette all'utente di scrivere una recensione per il campo sportivo che ha prenotato o prenotato in passato
+     * e permette di allegare anche foto del campo sportivo in caso l'utente voglia farlo, altrimenti può solo scrivere la recensione
+     * @param $idcampo è il campo di cui si vuole scrivere una recensione 
+     */
     public static function scriviRecensione($idcampo){
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
@@ -44,7 +49,7 @@ class CRecensione{
                     // Aggiorna la recensione nel database con le immagini aggiunte
                     $pm::updateOgg($recensione);
             
-                    header("Location: /percorso/di/destinazione");
+                    header("Location: /SportsCenter/home/Campo");
                      exit;
                 //l'utente non ha prenotato questo campo , viene mostrato un messaggio di errore
                 }else{
@@ -53,11 +58,14 @@ class CRecensione{
             }
         }else{
             //l'utente non è loggato ,reindirizza alla pagina di login
-            header('Location : /SportsCenter/login');
+            header('Location : /SportsCenter/home/login');
 
         }
     }
-
+    /**
+     * Metodo che elimina una recensione con annessa eliminazione di foto presenti nella stessa recensione
+     * @param $idRecensione si riferisce alla recensione da eliminare
+     */
     public static function eliminaRecensione($idRecensione) {
         // Verifica se l'utente è loggato
         if (CUtente::Loggato()) {
@@ -74,16 +82,16 @@ class CRecensione{
                 // Eventualmente elimina anche le immagini associate se gestito separatamente
     
                 //l'utente viene rimandato alla pagina dei commenti del campo
-                header("Location: /SportsCenter/home/Campo/");
+                header("Location: /SportsCenter/home/Campo");
                 exit;
             } else {
-                // Utente non autorizzato a eliminare la recensione
-                header('Location: /SportsCenter/home');
+                // Utente non autorizzato a eliminare la recensione ,viene reindirizzato alla pagina del campo
+                header('Location: /SportsCenter/home/Campo/');
                 exit;
             }
         } else {
             // Utente non loggato, reindirizza al login
-            header('Location: /SportsCenter/login');
+            header('Location: /SportsCenter/home/login');
             exit;
         }
     }

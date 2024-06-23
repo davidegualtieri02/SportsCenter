@@ -24,14 +24,13 @@ class FTessera{
     public static function creaOggTessera($risultatoQuery){
         //Se c'è solo un risultato, crea un singolo oggetto tessera
         if(count($risultatoQuery) == 1){
-            $tessera = new ETessera($risultatoQuery[0]['Codice_Tessera'], $risultatoQuery[0]['id_tessera']);
+            $tessera = new ETessera($risultatoQuery[0]['id_utente'],$risultatoQuery[0]['Data_Scadenza'],$risultatoQuery[0]['Data_Inizio']);
             $tessera->setIdTessera($risultatoQuery[0]['id_tessera']);
             return $tessera;
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti Tessera
             $tessere = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $tessera = new ETessera($risultatoQuery[$i]['Codice_Tessera'], $risultatoQuery[$i]['Id_Tessera']);
-                $tessera->setIdTessera($risultatoQuery[$i]['id_tessera']);
+                $tessera = new ETessera($risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['Data_Scadenza'],$risultatoQuery[$i]['Data_Inizio']);
                 $tessere[] = $tessera;
             }
             return $tessere;
@@ -62,4 +61,5 @@ class FTessera{
             return null;
         }
     }
+    
 }
