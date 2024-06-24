@@ -32,7 +32,7 @@ class FPersistentManager{
     //mixed perchè mi ritorna una tupla i cui valori possono essere di + tipi 
     public static function recuperaOggetto($classe,$id){ // $classe contiene il nome della classe passata come parametro alla funzione 
         $classeFound = "F" . substr($classe,1); 
-        //substr($classe,1) estrae una sottostringa dal nome della classe , eliminando il primo carttere e tenendo tutti gli altri. Se per esempio la classe è EUtente , il metodo rimuove la E , ottenendo Utente 
+        //substr($classe,1) estrae una sottostringa dal nome della classe , eliminando il primo carattere e tenendo tutti gli altri. Se per esempio la classe è EUtente , il metodo rimuove la E , ottenendo Utente 
         //e al posto della E , viene posto la lettera F in modo che la classe sarà una classe del paacchetto Foundation .
         $metodoStatico = " getOgg";
         $risultato = call_user_func([$classeFound,$metodoStatico],$id);

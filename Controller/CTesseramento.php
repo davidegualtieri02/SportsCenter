@@ -8,6 +8,8 @@ class CTesseramento{
      //...la funzione creaOggTessera in FTessera prende in input una query che contiene cosa?
             //allora daieg , il risultato della query è una o + tuple che contiengono i dati di una o + tessere , che vengono   restituite in un array multidimensionale dove ogni elemento di questo array è una tessera .  I dati della tessera sono allora volta inseriti in un altro array
             //quindi l'array multidimensionale può contentere altri  array con + tessere
+
+     //  Durante la fase GET, mostra il form vuoto. Durante la fase POST, valida i dati e salva l'utente nel database.      
     public static function tesseramento($idtessera,$idUtente,$dataScadenza){
         //if(CUtente::Loggato()){
             //recupera l'id dell'utente dalla sessione
@@ -16,19 +18,14 @@ class CTesseramento{
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
-        $tessera = $pm::uploadOgg($idtessera);
-        if(UServer::getRichiestaMetodo()=="GET"){
-            if(CUtente::Loggato()){
-                //con questi due metodi unserialize  e Leggivalore otteniamo l'utente loggato dalla sessione
-                $utente = unserialize($sessione->LeggiValore('utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
-                $view ->MostraFormTesseramento($tessera); // viene mostrata la form per il tesseramento
-            }else{//se l'utente non è loggato 
-                header('Location: /SportsCenter/Utente/login');
-                exit;//fa in modo che il codice dopo non viene eseguito se l'utente non è loggato.
+        if(CUtente::Loggato()){
+            //con questi due metodi unserialize  e Leggivalore otteniamo l'utente loggato dalla sessione
+            $utente = unserialize($sessione->LeggiValore('utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
+            $tessera = $pm::recuperaOggetto('ETessera',$idtessera); //ha senso porre uploadOgg sia perchè la form prende come parametro la tessera  e anche perchè il form dovrà prendere i dati della tessera.
+            if(UServer::getRichiestaMetodo()=="GET"){
+                $view ->MostraFormTesseramento($tessera,$utente); // viene mostrata la form per il tesseramento
             }
-        if (UServer::getRichiestaMetodo()=="POST"){
-            if (CUtente::Loggato()) {
-                //con unserialize e LeggiValore otteniamol'utente loggato dalla sessione
+            elseif(UServer::getRichiestaMetodo()=="POST"){
                 $utente = unserialize($sessione->LeggiValore('utente'));
                 $idUtente = $utente->getId();
                 $nome = UMetodiHTTP::post('Nome_Titolare');
@@ -53,13 +50,12 @@ class CTesseramento{
                 }else {
                     $view->mostraMessaggioErrore("Errore durante il pagamento del tesseramento. Riprova più tardi.");
                 }
-            }else {
+        }else {
                 header('Location: /SportsCenter/Utente/login');
                 exit;
             }  
         }  
         
-       }
-   }
+    }
 }
 

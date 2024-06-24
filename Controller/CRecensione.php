@@ -12,6 +12,7 @@ class CRecensione{
         
         if(CUtente::Loggato()){
             $utente = unserialize($sessione->LeggiValore('utente'));
+            $campo = $pm::recuperaOggetto('Ecampo',$idcampo);
             $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', 'password123');
             $sql = "SELECT COUNT(*) FROM Prenotazione WHERE id_utente = :id_utente AND id_campo = :id_campo"; // si verifica se l'utente che vuole commentare ha prenotato almeno una volta quel campo con quel id
             $dichiarazione = $pdo->prepare($sql);
@@ -20,7 +21,7 @@ class CRecensione{
             if($counts >0 ){// se il numero di righe in cui compare quell'id  di quell'utente sono >0, cioè se quell'utente ha prenotato almeno una volta quel campo allora può commentare il campo
                 if(Userver::getRichiestaMetodo() =="GET"){
                     //se il metodo di richiesta è GET viene mostrato il form per una nuova recensione, cioè il server manda al browser dell'utente  la form per recensire il campo
-                    $view->formNuovaRecensione($utente,$idcampo,null);
+                    $view->formNuovaRecensione($utente,$campo,null);
                 }//se la richiesta è POST l'utente scrive il commento e aggiunge la recensione al db
                 elseif(UServer::getRichiestaMetodo()=="POST"){
                     $valutazione = VRecensione::getValutazione();
