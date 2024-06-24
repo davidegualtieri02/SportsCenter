@@ -716,7 +716,12 @@ class FPersistentManager{
         $risultato = FUtenteRegistrato::salvaOgg($utente, $field);
         return $risultato;
     }
+    
+    public static function VerificaTesseramento($pdo,$idutente){
+        $risultato = FTessera::VerificaTesseramentoUtente($pdo,$idutente);
+        return $risultato;
 
+    }
 
 
 

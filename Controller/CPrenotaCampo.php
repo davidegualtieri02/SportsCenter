@@ -12,7 +12,7 @@ class CPrenotaCampo{
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             if(CUtente::Loggato()){
-            $utente = unserialize($sessione->LeggiValore('utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
+            $utente = unserialize($sessione->LeggiValore('Utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
             $view ->MostraFormPrenotazione($campo);//viene mostrata la form per la prenotazione
             }else{// se l'utente non è loggato viene reindirizzato alla pagina di login 
                 header('Location: /SportsCenter/Utente/login');
@@ -60,34 +60,22 @@ class CPrenotaCampo{
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-
         if (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
             if (CUtente::Loggato()) { // Verifica se l'utente è loggato
                 $utente = unserialize($sessione->LeggiValore('utente'));
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
-                // Richiama il metodo isUserBookingOwner dalla classe CBooking
+                
                 if ($pm::VerificaUtenteprenotazione($pdo, $idPrenotazione, $utente->getId())) {
-                    $sql = "DELETE FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utente = :id_utente";
-                    $dichiarazione = $pdo->prepare($sql);
-                    $dichiarazione->execute([
-                        ':id_prenotazione' => $idPrenotazione,
-                        ':id_utente' => $utente->getId()
-                    ]);
-
-                    // Controlla se la cancellazione è avvenuta , DELETE restituisce le righe rimosse e rowCount conta tali righe 
-                    if ($dichiarazione->rowCount() > 0) {//se l'array dichiarazione contiene almeno una riga cioè quando viene eliminato una riga , $dichiarazione contiene l'elemento eliminato e dunque ha + di 0 elementi 
-                        $view->MostraMessaggioConferma("Prenotazione annullata con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
-                    } else {
-                        $view->MostraMessaggioErrore("Errore nell'annullamento della prenotazione.");// se la prenotazione non viene rimossa , viene printato questo messaggio 
-                    }
+                    $pm::deletePrenotazione($idPrenotazione,$utente->getId());
+                    $view->MostraMessaggioConferma("Prenotazione annullata con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
                 } else {
-                    $view->MostraMessaggioErrore("Non hai i permessi per annullare questa prenotazione."); // se rowCount=0 non viene rimossa la prenotazione , cioè l'utente non ha prenotato nessuna prenotazione e dunque non la può eliminare
-                }
+                    $view->MostraMessaggioErrore("Non hai i permessi per annullare questa prenotazione."); //  cioè l'utente non ha prenotato nessuna prenotazione e dunque non la può eliminare 
+                    }
             } else {
                 header('Location: /SportsCenter/Utente/login');
                 exit;
             }
         }
     }
-
 }
+

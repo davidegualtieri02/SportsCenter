@@ -137,7 +137,7 @@ class FPrenotazione {
      * Metodo che verifica se la prenotazione è di un utente loggato
      */
     public static function VerificaUtentePrenotazione($pdo, $idPrenotazione, $utenteId) {
-        $sql = "SELECT id_utente FROM Prenotazione WHERE id_utente = :id_prenotazione AND id_utente = :id_utente";
+        $sql = "SELECT id_utente FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utente = :id_utente";
         $dichiarazione = $pdo->prepare($sql);
         $dichiarazione->execute([
             ':id_prenotazione' => $idPrenotazione,

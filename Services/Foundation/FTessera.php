@@ -61,5 +61,13 @@ class FTessera{
             return null;
         }
     }
-    
+    public static function VerificaTesseramentoUtente($pdo,$idutente){
+        $sql = "SELECT id_utente FROM Tessera WHERE id_utente = :id_utente ";
+        $dichiarazione = $pdo->prepare($sql);
+        $dichiarazione->execute([
+            ':id_utente' => $idutente
+        ]);
+        return $dichiarazione->rowCount() > 0; // verifica se la query ha restituita almeno una riga , cioè se quell'utente ha effettuato un tesseramento
+   }
+
 }
