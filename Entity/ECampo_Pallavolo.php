@@ -13,8 +13,8 @@ class ECampo_Pallavolo extends ECampo{
     public static function getEntità():string{
         return self::$entità;
     }
-    public function getIdCampoPallavolo(){
-        return $this->id_campoPallavolo;
+    public static function getIdCampoPallavolo(){
+        return self::$id_campoPallavolo;
     }
     public function setIdCampoPallavolo($id_campoPallavolo){
 

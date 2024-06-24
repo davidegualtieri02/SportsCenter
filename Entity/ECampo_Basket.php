@@ -13,8 +13,8 @@ class ECampo_basket extends ECampo{
     public static function getEntità(): string{
         return self::$entità;
     }
-    public function getIdCampoBasket(){
-        return $this->id_campoBasket;
+    public static function getIdCampoBasket(){
+        return self::$id_campoBasket;
     }
     public function setIdCampoBasket($id_campoBasket){
         $this->id_campoBasket = $id_campoBasket;

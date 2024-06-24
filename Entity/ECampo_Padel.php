@@ -10,8 +10,8 @@ class ECampo_Padel extends ECampo{
         $this->copertura = $copertura;
         $this->id_campo = $id_campo;
     }
-    public function getIdCampoPadel(){
-        return $this->id_campoPadel;
+    public static function getIdCampoPadel(){
+        return self::$id_campoPadel;
     }
     public function setIdCampoPadel($id_campoPadel){
 

@@ -15,8 +15,8 @@ class ECampo {
     public function setCopertura($coper){
         $this->copertura = $coper;
     }
-    public function getId_campo(){
-        return $this->id_campo;
+    public static function  getId_campo(){
+        return self::$id_campo;
     }
     public function setId_campo($id){
         $this->id_campo = $id;

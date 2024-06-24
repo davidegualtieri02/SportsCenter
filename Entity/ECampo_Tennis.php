@@ -14,8 +14,8 @@ class ECampo_Tennis extends ECampo{
     public static function getEntità():string{
     return self::$entità;
     }
-    public function getIdCampoTennis(){
-        return $this->id_campoTennis;
+    public static function getIdCampoTennis(){
+        return self::$id_campoTennis;
     }
     public function setIdCampoTennis($id_campoTennis){
 

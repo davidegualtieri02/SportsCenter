@@ -1,5 +1,5 @@
 <?php
-class ECampo_Calcio {
+class ECampo_Calcio  extends ECampo{
     private static $id_campoCalcio;
     private static $entità =ECampo_Calcio::class;
 
@@ -11,8 +11,8 @@ class ECampo_Calcio {
         public static function getEntità():string{
     return self::$entità;
     }
-    public function getIdCampoCalcio(){
-        return $this->id_campoCalcio;
+    public static function getIdCampoCalcio(){
+        return self::$id_campoCalcio;
     }
     public function setIdCampoCalcio($id_campoCalcio){
         $this->id_campoCalcio = $id_campoCalcio;

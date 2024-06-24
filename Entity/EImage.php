@@ -40,7 +40,7 @@ class EImage{
     }
 
     //Definizione di un metodo per ottenere l'ID dell'immagine
-    public function getId(){
+    public static function getId(){
         return self::$id_image; //Restituisce il valore dell'ID dell'immagine
     }
 
