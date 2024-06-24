@@ -6,7 +6,6 @@ class CCampi{
         $view = new VCampi();
         if (CAmministratore::Loggato()){
             $amm= unserialize($sessione->LeggiValore('Amministratore'));
-            $campi = $pm::recuperaOggetto("FCampo",ECampo::getId_campo());
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto
             $campi_basket = $pm::recuperaOggetto('FCampo_Basket', ECampo_Basket::getIdCampoBasket()); //ogni variabile $campi_tipocampo sarà un array di campi di quel tipo che poi saranno messi in un unico array
             $campi_pallavolo = $pm::recuperaOggetto('FCampo_Pallavolo', ECampo_Pallavolo::getIdCampoPallavolo());
