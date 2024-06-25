@@ -52,6 +52,21 @@ class CPrenotaCampo{
         }
         
     }
+    public function InfoCampo($idCampo){
+        $view = new VPrenotaCampo();
+        $sessione = USession::getIstanza();
+        $utente =  unserialize($sessione->LeggiValore('Utente'));
+        $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+        if(isset($campo)){
+            $view->mostraInfo($campo);
+        }
+        else{
+            header('Location:/SportsCenter');
+        }
+
+
+    }
+    
     /**
      * Metodo per annullare una prenotazione
      * @param $idPrenotazione è l'id della prenotazione che l'utente vuole annullare
