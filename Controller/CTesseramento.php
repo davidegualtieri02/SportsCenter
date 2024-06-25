@@ -57,13 +57,16 @@ class CTesseramento{
         }  
         
     }
+    //se l'utente è tesserato al posto di tesseramento sulla sbarra in alto abbiamo annulla tesseramento e questo caso d'uso annulla il tesseramento
     public static function annullaTesseramento($idtessera,$idUtente,$dataScadenza){
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
-
-        if (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            if (CUtente::Loggato()) { // Verifica se l'utente è loggato
+        if(Userver::getRichiestaMetodo()=='GET'){
+            $view ->MostraTesseramento();
+        }
+        else (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
+            if(CUtente::Loggato()) { // Verifica se l'utente è loggato
                 $utente = unserialize($sessione->LeggiValore('utente'));
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
                 if ($pm::VerificaTesseramento($pdo,$utente->getId())) {
@@ -73,7 +76,7 @@ class CTesseramento{
                    // Controlla se la cancellazione è avvenuta , DELETE restituisce le righe rimosse e rowCount conta tali righe 
                     if ($dichiarazione->rowCount() > 0) {//se l'array dichiarazione contiene almeno una riga cioè quando viene eliminato una riga , $dichiarazione contiene l'elemento eliminato e dunque ha + di 0 elementi 
                         $view->MostraMessaggioConferma("Tesseramento annullato con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
-                    } else {
+                    }else {
                         $view->MostraMessaggioErrore("Errore nell'annullamento del tesseramento");// se la prenotazione non viene rimossa , viene printato questo messaggio 
                     }
                 } else {

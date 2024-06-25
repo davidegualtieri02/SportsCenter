@@ -49,6 +49,10 @@ class FPersistentManager{
         $risultato = FEntityManager::recuperaTuple($tabella);
         return $risultato;
     }
+    public static function recuperaOggetti($tabella,$campo,$id){
+        $risultato = FEntityManager::recuperaOggetto($tabella,$campo,$id);
+        return $risultato;
+    }
 
 
    /**

@@ -27,26 +27,28 @@ class CRecensione{
                     $valutazione = VRecensione::getValutazione();
                     $messaggio = VRecensione::getMessaggio();
                     $ora = VRecensione::getOra();
-                    $recensione = new ERecensione($valutazione,$messaggio,$utente->getId(),$idcampo,$ora)
+                    
+                    $recensione = new ERecensione($valutazione,$messaggio,$utente->getId(),$idcampo,$ora);
                     $pm::uploadOgg($recensione);
-                    // carica l'immagine dal browser dell'utente fino al server
-                    if(isset(UMetodiHTTP::files('immagini'))){ //tramite isset() vediamo se nell'array $_FILES sono state caricate già le immagini con chiave 'immagini'. isset() restituisce true se le immagini sono state caricate nella recensione
+                    $imm=UMetodiHTTP::files('immagini');
+                        // carica l'immagine dal browser dell'utente fino al server
+                    if(isset($imm)){ //tramite isset() vediamo se nell'array $_FILES sono state caricate già le immagini con chiave 'immagini'. isset() restituisce true se le immagini sono state caricate nella recensione
                         $immagini = UMetodiHTTP::files('immagini'); // se isset() rida true, $immagini contiene le informazioni sulle immagini appena caricate
                         // tali informazioni sono : i nomi originali dei file (immagini) caricate , il formato delle immagini se jpeg o image , il percorso temporaneo in cui le immagini sono state salvate sul server, le dimensioni delle immagini 
                         // e contiene anche i codici di errore associati al caricamento di ciascun file
-                     }
+                    }
                     // per ogni immagine caricata il ciclo foreach itera per ogni file temporaneo caricato e associato uno alla volta alla chiave 'tmp_name' nell'array immagini
                     //$immagini['tmp_name'] è un array che contiene i percorsi temporanei dei file caricati sul server. SICCOME IL FILE E' STATO CARICATO , CONOSCENDO IL PERCORSO TEMPORANEO DEL FILE NEL SERVER POSSIMAO
                     //SPOSTARE TALE IMMAGINE DAL PERCORSO TEMPORANEO E PORLA NELLA RECENSIONE.
                     // l'array che contiene i percorsi delle immagini è proprio $immagini[tmp_name]
-                    foreach ($immagini['tmp_name'] as $index => $percorsoTemporaneo) {//$index assume una alla volta tutti i valori delle chiavi dell'array $immagini e quindi $percorsoTemporaneo assume una alla volta tutti i valori delle chiavi assunte da $index, cioè assume come valori i valori dei percorsi temporanei delle immagini caricate nel server .
+                        foreach ($immagini['tmp_name'] as $index => $percorsoTemporaneo) {//$index assume una alla volta tutti i valori delle chiavi dell'array $immagini e quindi $percorsoTemporaneo assume una alla volta tutti i valori delle chiavi assunte da $index, cioè assume come valori i valori dei percorsi temporanei delle immagini caricate nel server .
                         //index assume come valore un id dei percorsi , perchè nell'array abbiamo chiave(id)=>percorso
-                        if ($immagini['error'][$index] === UPLOAD_ERR_OK) { //UPLOAD_ERR_OK verifica che i file sono stati caricati senza errori
+                             if ($immagini['error'][$index] === UPLOAD_ERR_OK) { //UPLOAD_ERR_OK verifica che i file sono stati caricati senza errori
                             // Aggiunge l'immagine all'oggetto ERecensione  e salva la recensione
-                            $pm= FPersistentManager::AggiungiImmagini($recensione,$percorsoTemporaneo);
-                        }
+                                    $pm= FPersistentManager::AggiungiImmagini($recensione,$percorsoTemporaneo);
+                            }
 
-                    }
+                            }
                     // Aggiorna la recensione nel database con le immagini aggiunte
                     $pm::updateOgg($recensione);
             
@@ -62,6 +64,22 @@ class CRecensione{
             header('Location : /SportsCenter/home/login');
 
         }
+    }
+    /**
+     * Metodo che restituisce tutte le prenotazioni effettuate dall'utente
+     */
+    public function Prenotazioni(){
+        $sessione = USession::getIstanza();
+        $view = new VProdotti();
+        if(CUtente::Loggato()){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $idUtente = $utente->getId();
+            $prenotazioni =FPersistentManager::recuperaOggetti(FUtente::getTabella(),'id_utente', $idUtente);
+            if(UServer::getRichiestaMetodo()=='GET'){
+                $view = formPrenotazioni($prenotazioni,$utente);
+             }
+        }
+
     }
     /**
      * Metodo che elimina una recensione con annessa eliminazione di foto presenti nella stessa recensione

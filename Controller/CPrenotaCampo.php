@@ -58,7 +58,7 @@ class CPrenotaCampo{
         $utente =  unserialize($sessione->LeggiValore('Utente'));
         $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
         if(isset($campo)){
-            $view->mostraInfo($campo);
+            $view->mostraInfo($campo,$utente);//l'utente è l'utente della sessione.
         }
         else{
             header('Location:/SportsCenter');
