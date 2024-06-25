@@ -49,4 +49,5 @@ class VUtente{
         }
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
     }
+    
 }
