@@ -42,7 +42,13 @@ class FPersistentManager{
         return $risultato;// il risultato è una tupla che contiene l'oggetto , essa viene ritornata in array associativo in cui ogni valore di un campo è un elemento dell'array e i campi sono le chiavi degli elementi dell'array
         //[ $classeFound ,$metodoStatico]  specifica che si tratta di una chiamata a un metodo statico di una classe .
     }
-    
+    /**
+     * Metodo che recupera le tuple di una tabella 
+     */
+    public static function RecuperaTuple($tabella){
+        $risultato = FEntityManager::recuperaTuple($tabella);
+        return $risultato;
+    }
 
 
    /**

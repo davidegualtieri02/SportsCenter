@@ -4,12 +4,15 @@ class ECampo_Tennis extends ECampo{
     private String $terreno;
 
     private static $entità =ECampo_Tennis::class;
+    private EImage $fotoCampo;
  
-    public function __construct($id_campoTennis, $copertura, $id_campo, $terreno){
+    public function __construct($id_campoTennis, $copertura, $id_campo, $terreno,$fotoCampo){
         $this->id_campoTennis = $id_campoTennis;
         $this->copertura = $copertura;
         $this->id_campo = $id_campo;
         $this->terreno = $terreno;
+        $this->fotoCampo=$fotoCampo;
+
     }
     public static function getEntità():string{
     return self::$entità;

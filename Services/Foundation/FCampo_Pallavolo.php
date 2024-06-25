@@ -25,7 +25,7 @@ class FCampo_Pallavolo extends FCampo{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un oggetto campo da pallavolo
-            $campo_pallavolo = new ECampo_Pallavolo($risultatoQuery[0]['id_campoPallavolo'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['pavimento']);
+            $campo_pallavolo = new ECampo_Pallavolo($risultatoQuery[0]['id_campoPallavolo'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['pavimento'],$risultatoQuery[0]['fotocampo']);
             //Restituisce l'oggetto campo da pallavolo
             return $campo_pallavolo;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FCampo_Pallavolo extends FCampo{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da pallavolo
-                $campo_pallavolo = new ECampo_Pallavolo($risultatoQuery[$i]['id_campoPallavolo'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['pavimento']);
+                $campo_pallavolo = new ECampo_Pallavolo($risultatoQuery[$i]['id_campoPallavolo'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['pavimento'],$risultatoQuery[0]['fotocampo']);
                 //Aggiunge l'oggetto campo da pallavolo nell'array
                 $campi_pallavolo[] = $campo_pallavolo;
             }

@@ -25,7 +25,7 @@ class FCampo_Tennis extends FCampo{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da tennis
-            $campo_tennis = new ECampo_Tennis($risultatoQuery[0]['id_campoTennis'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['terreno']);
+            $campo_tennis = new ECampo_Tennis($risultatoQuery[0]['id_campoTennis'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['terreno'],$risultatoQuery[0]['fotocampo']);
             //Restituisce l'oggetto campo da tennis
             return $campo_tennis;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FCampo_Tennis extends FCampo{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da tennis
-                $campo_tennis = new ECampo_Tennis($risultatoQuery[$i]['id_campoTennis'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['terreno']);
+                $campo_tennis = new ECampo_Tennis($risultatoQuery[$i]['id_campoTennis'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['terreno'],$risultatoQuery[0]['fotocampo']);
                 //Aggiunge l'oggetto campo da tennis nell'array
                 $campi_tennis[] = $campo_tennis;
             }

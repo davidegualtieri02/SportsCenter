@@ -55,18 +55,21 @@ CREATE TABLE CampoBasket(
     'id_campo' INT,
     'copertura' VARCHAR (50),
     'pavimento' VARCHAR (50),
+    'fotoCampo' VARBINARY(MAX);
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoCalcio(
     'id_campoCalcio' INT AUTO_INCREMENT PRIMARY KEY,
     'id_campo' INT,
     'copertura' VARCHAR (50),
+    'fotocampo' VARBINARY(MAX);
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoPadel(
     'id_campoPadel' INT AUTO_INCREMENT PRIMARY KEY,
     'id_campo' INT,
     'copertura' VARCHAR(50),
+    'fotocampo' VARBINARY(MAX); 
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoPallavolo(
@@ -74,6 +77,7 @@ CREATE TABLE CampoPallavolo(
     'id_campo' INT,
     'copertura' VARCHAR(50),
     'pavimento' VARCHAR(50),
+    'fotocampo' VARBINARY(MAX);
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoTennis(
@@ -81,6 +85,7 @@ CREATE TABLE CampoTennis(
     'id_campo' INT,
     'copertura' VARCHAR(50),
     'terreno' VARCHAR(50),
+    'fotocampo' VARBINARY(MAX);
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Attrezzatura(

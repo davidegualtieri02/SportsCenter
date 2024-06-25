@@ -107,6 +107,36 @@ class FEntityManager{
         }
 
     }
+
+
+    /**
+     * Metodo per recuperare tutte le tuple di una tabella mettendole in un array
+     */
+    public static function recuperaTuple($tabella) { 
+        try {
+            $query = "SELECT * FROM " . $tabella . ";";
+            $dichiarazione = self::$db->prepare($query); // Preparazione della query SQL
+    
+            $dichiarazione->execute(); // Esecuzione della query
+            $countRighe = $dichiarazione->rowCount(); // Restituisce il numero di righe presenti nella tabella , cioè il numero di righe ottenuto da execute()
+    
+            if ($countRighe > 0) { // Verifica se la query ha restituito almeno un risultato
+                $risultato = array(); // Creazione di un array vuoto per contenere i risultati
+                $dichiarazione->setFetchMode(PDO::FETCH_ASSOC); // Impostazione della modalità di recupero dei risultati come array associativi
+    
+                while ($righe = $dichiarazione->fetch()) { // Recupero delle righe come array associativi
+                    $risultato[] = $righe; // Aggiunta delle righe all'array risultato
+                }
+                return $risultato; // Restituzione dell'array contenente tutti i risultati
+    
+            } else {
+                return array(); // Restituzione di un array vuoto se non ci sono risultati
+            }     
+        } catch (PDOException $errore) { // Gestione degli errori durante l'esecuzione della query
+            echo "ERRORE: " . $errore->getMessage();
+            return array(); // Restituzione di un array vuoto in caso di errore
+        }
+    }
     /**
      * Metodo che ritorna tuple da una query SELECT FROM WHERE con 2 campi
      * @param string $tabella fa riferimento alla tabella nel database

@@ -25,7 +25,7 @@ class FCampo_Padel extends FCampo{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da padel
-            $campo_padel = new ECampo_Padel($risultatoQuery[0]['id_campoPadel'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo']);
+            $campo_padel = new ECampo_Padel($risultatoQuery[0]['id_campoPadel'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'],$risultatoQuery[0]['fotocampo']);
             //Restituisce l'oggetto campo da padel
             return $campo_padel;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FCampo_Padel extends FCampo{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da padel
-                $campo_padel = new ECampo_Padel($risultatoQuery[$i]['id_campoPadel'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo']);
+                $campo_padel = new ECampo_Padel($risultatoQuery[$i]['id_campoPadel'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'],$risultatoQuery[0]['fotocampo']);
                 //Aggiunge l'oggetto campo da padel nell'array
                 $campi_padel[] = $campo_padel;
             }
