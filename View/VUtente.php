@@ -18,4 +18,8 @@ class VUtente{
     static function getPassword(){
         return UMetodiHTTP::post('password');
     }
+    public function mostraLoginForm(){
+        $this->smarty->display('./Smarty/libs/templates/login_form.tpl');
+    }
+    
 }
