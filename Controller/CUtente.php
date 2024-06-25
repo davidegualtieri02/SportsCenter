@@ -94,7 +94,7 @@ class CUtente {
             //questo if qui sotto controlla se la password di un utenteregistrato ottenuta da getpassword è uguale ad una password digitata dall'utente ed inviata tramite una richiesta HTTP POST al server 
             if(password_verify(UMetodiHTTP::post('password'),$utenteRegistrato->getPassword())){
                 if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
-                    $view->loginBan; // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
+                    $view->erroreLogin('bannato'); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
                 }elseif(USession::getStatoSessione()==PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
                     USession::getIstanza();// viene ridata un istanza sessione 
                     USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getIdUtenteRegistrato());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
@@ -103,10 +103,10 @@ class CUtente {
                     header ('Location : /SportsCenter/UtenteRegistrato/home');
                 }
             }else {
-                $view->erroreLogin();
+                $view->erroreLogin('passworderrata');
             }
         }else{
-            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
+            $view->erroreLogin('emailerrata');// se l'email non esiste viene dato un errore di login 
         }
     }
     /**
