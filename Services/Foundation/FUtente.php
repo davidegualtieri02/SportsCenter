@@ -29,7 +29,7 @@ class FUtente{
         if(count($risultatoQuery) == 1){
             $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), "id_utente", $risultatoQuery[0]['id_utente']);
 
-            $utente = new EUtente($risultatoQuery[0]['id_utente'], $risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
+            $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
             $utente->setId($risultatoQuery[0]['id_utente']);
             $utente->setHashPassword($risultatoQuery[0]['password']);
             $utente->setBan($ban[0]['ban']);
@@ -39,7 +39,7 @@ class FUtente{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), 'id_utente', $risultatoQuery[$i]['id_utente']);
 
-                $utente = new EUtente($risultatoQuery[$i]['id_utente'], $risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
+                $utente = new EUtente($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
                 $utente->setId($risultatoQuery[$i]['id_utente']);
                 $utente->setHashPassword($risultatoQuery[$i]['password']);
                 $utente->setBan($ban[$i]['ban']);
