@@ -91,12 +91,12 @@ class CRecensione{
             $utente = unserialize(USession::getIstanza()->LeggiValore('utente'));
     
             // Recupera la recensione dal database
-            $recensione = FPersistentManager::uploadOgg('ERecensione', $idRecensione);
+            $recensione = FPersistentManager::recuperaOggetto('ERecensione', $idRecensione);
     
             // Verifica se l'utente è l'autore della recensione o ha i permessi per eliminarla
             if ($recensione && $recensione->getIdUtente() == $utente->getId()) {
                 // Elimina la recensione dal database
-                FPersistentManager::deleteOgg($recensione);
+                FPersistentManager::deleteOgg(FRecensione::getTabella(),$idRecensione,'id_prenotazione');
     
                 // Eventualmente elimina anche le immagini associate se gestito separatamente
     
