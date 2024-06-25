@@ -2,7 +2,7 @@
 
 class CPrenotaCampo{
     /**
-     * Metodo per prenotare un campo sportivo
+     * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
     public static function prenotaCampo($idCampo){ //Con GET il server invia la form di prenotazione 
@@ -52,6 +52,7 @@ class CPrenotaCampo{
         }
         
     }
+    //mostra il campo per poi poter prenotare il campo stesso
     public function InfoCampo($idCampo){
         $view = new VPrenotaCampo();
         $sessione = USession::getIstanza();
