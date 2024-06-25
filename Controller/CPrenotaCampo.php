@@ -63,8 +63,14 @@ class CPrenotaCampo{
         else{
             header('Location:/SportsCenter');
         }
-
-
+    }
+    public function InfoPrenotazione($idPrenotazione){
+        $view = new VPrenotaCampo();
+        $sessione = USession::getIstanza();
+        $utente =  unserialize($sessione->LeggiValore('Utente'));
+        $prenotazione = FPersistentManager::recuperaOggetto('EPrenotazione',$utente->getId());
+        $idPrenotazione = $prenotazione->getIdPrenotazione();
+        $view = mostraInfoPrenotazione($utente,$prenotazione);
     }
     
     /**
