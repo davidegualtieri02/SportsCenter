@@ -34,7 +34,7 @@ class FCampo_Basket extends FCampo{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da basket
-                $campo_basket = new ECampo_Basket($risultatoQuery[$i]['id_campoBasket'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['pavimento'],$risultatoQuery[0]['fotocampo']);
+                $campo_basket = new ECampo_Basket($risultatoQuery[$i]['id_campoBasket'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['pavimento'],$risultatoQuery[0]['fotocampo'],$risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
                 //Aggiunge l'oggetto campo da basket nell'array
                 $campi_basket[] = $campo_basket;
             }

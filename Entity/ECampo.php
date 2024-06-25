@@ -1,5 +1,7 @@
 <?php
 class ECampo {
+    private string $TitoloCampo;
+    private int $prezzo;
     protected String $copertura;
     protected int $id_campo;
 

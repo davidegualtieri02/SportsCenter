@@ -49,13 +49,17 @@ CREATE TABLE Tessera(
 CREATE TABLE Campo(
     'id_campo' INT AUTO_INCREMENT PRIMARY KEY,
     'copertura' VARCHAR (50),
+    'titoloCampo' VARCHAR(50),
+    'prezzo'INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoBasket(
     'id_campoBasket' INT AUTO_INCREMENT PRIMARY KEY,
     'id_campo' INT,
     'copertura' VARCHAR (50),
     'pavimento' VARCHAR (50),
-    'fotoCampo' VARBINARY(MAX);
+    'fotoCampo' VARBINARY(MAX),
+    'titoloCampo' VARCHAR(50),
+    'prezzo'INT;
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoCalcio(
