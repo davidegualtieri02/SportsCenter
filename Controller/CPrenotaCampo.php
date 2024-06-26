@@ -71,7 +71,7 @@ class CPrenotaCampo{
         $utente =  unserialize($sessione->LeggiValore('Utente'));
         $prenotazione = FPersistentManager::recuperaOggetto('EPrenotazione',$utente->getId());
         $idPrenotazione = $prenotazione->getIdPrenotazione();
-        $view = mostraInfoPrenotazione($utente,$prenotazione);
+        $view->mostraInfoPrenotazione($utente,$prenotazione);
     }
     
     /**
@@ -99,5 +99,31 @@ class CPrenotaCampo{
             }
         }
     }
+    public static function mostraCampi(){
+        $pm = FPersistentManager::getIstanza();
+        $sessione = USession::getIstanza();
+        $view = new VCampi();
+        if (CUtente::Loggato()){
+            $utente= unserialize($sessione->LeggiValore('Utente'));
+            // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
+            if(UServer::getRichiestaMetodo()=='GET'){
+                $campi_basket[] = $pm::RecuperaTuple(FCampo_Basket::getTabella());
+                 $campi_pallavolo[] = $pm::RecuperaTuple(FCampo_Pallavolo::getTabella());
+                $campi_calcio[] = $pm::RecuperaTuple(FCampo_Calcio::getTabella());
+                $campi_tennis[] = $pm::RecuperaTuple(FCampo_Tennis::getTabella());
+                 $campi_padel[] = $pm::RecuperaTuple(FCampo_Padel::getTabella());
+            // Aggiunge tutti i campi contenuti negli array sopra  in un unico array campi
+                 $campi = array_merge($campi_basket[], $campi_pallavolo[], $campi_calcio[], $campi_tennis[],$campi_padel[]);
+
+            // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
+             // Passa i dati alla vista per la visualizzazione
+                $view->mostraCampi($campi,$utente);
+            }    
+        else{
+            header("Location: SportsCenter/Utente/login");
+            }
+
+        }
+   }
 }
 

@@ -66,7 +66,8 @@ class CRecensione{
         }
     }
     /**
-     * Metodo che restituisce tutte le prenotazioni effettuate dall'utente
+     * Metodo che restituisce tutte le prenotazioni effettuate dall'utente cliccando sul bottone prenotazioni 
+     * presente nel menù a tendina ottenuto cliccando sul bottone profilo nella home   
      */
     public function Prenotazioni(){
         $sessione = USession::getIstanza();
@@ -76,7 +77,7 @@ class CRecensione{
             $idUtente = $utente->getId();
             $prenotazioni =FPersistentManager::recuperaOggetti(FUtente::getTabella(),'id_utente', $idUtente);
             if(UServer::getRichiestaMetodo()=='GET'){
-                $view= MostraPrenotazioni($prenotazioni,$utente);
+                $view->MostraPrenotazioni($prenotazioni,$utente);
              }
         }
 
