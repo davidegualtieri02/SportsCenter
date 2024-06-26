@@ -145,4 +145,5 @@ class FPrenotazione {
         ]);
         return $dichiarazione->rowCount() > 0;// verifica se la query ha restituita almeno una riga , cioè se quell'utente ha prenotato almeno una prenotazione 
     }
+
 }
