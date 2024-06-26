@@ -65,19 +65,24 @@ class CPrenotaCampo{
             $view->mostraOrari($utente,$giorno);
         }
     }
-    
+    /**
+     * Metodo che mostra l'array di orari disponibili per la prenotazione di quel campo in quel giorno 
+     * e fa scegliere all'utente uno di questi orari per prenotare il campo
+     */
     public static function MostraAttrezzatura($orario){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
+        $giorno = $_POST['data']; //la data resta in sessione e la riprendo
+        $utente = unserialize($sessione->LeggiValore('Utente'));
         if(UServer::getRichiestaMetodo()=='GET'){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
-            $orari = FPersistentManager::recuperaOggetti('Orario',)
-
-
+            $orari = FPersistentManager::orariDisponibili($giorno);
+            $view->MostraOrari($orari);
+         }
+        elseif(UServer::getRichiestaMetodo()=='POST'){
+            $orario = UMetodiHTTP::post('orario') ;
+            $view->MostraPagAttrezatura($orario,$utente,$giorno);
         }
-
     }
-    
 
 
 

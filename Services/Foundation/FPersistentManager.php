@@ -183,7 +183,9 @@ class FPersistentManager{
     }
     
     public static function orariDisponibili($giorno){
-        
+        $risultato= FPersistentManager::orariDisponibili($giorno);
+        return $risultato;
+
     }
 
    
