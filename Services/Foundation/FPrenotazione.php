@@ -145,5 +145,16 @@ class FPrenotazione {
         ]);
         return $dichiarazione->rowCount() > 0;// verifica se la query ha restituita almeno una riga , cioè se quell'utente ha prenotato almeno una prenotazione 
     }
-
+    public static function OrariDisponibili($giorno){
+        $sql = " SELECT o.id_orario,o.orario FROM Orario o WHERE o.orario NOT IN (SELECT p.orario FROM Prenotazione p WHERE data = $giorno); ";
+        $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', 'password123');
+        $dichiarazione =$pdo->prepare($sql);
+        $dichiarazione->execute(); 
+        $risultato = array();
+        $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//restituisce i risultati come un array associativo utilizzando i nomi delle colonne come chiavi 
+        while ($riga = $dichiarazione->fetch()){ //ripete il ciclo fino a che non ci sono righe nella colonna
+            $risultato = $riga;
+        }
+        return $risultato;
+    }
 }

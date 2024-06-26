@@ -63,9 +63,9 @@ class CTesseramento{
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
         if(Userver::getRichiestaMetodo()=='GET'){
-            $view ->MostraTesseramento();
+            $view->MostraTesseramento();
         }
-        else (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
+        elseif(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
             if(CUtente::Loggato()) { // Verifica se l'utente è loggato
                 $utente = unserialize($sessione->LeggiValore('utente'));
                 $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);

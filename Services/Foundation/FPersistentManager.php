@@ -180,8 +180,12 @@ class FPersistentManager{
     public static function VerificaUtenteprenotazione($pdo, $idPrenotazione, $utenteId){
         $risultato = FPrenotazione::VerificaUtentePrenotazione($pdo, $idPrenotazione, $utenteId);
         return $risultato;
-
     }
+    
+    public static function orariDisponibili($giorno){
+        
+    }
+
    
 
    //-------------------------------------------------------Utente----------------------------------------------------------------------------- 

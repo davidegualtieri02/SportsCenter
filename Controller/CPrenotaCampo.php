@@ -5,10 +5,10 @@ class CPrenotaCampo{
      * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
-    public static function prenotaCampo($idCampo){ //Con GET il server invia la form di prenotazione 
+    public static function ConfermaPrenotazione($idAttrezzatura){ //Con GET il server invia la form di prenotazione 
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
-        $campo = $pm::recuperaOggetto('ECampo',$idCampo);// recuperiamo l'oggetto campo sportivo nel db
+        $attrezzatura = $pm::recuperaOggetto('FAttrezzatura',$idAttrezzatura);// recuperiamo l'oggetto campo sportivo nel db
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             if(CUtente::Loggato()){
@@ -32,39 +32,60 @@ class CPrenotaCampo{
             $cvvCarta = UMetodiHTTP::post('CVV');
             $nome = UMetodiHTTP::post('Nome_Titolare');
             $cognome = UMetodiHTTP::post('Cognome_Titolare');
-            $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
-            if(FPersistentManager::campoDisponibile($pdo,$idCampo,$data,$orario)){
-                if(FPersistentManager::ProcessoPag($nome,$cognome,$numeroCarta,$scadenzaCarta,$cvvCarta)){// se il pagamento è avvenuto con successo
-                    //eseguiamo l'inserimento della prenotazione nel database
-                    $sql = "INSERT INTO 'Prenotazione' ('data','orario','id_campo','id_attrezzatura','id_utente') VALUES (:data,:orario,:id_campo,:id_attrezzatura,:id_utente)"; // la prenotazione viene creata e aggiunta nel db cosi 
-                    $dichiarazione = $pdo->prepare($sql);
-                    $dichiarazione->execute([':id_utente'=>$idUtente,':id_campo' => $idCampo,':data'=> $data,':orario'=>$orario,':id_attrezzatura'=>$idAttrezzatura]);
-                    $view->MostraMessaggioConferma("Campo prenotato con successo!");
-                }
-                else{
-                    $view->MostraMessaggioErrore("Il campo non è disponibile per la prenotazione");
-                }    
-        
-            }else{
-                header('Location: /SportsCenter/Utente/login');
-                exit;
-                }
+    
         }
         
     }
-    //mostra il campo per poi poter prenotare il campo stesso
-    public function InfoCampo($idCampo){
-        $view = new VPrenotaCampo();
+    /**
+     * Metodo che dopo aver cliccato sul campo da prenotare mostra le info del campo e il calendario
+     */
+    public static function MostraCalendario($idCampo){
         $sessione = USession::getIstanza();
-        $utente =  unserialize($sessione->LeggiValore('Utente'));
+        $view = new VPrenotaCampo();
         $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
-        if(isset($campo)){
-            $view->mostraInfo($campo,$utente);//l'utente è l'utente della sessione.
-        }
-        else{
-            header('Location:/SportsCenter');
+        if(UServer::getRichiestaMetodo()=="POST"){
+            if(CUtente::Loggato()){
+                $utente = unserialize($sessione->LeggiValore('Utente'));
+                $view->mostraInfo($utente,$campo);
+            }else{
+                header('Location: /SportsCenter/login');
+            }
         }
     }
+    /**
+     * Metodo che mostrerà gli orari disponibili per quel campo e quel giorno
+     */
+    public static function MostraOrari($giorno){
+        $sessione = USession::getIstanza();
+        $view = new VPrenotaCampo();
+        if(UServer::getRichiestaMetodo()=="POST"){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $giornoStr = UMetodiHTTP::post('data');
+            $giorno = new DateTime($giornoStr);
+            $view->mostraOrari($utente,$giorno);
+        }
+    }
+    
+    public static function MostraAttrezzatura($orario){
+        $sessione = USession::getIstanza();
+        $view = new VPrenotaCampo();
+        if(UServer::getRichiestaMetodo()=='GET'){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $orari = FPersistentManager::recuperaOggetti('Orario',)
+
+
+        }
+
+    }
+    
+
+
+
+
+
+
+    
+    
     public function InfoPrenotazione($idPrenotazione){
         $view = new VPrenotaCampo();
         $sessione = USession::getIstanza();

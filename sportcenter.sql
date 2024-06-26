@@ -172,3 +172,7 @@ CREATE TABLE image(
     'imageData' VARBINARY (max),
     'id_recensione' INT;
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
+CREATE TABLE Orario(
+    'id_orario' INT AUTO_INCREMENT PRIMARY KEY,
+    'orario' INT;
+    )
