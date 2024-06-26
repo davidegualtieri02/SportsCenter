@@ -76,7 +76,7 @@ class CRecensione{
             $idUtente = $utente->getId();
             $prenotazioni =FPersistentManager::recuperaOggetti(FUtente::getTabella(),'id_utente', $idUtente);
             if(UServer::getRichiestaMetodo()=='GET'){
-                $view = formPrenotazioni($prenotazioni,$utente);
+                $view= MostraPrenotazioni($prenotazioni,$utente);
              }
         }
 
@@ -113,6 +113,23 @@ class CRecensione{
             header('Location: /SportsCenter/home/login');
             exit;
         }
+    }
+    /**
+     * Metodo che mostra le recensioni di tutti i campi una volta cliccato sul 'recensioni campo' nella home
+     */
+    public static function mostraRecensioni(){
+        $pm = FPersistentManager::getIstanza();
+        $sessione = USession::getIstanza();
+        $view = new VRecensione();
+        if(CUtente::Loggato()){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $recensioni = $pm::RecuperaTuple('Recensione');
+            if(UServer::getRichiestaMetodo()=='GET'){
+                $view->MostraRecensioni($recensioni,$utente);
+            }
+
+        }
+
     }
     
 

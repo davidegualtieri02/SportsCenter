@@ -5,7 +5,7 @@ class CCampi{
         $sessione = USession::getIstanza();
         $view = new VCampi();
         if (CAmministratore::Loggato()){
-            //$amm= unserialize($sessione->LeggiValore('Amministratore')); FORSE NON SERVE
+            $amm= unserialize($sessione->LeggiValore('Amministratore'));
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
             
             $campi_basket[] = $pm::RecuperaTuple(FCampo_Basket::getTabella());
