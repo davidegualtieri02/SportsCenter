@@ -1,4 +1,5 @@
 <?php 
+require_once "EAttrezzatura.php";
 class EAttrezzatura_Padel extends EAttrezzatura{
     private static $id_attrezzaturaPadel;
     private int $numPalla_Padel;
@@ -6,11 +7,11 @@ class EAttrezzatura_Padel extends EAttrezzatura{
 
     private static $entità = EAttrezzatura_Padel::class;
 
-    public function __construct($id_attrezzaturaPadel, $numPalla_Padel, $numRacchetta_Padel, $id_attrezzatura){
-        $this->id_attrezzaturaPadel = $id_attrezzaturaPadel;
+    public function __construct( $numPalla_Padel, $numRacchetta_Padel){
+        parent::__construct();
         $this->numPalla_Padel = $numPalla_Padel;
         $this->numRacchetta_Padel = $numRacchetta_Padel;
-        $this->id_attrezzatura = $id_attrezzatura;
+    
     }
     public static function getEntità():string{
         return self::$entità;

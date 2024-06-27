@@ -1,15 +1,15 @@
 <?php
+require_once "EAttrezzatura.php";
 class EAttrezzatura_Calcio extends EAttrezzatura{
     private static $id_attrezzaturaCalcio;    
     private int $numPalloni_Calcio;
     private int $numCasacca;
     private static $entità = EAttrezzatura_Calcio::class;
 
-    public function __construct($id_attrezzaturaCalcio, $numpalloni_Calcio, $numCasacca, $id_attrezzatura){
-        $this->id_attrezzaturaCalcio = $id_attrezzaturaCalcio;
+    public function __construct($numpalloni_Calcio, $numCasacca){
+        parent::__construct();
         $this->numPalloni_Calcio = $numpalloni_Calcio;
         $this->numCasacca = $numCasacca;
-        $this->id_attrezzatura = $id_attrezzatura;
     }
     public static function getEntità():string{
         return self::$entità;

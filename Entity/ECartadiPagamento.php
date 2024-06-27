@@ -1,5 +1,5 @@
 <?php
-use DateTime; //Utilizzo di una classe di default
+//use DateTime; //Utilizzo di una classe di default, quindi non è necessario usare use
 
 class ECartadiPagamento{
     private String $Nome_Titolare;

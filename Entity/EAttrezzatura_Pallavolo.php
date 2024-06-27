@@ -1,13 +1,14 @@
 <?php
+require_once "EAttrezzatura.php";
 class EAttrezzatura_Pallavolo extends EAttrezzatura{
     private static $id_attrezzaturaPallavolo;
     private int $numPalla_Pallavolo;
     private static $entità = EAttrezzatura_Pallavolo::class;
     
-    public function __construct($id_attrezzaturaPallavolo, $numPalla_Pallavolo, $id_attrezzatura){
-        $this->id_attrezzaturaPallavolo = $id_attrezzaturaPallavolo;
+    public function __construct($numPalla_Pallavolo){
+        parent::__construct();
         $this->numPalla_Pallavolo = $numPalla_Pallavolo;
-        $this->id_attrezzatura = $id_attrezzatura;
+
     }
     public static function getEntità():string{
         return self::$entità;

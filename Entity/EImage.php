@@ -25,13 +25,12 @@ class EImage{
     private static $entità = EImage::class;
 
     //Definizione del costruttore della classe
-    public function __construct($nome, $grandezza, $tipi, $imageData, $id_recensione, $id_image){
+    public function __construct($nome, $grandezza, $tipi, $imageData, $id_recensione){
         $this->nome = $nome; //Assegnazione del valore del parametro al campo nome
         $this->grandezza = $grandezza; //Assegnazione del valore del parametro al campo grandezza
         $this->tipi = $tipi; //Assegnazione del valore del parametro al campo tipi
         $this->imageData = $imageData; //Assegnazione del valore del parametro al campo imageData
         $this->id_recensione = $id_recensione;
-        $this->id_image = $id_image;
     }
 
     //Definizione di un metodo statico che restituisce l'entità dell'immagine
@@ -80,8 +79,7 @@ class EImage{
     }
 
     //Definizione di un metodo per impostare la recensione a cui è collegata l'immagine
-    public function setRecensione(ERecensione $id_recensione): void{
-        $this->id_recensione = $id_recensione; //Assegna il valore del parametro al campo recensione
+    public function setRecensione($id_recensione): void{
+         $this->id_recensione = $id_recensione ; //Assegna il valore del parametro al campo recensione
     }
-
 }
