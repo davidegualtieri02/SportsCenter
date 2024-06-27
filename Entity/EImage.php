@@ -4,22 +4,22 @@
 class EImage{
 
     //Dichiarazione di una variabile privata per l'ID dell'immagine
-    private $id_image;
+    private int $id_image;
 
     //Dichiarazione di una variabile privata per il nome dell'immagine
-    private $nome;
+    private string $nome;
 
     //Dichiarazione di una variabile privata per la grandezza dell'immagine
-    private $grandezza;
+    private int $grandezza;
 
     //Dichiarazione di una variabile privata per il tipo dell'immagine
-    private $tipi;
+    private string $tipi;
 
     //Dichiarazione di una variabile privata per i dati dell'immagine
-    private $imageData;
+    private string $imageData;
 
     //Dichiarazione di una variabile privata per la recensione a cui l'immagine appartiene
-    private $id_recensione;
+    private int $id_recensione;
 
     //Dichiarazione di una variabile statica privata per l'entità dell'immagine
     private static $entità = EImage::class;
