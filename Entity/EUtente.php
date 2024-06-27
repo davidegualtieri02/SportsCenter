@@ -2,7 +2,7 @@
 
 
 class EUtente{
-    protected bool $ban = false;
+    
     protected String $nome;
     protected String $cognome;
     protected String $email;
@@ -34,12 +34,7 @@ class EUtente{
         // che è il nome della classe stessa. self specifica che si sta parlando della classe stessa che stiamo creando cioè EUtente
     }
 
-    public static function isBanned(){
-        return self::$ban;
-    }
-    public static function setBan($bool){
-        self::$ban = $bool;
-    }
+    
     public function getId(){
         return $this->id_utente;
     }

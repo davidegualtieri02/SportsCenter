@@ -34,13 +34,3 @@ print_r($campopallavolo);
 
 
 
-
-
-
-
-
-
-
-
-
-
