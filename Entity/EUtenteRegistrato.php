@@ -1,5 +1,5 @@
 <?php
-use Doctrine\ORM\Mapping as ORM;
+
 require_once "EUtente.php";
 
 class EUtenteRegistrato extends EUtente{

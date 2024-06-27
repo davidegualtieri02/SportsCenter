@@ -1,4 +1,5 @@
 <?php
+require_once "ECampo.php";
 class ECampo_Calcio  extends ECampo{
     private static $id_campoCalcio;
     private static $entità =ECampo_Calcio::class;

@@ -1,4 +1,5 @@
 <?php
+require_once "ECampo.php";
 class ECampo_Tennis extends ECampo{
     private static $id_campoTennis;
     private String $terreno;
