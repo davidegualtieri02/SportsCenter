@@ -6,7 +6,7 @@ class ECampo_Pallavolo extends ECampo{
     private static $entità = ECampo_Pallavolo::class;
     private EImage $fotoCampo;
 
-    public function __construct($copertura,$TitoloCampo, $prezzo,$fotoCampo,$pavimento){ 
+    public function __construct($copertura,$TitoloCampo, $prezzo, EImage $fotoCampo,$pavimento){ 
         parent::__construct($copertura, $TitoloCampo, $prezzo);
         $this->fotoCampo=$fotoCampo;
         $this->pavimento= $pavimento;

@@ -7,7 +7,7 @@ class ECampo_Tennis extends ECampo{
     private static $entità =ECampo_Tennis::class;
     private EImage $fotoCampo;
  
-    public function __construct($copertura,$TitoloCampo, $prezzo,$fotoCampo,$terreno){ 
+    public function __construct($copertura,$TitoloCampo, $prezzo, EImage $fotoCampo,$terreno){ 
         parent::__construct($copertura, $TitoloCampo, $prezzo);
         $this->fotoCampo=$fotoCampo;
         $this->terreno=$terreno;

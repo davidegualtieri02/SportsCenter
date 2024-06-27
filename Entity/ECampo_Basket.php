@@ -6,7 +6,7 @@ class ECampo_basket extends ECampo{
     private static $entità = ECampo_basket::class;
     private EImage $fotoCampo;
 
-    public function __construct($copertura , $pavimento, $fotoCampo, $TitoloCampo, $prezzo){ //?
+    public function __construct($copertura , $pavimento, EImage $fotoCampo, $TitoloCampo, $prezzo){ //?
         parent::__construct($copertura, $TitoloCampo, $prezzo);
         $this->pavimento = $pavimento;
         $this->fotoCampo=$fotoCampo;
