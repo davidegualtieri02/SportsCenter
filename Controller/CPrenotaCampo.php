@@ -5,15 +5,19 @@ class CPrenotaCampo{
      * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
-    public static function ConfermaPrenotazione($idAttrezzatura){ //Con GET il server invia la form di prenotazione 
+    public static function MostraPagamento($idAttrezzatura){ //Con GET il server invia la form di prenotazione 
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
+        
         $attrezzatura = $pm::recuperaOggetto('FAttrezzatura',$idAttrezzatura);// recuperiamo l'oggetto campo sportivo nel db
+        //if($attrezzatura == FAttrezzatura_Basket::getOgg($idAttrezzatura))
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             if(CUtente::Loggato()){
-            $utente = unserialize($sessione->LeggiValore('Utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
-            $view ->MostraFormPrenotazione($campo);//viene mostrata la form per la prenotazione
+                $utente = unserialize($sessione->LeggiValore('Utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
+                $campo = $_GET['Campo'];
+                $idcampo = $campo->getId();
+                $view->MostraFormAttrezzatura($utente);//viene mostrata la form per la prenotazione
             }else{// se l'utente non è loggato viene reindirizzato alla pagina di login 
                 header('Location: /SportsCenter/Utente/login');
                 exit;//fa in modo che il codice dopo non viene eseguito se l'utente non è loggato.
@@ -53,7 +57,7 @@ class CPrenotaCampo{
         }
     }
     /**
-     * Metodo che mostrerà gli orari disponibili per quel campo e quel giorno
+     * Metodo che mostrerà una volta che l'utente fornisce la data gli orari disponibili per quel campo e quel giorno
      */
     public static function MostraOrari($giorno){
         $sessione = USession::getIstanza();
@@ -83,6 +87,10 @@ class CPrenotaCampo{
             $view->MostraPagAttrezatura($orario,$utente,$giorno);
         }
     }
+
+    /**
+     * 
+     */
 
 
 
