@@ -1,6 +1,6 @@
 <?php 
 use Doctrine \ORM\Mapping as ORM;
-require_once "EUtente";
+require_once "EUtente.php";
 
 class EUtenteTesserato extends EUtente{
     protected bool $ban;

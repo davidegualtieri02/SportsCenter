@@ -1,13 +1,13 @@
 <?php
 use Doctrine\ORM\Mapping as ORM;
-require_once "EUtente";
+require_once "EUtente.php";
 
 class EUtenteRegistrato extends EUtente{
     protected bool $ban = false;
 
     protected int $id_utenteRegistrato;
     private static $entità = EUtenteRegistrato::class;
-    public function __construct($nome, $cognome, $email, $password, $ban){
+    public function __construct($nome, $cognome, $email, $password,$ban){
         parent::__construct($nome, $cognome, $email, $password);//parent::__construct è un modo per richiamare il costruttore di EUtente 
         // in modo che il costruttore di EUtenteRegistato ottenga come parametri i parametri del costruttore
         // di EUtente + $id_utenteRegistrato e $ban
