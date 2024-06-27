@@ -61,7 +61,7 @@ CREATE TABLE CampoCalcio(
     id_campoCalcio INT AUTO_INCREMENT PRIMARY KEY,
     id_campo INT,
     copertura VARCHAR (50),
-    fotocampo VARBINARY(255);
+    fotocampo VARBINARY(255),
     titoloCampo VARCHAR(50),
     prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
@@ -70,7 +70,7 @@ CREATE TABLE CampoPadel(
     id_campoPadel INT AUTO_INCREMENT PRIMARY KEY,
     id_campo INT,
     copertura VARCHAR(50),
-    fotocampo VARBINARY(255);
+    fotocampo VARBINARY(255),
     titoloCampo VARCHAR(50),
     prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
@@ -80,7 +80,7 @@ CREATE TABLE CampoPallavolo(
     id_campo INT,
     copertura VARCHAR(50),
     pavimento VARCHAR(50),
-    fotocampo VARBINARY(255);
+    fotocampo VARBINARY(255),
     titoloCampo VARCHAR(50),
     prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
@@ -90,7 +90,7 @@ CREATE TABLE CampoTennis(
     id_campo INT,
     copertura VARCHAR(50),
     terreno VARCHAR(50),
-    fotocampo VARBINARY(255);
+    fotocampo VARBINARY(255),
     titoloCampo VARCHAR(50),
     prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
@@ -130,7 +130,7 @@ CREATE TABLE AttrezzaturaPallavolo(
     id_attrezzaturaPallavolo INT AUTO_INCREMENT PRIMARY KEY,
     id_attrezzatura INT,
     numPalla_Pallavolo INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)\
+    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Prenotazione(
     id_prenotazione INT AUTO_INCREMENT PRIMARY KEY,
@@ -142,29 +142,31 @@ CREATE TABLE Prenotazione(
     id_utente INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CartadiPagamento(
-    id_cartadiPagamento INT AUTO_INCREMENT PRIMARY KEY
+    id_cartadiPagamento INT AUTO_INCREMENT PRIMARY KEY,
     Nome_Titolare VARCHAR(50),
     Cognome_Titolare VARCHAR (50),
     Numero_Carta INT,
     Data_Scadenza DATE,
-    CVV INT,
+    CVV INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Recensione(
-    id_recensione INT AUTO_INCREMENT PRIMARY KEY
+CREATE TABLE Recensione (
+    id_recensione INT AUTO_INCREMENT PRIMARY KEY,
     commento VARCHAR(50),
     valutazione INT,
     DataOra DATETIME,
     removed TINYINT(1),
     id_utente INT,
-    image ARRAY(image),
-    id_campo INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
+    image LONGBLOB,
+    id_campo INT,
+    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente),
+    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 CREATE TABLE image(
     id_image INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50),
     grandezza VARCHAR(50),
     tipi VARCHAR(50),
-    imageData VARBINARY (255),
+    imageData VARBINARY(255),
     id_recensione INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Orario(
