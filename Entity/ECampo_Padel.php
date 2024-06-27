@@ -1,5 +1,6 @@
 <?php 
 require_once "ECampo.php";
+require_once "EImage.php";
 class ECampo_Padel extends ECampo{
     private static $id_campoPadel;
     private static $entità = ECampo_Padel::class;

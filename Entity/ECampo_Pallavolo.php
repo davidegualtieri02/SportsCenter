@@ -1,5 +1,6 @@
 <?php
 require_once "ECampo.php";
+require_once "EImage.php";
 class ECampo_Pallavolo extends ECampo{
     private static $id_campoPallavolo;
     private String $pavimento;

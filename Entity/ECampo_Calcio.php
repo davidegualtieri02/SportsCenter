@@ -1,6 +1,6 @@
 <?php
 require_once "ECampo.php";
-require_once " EImage.php";
+require_once "EImage.php";
 class ECampo_Calcio  extends ECampo{
     private static $id_campoCalcio;
     private static $entità =ECampo_Calcio::class;
@@ -12,7 +12,7 @@ class ECampo_Calcio  extends ECampo{
     }
        
 
-        public static function getEntità():string{
+        public  function getEntità():string{
     return self::$entità;
     }
     public static function getIdCampoCalcio(){
