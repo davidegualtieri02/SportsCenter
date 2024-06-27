@@ -1,16 +1,16 @@
 -
 CREATE TABLE Utente(
-    'id_utente' INT AUTO_INCREMENT PRIMARY KEY, 
-    'nome' VARCHAR(50),
-    'cognome' VARCHAR(50),
-    'password' VARCHAR(50),
-    'email' VARCHAR (50);
+    'id_utente' int AUTO_INCREMENT PRIMARY KEY, 
+    'nome' varchar(50),
+    'cognome' varchar(50),
+    'password' varchar(50),
+    'email' varchar(50);
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci; 
 CREATE TABLE UtenteRegistrato(
-    'id_utenteRegistrato' INT AUTO_INCREMENT PRIMARY KEY,
-    'id_utente' INT, 
-    'nome'VARCHAR (50),
-    'cognome' VARCHAR (50),
+    'id_utenteRegistrato' int AUTO_INCREMENT PRIMARY KEY,
+    'id_utente' int, 
+    'nome' varchar(50),
+    'cognome' varchar (50),
     'password' VARCHAR(50),
     'email' VARCHAR(50),
     'ban' TINYINT(1) NOT NULL,
