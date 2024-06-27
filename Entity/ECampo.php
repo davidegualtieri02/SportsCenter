@@ -7,9 +7,8 @@ class ECampo {
 
     private static $entità = ECampo::class;
 
-    public function __construct($copertura,$id_campo,$TitoloCampo,$prezzo){
+    public function __construct($copertura,$TitoloCampo,$prezzo){
         $this->copertura = $copertura;
-        $this->id_campo = $id_campo;
         $this->TitoloCampo=$TitoloCampo;
         $this->prezzo = $prezzo;
     }

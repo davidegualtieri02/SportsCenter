@@ -7,12 +7,11 @@ class ECampo_Padel extends ECampo{
     public static function getEntità():string{
         return self ::$entità;
     }
-    public function __construct($id_campoPadel, $copertura, $id_campo,$fotoCampo){
-        $this->id_campoPadel = $id_campoPadel;
-        $this->copertura = $copertura;
-        $this->id_campo = $id_campo;
+    public function __construct($copertura,$TitoloCampo, $prezzo,$fotoCampo){ 
+        parent::__construct($copertura, $TitoloCampo, $prezzo);
         $this->fotoCampo=$fotoCampo;
     }
+    
     public static function getIdCampoPadel(){
         return self::$id_campoPadel;
     }
