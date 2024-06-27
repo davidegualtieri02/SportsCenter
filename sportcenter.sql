@@ -176,3 +176,6 @@ CREATE TABLE Orario(
     'id_orario' INT AUTO_INCREMENT PRIMARY KEY,
     'orario' INT;
     )
+
+
+INSERT INTO Prenotazione (id_prenotazione,data,orario,pagata,id_campo,id_attrezzatuta,id_utente) VALUES ('1','19/06/02','11:30','1','1','1','1');
