@@ -16,7 +16,7 @@ class ECartadiPagamento{
         $this->Cognome_Titolare = $Cognome_Titolare;
         $this->Numero_Carta = $Numero_Carta;
         $this->Data_Scadenza = $Data_Scadenza;
-        $this->$CVV = $CVV;
+        $this->CVV = $CVV;
     
     }
     public function getNomeTitolare(){
