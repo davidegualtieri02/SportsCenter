@@ -3,8 +3,8 @@ class EAttrezzatura{
     protected int $id_attrezzatura;
     private static $entità = EAttrezzatura::class;
 
-    public function __construct($id_attrezzatura){
-        $this->id_attrezzatura = $id_attrezzatura;
+    public function __construct(){
+    
     }
     public function getId_attrezzatura(){
         return $this->id_attrezzatura;

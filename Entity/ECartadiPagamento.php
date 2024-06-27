@@ -11,13 +11,13 @@ class ECartadiPagamento{
 
     private static $entità = ECartadiPagamento::class;
 
-    public function __construct($Nome_Titolare, $Cognome_Titolare, $Numero_Carta, $Data_Scadenza, $CVV, $id_cartadiPagamento){
+    public function __construct($Nome_Titolare, $Cognome_Titolare, $Numero_Carta, $Data_Scadenza, $CVV){
         $this->Nome_Titolare = $Nome_Titolare;
         $this->Cognome_Titolare = $Cognome_Titolare;
         $this->Numero_Carta = $Numero_Carta;
         $this->Data_Scadenza = $Data_Scadenza;
         $this->$CVV = $CVV;
-        $this->id_cartadiPagamento = $id_cartadiPagamento;
+    
     }
     public function getNomeTitolare(){
         return $this->Nome_Titolare;

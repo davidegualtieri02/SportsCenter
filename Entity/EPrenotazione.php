@@ -11,11 +11,10 @@ class EPrenotazione {
     private $id_attrezzatura; //ID dell'oggetto Attrezzatura
     private static $entità = EPrenotazione::class;
 
-    public function __construct($data, $orario, $pagata, $id_prenotazione, $id_campo, $id_attrezzatura){
+    public function __construct($data, $orario, $pagata,$id_campo,$id_attrezzatura){
         $this->data = $data;
         $this->orario = $orario;
         $this->pagata = $pagata;
-        $this->id_prenotazione = $id_prenotazione;
         $this->id_campo = $id_campo;
         $this->id_attrezzatura = $id_attrezzatura;
 
