@@ -52,27 +52,27 @@ CREATE TABLE CampoBasket(
     id_campo INT,
     copertura VARCHAR (50),
     pavimento VARCHAR (50),
-    fotoCampo VARBINARY(MAX),
+    fotoCampo VARBINARY(255),
     titoloCampo VARCHAR(50),
-    prezzo INT
+    prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoCalcio(
     id_campoCalcio INT AUTO_INCREMENT PRIMARY KEY,
     id_campo INT,
     copertura VARCHAR (50),
-    fotocampo VARBINARY(MAX);
+    fotocampo VARBINARY(255);
     titoloCampo VARCHAR(50),
-    prezzo INT
+    prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoPadel(
     id_campoPadel INT AUTO_INCREMENT PRIMARY KEY,
     id_campo INT,
     copertura VARCHAR(50),
-    fotocampo VARBINARY(MAX);
+    fotocampo VARBINARY(255);
     titoloCampo VARCHAR(50),
-    prezzo INT
+    prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoPallavolo(
@@ -80,9 +80,9 @@ CREATE TABLE CampoPallavolo(
     id_campo INT,
     copertura VARCHAR(50),
     pavimento VARCHAR(50),
-    fotocampo VARBINARY(MAX);
+    fotocampo VARBINARY(255);
     titoloCampo VARCHAR(50),
-    prezzo INT;
+    prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE CampoTennis(
@@ -90,9 +90,9 @@ CREATE TABLE CampoTennis(
     id_campo INT,
     copertura VARCHAR(50),
     terreno VARCHAR(50),
-    fotocampo VARBINARY(MAX);
+    fotocampo VARBINARY(255);
     titoloCampo VARCHAR(50),
-    prezzo INT
+    prezzo INT,
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Attrezzatura(
@@ -156,7 +156,7 @@ CREATE TABLE Recensione(
     DataOra DATETIME,
     removed TINYINT(1),
     id_utente INT,
-    image ARRAY(image)
+    image ARRAY(image),
     id_campo INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE image(
@@ -164,7 +164,7 @@ CREATE TABLE image(
     nome VARCHAR(50),
     grandezza VARCHAR(50),
     tipi VARCHAR(50),
-    imageData VARBINARY (max),
+    imageData VARBINARY (255),
     id_recensione INT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Orario(
