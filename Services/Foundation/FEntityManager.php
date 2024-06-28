@@ -233,7 +233,7 @@ class FEntityManager{
      */
     public static function SalvaOggdaID($ClasseFound,$ogg,$id){// classeFound può assumere come valore il valore di una classe entity riscritta nel package Foundation 
         try{
-            $query = " INSERT INTO". $ClasseFound::getTable(). " VALUES". $ClasseFound::getValue();//tramite classeFound::getTable() accedo alla tabella relativa a quella classe di Foundation e classeFound::getValue()  mi restituisce i valori degli attributi da porre nella riga che stiamo aggiungendo. Questi valori che aggiungiamo alla tupla della tabella  sono i valori dati agli attributi della classe in Foundation, valori dati dall'utente o da noi.
+            $query = " INSERT INTO". $ClasseFound::getTabella(). " VALUES". $ClasseFound::getValore();//tramite classeFound::getTable() accedo alla tabella relativa a quella classe di Foundation e classeFound::getValue()  mi restituisce i valori degli attributi da porre nella riga che stiamo aggiungendo. Questi valori che aggiungiamo alla tupla della tabella  sono i valori dati agli attributi della classe in Foundation, valori dati dall'utente o da noi.
              $dichiarazione = self::$db->prepare($query);
              $ClasseFound::bind($dichiarazione,$ogg,$id); // questo metodo viene utilizzato per legare i parametri alla dichiarazione SQL preparata
              $dichiarazione->execute();
