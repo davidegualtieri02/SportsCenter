@@ -1,36 +1,32 @@
 <?php
-include ("EImage.php");
-include ("ECampo_Pallavolo.php");
+//queste due righe si lasciano per ogni prova, perché ti indicano quale è l'errore (in caso ci sia)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+/*
 
+//include("ECampo.php");
+include("ECampo_Calcio.php");
+//include("EImage.php");
 
-$immagine = new EImage("prova"," 100"," jpeg"," 1900",'1','1');
-$campopallavolo = new ECampo_Pallavolo('1',"fuori",'1'," gomma",$immagine);
-print_r($campopallavolo);
- 
+$i = new EImage("nomeprova", 100, "tipi", "imagedata", 10, 20);
 
+$c = new ECampo_Calcio("coperturaprova", "titl", 100, $i);
 
+print_r($c);
 
+//print_r($i);
 
+*/
+ /*
+include("ECartadiPagamento.php");
 
+$carta = new ECartadiPagamento("nomtit", "cogntit", 1111222233334444, new DateTime("2025-12"), 980);
 
+print_r($carta); 
+*/
 
+include("EAttrezzatura_Basket.php");
 
+$attr = new EAttrezzatura_Basket(5, 6);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print_r($attr);
