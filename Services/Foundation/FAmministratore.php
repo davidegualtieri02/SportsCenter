@@ -28,7 +28,7 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      */
     public static function CreaOggAmministratore($risultatoQuery){
         if(count($risultatoQuery)>0){ // se ci sono elementi nell'array risultatoQuery ,se c'e ne è, c'è ne è solo uno perchè abbiamo un solo amministratore.
-            $amm = new EAmministratore($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['id_utente']);
+            $amm = new EAmministratore($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password']);
             $amm->setId($risultatoQuery[0]['id_utente']);//senza specificare(mettere) l'id nella creazione dell'oggetto mi da errore, specificando l'id nell'inizializzazione dell'oggetto non mi da l'errore
             $amm->setHashPassword($risultatoQuery[0]['password']);
             return $amm;

@@ -339,6 +339,10 @@ class FPersistentManager{
         return $risultato;
 
     }
+    public static function bindCartaPagamento($dichiarazione,$carta){
+        FCartadiPagamento::bind($dichiarazione,$carta);
+    }
+    
 //----------------------------------------------------Campo------------------------------------------------------------------------------------
     /**
      * Metodo che crea un oggetto Campo
