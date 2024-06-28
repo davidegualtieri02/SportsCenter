@@ -57,6 +57,7 @@ class FUtente{
         $dichiarazione ->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":id_utente",$utente->getId(),PDO::PARAM_INT);
     }
     /**
      * Metodo che verifica se un certo oggetto esiste nel database

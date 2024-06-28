@@ -32,7 +32,7 @@ class FImage{
         if(count($risultatoQuery) > 0){
             $images = array();
             for ($i = 0; $i < count($risultatoQuery); $i++){
-                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipi'], $risultatoQuery[$i]['imageData'], $risultatoQuery[$i]['id_recensione'], $risultatoQuery[$i]['id_image']);
+                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipi'], $risultatoQuery[$i]['imageData'], $risultatoQuery[$i]['id_recensione']);
                 $im->setId($risultatoQuery[$i]['id_image']);
                 $images[] = $im;
             }

@@ -26,7 +26,7 @@ class FCampo_Basket extends FCampo{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da basket
             $campo_basket = new ECampo_Basket($risultatoQuery[0]['copertura'], $risultatoQuery[0]['pavimento'], $risultatoQuery[0]['fotocampo'], $risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
-            $campo_basket->setId_campo('id_campoBasket');
+            $campo_basket->setId_campo($risultatoQuery[0]['id_campoBasket']);
             //Restituisce l'oggetto campo da basket
             return $campo_basket;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -36,7 +36,7 @@ class FCampo_Basket extends FCampo{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da basket
                 $campo_basket = new ECampo_Basket($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['pavimento'], $risultatoQuery[$i]['fotocampo'], $risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
-                $campo_basket->setId_campo('id_campoBasket');
+                $campo_basket->setId_campo($risultatoQuery[$i]['id_campoBasket']);
                 //Aggiunge l'oggetto campo da basket nell'array
                 $campi_basket[] = $campo_basket;
             }

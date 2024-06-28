@@ -37,7 +37,7 @@ class FUtenteRegistrato{
             for($i=0;$i<count($risultatoQuery);$i++){//ripeto il ciclo un numero di volte  pari al numero di elementi contenuti in $risultatoquery
                 $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteRegistrato",$risultatoQuery[$i]['id_utenteRegistrato']);//la funzione recuperaOggetto viene chiamata per ogni utente nell'array $risultatoQuery e restitusce un array di attributi per quell'utente specifico 
                 $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'],$risultatoQuery[$i]['ban']);// per ogni elemento di $risultatoQuery viene creato un Utente registrato. Per esempio iò secondo elemento dell'array avra un certo nome in corrispondenza della chiave nome , un certo cognome in corrispondenza della chiave cognome ect per ogni nome , cognome ect viene creato un elemento diverso.
-                $utenteRegistrato->setId(($risultatoQuery[$i]['id_utenteregistrato']));
+                $utenteRegistrato->setId(($risultatoQuery[$i]['id_utenteRegistrato']));
                 $utenteRegistrato->setBan(($attributi[0]['ban']));// scriviamo attributi[0] perchè per ogni iterazione del ciclo $attributi contiene un solo elemento (cioè un array di attributi) quindi si usa $attributi [0] per accedere a quell'array di attributi che ha un solo elemento cioè  gli attributi dell 'utente che stiamo analizzando in quella iterazione del ciclo 
                 $utentiRegistrati[] = $utenteRegistrato; // ad ogni iterazione ogni utente viene posto nella lista utenti registrati
             }

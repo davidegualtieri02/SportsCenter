@@ -26,7 +26,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da pallavolo
             $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[0]['numPalla_Pallavolo']);
-            $attrezzatura_pallavolo->setId_attrezzatura('id_attrezzaturaPallavolo');
+            $attrezzatura_pallavolo->setId_attrezzatura($risultatoQuery[0]['id_attrezzaturaTennis']);;
             //Restituisce l'oggetto attrezzatura da pallavolo
             return $attrezzatura_pallavolo;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -36,7 +36,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da pallavolo
                 $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[$i]['numPalla_Pallavolo']);
-                $attrezzatura_pallavolo->setId_attrezzatura('id_attrezzaturaPallavolo');
+                $attrezzatura_pallavolo->setId_attrezzatura($risultatoQuery[$i]['id_attrezzaturaTennis']);
                 //Aggiunge l'oggetto attrezzatura da pallavolo nell'array
                 $attrezzature_pallavolo[] = $attrezzatura_pallavolo;
             }

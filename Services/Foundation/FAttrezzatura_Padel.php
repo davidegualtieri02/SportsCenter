@@ -26,7 +26,7 @@ class FAttrezzatura_Padel extends FAttrezzatura{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da padel
             $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[0]['numPalla_Padel'],$risultatoQuery[0]['numRacchetta_Padel']);
-            $attrezzatura_padel->setId_attrezzatura('id_attrezzaturaPadel');
+            $attrezzatura_padel->setId_attrezzatura($risultatoQuery[0]['id_attrezzaturaPadel']);
             //Restituisce l'oggetto attrezzatura da padel
             return $attrezzatura_padel;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -36,7 +36,7 @@ class FAttrezzatura_Padel extends FAttrezzatura{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da padel
                 $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[$i]['numPalla_Padel'],$risultatoQuery[$i]['numRacchetta_Padel']);
-                $attrezzatura_padel->setId_attrezzatura('id_attrezzaturaPdel');
+                $attrezzatura_padel->setId_attrezzatura($risultatoQuery[$i]['id_attrezzaturaPadel']);
                 //Aggiungi l'oggetto attrezzatura da padel nell'array
                 $attrezzature_padel[] = $attrezzatura_padel;
             }

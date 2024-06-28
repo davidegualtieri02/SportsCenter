@@ -26,6 +26,7 @@ class FCampo{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo. Non è necessario impostare l'ID del campo perchè l’ID del campo viene effettivamente impostato nel costruttore della classe ECampo quando viene creato un nuovo oggetto ECampo.
             $campo = new ECampo($risultatoQuery[0]['copertura'], $risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
+            $campo->setId_campo($risultatoQuery[0]['id_campo']);
             //Restituisci l'oggetto campo
             return $campo;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +35,8 @@ class FCampo{
             //Ciclo if per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo. Non va impostato l'ID del campo per lo stesso motivo spiegato nella riga 27
-                $campo = new ECampo($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['titoloCampo'],,$risultatoQuery[$i]['prezzo']);
+                $campo = new ECampo($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
+                $campo->setId_campo($risultatoQuery[$i]['id_campo']);
                 //Aggiunge l'oggetto campo nell'array
                 $campi[] = $campo;
             }

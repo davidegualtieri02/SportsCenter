@@ -26,7 +26,7 @@ class FCampo_Calcio extends FCampo{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da calcio
             $campo_calcio = new ECampo_Calcio($risultatoQuery[0]['copertura'], $risultatoQuery[0]['fotocampo'], $risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
-            $campo_calcio->setId_campo('id_campoCalcio');
+            $campo_calcio->setId_campo($risultatoQuery[0]['id_campoCalcio']);
             //Aggiunge l'oggetto campo da calcio nell'array);
             //Restituisce l'oggetto campo da calcio
             return $campo_calcio;
@@ -37,7 +37,7 @@ class FCampo_Calcio extends FCampo{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da calcio
                 $campo_calcio = new ECampo_Calcio($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['fotocampo'], $risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
-                $campo_calcio->setId_campo('id_campoCalcio');
+                $campo_calcio->setId_campo($risultatoQuery[$i]['id_campoCalcio']);
                 //Aggiunge l'oggetto campo da calcio nell'array
                 $campi_calcio[] = $campo_calcio;
             }

@@ -26,26 +26,28 @@ class FRecensione{
     public static function CreaOggRecensione($risultatoQuery){
         if(count($risultatoQuery) == 1){
             $recensione = new ERecensione($risultatoQuery[0]['valutazione'], $risultatoQuery[0]['commento'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['id_utente'], $risultatoQuery[0]['ora']);
-            return $carta;
+            $recensione->setIdRecensione($risultatoQuery[0]['id_recensione']);
+            return $recensione;
+        }
         //Verifico se il risultato della query contiene almeno un elemento
-        if(count($risultatoQuery) > 1){
+        elseif(count($risultatoQuery) > 1){
             //Inizializzo l'array delle recensioni.
             $recensioni = array();
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Creazione di un nuovo oggetto Recensione con i dati ottenuti dalla query
-                $rec = new ERecensione($risultatoQuery[$i]['valutazione'],$risultatoQuery[$i]['commento'],$risultatoQuery[$i]['id_campo'],$risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['ora']);
+                $recensione = new ERecensione($risultatoQuery[$i]['valutazione'],$risultatoQuery[$i]['commento'],$risultatoQuery[$i]['id_campo'],$risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['ora']);
             
                 //Imposto l'ID della recensione
-                $rec->setIdRecensione($risultatoQuery[$i]['idRecensione']);
+                $recensione->setIdRecensione($risultatoQuery[$i]['id_recensione']);
                 //Creo un oggetto DateTime dal formato Giorno-mese-anno Ora-minuto-secondo
                 $DataOra = DateTime::createFromFormat('D-m-y H:i:s', $risultatoQuery[$i]['DataOra']);
                 //Imposto la data e l'ora della recensione
-                $rec->setDataOra($DataOra);
+                $recensione->setDataOra($DataOra);
                 //Imposto lo stato di ban della recensione
-                $rec->setBan($risultatoQuery[$i]['removed']);
+                $recensione->setBan($risultatoQuery[$i]['removed']);
                 //Aggiungo la recensione all'array delle recensioni
-                $recensioni[] = $rec;
+                $recensioni[] = $recensione;
             }
             //ritorna array delle recensioni
             return $recensioni;
@@ -57,6 +59,7 @@ class FRecensione{
     //Funzione per associare i valori dell'oggetto Recensione ai parametri della dichiarazione SQL
     public static function bind($dichiarazione, $recensione){
         //Associo tutte le variabili (commento, valutazione, etc.) ai rispettivi parametri della dichiarazione SQL
+        $dichiarazione->bindValue(" :id_recensione",$recensione->getIdRecensione(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":commento", $recensione->getCommento(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":valutazione", $recensione->getValutazione(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":DataOra", $recensione->getDataOra(), PDO::PARAM_STR);

@@ -25,11 +25,13 @@ class FTessera{
         //Se c'è solo un risultato, crea un singolo oggetto tessera
         if(count($risultatoQuery) == 1){
             $tessera = new ETessera($risultatoQuery[0]['id_utente'],$risultatoQuery[0]['Data_Scadenza'],$risultatoQuery[0]['Data_Inizio']);
+            $tessera->setIdTessera($risultatoQuery[0]['id_tessera']);
             return $tessera;
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti Tessera
             $tessere = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
                 $tessera = new ETessera($risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['Data_Scadenza'],$risultatoQuery[$i]['Data_Inizio']);
+                $tessera->setIdTessera($risultatoQuery[$i]['id_tessera']);
                 $tessere[] = $tessera;
             }
             return $tessere;
@@ -42,6 +44,7 @@ class FTessera{
     public static function bind($dichiarazione,$tessera){
         $dichiarazione->bindValue(':Data_Scadenza',$tessera->getDataScadenza(),PDO::PARAM_LOB);
         $dichiarazione->bindValue(':Data_Inizio',$tessera->getDataInizio(),PDO::PARAM_LOB);
+        $dichiarazione->bindValue(':id_tessera',$tessera->getIdTessera(),PDO::PARAM_INT);
     }
 
     //Metodo per verificare se un oggetto esiste nel DB
