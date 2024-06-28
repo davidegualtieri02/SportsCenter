@@ -36,10 +36,10 @@ CREATE TABLE Amministratore(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Tessera(
     id_tessera INT AUTO_INCREMENT PRIMARY KEY,
-    id_utente INT,
+    id_utenteRegistrato INT,
     Data_Inizio DATE,
     Data_Scadenza DATE,
-    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente)
+    FOREIGN KEY (id_utente) REFERENCES UtenteRegistrato(id_utenteRegistrato)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
 CREATE TABLE Campo(
     id_campo INT AUTO_INCREMENT PRIMARY KEY,
