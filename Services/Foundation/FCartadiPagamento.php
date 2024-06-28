@@ -24,7 +24,7 @@ class FCartadiPagamento{
     public static function creaOggCartadiPagamento($risultatoQuery){
         //Se c'è un solo risultato, crea un singolo oggetto CartadiPagamento
         if(count($risultatoQuery) == 1){
-            $carta = new ECartadiPagamento($risultatoQuery[0]['id_cartadiPagamento'], $risultatoQuery[0]['Nome_Titolare'], $risultatoQuery[0]['Cognome_Titolare'], $risultatoQuery[0]['Numero_Carta'], $risultatoQuery[0]['Data_Scadenza'], $risultatoQuery[0]['CVV']);
+            $carta = new ECartadiPagamento($risultatoQuery[0]['Nome_Titolare'], $risultatoQuery[0]['Cognome_Titolare'], $risultatoQuery[0]['Numero_Carta'], $risultatoQuery[0]['Data_Scadenza'], $risultatoQuery[0]['CVV']);
             $carta->setIdCarta($risultatoQuery[0]['id_cartadiPagamento']);
             return $carta;
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti CartadiPagamento

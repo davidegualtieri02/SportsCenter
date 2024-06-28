@@ -25,5 +25,15 @@ class ETessera{
     public static function getEntità():string{
         return self::$entità;
     }
+    public  function getDataScadenza(){
+        return $this->dataScadenza;
+    }
+    public function getDataInizio(){
+        return $this->dataInizio;
+    }
+    public function setDataInizio($data){
+        $this->dataInizio= $data;
+    }
+    
      //metodo toString esiste predefinito
 }

@@ -28,8 +28,8 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      */
     public static function CreaOggAmministratore($risultatoQuery){
         if(count($risultatoQuery)>0){ // se ci sono elementi nell'array risultatoQuery ,se c'e ne è, c'è ne è solo uno perchè abbiamo un solo amministratore.
-            $amm = new EAmministratore($risultatoQuery[0]['id_amministratore'], $risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['id_utente']);
-           // $amm->setId($risultatoQuery[0]['IdUtente']);senza specificare(mettere) l'id nella creazione dell'oggetto mi da errore, specificando l'id nell'inizializzazione dell'oggetto non mi da l'errore
+            $amm = new EAmministratore($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['id_utente']);
+            $amm->setId($risultatoQuery[0]['id_utente']);//senza specificare(mettere) l'id nella creazione dell'oggetto mi da errore, specificando l'id nell'inizializzazione dell'oggetto non mi da l'errore
             $amm->setHashPassword($risultatoQuery[0]['password']);
             return $amm;
         }else{// se la query rida una tabella con zero righe, cioè non esiste l'amministratore (o meglio i dati dell'amministratore), il metodo rida un array vuoto.
@@ -41,8 +41,12 @@ class FAmministratore{ // self è una parola chiave che si riferisce alla classe
      * @param $dichiarazione è la variabile con cui preparo le query . Utilizziamo il metodo preprae su un oggetto PDO per preparare la dichiarazione SQL ovvero in questo modo: $dichiarazione = $q->preprae($query) . Infine si richiama il metodo execute() sull'oggetto dichiarazione  per eseguire la query.
      * @param $id contiene l'oggetto id ( cioè il valore dell'id ) da associare al segnoposto "idUtente"-.
      */
-    public static function bind ($dichiarazione,$amministratore){
-        $dichiarazione->bindValue(":id_amministratore",$amministratore,PDO::PARAM_INT); // PDO::_PARAM_INT mi dice di che tipo è il parametro (oggetto) assegnato al segnaposto, in questo caso è un intero. 
+    public static function bind ($dichiarazione,$idutente,$amministratore){
+        $dichiarazione->bindValue(" :id_utente",$idutente,PDO::PARAM_INT);
+        $dichiarazione->bindValue(":nome",$amministratore->getNome(),PDO::PARAM_STR); // PDO::_PARAM_INT mi dice di che tipo è il parametro (oggetto) assegnato al segnaposto, in questo caso è un intero. 
+        $dichiarazione->bindValue(":cognome",$amministratore->getCognome(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(" :email",$amministratore->getEmail(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(" :password",$amministratore->getPassword(),PDO::PARAM_STR);
     }
     /**
      * Questo metodo ritorna un oggetto Amministratore.

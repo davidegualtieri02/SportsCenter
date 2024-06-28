@@ -9,9 +9,9 @@ class EAmministratore extends EUtente{
 
     private static string $entità = EAmministratore::class;
     
-    public function __construct($id_amministratore, $nome, $cognome, $email, $password, $id_utente){
-        parent::__construct($nome, $cognome, $email, $password, $id_utente);
-        $this->id_amministratore = $id_amministratore;
+    public function __construct($nome, $cognome, $email, $password){
+        parent::__construct($nome, $cognome, $email, $password);
+
     }
     public static function getEntità():string{
         return self::$entità;

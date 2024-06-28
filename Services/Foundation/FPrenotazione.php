@@ -24,14 +24,18 @@ class FPrenotazione {
 
     //Funzione per creare un oggetto Prenotazione da un risultato di una query
     public static function CreaOggPrenotazione($risultatoQuery){
+        if(count($risultatoQuery) == 1){
+            $prenotazione = new EPrenotazione($risultatoQuery[0]['data'], $risultatoQuery[0]['orario'], $risultatoQuery[0]['pagata'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['id_attrezzatura']);
+            return $prenotazione;
+        }
         //Verifico se il risultato della query contiene almeno un elemento
-        if(count($risultatoQuery) > 0){
+        elseif(count($risultatoQuery) > 1){
             //Inizializzo l'array delle prenotazioni
             $prenotazioni = array();
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Creazione di un nuovo oggetto Prenotazione con i dati ottenuti dalla query
-                $pren = new EPrenotazione($risultatoQuery[$i]['data'],$risultatoQuery[$i]['orario'], $risultatoQuery[$i]['pagata'], $risultatoQuery[$i]['id_prenotazione'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['id_attrezzatura']);
+                $pren = new EPrenotazione($risultatoQuery[$i]['data'],$risultatoQuery[$i]['orario'], $risultatoQuery[$i]['pagata'],$risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['id_attrezzatura']);
                 //Aggiungo la recensione all'array delle prenotazioni
                 $prenotazioni[] = $pren;
             }

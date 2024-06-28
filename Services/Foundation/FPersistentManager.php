@@ -537,14 +537,8 @@ class FPersistentManager{
         $risultato = FAttrezzatura::creaOggAttrezzatura($risultatoQuery);
         return $risultato;
     }
-    /**
-     * Metodo che associa valori ad un oggetto attrezzatura
-     * @param $dichiarazione si riferisce all'oggetto dichiarazione del db
-     * @param $attrezzatura si riferisce all'oggetto attrezzatura
-     */
-    public static function bindAttrezzatura($dichiarazione,$attrezzatura){
-        FAttrezzatura::bind($dichiarazione,$attrezzatura);
-    }
+    
+    
      /**
     * Metodo che verifica l'esistenza di una attrezzatura nel db
     *@param $campo è il campo ID 

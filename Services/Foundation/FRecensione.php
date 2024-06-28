@@ -19,13 +19,16 @@ class FRecensione{
     }
 
     public static function getChiave(){
-        return self::$chiave;                                      $risultatoQuery[$i]['commento']
+        return self::$chiave;                                      
     }
     
     //Funzione per creare un oggetto recensione da un risultato di query
     public static function CreaOggRecensione($risultatoQuery){
+        if(count($risultatoQuery) == 1){
+            $recensione = new ERecensione($risultatoQuery[0]['valutazione'], $risultatoQuery[0]['commento'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['id_utente'], $risultatoQuery[0]['ora']);
+            return $carta;
         //Verifico se il risultato della query contiene almeno un elemento
-        if(count($risultatoQuery) > 0){
+        if(count($risultatoQuery) > 1){
             //Inizializzo l'array delle recensioni.
             $recensioni = array();
             //Ciclo for per ogni elemento del risultato della query
