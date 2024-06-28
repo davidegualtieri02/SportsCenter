@@ -25,7 +25,7 @@ class FAttrezzatura{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura
-            $attrezzatura = new EAttrezzatura($risultatoQuery[0]['id_attrezzatura']);
+            $attrezzatura = new EAttrezzatura();
             //Imposta l'ID dell'attrezzatura
             $attrezzatura->setId_attrezzatura($risultatoQuery[0]['id_attrezzatura']);
             //Restituisce l'oggetto attrezzatura
@@ -36,7 +36,7 @@ class FAttrezzatura{
             //Ciclo if per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura
-                $attrezzatura = new EAttrezzatura($risultatoQuery[$i]['id_attrezzatura']);
+                $attrezzatura = new EAttrezzatura();
                 //Imposta l'ID dell'attrezzatura
                 $attrezzatura->setId_attrezzatura($risultatoQuery[$i]['id_attrezzatura']);
                 //Aggiunge l'oggetto attrezzatura nell'array
@@ -50,10 +50,10 @@ class FAttrezzatura{
     }
 
     //Metodo public che lega i valori (in questo caso solo l'ID dell'attrezzatura) ai rispettivi parametri nella dichiarazione SQL
-    public static function bind($dichiarazione,$attrezzatura){
+    //public static function bind($dichiarazione,$attrezzatura){
         //Lega l'ID dell'attrezzatura al parametro ":id_attrezzatura" nella dichiarazione SQL
-        $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura->getId_attrezzatura(),PDO::PARAM_INT);
-    }
+        //$dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura->getId_attrezzatura(),PDO::PARAM_INT);
+    //}
 
     //Metodo public che verifica se un oggetto esiste nel DB
     public static function verifica($campo,$id_attrezzatura){

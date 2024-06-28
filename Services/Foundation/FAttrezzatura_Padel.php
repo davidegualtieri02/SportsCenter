@@ -25,7 +25,7 @@ class FAttrezzatura_Padel extends FAttrezzatura{
         //Se la query restituisce un solo risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da padel
-            $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[0]['id_attrezzaturaPadel'], $risultatoQuery[0]['numPalla_Padel'], $risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numRacchetta_Padel']);
+            $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[0]['numPalla_Padel'],$risultatoQuery[0]['numRacchetta_Padel']);
             //Restituisce l'oggetto attrezzatura da padel
             return $attrezzatura_padel;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Padel extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da padel
-                $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[$i]['id_attrezzaturaPadel'], $risultatoQuery[$i]['numPalla_Padel'],$risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[$i]['numRacchetta_Padel']);
+                $attrezzatura_padel = new EAttrezzatura_Padel($risultatoQuery[$i]['numPalla_Padel'],$risultatoQuery[$i]['numRacchetta_Padel']);
                 //Aggiungi l'oggetto attrezzatura da padel nell'array
                 $attrezzature_padel[] = $attrezzatura_padel;
             }
@@ -47,9 +47,9 @@ class FAttrezzatura_Padel extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_padel){
-        $dichiarazione ->bindValue(":id_attrezzaturaPadel",$attrezzatura_padel->getIdAttrezzaturaPadel(),PDO::PARAM_INT);
+        //$dichiarazione ->bindValue(":id_attrezzaturaPadel",$attrezzatura_padel->getIdAttrezzaturaPadel(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Padel",$attrezzatura_padel->getNumPalla_Padel(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_padel->getId_attrezzatura(),PDO::PARAM_INT);
+       // $dichiarazione ->bindValue(":id_attrezzatura",$attrezzatura_padel->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numRacchetta_Padel",$attrezzatura_padel->getNumRacchetta_Padel(),PDO::PARAM_INT);
     }
 

@@ -25,7 +25,7 @@ class FAttrezzatura_Basket extends FAttrezzatura{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da basket
-            $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[0]['id_attrezzaturaBasket'], $risultatoQuery[0]['numPalla_Basket'], $risultatoQuery[0]['numCasacca'], $risultatoQuery[0]['id_attrezzaturaBasket']);
+            $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[0]['numPalla_Basket'], $risultatoQuery[0]['numCasacca']);
             //Restituisce l'oggetto attrezzatura da basket
             return $attrezzatura_basket;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Basket extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da basket
-                $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[$i]['id_attrezzaturaBasket'], $risultatoQuery[$i]['numPalla_Basket'], $risultatoQuery[$i]['numCasacca'], $risultatoQuery[$i]['id_attrezzaturaBasket']);
+                $attrezzatura_basket = new EAttrezzatura_Basket($risultatoQuery[$i]['numPalla_Basket'], $risultatoQuery[$i]['numCasacca']);
                 //Aggiunge l'oggetto attrezzatura da basket nell'array
                 $attrezzature_basket[] = $attrezzatura_basket;
             }
@@ -47,10 +47,9 @@ class FAttrezzatura_Basket extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_basket){
-        $dichiarazione ->bindValue(":id_attrezzaturaBasket",$attrezzatura_basket->getIdAttrezzaturaBasket(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Basket",$attrezzatura_basket->getNumPalla_Basket(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numCasacca",$attrezzatura_basket->getNumCasacca(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_basket->getId_attrezzatura(),PDO::PARAM_INT);
+       
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB

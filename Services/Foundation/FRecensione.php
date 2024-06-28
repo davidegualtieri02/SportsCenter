@@ -19,7 +19,7 @@ class FRecensione{
     }
 
     public static function getChiave(){
-        return self::$chiave;
+        return self::$chiave;                                      $risultatoQuery[$i]['commento']
     }
     
     //Funzione per creare un oggetto recensione da un risultato di query
@@ -31,7 +31,8 @@ class FRecensione{
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Creazione di un nuovo oggetto Recensione con i dati ottenuti dalla query
-                $rec = new ERecensione($risultatoQuery[$i]['commento'],$risultatoQuery[$i]['valutazione']);
+                $rec = new ERecensione($risultatoQuery[$i]['valutazione'],$risultatoQuery[$i]['commento'],$risultatoQuery[$i]['id_campo'],$risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['ora']);
+            
                 //Imposto l'ID della recensione
                 $rec->setIdRecensione($risultatoQuery[$i]['idRecensione']);
                 //Creo un oggetto DateTime dal formato Giorno-mese-anno Ora-minuto-secondo

@@ -25,7 +25,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
         //Se la query restituisce un solo risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da pallavolo
-            $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[0]['id_attrezzaturaPallavolo'], $risultatoQuery[0]['numPalla_Pallavolo'], $risultatoQuery[0]['id_attrezzatura']);
+            $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[0]['numPalla_Pallavolo']);
             //Restituisce l'oggetto attrezzatura da pallavolo
             return $attrezzatura_pallavolo;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da pallavolo
-                $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[$i]['id_attrezzaturaPallavolo'], $risultatoQuery[$i]['numPalla_Pallavolo'], $risultatoQuery[$i]['id_attrezzatura']);
+                $attrezzatura_pallavolo = new EAttrezzatura_Pallavolo($risultatoQuery[$i]['numPalla_Pallavolo']);
                 //Aggiunge l'oggetto attrezzatura da pallavolo nell'array
                 $attrezzature_pallavolo[] = $attrezzatura_pallavolo;
             }
@@ -47,9 +47,9 @@ class FAttrezzatura_Pallavolo extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_pallavolo){
-        $dichiarazione ->bindValue(":id_attrezzaturaPallavolo",$attrezzatura_pallavolo->getIdAttrezzaturaPallavolo(),PDO::PARAM_INT);
+        //$dichiarazione ->bindValue(":id_attrezzaturaPallavolo",$attrezzatura_pallavolo->getIdAttrezzaturaPallavolo(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Pallavolo",$attrezzatura_pallavolo->getNumPalla_Pallavolo(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_pallavolo->getId_attrezzatura(),PDO::PARAM_INT);
+       // $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_pallavolo->getId_attrezzatura(),PDO::PARAM_INT);
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB

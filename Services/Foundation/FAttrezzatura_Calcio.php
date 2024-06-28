@@ -25,7 +25,7 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da calcio
-            $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[0]['id_attrezzaturaCalcio'], $risultatoQuery[0]['numPalloni_Calcio'], $risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['numCasacca']);
+            $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[0]['numPalloni_Calcio'], $risultatoQuery[0]['numCasacca']);
             //Restituisce l'oggetto attrezzatura da calcio
             return $attrezzatura_calcio;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -34,7 +34,7 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
             //Ciclo for per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da calcio
-                $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[$i]['id_attrezzaturaCalcio'], $risultatoQuery[$i]['numPalloni_Calcio'], $risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['numCasacca']);
+                $attrezzatura_calcio = new EAttrezzatura_Calcio($risultatoQuery[$i]['numPalloni_Calcio'],$risultatoQuery[$i]['numCasacca']);
                 //Aggiunge l'oggetto attrezzatura da calcio nell'array
                 $attrezzature_calcio[] = $attrezzatura_calcio;
             }
@@ -47,9 +47,9 @@ class FAttrezzatura_Calcio extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_calcio){
-        $dichiarazione ->bindValue(":id_attrezzaturaCalcio",$attrezzatura_calcio->getIdAttrezzaturaCalcio(),PDO::PARAM_INT);
+       // $dichiarazione ->bindValue(":id_attrezzaturaCalcio",$attrezzatura_calcio->getIdAttrezzaturaCalcio(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalloni_Calcio",$attrezzatura_calcio->getNumPalloni_Calcio(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue("id_attrezzatura",$attrezzatura_calcio->getId_attrezzatura(),PDO::PARAM_INT);
+       // $dichiarazione ->bindValue("id_attrezzatura",$attrezzatura_calcio->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numCasacca",$attrezzatura_calcio->getNumCasacca(),PDO::PARAM_INT);
     }
 
