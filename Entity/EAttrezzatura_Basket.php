@@ -12,13 +12,14 @@ class EAttrezzatura_Basket extends EAttrezzatura{
         $this->numCasacca = $numCasacca;
         
     }
-    public function getIdAttrezzaturaBasket(){
+    /**public function getIdAttrezzaturaBasket(){
         return $this->id_attrezzaturaBasket;
     }
     public function setIdAttrezzaturaBasket($id_attrezzaturaBasket){
 
         $this->id_attrezzaturaBasket = $id_attrezzaturaBasket;
     }
+    /** */
     public static function getEntità():string{
         return self::$entità;
     }

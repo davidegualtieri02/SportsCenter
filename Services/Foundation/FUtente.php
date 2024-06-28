@@ -24,25 +24,19 @@ class FUtente{
     public static function getChiave(){
         return self::$chiave;
     }
-
+   //riprende un utente dal db
     public static function creaOggUtente($risultatoQuery){
         if(count($risultatoQuery) == 1){
-            $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), "id_utente", $risultatoQuery[0]['id_utente']);
-
             $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
             $utente->setId($risultatoQuery[0]['id_utente']);
             $utente->setHashPassword($risultatoQuery[0]['password']);
-            $utente->setBan($ban[0]['ban']);
             return $utente;
         }elseif(count($risultatoQuery) > 1){
             $utenti = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $ban = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), 'id_utente', $risultatoQuery[$i]['id_utente']);
-
                 $utente = new EUtente($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
                 $utente->setId($risultatoQuery[$i]['id_utente']);
                 $utente->setHashPassword($risultatoQuery[$i]['password']);
-                $utente->setBan($ban[$i]['ban']);
                 $utenti[] = $utente;
             }
             return $utenti;
@@ -59,7 +53,6 @@ class FUtente{
      * PDO::PARAM_INT/STR sono costanti che mi dicono di che tipo è quel parametro.Per esempio tale costante nella prima riga del metodo , mi dice di che tipo è "nome" ciòè una stringa.
      */
     public static function bind($dichiarazione,$utente){
-        $dichiarazione ->bindValue(":id_utente",$utente->getId(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":name",$utente->getNome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);

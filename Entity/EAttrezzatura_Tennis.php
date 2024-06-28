@@ -16,6 +16,7 @@ class EAttrezzatura_Tennis extends EAttrezzatura{
     public static function getEntità():string{
         return self::$entità;
     }
+    /*
     public function getIdAttrezzaturaTennis(){
         return $this->id_attrezzaturaTennis;
     }
@@ -23,6 +24,7 @@ class EAttrezzatura_Tennis extends EAttrezzatura{
 
         $this->id_attrezzaturaTennis = $id_attrezzaturaTennis;
     }
+    */
     public function getNumPalla_Tennis(){
         return $this->numPalla_Tennis;
     }

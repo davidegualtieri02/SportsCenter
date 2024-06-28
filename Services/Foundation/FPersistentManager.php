@@ -238,8 +238,8 @@ class FPersistentManager{
          * @param $dichiarazione è la dichiarazione del db
          * @param $amministratore è l'amministratore stesso
          */
-        public static function bindAmministratore($dichiarazione,$amministratore){
-            FAmministratore::bind($dichiarazione,$amministratore);
+        public static function bindAmministratore($dichiarazione,$id,$amministratore){
+            FAmministratore::bind($dichiarazione,$id,$amministratore);
         }
 
 

@@ -14,6 +14,7 @@ class EAttrezzatura_Calcio extends EAttrezzatura{
     public static function getEntità():string{
         return self::$entità;
     }
+    /*
     public function getIdAttrezzaturaCalcio(){
         return $this->id_attrezzaturaCalcio;
     }
@@ -21,6 +22,7 @@ class EAttrezzatura_Calcio extends EAttrezzatura{
 
         $this->id_attrezzaturaCalcio = $id_attrezzaturaCalcio;
     }
+     */
     public function getNumPalloni_Calcio(){
         return $this->numPalloni_Calcio;
     }

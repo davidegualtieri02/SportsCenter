@@ -30,7 +30,7 @@ class FCartadiPagamento{
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti CartadiPagamento
             $carte = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $carta = new ECartadiPagamento($risultatoQuery[$i]['id_cartadiPagamento'], $risultatoQuery[$i]['Nome_Titolare'], $risultatoQuery[$i]['Cognome_Titolare'], $risultatoQuery[$i]['Numero_Carta'], $risultatoQuery[$i]['Data_Scadenza'], $risultatoQuery[$i]['CVV']);
+                $carta = new ECartadiPagamento($risultatoQuery[$i]['Nome_Titolare'], $risultatoQuery[$i]['Cognome_Titolare'], $risultatoQuery[$i]['Numero_Carta'], $risultatoQuery[$i]['Data_Scadenza'], $risultatoQuery[$i]['CVV']);
                 $carta->setIdCarta($risultatoQuery[$i]['id_cartadiPagamento']);
                 $carte[] = $carta;
             }

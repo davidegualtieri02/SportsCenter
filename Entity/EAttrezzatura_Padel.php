@@ -16,6 +16,7 @@ class EAttrezzatura_Padel extends EAttrezzatura{
     public static function getEntità():string{
         return self::$entità;
     }
+    /*
     public function getIdAttrezzaturaPadel(){
         return $this->id_attrezzaturaPadel;
     }
@@ -23,6 +24,7 @@ class EAttrezzatura_Padel extends EAttrezzatura{
 
         $this->id_attrezzaturaPadel = $id_attrezzaturaPadel;
     }
+   */
     public function getNumPalla_Padel(){
         return $this->numPalla_Padel;
     }

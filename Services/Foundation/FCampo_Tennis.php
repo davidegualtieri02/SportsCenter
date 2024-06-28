@@ -26,6 +26,7 @@ class FCampo_Tennis extends FCampo{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da tennis
             $campo_tennis = new ECampo_Tennis($risultatoQuery[0]['id_campoTennis'], $risultatoQuery[0]['copertura'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['terreno'],$risultatoQuery[0]['fotocampo']);
+            $campo_tennis->setId_campo('id_campoTennis');
             //Restituisce l'oggetto campo da tennis
             return $campo_tennis;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -35,6 +36,7 @@ class FCampo_Tennis extends FCampo{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da tennis
                 $campo_tennis = new ECampo_Tennis($risultatoQuery[$i]['id_campoTennis'], $risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['terreno'],$risultatoQuery[0]['fotocampo']);
+                $campo_tennis->setId_campo('id_campoTennis');
                 //Aggiunge l'oggetto campo da tennis nell'array
                 $campi_tennis[] = $campo_tennis;
             }
@@ -47,9 +49,9 @@ class FCampo_Tennis extends FCampo{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$campo_tennis){
-        $dichiarazione->bindValue(":id_campoTennis", $campo_tennis->getIdCampoTennis(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_campoTennis", $campo_tennis->getId_campo(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":copertura", $campo_tennis->getCopertura(),PDO::PARAM_STR);
-        $dichiarazione->bindValue("id_campo", $campo_tennis->getId_attrezzatura(),PDO::PARAM_INT);
+       // $dichiarazione->bindValue("id_campo", $campo_tennis->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":terreno", $campo_tennis->getTerreno(),PDO::PARAM_STR);
     }
 

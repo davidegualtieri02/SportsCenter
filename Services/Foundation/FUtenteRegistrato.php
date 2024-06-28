@@ -52,6 +52,7 @@ class FUtenteRegistrato{
      */
     public static function bind($dichiarazione,$UtenteRegistrato,$id){
         $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
+        $dichiarazione ->bindValue(":id_utenteRegistrato",$UtenteRegistrato->getId(),PDO::PARAM_INT);
 
     }
     /**

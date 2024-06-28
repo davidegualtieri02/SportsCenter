@@ -26,6 +26,7 @@ class FCampo_Calcio extends FCampo{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo da calcio
             $campo_calcio = new ECampo_Calcio($risultatoQuery[0]['copertura'], $risultatoQuery[0]['fotocampo'], $risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
+            $campo_calcio->setId_campo('id_campoCalcio');
             //Aggiunge l'oggetto campo da calcio nell'array);
             //Restituisce l'oggetto campo da calcio
             return $campo_calcio;
@@ -36,6 +37,7 @@ class FCampo_Calcio extends FCampo{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo da calcio
                 $campo_calcio = new ECampo_Calcio($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['fotocampo'], $risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
+                $campo_calcio->setId_campo('id_campoCalcio');
                 //Aggiunge l'oggetto campo da calcio nell'array
                 $campi_calcio[] = $campo_calcio;
             }
@@ -48,7 +50,7 @@ class FCampo_Calcio extends FCampo{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$campo_calcio){
-        //$dichiarazione->bindValue(":id_campoCalcio", $campo_calcio->getIdCampoCalcio(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_campoCalcio", $campo_calcio->getId_campo(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":copertura", $campo_calcio->getCopertura(),PDO::PARAM_STR);
        // $dichiarazione->bindValue(":copertura", $campo_calcio->getId_attrezzatura(),PDO::PARAM_INT);
        $dichiarazione->bindValue(" :fotocampo",$campo_calcio->getFotoCampo(),PDO::PARAM_LOB);

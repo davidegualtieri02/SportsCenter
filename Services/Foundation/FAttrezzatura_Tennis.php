@@ -26,6 +26,7 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura da tennis
             $attrezzatura_tennis = new EAttrezzatura_Tennis($risultatoQuery[0]['numPalla_Tennis'], $risultatoQuery[0]['numRacchetta_Tennis']);
+            $attrezzatura_tennis->setId_attrezzatura('id_attrezzaturaTennis');
             //Restituisce l'oggetto attrezzatura da tennis
             return $attrezzatura_tennis;
         }elseif(count($risultatoQuery) > 1){ //Se la query restituisce più di un risultato
@@ -35,6 +36,7 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura da tennis
                 $attrezzatura_tennis = new EAttrezzatura_Tennis($risultatoQuery[$i]['numPalla_Tennis'], $risultatoQuery[$i]['numRacchetta_Tennis']);
+                $attrezzatura_tennis->setId_attrezzatura('id_attrezzaturaTennis');
                 //Aggiunge l'oggetto attrezzatura da tennis nell'array
                 $attrezzature_tennis[] = $attrezzatura_tennis;
             }
@@ -47,7 +49,7 @@ class FAttrezzatura_Tennis extends FAttrezzatura{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$attrezzatura_tennis){
-        //$dichiarazione ->bindValue(":id_attrezzaturaTennis",$attrezzatura_tennis->getIdAttrezzaturaTennis(),PDO::PARAM_INT);
+        $dichiarazione ->bindValue(":id_attrezzaturaTennis",$attrezzatura_tennis->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numPalla_Tennis",$attrezzatura_tennis->getNumPalla_Tennis(),PDO::PARAM_INT);
        // $dichiarazione ->bindValue(":id_attrezzatura", $attrezzatura_tennis->getId_attrezzatura(),PDO::PARAM_INT);
         $dichiarazione ->bindValue(":numRacchetta_Tennis",$attrezzatura_tennis->getNumRacchetta_Tennis(),PDO::PARAM_INT);

@@ -13,6 +13,7 @@ class EAttrezzatura_Pallavolo extends EAttrezzatura{
     public static function getEntità():string{
         return self::$entità;
     }
+    /*
     public function getIdAttrezzaturaPallavolo(){
         return $this->id_attrezzaturaPallavolo;
     }
@@ -20,6 +21,7 @@ class EAttrezzatura_Pallavolo extends EAttrezzatura{
 
         $this->id_attrezzaturaPallavolo = $id_attrezzaturaPallavolo;
     }
+    */
     public function getNumPalla_Pallavolo(){
         return $this->numPalla_Pallavolo;
     }
