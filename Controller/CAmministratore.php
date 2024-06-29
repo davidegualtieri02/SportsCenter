@@ -300,8 +300,6 @@ class CAmministratore{
             }
         }
     }
-    public static function 
-
 }
 
 
