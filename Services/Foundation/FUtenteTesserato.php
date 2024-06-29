@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__."/../../Entity/EUtenteTesserato.php");
 class FUtenteTesserato{
     //Definizione delle variabili statistiche
     private static $tabella = "UtenteTesserato"; //Nome della tabella nel DB
