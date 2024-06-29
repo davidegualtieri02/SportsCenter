@@ -70,30 +70,32 @@ class CTesseramento{
             $view->MostraTesseramento();
         }
         elseif(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            if(CUtente::Loggato()) { // Verifica se l'utente è loggato
-                $utente = unserialize($sessione->LeggiValore('Utente'));
-                $pdo = new PDO('mysql:host=localhost;dnname =prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
-                if($pm::VerificaTesseramento($pdo,$utente->getId())) {
-                    $pm::deleteOgg('Tesseramento',$utente->getId(),'id_utenteRegistrato') ;
-                     $view->MostraMessaggioConferma("Tesseramento annullato con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
-                }else{
-                    $view->MostraMessaggioErrore("Errore nell'annullamento del tesseramento");// se la prenotazione non viene rimossa , viene printato questo messaggio 
-                    }
-            
-                
-            } else {
-                header('Location: /SportsCenter/Utente/login');
-                exit;
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $pdo = new PDO('mysql:host=localhost;dnname =Prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
+            if($pm::VerificaTesseramento($pdo,$utente->getId())) {
+                $pm::deleteOgg('Tesseramento',$utente->getId(),'id_utenteRegistrato') ;
+                $view->MostraMessaggioConferma("Tesseramento annullato con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
+            }else{
+                $view->MostraMessaggioErrore("Errore nell'annullamento del tesseramento");// se la prenotazione non viene rimossa , viene printato questo messaggio 
             }
+            
         }
     }
+    
     //cliccando su Tesseramento nel menù a tendina dopo aver cliccato su profilo appare tramite questo metodo un modulo di tesseramento 
     public static function MostraTesseramento(){
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
         if(UServer::getRichiestaMetodo()=='GET'){
-            $utente = unserialize($sessione->LeggiValore('utente'));
-            $view->MostraModuloTesseramento($utente);
+            if(CUtente::Loggato()){
+                $utente = unserialize($sessione->LeggiValore('Utente'));
+                $view->MostraModuloTesseramento($utente);
+            }else{
+                header('Location: /SportsCenter/Utente/login');
+                exit;
+
+            }
+
         }
 
     }
