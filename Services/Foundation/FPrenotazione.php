@@ -142,7 +142,7 @@ class FPrenotazione {
     /**
      * Metodo che verifica se la prenotazione è di un utente loggato
      */
-    public static function VerificaUtentePrenotazione($pdo, $idPrenotazione, $id_utente) {
+    public static function VerificaUtentePrenotazione($pdo,$idPrenotazione, $id_utente) {
         $sql = "SELECT id_utente FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utente = :id_utente";
         $dichiarazione = $pdo->prepare($sql);
         $dichiarazione->execute([
@@ -153,7 +153,7 @@ class FPrenotazione {
     }
     public static function OrariDisponibili($giorno){
         $sql = " SELECT o.id_orario,o.orario FROM Orario o WHERE o.orario NOT IN (SELECT p.orario FROM Prenotazione p WHERE data = $giorno); ";
-        $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', 'password123');
+        $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', ' ');
         $dichiarazione =$pdo->prepare($sql);
         $dichiarazione->execute(); 
         $risultato = array();

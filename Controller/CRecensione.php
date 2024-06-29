@@ -79,8 +79,10 @@ class CRecensione{
             if(UServer::getRichiestaMetodo()=='GET'){
                 $view->MostraPrenotazioni($prenotazioni,$utente);
              }
+        }else {
+            header('Location: /SportsCenter/Utente/login');
+            exit;
         }
-
     }
     /**
      * Metodo che elimina una recensione con annessa eliminazione di foto presenti nella stessa recensione

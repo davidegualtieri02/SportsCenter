@@ -95,9 +95,7 @@ class CPrenotaCampo{
             if(CUtente::Loggato()){
                 $utente = unserialize($sessione->LeggiValore('Utente'));
                 $view->mostraCalendario($utente,$campo);
-            }else{
-                header('Location: /SportsCenter/login');
-            }
+             }
         }
     }
     /**
@@ -105,10 +103,10 @@ class CPrenotaCampo{
      */
     public static function MostraOrari($giorno){
         $sessione = USession::getIstanza();
-        $view = new VPrenotaCampo();
-        $campo = $_POST['campo'];// la sessione mantiene il campo scelto in sessione e viene ripreso 
+        $view = new VPrenotaCampo(); 
         if(UServer::getRichiestaMetodo()=="POST"){
             $utente = unserialize($sessione->LeggiValore('Utente'));
+            $campo = $sessione::getElementoSessione('campo');// la sessione mantiene il campo scelto in sessione e viene ripreso
             $giornoStr = UMetodiHTTP::post('data');
             $giorno = new DateTime($giornoStr);
             $view->mostraOrari($utente,$giorno,$campo);
@@ -121,14 +119,17 @@ class CPrenotaCampo{
     public static function MostraAttrezzatura($orario){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-        $campo = $_POST['campo'];
-        $giorno = $_POST['data']; //la data resta in sessione e la riprendo
-        $utente = unserialize($sessione->LeggiValore('Utente'));
-        if(UServer::getRichiestaMetodo()=='GET'){
+       if(UServer::getRichiestaMetodo()=='GET'){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $campo = $sessione::getElementoSessione('campo');
+            $giorno = $sessione::getElementoSessione('data');
             $orari = FPersistentManager::orariDisponibili($giorno);
             $view->MostraOrari($orari);
          }
         elseif(UServer::getRichiestaMetodo()=='POST'){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $campo = $sessione::getElementoSessione('campo');
+            $giorno = $sessione::getElementoSessione('data');
             $orario = UMetodiHTTP::post('orario') ;
 
             $view->MostraPagAttrezatura($orario,$utente,$giorno,$campo);
@@ -155,23 +156,13 @@ class CPrenotaCampo{
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-        if (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            if (CUtente::Loggato()) { // Verifica se l'utente è loggato
-                $utente = unserialize($sessione->LeggiValore('utente'));
-                $pdo = new PDO('mysql:host=localhost;dbname =Prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
-                
-                if ($pm::VerificaUtenteprenotazione($pdo, $idPrenotazione, $utente->getId())) {
-                    $pm::deletePrenotazione($idPrenotazione,$utente->getId());
-                    $view->MostraMessaggioConferma("Prenotazione annullata con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
-                } else {
-                    $view->MostraMessaggioErrore("Non hai i permessi per annullare questa prenotazione."); //  cioè l'utente non ha prenotato nessuna prenotazione e dunque non la può eliminare 
-                    }
-            } else {
-                header('Location: /SportsCenter/Utente/login');
-                exit;
-            }
+        if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $pm::deletePrenotazione($idPrenotazione,$utente->getId());
+            $view->MostraMessaggioConferma("Prenotazione annullata con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
         }
     }
+
     public static function mostraCampi(){
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
@@ -186,7 +177,7 @@ class CPrenotaCampo{
                 $campi_tennis[] = $pm::RecuperaTuple(FCampo_Tennis::getTabella());
                  $campi_padel[] = $pm::RecuperaTuple(FCampo_Padel::getTabella());
             // Aggiunge tutti i campi contenuti negli array sopra  in un unico array campi
-                 $campi = array_merge($campi_basket[], $campi_pallavolo[], $campi_calcio[], $campi_tennis[],$campi_padel[]);
+                 $campi = array_merge($campi_basket, $campi_pallavolo, $campi_calcio, $campi_tennis,$campi_padel);
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
@@ -194,6 +185,7 @@ class CPrenotaCampo{
             }    
         else{
             header("Location: SportsCenter/Utente/login");
+            exit;
             }
 
         }
