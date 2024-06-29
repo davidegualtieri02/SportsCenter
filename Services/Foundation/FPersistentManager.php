@@ -145,6 +145,10 @@ class FPersistentManager{
     public static function AggiungiImmagini($recensione,$images){
         FRecensione::addImagesARecensione($recensione,$images);
     }
+    public static function NumVolte($utente,$idcampo){
+        $risultato = FRecensione::NumVoltePrenotazioni($utente,$idcampo);
+        return $risultato;
+    }
     
 
 

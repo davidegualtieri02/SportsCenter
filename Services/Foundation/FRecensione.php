@@ -227,4 +227,16 @@ class FRecensione{
 
     
     }
+    /**
+     * Metodo per verificare se l'utente che vuole scrivere una recensione ha almeno una volta prenotato quel campo
+     */
+    public static function NumVoltePrenotazioni($utente,$idcampo){
+        $pdo = new PDO('mysql:host=localhost;dbname=Prova', 'root', ' ');
+        $sql = "SELECT COUNT(*) FROM Prenotazione WHERE id_utente = :id_utente AND id_campo = :id_campo"; // si verifica se l'utente che vuole commentare ha prenotato almeno una volta quel campo con quel id
+        $dichiarazione = $pdo->prepare($sql);
+        $dichiarazione->execute([':id_utente'=>$utente->getId(),'id_campo'=>$idcampo]);// qui sto andando ad eseguire la query specificando che al posto di :id_campo ci va l'id del campo e la stessa cosa per l'utente
+        $count = $dichiarazione->fetchColumn(); //tramite fetchColumn otteniamo il valore del COUNT della Select , cioè otteniamo il numero
+        //di prenotazioni efettuate da quell'utente
+        return $count>0; // se count è >0 allora l'utente ha prenotato almeno una volta quel campo 
+    }
 }
