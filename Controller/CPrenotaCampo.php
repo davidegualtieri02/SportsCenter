@@ -19,8 +19,6 @@ class CPrenotaCampo{
         if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             if(CUtente::Loggato()){
                 $utente = unserialize($sessione->LeggiValore('Utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
-                
-
                 $idcampo = $campo->getId();
                 $titolocampo = $campo->getTitolo();
                 if(($titolocampo = "Campo Basket 1") || ($titolocampo = "Campo Basket 2")){
@@ -96,7 +94,7 @@ class CPrenotaCampo{
         if(UServer::getRichiestaMetodo()=="POST"){
             if(CUtente::Loggato()){
                 $utente = unserialize($sessione->LeggiValore('Utente'));
-                $view->mostraInfo($utente,$campo);
+                $view->mostraCalendario($utente,$campo);
             }else{
                 header('Location: /SportsCenter/login');
             }
@@ -140,14 +138,6 @@ class CPrenotaCampo{
     /**
      * 
      */
-
-
-
-
-
-
-    
-    
     public function InfoPrenotazione($idPrenotazione){
         $view = new VPrenotaCampo();
         $sessione = USession::getIstanza();
@@ -168,7 +158,7 @@ class CPrenotaCampo{
         if (UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
             if (CUtente::Loggato()) { // Verifica se l'utente è loggato
                 $utente = unserialize($sessione->LeggiValore('utente'));
-                $pdo = new PDO('mysql:host=localhost;dnname =prova','root','password123', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
+                $pdo = new PDO('mysql:host=localhost;dbname =Prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
                 
                 if ($pm::VerificaUtenteprenotazione($pdo, $idPrenotazione, $utente->getId())) {
                     $pm::deletePrenotazione($idPrenotazione,$utente->getId());
