@@ -149,7 +149,7 @@ class FEntityManager{
      */
     public static function getOggdaAttributi($tabella, $campo1, $id1, $campo2, $id2){
         try{
-            $query = "SELECT * FROM " . $tabella . "WHERE". $campo1 . " = " . $id1 . " AND" . $campo2 . " = " . $id2 .";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
+            $query = "SELECT * FROM " . $tabella . " WHERE ". $campo1 . " = " . $id1 . " AND " . $campo2 . " = " . $id2 .";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
             $dichiarazione = self::$db->prepare($query);// cosi si prepara la query
             $dichiarazione->execute();// con il metodo execute() viene eseguita la query 
             $countrighe = $dichiarazione->rowCount();//conta le righe restituite dalla query
@@ -283,7 +283,7 @@ class FEntityManager{
      */
     public static function deleteOgginDB($tabella,$id,$campo){// la funzione costruisce una stringa di query SQL per eliminare una tupla da una tabella specificata(ovvero $tabella) dove un certo campo(attributo) $campo ha come valore un certo valore $id che non è necessariamente l'id di qualcosa ma può essere un qualsiasi valore per esempio il nome mario , cioè $campo = nome e $id = mario ,cosi eliminiamo tutte quelle tuple che hanno come valore dell'attributo 'nome' il nome 'mario' 
         try{
-            $query = "DELETE FROM" . $tabella . "WHERE" . $campo . " = '".$id."';";// query DELETE per eliminare una tupla da una tabella del db
+            $query = "DELETE FROM " . $tabella . " WHERE " . $campo . " = '".$id."';";// query DELETE per eliminare una tupla da una tabella del db
             $dichiarazione = self::$db->prepare($query);//self::$db è un oggetto della classe PDO
             $dichiarazione->execute();
             return true;// se viene eliminata la tupla che rispetta la clausola WHERE con successo il metodo ritorna true.
