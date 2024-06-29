@@ -149,7 +149,7 @@ class FEntityManager{
      */
     public static function getOggdaAttributi($tabella, $campo1, $id1, $campo2, $id2){
         try{
-            $query = "SELECT * FROM " . $tabella . " WHERE ". $campo1 . " = " . $id1 . " AND " . $campo2 . " = " . $id2 .";"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
+            $query = "SELECT * FROM " . $tabella . " WHERE " . $campo1 . " = '" . $id1 . "' AND " . $campo2 . " = '" . $id2 . "';"; // prendiamo tutte quelle tuple che hanno campo1(attributo1) = id1(può essere un qualsiasi valore non per forza un id ) e campo2(attributo2) = id2(che può essere qualsiasi valore) dove id1 è il valore di campo1(attributo1) e id2 è il valore di campo2(attributo2)
             $dichiarazione = self::$db->prepare($query);// cosi si prepara la query
             $dichiarazione->execute();// con il metodo execute() viene eseguita la query 
             $countrighe = $dichiarazione->rowCount();//conta le righe restituite dalla query

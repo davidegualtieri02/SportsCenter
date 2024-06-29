@@ -60,7 +60,7 @@ class FUtenteRegistrato{
      * @param $id si riferisce all'id passato come parametro al metodo.
      */
     public static function getOgg($id){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtente::getTabella(),self::getChiave(),$id);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtente::getTabella(),FUtente::getChiave(),$id);
         //questa linea recupera un oggetto dalla tabella FUtenteRegistrato specificando un Id . self::getkey() mi rida la chiave primaria della tabella del database ovvero mi rida l'attributo ID. $id contiene il valore dell'id associato alla chiave ID . Quindi accediamo alla tabella  Utente del database , si accede alla colonna con l'attributo primario cioè Id e poi viene recuperata la tupla della tabella che ha quell'id posto come parametro al metodo nella colonna degli Id.
         if (count($risultato)>0){//se c'è un elemento nell array risultato allora
             $utenteRegistrato= self::CreaOggUtenteRegistrato($risultato);//creo un utente registrato tramite i dati recuperati dalla tabella Utente tramite il metodo statico creaOggUtenteRegistrato() . Un metodo statico implementato in una classe se richiamato nella stessa classe deve essere richiamato tramite self::,self indica che il metodo è statico ed è della stessa classe.

@@ -23,8 +23,9 @@ print_r($ogg2);
 $ogg3 = FEntityManager::recuperaTuple("Utente");
 print_r($ogg3);
 
-//sbagliata query in qualche modo
+//FUNZIONA
 $ogg4 = FEntityManager::getOggdaAttributi("Utente", "nome", "duz", "cognome", "gual");
+print_r($ogg4);
 
 //FUNZIONA
 $ogg5 = FEntityManager::deleteOgginDB("UtenteRegistrato", 1, "ban");
@@ -38,8 +39,8 @@ include("FUtenteRegistrato.php");
 include("FUtente.php");
 $u1 = new EUtenteRegistrato("Daieg", "Roma", "diego@email.it", "diegopw", false);
 FUtenteRegistrato::salvaOgg($u1);
-
 */
+
 
 //u->recuperaOggetto("Utente","id_utente",1);
 
