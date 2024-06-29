@@ -34,7 +34,7 @@ class FPersistentManager{
         $classeFound = "F" . substr($classe,1); 
         //substr($classe,1) estrae una sottostringa dal nome della classe , eliminando il primo carattere e tenendo tutti gli altri. Se per esempio la classe è EUtente , il metodo rimuove la E , ottenendo Utente 
         //e al posto della E , viene posto la lettera F in modo che la classe sarà una classe del paacchetto Foundation .
-        $metodoStatico = " getOgg";
+        $metodoStatico = "getOgg";
         $risultato = call_user_func([$classeFound,$metodoStatico],$id);
         // call_user_func permette di chiamare una funzione o metodo specificato . in questo caso chiama il metodo contenuto in $metodoStatico
         //che è getOgg della classe $classefound che è una delle classi contenute in foundation. $id è l'ID dell'oggetto della classe, che viene usato per prendere tale oggetto dal db.
