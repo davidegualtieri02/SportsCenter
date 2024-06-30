@@ -32,10 +32,10 @@ class VUtente{
             case 'bannato':
                 $this->smarty->assign('banErrore', "banErrore");
                 break;
-            case 'passworderrata':
+            case 'password errata':
                 $this->smarty->assign('passworderrata', "passworderrata");
                 break;
-            case 'emailerrata':
+            case 'email Errata':
                 $this->smarty->assign('emailerrata', "emailerrata");
                 break;
         }
@@ -48,6 +48,26 @@ class VUtente{
                 break;
         }
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
+    }
+    public function profilo($utente,$idutente){
+        if(CUtente::Loggato()) $this->smarty->assign('utenteloggato','loggato');
+        else $this->smarty->assign('utenteloggato','nonloggato');
+        $this->smarty->assign('Utente', $utente);
+        $this->smarty->assign('idutente', $idutente);
+
+    }
+    public function ModificaPassword($utente, $error){
+
+        if (CUtente::Loggato()) $this->smarty->assign('utenteloggato', 'loggato');
+        else $this->smarty->assign('utenteloggato', 'nonloggato');
+
+        switch ($error){
+            case 'passwordErrata':
+                $this->smarty->assign('passwordErrata', "passwordErrata");
+                break;
+        }
+        $this->smarty->assign('utente', $utente);
+        $this->smarty->display('./smarty/libs/templates/mod_password.tpl');
     }
     
 }
