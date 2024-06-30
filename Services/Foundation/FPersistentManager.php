@@ -267,7 +267,7 @@ class FPersistentManager{
     public static function bindUtenteRegistrato($dichiarazione,$utente,$id){
         FUtenteRegistrato::bind($dichiarazione,$utente,$id);
     }
-    public 
+
     
   //------------------------------------------------------UtenteTesserato---------------------------------------------------------------------
    

@@ -53,18 +53,18 @@ class FUtente{
      * PDO::PARAM_INT/STR sono costanti che mi dicono di che tipo è quel parametro.Per esempio tale costante nella prima riga del metodo , mi dice di che tipo è "nome" ciòè una stringa.
      */
     public static function bind($dichiarazione,$utente){
-        $dichiarazione ->bindValue(":nome",$utente->getNome(),PDO::PARAM_STR);
-        $dichiarazione ->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
-        $dichiarazione ->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
-        $dichiarazione ->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":nome",$utente->getNome(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":id_utente",$utente->getId(),PDO::PARAM_INT);
     }
     /**
      * Metodo che verifica se un certo oggetto esiste nel database
      * 
      */
-    public static function verifica($campo,$id_utente){
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id_utente);
+    public static function verifica($campo,$id){
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery); // il metodo verifica tramite un oggetto FEntityMAnager che richiama il metodo esisteNelDB() restituisce true se esiste l'oggetto che cerchiamo nel db  altrimenti false .
     }
     //FentityManager::getIstanza() è un metodo che viene utilizzato per ottenere un'istanza(oogetto) della classe FEntityManager, questo è un esempio di singleton .

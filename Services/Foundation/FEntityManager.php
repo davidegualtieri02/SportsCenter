@@ -73,7 +73,7 @@ class FEntityManager{
      */
     public static function recuperaOggetto($tabella,$campo,$id){ 
         try{
-            $query = "SELECT * FROM ".$tabella. " WHERE ".$campo."=".$id .";";
+            $query = "SELECT * FROM ".$tabella. " WHERE ".$campo." = '".$id ."';";
             $dichiarazione =self::$db->prepare($query);//questa riga sta preparando la query SQL per la propria esecuzione 
             // self::$db si riferisce all'oggetto $db che rappresenta una connessione al database
             //l'oggetto dichiarazione viene creato quando si prepara una query SQL utilizzando il metodo prepare() di un oggetto PDO
