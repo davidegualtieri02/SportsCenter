@@ -18,14 +18,23 @@ class VUtente{
     static function getPassword(){
         return UMetodiHTTP::post('password');
     }
+    /**
+     * Funzione che indirizza alla pagina con il form di login 
+     */
     public function mostraLoginForm(){
+        $this->smarty->assign('errore',false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('./Smarty/libs/templates/login_form.tpl');
     }
     public function mostraFormRegistrazione(){
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
     }
     public function loginBan(){
-        $this->smarty->display('.Smarty/libs/templates/');
+        $this->smarty->assign('errore',false);
+        $this->smarty->assign('ban',true);
+        $this->smarty->assign('regErr',false);
+        $this->smarty->display('.Smarty/libs/templates/login_form.tpl');
     }
     public function erroreLogin($errore){
         switch($errore){

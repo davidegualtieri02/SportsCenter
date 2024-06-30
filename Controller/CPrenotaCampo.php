@@ -84,11 +84,10 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
-        if(UServer::getRichiestaMetodo()=="POST"){
-            if(CUtente::Loggato()){
-                $utente = unserialize($sessione->LeggiValore('Utente'));
-                $view->mostraCalendario($utente,$campo);
-             }
+        if(UServer::getRichiestaMetodo()=="GET"){
+            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $view->MostraCalendario($utente,$campo);
+             
         }
     }
     /**
@@ -102,7 +101,7 @@ class CPrenotaCampo{
             $campo = $sessione::getElementoSessione('campo');// la sessione mantiene il campo scelto in sessione e viene ripreso
             $giornoStr = UMetodiHTTP::post('data');
             $giorno = new DateTime($giornoStr);
-            $view->MostraOrari($utente,$giorno,$campo);
+            $view->MostraOrari($utente,$campo,$giorno);
         }
     }
     /**
@@ -117,7 +116,7 @@ class CPrenotaCampo{
             $campo = $sessione::getElementoSessione('campo');
             $giorno = $sessione::getElementoSessione('data');
             $orari = FPersistentManager::orariDisponibili($giorno);
-            $view->MostraOrari($orari);
+            $view->MostraListaOrari($utente,$campo,$giorno,$orari);
          }
         elseif(UServer::getRichiestaMetodo()=='POST'){
             $utente = unserialize($sessione->LeggiValore('Utente'));
@@ -125,7 +124,7 @@ class CPrenotaCampo{
             $giorno = $sessione::getElementoSessione('data');
             $orario = UMetodiHTTP::post('orario') ;
 
-            $view->MostraPagAttrezatura($utente,$orario,$giorno,$campo);
+            $view->MostraPagAttrezzatura($utente,$orario,$giorno,$campo);
         }
     }
 

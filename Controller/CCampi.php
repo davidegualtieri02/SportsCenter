@@ -18,7 +18,7 @@ class CCampi{
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
-                $view->mostraCampi($campi,$amm);//la view mostra i campi e per ogni campo mostra la propria foto.
+                $view->MostraCampiAmm($campi,$amm);//la view mostra i campi e per ogni campo mostra la propria foto.
             }
          }
         else{

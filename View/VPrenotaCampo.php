@@ -38,9 +38,18 @@ class VPrenotaCampo{
      $this->smarty->assign('Utente',$utente);
      $this->smarty->assign('giorno',$giorno);
      $this->smarty->assign('Campo',$campo);
-     $this->smarty->display('./Smarty/libs/templates/orari.tpl');
-
+     $this->smarty->display('./Smarty/libs/templates/giorno.tpl');
    }
+   
+   public function MostraListaOrari($utente,$giorno,$campo,$orari){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('giorno',$giorno);
+    $this->smarty->assign('Campo',$campo);
+    $this->smarty->assign('orari',$orari);
+    $this->smarty->display('./Smarty/libs/templates/orari.tpl');
+
+  }
+
    public function MostraPagAttrezzatura($utente,$orario,$giorno,$campo){
      $this->smarty->assign('Utente',$utente);
      $this->smarty->assign('orario',$orario);
@@ -50,7 +59,11 @@ class VPrenotaCampo{
    }
    // è legata ad un metodo che fa vedere le informazioni su una prenotazione
    public function MostraInfoPrenotazione($utente,$prenotazione){
-     $this->smarty->assign('Utente',$utente);
+     $this->smarty->assign('Utente',$utente); // assign serve per passare delle variabili da php ai template smarty
+     //il primo parametro è la variabile che verrà usata nel template di smarty
+     // in questo caso nel template la variabile si chiamerà Utente
+     // il secondo parametro è il valore che viene assegnato al primo parametro . Quindi questo codice prende il valore della variabile $utente
+     // e lo rende disponibile nel template smarty sotto il nome di 'Utente'
      $this->smarty->assign('prenotazione',$prenotazione);
      $this->smarty->display('/Smarty/libs/templates/info.tpl');
 
