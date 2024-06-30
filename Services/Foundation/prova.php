@@ -68,15 +68,23 @@ print_r(FUtenteRegistrato::CreaOggUtenteRegistrato($ok));
 
 
 require_once("FPersistentManager.php");
-$oggA = FPersistentManager::recuperaOggetto("EUtente", 1); 
-print_r($oggA);
+//$oggA = FPersistentManager::recuperaOggetto("EUtente", 1); 
+//print_r($oggA);
+
+print_r(FEntityManager::getIstanza()->esisteNelDB($ok)); //stampa "1" ossia "true" -->OK
+
+
+//FUNZIONA (stampa "1" ossia "true")
+$oggB = FPersistentManager::VerificaPasswordUtente("pwroma");
+print_r($oggB);
+
+//FUNZIONA (stampa "1" ossia "true")
+$oggC = FPersistentManager::VerificaEmailUtente("testEMAIL");
+print_r($oggC);
 
 
 
-//PERSISTENT: recuperaOggetto OK, verificaemailutente, recuperaamministratoredaemail,...
-
-
-
+//PERSISTENT: recuperaamministratoredaemail,...
 
 
 
