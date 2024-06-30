@@ -97,7 +97,7 @@ class CUtente {
                     $view->erroreLogin('bannato'); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
                 }elseif(USession::getStatoSessione()==PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
                     USession::getIstanza();// viene ridata un istanza sessione 
-                    USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getIdUtenteRegistrato());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
+                    USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getId());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
                     header ('Location : /SportsCenter/UtenteRegistrato/home');

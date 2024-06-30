@@ -102,7 +102,7 @@ class CPrenotaCampo{
             $campo = $sessione::getElementoSessione('campo');// la sessione mantiene il campo scelto in sessione e viene ripreso
             $giornoStr = UMetodiHTTP::post('data');
             $giorno = new DateTime($giornoStr);
-            $view->mostraOrari($utente,$giorno,$campo);
+            $view->MostraOrari($utente,$giorno,$campo);
         }
     }
     /**
@@ -125,7 +125,7 @@ class CPrenotaCampo{
             $giorno = $sessione::getElementoSessione('data');
             $orario = UMetodiHTTP::post('orario') ;
 
-            $view->MostraPagAttrezatura($orario,$utente,$giorno,$campo);
+            $view->MostraPagAttrezatura($utente,$orario,$giorno,$campo);
         }
     }
 
