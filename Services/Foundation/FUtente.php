@@ -53,7 +53,7 @@ class FUtente{
      * PDO::PARAM_INT/STR sono costanti che mi dicono di che tipo è quel parametro.Per esempio tale costante nella prima riga del metodo , mi dice di che tipo è "nome" ciòè una stringa.
      */
     public static function bind($dichiarazione,$utente){
-        $dichiarazione ->bindValue(":name",$utente->getNome(),PDO::PARAM_STR);
+        $dichiarazione ->bindValue(":nome",$utente->getNome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
         $dichiarazione ->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);

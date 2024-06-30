@@ -211,7 +211,7 @@ class FEntityManager{
      */
     public static function SalvaOgg($ClasseFound,$ogg){
         try{
-            $query = " INSERT INTO". $ClasseFound::getTable() ." VALUES" . $ClasseFound::getValue();// query viene posta uguale a questa stringa che inizia la query SQL. INSERT INTO  è un comando SQL che viene utilizzato per inserire nuove righe in una tabella del database
+            $query = "INSERT INTO ". $ClasseFound::getTabella() ." VALUES " . $ClasseFound::getValore();// query viene posta uguale a questa stringa che inizia la query SQL. INSERT INTO  è un comando SQL che viene utilizzato per inserire nuove righe in una tabella del database
             // $ClasseFound ::getTable() è un metodo statico della classe indicata dalla variabile $classefound( cioè è il metodo di una classe entity contenuta in foundation),questo metodo restituisce il nome della tabella del database in cui si desidera inserire la nuova riga.
             // Values è un costrutto SQL che precede i valori da inserire nella riga per ogni attributo.
             //$ClasseFound::getValue() è un metodo statico xkè invocato con ::, questo metodo restituisce i valori da inserire nella riga da aggiungere  per ogni attributo .

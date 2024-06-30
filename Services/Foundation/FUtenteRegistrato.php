@@ -51,7 +51,7 @@ class FUtenteRegistrato{
     /**
      * Questo metodo associa tramite la funzione bindvalue il valore del parametro ban con il risultato del metodo isbanned() , se isbanned() rida true il valore del parametro ban è true altrimenti false
      */
-    public static function bind($dichiarazione,$UtenteRegistrato,$id){
+    public static function bind($dichiarazione,$UtenteRegistrato){
         $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
         $dichiarazione ->bindValue(":id_utenteRegistrato",$UtenteRegistrato->getId(),PDO::PARAM_INT);
 
