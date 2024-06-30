@@ -264,10 +264,10 @@ class FPersistentManager{
      * @param $utente è l'utente registrato stesso
      * @param $id è l'id dell'utente registrato
      */
-    public static function bindUtenteRegistrato($dichiarazione,$utente,$id){
-        FUtenteRegistrato::bind($dichiarazione,$utente,$id);
+    public static function bindUtenteRegistrato($dichiarazione,$id){
+        FUtenteRegistrato::bind($dichiarazione,$id);
     }
-    public 
+    
     
   //------------------------------------------------------UtenteTesserato---------------------------------------------------------------------
    
