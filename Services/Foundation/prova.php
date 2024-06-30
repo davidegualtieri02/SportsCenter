@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include("FEntityManager.php");
+require_once("FEntityManager.php");
 
 //EntityManager::$db = new PDO("mysql:dbname=Prova;host=localhost;charset=utf8", "root");
 
@@ -34,32 +34,61 @@ $u1 =
 $ogg4 = FEntityManager::SalvaOgg("FUtenteRegistrato", $u1);
 
 da rivedere
-include(__DIR__."/../../Entity/EUtenteRegistrato.php");
-include("FUtenteRegistrato.php");
-include("FUtente.php");
+require_once(__DIR__."/../../Entity/EUtenteRegistrato.php");
+require_once("FUtenteRegistrato.php");
+require_once("FUtente.php");
 $u1 = new EUtenteRegistrato("Daieg", "Roma", "diego@email.it", "diegopw", false);
+//FUtenteRegistrato::salvaOgg($u1);
 FUtenteRegistrato::salvaOgg($u1);
+echo "ID Utente: " . $u1->getId();
 */
+//FUNZIONA
+require_once(__DIR__."/../../Entity/EUtente.php");
+require_once("FUtente.php");
+print_r(FUtente::getOgg(2));
+//FUNZIONA
+require_once("FUtenteRegistrato.php");
+$ok=FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(),1); //$ok è una parte di getOgg in FUtenteRegistrato
+print_r($ok);
+print_r(FUtenteRegistrato::CreaOggUtenteRegistrato($ok));
 
 
-//u->recuperaOggetto("Utente","id_utente",1);
+//Questo getOgg dà problemi
+//print_r(FUtenteRegistrato::getOgg(1));
 
-//print_r(FUtente::verifica("id_utente", 1));
+//Questo salvaOgg dà problemi
+//$ut = new EUtenteRegistrato("Daieg", "Roman", "diego@email.it", "diegopw", false);
+//echo $ut->getId();
+//print_r(FEntityManager::salvaOgg("FUtenteRegistrato", $ut));
+
+//Le seguenti due righe non funzionano perché il metodo recuperaOggetto di FPersistentManager richiama getOgg di FUtenteRegistrato, che però non funziona
+//require_once("FPersistentManager.php");
+//FPersistentManager::recuperaOggetto("EUtenteRegistrato", 99);
 
 
-/*
-$query = "SELECT * FROM Utente WHERE id_utente = 1";
-$dichiarazione =FEntityManager::$db->prepare($query);
-$dichiarazione->execute();
-$countRighe = $dichiarazione->rowCount();
-if($countRighe >0){
-	$risultato = array();
-	$dichiarazione->setFetchMode(PDO::FETCH_ASSOC);
-	while ($righe = $dichiarazione->fetch()){
-		$risultato[] = $righe;
-	}
-    return $risultato;
- }else{
-    return array();
-}
-*/
+
+require_once("FPersistentManager.php");
+$oggA = FPersistentManager::recuperaOggetto("EUtente", 1); 
+print_r($oggA);
+
+
+
+//PERSISTENT: recuperaOggetto OK, verificaemailutente, recuperaamministratoredaemail,...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
