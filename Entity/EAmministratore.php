@@ -1,8 +1,8 @@
 <?php
 
-use Doctrine \ORM\Mapping as ORM;
+//use Doctrine \ORM\Mapping as ORM;
 
-require_once "EUtente";
+require_once "EUtente.php";
 class EAmministratore extends EUtente{
 
     private static $id_amministratore;

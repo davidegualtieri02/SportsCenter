@@ -42,10 +42,12 @@ $u1 = new EUtenteRegistrato("Daieg", "Roma", "diego@email.it", "diegopw", false)
 FUtenteRegistrato::salvaOgg($u1);
 echo "ID Utente: " . $u1->getId();
 */
+
 //FUNZIONA
 require_once(__DIR__."/../../Entity/EUtente.php");
 require_once("FUtente.php");
 print_r(FUtente::getOgg(2));
+
 //FUNZIONA
 require_once("FUtenteRegistrato.php");
 $ok=FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(),1); //$ok è una parte di getOgg in FUtenteRegistrato
@@ -79,19 +81,16 @@ $oggB = FPersistentManager::VerificaPasswordUtente("pwroma");
 print_r($oggB);
 
 //FUNZIONA (stampa "1" ossia "true")
-$oggC = FPersistentManager::VerificaEmailUtente("testEMAIL");
+$oggC = FPersistentManager::VerificaEmailUtente("testtt");
 print_r($oggC);
 
+//FUNZIONA
+require_once("FAmministratore.php");
+$oggD = FPersistentManager::recuperaAmmDaEmail("emailamm");
+print_r($oggD);
 
-
-//PERSISTENT: recuperaamministratoredaemail,...
-
-
-
-
-
-
-
+//FUNZIONA
+print_r(FAmministratore::getOgg(10));
 
 
 
