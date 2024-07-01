@@ -21,13 +21,13 @@ class VUtente{
     /**
      * Funzione che indirizza alla pagina con il form di login 
      */
-    public function mostraLoginForm(){
+    public function MostraLoginFormUtente(){
         $this->smarty->assign('errore',false);
         $this->smarty->assign('ban',false);
         $this->smarty->assign('regErr',false);
         $this->smarty->display('./Smarty/libs/templates/login_form.tpl');
     }
-    public function mostraFormRegistrazione(){
+    public function MostraFormRegistrazione(){
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
     }
     public function loginBan(){
@@ -53,7 +53,7 @@ class VUtente{
     public function erroreRegistrazione($errore){
         switch ($errore){
             case 'emailEsistente':
-                $this->smarty->assign('emailEsistente', "emailEsistente");
+                $this->smarty->assign('Email esistente', "emailEsistente");
                 break;
         }
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');

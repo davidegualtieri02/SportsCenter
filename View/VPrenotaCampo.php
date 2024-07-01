@@ -74,13 +74,53 @@ class VPrenotaCampo{
      $this->smarty->display('./Smarty/libs/templates/annulla_prenotazione.tpl');
    }
 
-   public function MostraCampi($campi,$utente){
+   public function MostraCampiUtente($campi,$utente){
      $this->smarty->assign('campi',$campi);
      $this->smarty->assign('Utente',$utente);
      $this->smarty->display('/Smarty/libs/templates/campi.tpl');
 
 
    }
+   public function MostraErrore(){
+    $this->smarty->assign('errore',true);
+    $this->smarty->display('errore.tpl');
+   }
    
+   public function MostraFormAttrezzaturaBasket($utente,$idcampo,$attrezzatura,$titolocampo){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('titolocampo',$titolocampo);
+    $this->smarty->display('attrezzatura_basket.tpl');
+   }
+   public function MostraFormAttrezzaturaPadel($utente,$idcampo,$attrezzatura,$titolocampo){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('titolocampo',$titolocampo);
+    $this->smarty->display('attrezzatura_padel.tpl');
+   }
+   public function MostraFormAttrezzaturaCalcio($utente,$idcampo,$attrezzatura,$titolocampo){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('titolocampo',$titolocampo);
+    $this->smarty->display('attrezzatura_calcio.tpl');
+   }
+   public function MostraFormAttrezzaturaPallavolo($utente,$idcampo,$attrezzatura,$titolocampo){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('titolocampo',$titolocampo);
+    $this->smarty->display('attrezzatura_pallavolo.tpl');
+   }
+   public function MostraFormAttrezzaturaTennis($utente,$idcampo,$attrezzatura,$titolocampo){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('titolocampo',$titolocampo);
+    $this->smarty->display('attrezzatura_tennis.tpl');
+   }
+
 
 }

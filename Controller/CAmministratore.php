@@ -35,7 +35,7 @@ class CAmministratore{
             header('Location : /SportsCenter/Amministratore/home');
         }
         $view = new VAmministratore();
-        $view->mostraLoginForm();
+        $view->MostraLoginForm();
     }
 
     /**
@@ -53,7 +53,7 @@ class CAmministratore{
      * viene reindirizzato alla homepage
      */
     public static function VerificaLogin(){
-        $view = new VAmministratore();
+        $view = new VUtente();
         $email = FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'));
         if($email){
             $utente = FPersistentManager::getIstanza()->recuperaAmmDaEmail(UMetodiHTTP::post('email'));
@@ -67,10 +67,10 @@ class CAmministratore{
                     header ('Location : /SportsCenter/Amministratore/home');
                 }
             }else {
-                $view->erroreLogin();
+                $view->erroreLogin('Password errata');
             }
         }else{
-            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
+            $view->erroreLogin('Email errata');// se l'email non esiste viene dato un errore di login 
         }
     }
 
@@ -122,7 +122,7 @@ class CAmministratore{
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
-                $view->mostraCampi($campi,$amministratore);
+                $view->MostraCampiAmm($campi,$amministratore);
             }    
         else{
             header("Location: SportsCenter/Amministratore/login");
@@ -158,7 +158,7 @@ class CAmministratore{
             $amministratore = unserialize($sessione->LeggiValore('Amministratore'));
             $giornoStr = UMetodiHTTP::post('data');
             $giorno = new DateTime($giornoStr);
-            $view->mostraOrari($amministratore,$giorno,$campo);
+            $view->MostraOrari($amministratore,$giorno,$campo);
         }
     }
 
@@ -175,7 +175,7 @@ class CAmministratore{
             $campo = $sessione::getElementoSessione('campo');//riprendo dalla sessione la data e il campo
             $giorno = $sessione::getElementoSessione('data');
             $orari = FPersistentManager::orariDisponibili($giorno);
-            $view->MostraOrari($orari);
+            $view->MostraListaOrari($amministratore,$giorno,$campo,$orari);
          }
         elseif(UServer::getRichiestaMetodo()=='POST'){
             $amministratore = unserialize($sessione->LeggiValore('Utente'));
@@ -183,7 +183,7 @@ class CAmministratore{
             $giorno = $sessione::getElementoSessione('data');
             $orario = UMetodiHTTP::post('orario') ;//viene scelto un orario tra quelli disponibili
 
-            $view->MostraPagAttrezatura($orario,$amministratore,$giorno,$campo);
+            $view->MostraPagAttrezzatura($amministratore,$orario,$giorno,$campo);
         }
     }
    
@@ -249,7 +249,7 @@ class CAmministratore{
     public static function MostraConfermaPrenotazioneAmm(){
         $sessione = USession::getIstanza();
         $pm = FPersistentManager::getIstanza();
-        $view = new VPrenotaCampo();
+        $view = new VAmministratore();
         if(UServer::getRichiestaMetodo()=="GET"){
             if(CAmministratore::Loggato()){
                 $amm = unserialize($sessione->LeggiValore('Amministratore'));
@@ -257,7 +257,7 @@ class CAmministratore{
                 $data = $sessione::getElementoSessione('data');
                 $orario = $sessione::getElementoSessione('orario');
                 $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
-                $view->MostraFormPrenotazioneAmm($amm,$campo,$data,$orario,$attrezzatura);
+                $view->MostraFormPrenotazione($amm,$campo,$data,$orario,$attrezzatura);
             }
         }
         elseif(UServer::getRichiestaMetodo()=="POST"){
@@ -269,7 +269,7 @@ class CAmministratore{
             $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
             $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura);
             $pm::uploadOgg($prenotazione);
-            $view->ConfermaPrenotazioneAmm($amministratore);
+            $view->ConfermaPrenotazione($amministratore);
 
 
         }
@@ -286,20 +286,20 @@ class CAmministratore{
         if(UServer::getRichiestaMetodo()=="GET"){
             $amministratore =  unserialize($sessione->LeggiValore('amministratore'));
             $prenotazioni = FPersistentManager::RecuperaTuple('Prenotazione');
-            $view->mostraPrenotazioni($prenotazioni);
+            $view->mostraPrenotazioni($amministratore,$prenotazioni);
         }
         if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            if (CAmministratore::Loggato()) { // Verifica se l'utente è loggato
-                $amministratore = unserialize($sessione->LeggiValore('utente'));
-                FPersistentManager::deleteOgg('Prenotazione',$idPrenotazione,'id_prenotazione');
-                    $view->MostraMessaggioConferma("Prenotazione annullata con successo!");
+            $amministratore = unserialize($sessione->LeggiValore('utente'));
+            $pm::deleteOgg('Prenotazione',$idPrenotazione,'id_prenotazione');
+            $view->MostraMessaggioConferma("Prenotazione annullata con successo!");
                 
-            } else {
-                header('Location: /SportsCenter/Utente/login');
-                exit;
+        } else {
+             header('Location: /SportsCenter/Utente/login');
+            exit;
+
             }
-        }
-    }
+   }
+    
 }
 
 

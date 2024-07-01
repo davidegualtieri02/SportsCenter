@@ -33,7 +33,7 @@ class CUtente {
         $IDUtente = USession::getElementoSessione('utenteRegistrato');//IDUtente assume come valore il valore della chiave Utente in $_SESSION , cioè assume come valore il valore dell'ID dell'utente
         $utenteRegistrato = FPersistentManager::getIstanza()->recuperaOggetto(EUtenteRegistrato::getEntità(), $IDUtente); // $Utenteregistrato punterà ad utente registrato , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
         if($utenteRegistrato->Bannato()){
-            $view = new VUtenteRegistrato(); // se l'utente è bannato viene creato un oggetto VUtente e viene chiusa e distrutta la sessione perchè giustamente un utente bannato non può prenotare un campo 
+            $view = new VUtente(); // se l'utente è bannato viene creato un oggetto VUtente e viene chiusa e distrutta la sessione perchè giustamente un utente bannato non può prenotare un campo 
             USession::annullaSessione();
             USession::distruggiSessione();
             $view->loginBan();
@@ -53,8 +53,8 @@ class CUtente {
         if(USession ::isSetElementoSessione('utenteRegistrato')){//verifica se un elemento con chiave utenteRegistrato è stato inserito nell'array superglobale $_SESSION
             header('Location : /SportsCenter/UtenteRegistrato/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
         }
-        $view = new VUtenteRegistrato();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
-        $view->mostraLoginForm();
+        $view = new VUtente();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
+        $view->MostraLoginFormUtente();
 
     }
     /**
@@ -62,14 +62,14 @@ class CUtente {
      * @return void
      */
     public static function registrazione(){
-        $view = new VUtenteRegistrato();
+        $view = new VUtente();
         if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false && FPersistentManager::getIstanza()->VerificaPasswordUtente(UMetodiHTTP::post('password'))==false){// in questa riga di codice vengono verificate le credenziali
             // nell'if viene verificato se l'email , la password non sono gia state utilizzate , cioè sono uguali a false , se non sono state utilizzate  viene creato un utente con tali credenziali 
             $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('password'),UMetodiHTTP::post('email'),UMetodiHTTP::post('ban')); // creazione utente con le credenziali fornite
             FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);// viene caricato l'utente nel db tramite uploadOgg
-            $view->mostraRegistrationForm();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
+            $view->MostraFormRegistrazione();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
         }else{
-            $view->erroreRegistrazione();//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
+            $view->erroreRegistrazione('Email esistente');//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
         }
      /**
      * Metodo per uscire dal profilo , viene reindirizzato l'utente alla pagina di login 
@@ -87,7 +87,7 @@ class CUtente {
  * viene reindirizzato alla homepage
  */
     public static function VerificaLogin(){
-        $view = new VUtenteRegistrato();
+        $view = new VUtente();
         $email = FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'));
         if($email){
             $utenteRegistrato = FPersistentManager::getIstanza()->recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
@@ -103,10 +103,10 @@ class CUtente {
                     header ('Location : /SportsCenter/UtenteRegistrato/home');
                 }
             }else {
-                $view->erroreLogin('passworderrata');
+                $view->erroreLogin('Password errata');
             }
         }else{
-            $view->erroreLogin('emailerrata');// se l'email non esiste viene dato un errore di login 
+            $view->erroreLogin('Email errata');// se l'email non esiste viene dato un errore di login 
         }
     }
     /**

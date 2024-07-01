@@ -1,0 +1,137 @@
+<html>
+<head>
+   <title>Pagina di prova per le FORM</title>
+   <meta http-equiv="Content-Type" content="charset=utf-8" />
+
+</head>
+<body>
+
+ <br>
+ Inserisci il giorno
+ <br><br>
+
+
+<form method="post"
+      action="VPrenotaCampo.php"
+      />
+
+ <fieldset>
+ <legend>Form:</legend>  
+
+   <fieldset>
+   <legend>Data</legend>   
+     <table cellpadding="5">
+
+      <tr>
+        <td align="right"> prenotazione  </td>
+        <td>  <input type="date" id="prenotazione" name="prenotazione" 
+                     min="2022-05-10" max="2022-05-15" >
+       </td>
+      </tr>
+
+      <tr>
+        <td align="right"> ora/data arrivo  </td>
+        <td>  <input type="datetime-local" id="dataora" name="dataora" >
+       </td>
+      </tr>
+
+      <tr>
+        <td align="right"> ora  </td>
+        <td>    <input type="time" id="appt" name="appt"> </td>
+      </tr>
+
+      <tr>
+        <td align="right"> mese  </td>
+        <td>    <input type="month" id="bdaymonth" name="bdaymonth">
+       </td>
+      </tr>
+
+      <tr>
+        <td align="right"> settimana  </td>
+        <td>          <input type="week" id="week" name="week"> </td>
+      </tr>
+
+   </table>
+   </fieldset>
+   
+ 
+ <fieldset>
+ <legend>Altri elementi:</legend>   
+     <table cellpadding="5">
+
+
+      <tr>
+        <td align="right"> colore </td>
+        <td>  <input list="colors" name="color" autofocus required>
+              <datalist id="colors">
+                <option value="blue">
+                <option value="red">
+                <option value="white">
+                <option value="gray">
+                <option value="black">
+              </datalist>
+        </td>
+      </tr>
+
+     <tr>
+        <td align="right"> email </td>
+        <td>   <input type="email" id="email" name="email"></td>
+     </tr>  
+
+     <tr>
+        <td align="right"> numero (10..100) </td>
+        <td>  <input type="number" id="quantita" name="quantita" 
+                     value="10" min="10" max="100" step="10"> </td>
+     </tr>  
+
+     <tr>
+        <td align="right"> volume (0..50) </td>
+        <td>  <input type="range" id="vol" name="vol" min="0" max="50"> </td>
+     </tr>  
+
+     <tr>
+        <td align="right"> telefono </td>
+        <td>  <input type="tel" id="telefono" name="telefono" 
+                     pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                     placeholder="123-45-678"
+                     required> <small>Format: 123-45-678</small> </td>
+     </tr>  
+
+     <tr>
+        <td align="right"> homepage </td>
+        <td>  <input type="url" id="homepage" name="homepage"> </td>
+     </tr>  
+
+
+   </table>
+   </fieldset>   
+   <fieldset>
+   <legend>Invio Dati:</legend>
+     <table cellpadding="5">
+
+     <tr>
+        <td> <input type="submit" value="invia dati" /> </td>
+        <td> <input type="reset" value = "reset" /> </td>
+     </tr>
+
+   </table>
+   </fieldset>
+
+</fieldset>   
+
+</form> 
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -97,6 +97,7 @@ class CPrenotaCampo{
     }
     /**
      * Metodo che mostrerà una volta che l'utente fornisce la data gli orari disponibili per quel campo e quel giorno
+     * qui clicchiamo il giorno
      */
     public static function MostraOrari($giorno){
         $sessione = USession::getIstanza();
@@ -164,7 +165,7 @@ class CPrenotaCampo{
     public static function mostraCampi(){
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
-        $view = new VCampi();
+        $view = new VPrenotaCampo();
         if (CUtente::Loggato()){
             $utente= unserialize($sessione->LeggiValore('Utente'));
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
@@ -179,7 +180,7 @@ class CPrenotaCampo{
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
-                $view->mostraCampi($campi,$utente);
+                $view->MostraCampiUtente($campi,$utente);
             }    
         else{
             header("Location: SportsCenter/Utente/login");
