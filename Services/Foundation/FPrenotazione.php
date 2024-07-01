@@ -151,16 +151,41 @@ class FPrenotazione {
         ]);
         return $dichiarazione->rowCount() > 0;// verifica se la query ha restituita almeno una riga , cioè se quell'utente ha prenotato almeno una prenotazione 
     }
+    /**
+     * Metodo che gestisce l'accesso sincrono di due utenti che prenotano ad uno stesso orario
+     * Se due utenti prenotano contemporaneamente , il primo che clicca su un orario per quel giorno fa si che all'altro utente scompaia l'orario prenotabile 
+     * cioè quell'orario sta per essere prenotato .
+     */
     public static function OrariDisponibili($giorno){
-        $sql = " SELECT o.id_orario,o.orario FROM Orario o WHERE o.orario NOT IN (SELECT p.orario FROM Prenotazione p WHERE data = $giorno); ";
-        $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', ' ');
-        $dichiarazione =$pdo->prepare($sql);
-        $dichiarazione->execute(); 
-        $risultato = array();
-        $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//restituisce i risultati come un array associativo utilizzando i nomi delle colonne come chiavi 
-        while ($riga = $dichiarazione->fetch()){ //ripete il ciclo fino a che non ci sono righe nella colonna
-            $risultato = $riga;
+        try{
+            //creiamo una connessione al database e impostiamo nella seconda riga
+            //l'attributo di errore per lanciare eccezioni in caso di errori
+            $pdo = new PDO('mysql:host=localhost;dbname=prova', 'root', ' ');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            //avvia la transazione
+            $pdo->beginTransaction();
+            //viene bloccata la tabella Prenotazioni in modalità scrittura ( che scrive dati sul db) per evitare conflitti con altre transazioni
+            $pdo->exec('LOCK TABLES Prenotazione WRITE');
+            //ponendo nella select alla fine FOR UPDATE se un utente che sta prenotando uno stesso campo in uno stesso giorno clicca su un ora per esempio le 14:30
+            // un'altro utente che sta prenotando anche lui quel campo in quel giorno , non vedrà più le ore 14:30 tra gli orari disponibili
+            $sql = "SELECT o.id_orario, o.orario FROM Orario o LEFT JOIN Prenotazione p ON o.orario = p.orario AND p.data = $giorno WHERE p.orario IS NULL FOR UPDATE";
+            $dichiarazione =$pdo->prepare($sql);
+            //viene usato un parametro per prevenire sql injection 
+            $dichiarazione->bindParam(':giorno',$giorno,PDO::PARAM_STR);
+            $dichiarazione->execute();//esegue la query 
+            //vengono recuperati i risultati della query e vengono memorizzati in un array associativo 
+            $risultato = array();
+            $dichiarazione->setFetchMode(PDO::FETCH_ASSOC);//restituisce i risultati come un array associativo utilizzando i nomi delle colonne come chiavi 
+             while ($riga = $dichiarazione->fetch()){ //ripete il ciclo fino a che non ci sono righe nella colonna
+                $risultato = $riga;
+            }
+            $pdo->exec('UNBLOCK TABLES');
+            $pdo->commit();
+            return $risultato;
+        }catch (PDOEXception $e){
+            $pdo->rollBack();
+            $pdo->exec('UNLOCK TABLES');
+            throw $e;
         }
-        return $risultato;
     }
 }
