@@ -69,11 +69,16 @@ class CPrenotaCampo{
             $scadenza = UMetodiHTTP::post('Data_Scadenza');
             $numero = UMetodiHTTP::post('Numero_Carta');
             $cvv = UMetodiHTTP::post('CVV');
+            $errore = $pm::ProcessoPag($nome,$cognome,$numero,$scadenza,$cvv);
+            if($errore){
+                //se ci sono errori nella validazione ,mostriamo il form di pagamento con un messaggio di errore
+                $view->MostraErrore();
+            }else{
+            //altrimenti procediamo con la creazione della prenotazione e la conferma della prenotazione
             $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura);
             $pm::uploadOgg($prenotazione);
             $view->ConfermaPrenotazione($utente,$nome,$cognome,$scadenza,$numero,$cvv);
-
-
+            }
         }
 
     }
