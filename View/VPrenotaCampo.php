@@ -121,6 +121,14 @@ class VPrenotaCampo{
     $this->smarty->assign('titolocampo',$titolocampo);
     $this->smarty->display('attrezzatura_tennis.tpl');
    }
+  
+   public function MostraPrenotazioni($utente,$prenotazioni){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('prenotazioni',$prenotazioni);
+    $this->smarty->display('prenotazioni.tpl');
+}
+
+
 
 
 }

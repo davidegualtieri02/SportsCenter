@@ -21,10 +21,18 @@ class VAmministratore{
         $this->smarty->display('prenotazione_amministratore.tpl');
 
     }
-    public function mostraPrenotazioni($amministratore,$prenotazioni){
+   
+    public function MostraMessaggioConferma($amministratore){
+        $this->smarty->assign('attrezzatura',$amministratore);
+        $this->smarty->display('messaggio_conferma.tpl');
+
+    }
+    public function MostraPrenotazioniAmm($amministratore,$prenotazione){
         $this->smarty->assign('amministratore',$amministratore);
-        $this->smarty->assign('prenotazioni',$prenotazioni);
-        $this->smarty->display('prenotazioni.tpl');
+        $this->smarty->assign('prenotazione',$prenotazione);
+        $this->smarty->display('prenotazioni_amm.tpl');
+
+
     }
     
     

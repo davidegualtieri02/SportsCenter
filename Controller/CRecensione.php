@@ -37,12 +37,12 @@ class CRecensione{
                         //index assume come valore un id dei percorsi , perchè nell'array abbiamo chiave(id)=>percorso
                     if ($immagini['error'][$index] === UPLOAD_ERR_OK) { //UPLOAD_ERR_OK verifica che i file sono stati caricati senza errori
                             // Aggiunge l'immagine all'oggetto ERecensione  e salva la recensione
-                        $pm= FPersistentManager::AggiungiImmagini($recensione,$percorsoTemporaneo);
+                        $pm::AggiungiImmagini($recensione,$percorsoTemporaneo);
                     }
 
                 }        
                     // Aggiorna la recensione nel database con le immagini aggiunte
-                $pm::updateOgg($recensione);
+                $pm::updateOgg(FRecensione::getTabella(),'image',$immagini,'id_utente',$utente->getId()); // al posto del valore della colonna image poniamo le immagini relative al commento 
         }
                     
                 //l'utente non ha prenotato questo campo , viene mostrato un messaggio di errore
@@ -56,7 +56,7 @@ class CRecensione{
      */
     public function MostraPrenotazioni(){
         $sessione = USession::getIstanza();
-        $view = new VProdotti();
+        $view = new VPrenotaCampo();
         if(CUtente::Loggato()){
             $utente = unserialize($sessione->LeggiValore('Utente'));
             $idUtente = $utente->getId();

@@ -282,16 +282,16 @@ class CAmministratore{
     public static function annullaPrenotazioneAmm($idPrenotazione) {
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
-        $view = new VPrenotaCampo();
+        $view = new VAmministratore();
         if(UServer::getRichiestaMetodo()=="GET"){
             $amministratore =  unserialize($sessione->LeggiValore('amministratore'));
             $prenotazioni = FPersistentManager::RecuperaTuple('Prenotazione');
-            $view->mostraPrenotazioni($amministratore,$prenotazioni);
+            $view->MostraPrenotazioniAmm($amministratore,$prenotazioni);
         }
         if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
             $amministratore = unserialize($sessione->LeggiValore('utente'));
             $pm::deleteOgg('Prenotazione',$idPrenotazione,'id_prenotazione');
-            $view->MostraMessaggioConferma("Prenotazione annullata con successo!");
+            $view->MostraMessaggioConferma($amministratore);
                 
         } else {
              header('Location: /SportsCenter/Utente/login');

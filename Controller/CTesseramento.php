@@ -49,9 +49,9 @@ class CTesseramento{
                     $pm::uploadOgg($tesseramento); // Aggiunta del tesseramento nel database
                     $utenteTesserato = new EUtenteTesserato($utente->getNome(),$utente->getCognome(),$utente->getEmail(),$utente->getPassword(),false);// se l'utente si sta tesserando il ban è impostato a false
                     $pm::uploadOgg($utenteTesserato);//aggiungo l'utente tesserato al database 
-                    $view->mostraMessaggioConferma("Tesseramento effettuato con successo!");
+                    $view->mostraMessaggioTesseramento('Tesseramento effettuato con successo');
                 }else {
-                    $view->mostraMessaggioErrore("Errore durante il pagamento del tesseramento. Riprova più tardi.");
+                    $view->mostraMessaggioErrore( 'Errore durante il tesseramento');
                 }
         }else {
                 header('Location: /SportsCenter/Utente/login');
