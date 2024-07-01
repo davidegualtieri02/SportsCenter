@@ -1,3 +1,0 @@
-<?php
-
-//duzzo lo vedi?
