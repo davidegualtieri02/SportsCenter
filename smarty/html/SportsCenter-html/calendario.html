@@ -12,7 +12,7 @@
         body {
             margin: 0;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #a3cb38, #78c257); /* Verde */
@@ -24,17 +24,125 @@
             z-index: 1; /* Assicura che il calendario sia sopra lo sfondo */
             max-width: 400px; /* Larghezza massima del calendario */
             width: 90%; /* Larghezza del contenitore del calendario */
-            margin: 0 auto; /* Centrato orizzontalmente */
             padding: 20px; /* Aggiunto padding per separare il calendario dal bordo */
             background-color: #fff; /* Sfondo bianco per il calendario */
             border-radius: 8px; /* Bordo arrotondato */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra leggera */
-            margin-right:10%;
+            margin-right: 10%;
+        }
+
+        .card {
+            position: relative;
+            z-index: 2; /* Assicura che la card sia sopra lo sfondo */
+            max-width: 300px; /* Larghezza massima della card */
+            width: 90%; /* Larghezza del contenitore della card */
+            padding: 20px; /* Aggiunto padding per separare la card dal bordo */
+            background-color: #fff; /* Sfondo bianco per la card */
+            border-radius: 8px; /* Bordo arrotondato */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+            margin-left: 5%; /* Spazio a sinistra */
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra sottile */
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card img:hover {
+            transform: scale(1.05); /* Ingrandisce leggermente l'immagine al passaggio del mouse */
+        }
+
+        .card-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            text-align: center;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 80%; /* Massima larghezza dell'immagine nella lightbox */
+            max-height: 80vh; /* Massima altezza dell'immagine nella lightbox */
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombra più accentuata */
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Bottone "Avanti" */
+        #avanti-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            z-index: 1001; /* Assicura che sia sopra la lightbox */
+        }
+
+        #avanti-button:hover {
+            background-color: #555; /* Cambia colore al passaggio del mouse */
         }
     </style>
 </head>
 
 <body>
+    <!-- Card con immagine e testo -->
+    <div class="card">
+        <img src="images/OIP.jpg" alt="Campo Sportivo" id="campo-img">
+        <!-- Non c'è più l'input file, l'immagine è fissa -->
+        <ion-icon class="card-icon" name="camera-outline" id="upload-icon"></ion-icon>
+        <div class="card-text" id="campo-sportivo">Informazioni sul campo sportivo: Campo da Calcio in erba .Costo prenotazione 60 euro</div>
+    </div>
+
     <!-- Contenitore principale per il calendario -->
     <div class="calendar-container">
         <!-- Calendario -->
@@ -50,15 +158,66 @@
         </div>
     </div>
 
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Bottone "Avanti" -->
+    <button id="avanti-button">Avanti</button>
+
     <!-- Scripts -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script src="js/calendario.js"></script> <!-- File JavaScript per il calendario -->
+
+    <!-- Script per gestire la lightbox -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const campoImg = document.getElementById('campo-img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const avantiButton = document.getElementById('avanti-button');
+
+            campoImg.addEventListener('click', function () {
+                lightbox.style.display = "flex"; /* Mostra la lightbox */
+                lightboxImg.src = this.src;
+            });
+
+            lightboxClose.addEventListener('click', function () {
+                lightbox.style.display = "none"; /* Nasconde la lightbox */
+            });
+
+            lightbox.addEventListener('click', function (event) {
+                if (event.target === lightbox) {
+                    lightbox.style.display = "none";
+                }
+            });
+
+            avantiButton.addEventListener('click', function () {
+                // Aggiungi qui la logica per andare avanti nella prenotazione
+                console.log('Andare avanti nella prenotazione...');
+                // Puoi aggiungere qui la funzionalità desiderata
+            });
+        });
+    </script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
