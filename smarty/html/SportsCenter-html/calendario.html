@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Stili generici della pagina -->
+    <link rel="stylesheet" href="css/calendario.css"> <!-- Stili specifici del calendario -->
+    <style>
+        /* Stili aggiuntivi per sovrascrivere il background */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a3cb38, #78c257); /* Verde */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .calendar-container {
+            position: relative;
+            z-index: 1; /* Assicura che il calendario sia sopra lo sfondo */
+            max-width: 400px; /* Larghezza massima del calendario */
+            width: 90%; /* Larghezza del contenitore del calendario */
+            margin: 0 auto; /* Centrato orizzontalmente */
+            padding: 20px; /* Aggiunto padding per separare il calendario dal bordo */
+            background-color: #fff; /* Sfondo bianco per il calendario */
+            border-radius: 8px; /* Bordo arrotondato */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+            margin-right:10%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenitore principale per il calendario -->
+    <div class="calendar-container">
+        <!-- Calendario -->
+        <div class="calendar">
+            <div class="calendar-inner">
+                <div class="calendar-body">
+                    <!-- Contenuto del calendario -->
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <!-- Aggiungi altre celle del calendario secondo necessità -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="js/calendario.js"></script> <!-- File JavaScript per il calendario -->
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

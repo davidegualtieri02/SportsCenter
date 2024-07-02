@@ -4,7 +4,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(135deg, #fbc531, #e1b12c);
+  background: linear-gradient(135deg, #a3cb38, #78c257); /* Verde */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -57,7 +57,7 @@ body {
 }
 
 .inputbox input:focus {
-  border-color: #fbc531;
+  border-color: #a3cb38; /* Verde */
   outline: none;
 }
 
@@ -76,7 +76,7 @@ body {
 .inputbox input:valid ~ label {
   top: 5px;
   font-size: 14px;
-  color: #fbc531;
+  color: #a3cb38; /* Verde */
 }
 
 .forget {
@@ -85,7 +85,7 @@ body {
 }
 
 .forget a {
-  color: #fbc531;
+  color: #a3cb38; /* Verde */
   text-decoration: none;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 button {
-  background: #fbc531;
+  background: #a3cb38; /* Verde */
   border: none;
   padding: 12px 20px;
   color: #fff;
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-  background: #e1b12c;
+  background: #78c257; /* Verde */
 }
 
 .register {
@@ -117,13 +117,14 @@ button:hover {
 }
 
 .register a {
-  color: #fbc531;
+  color: #a3cb38; /* Verde */
   text-decoration: none;
 }
 
 .register a:hover {
   text-decoration: underline;
 }
+
 
 
 
