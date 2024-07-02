@@ -1,9 +1,9 @@
 <?php
-
+require_once(__DIR__."/../../Entity/ETessera.php");
 class FTessera{
     //Dichiarazione di variabili private statiche che contengono informazioni sulla tabella del DB, i valori e la chiave primaria
     private static $tabella = "Tessera"; 
-    private static $valore = "(NULL,:Codice_Tessera)";
+    private static $valore = "(:id_tessera,:id_utenteRegistrato,:Data_Inizio,:Data_Scadenza)";
     private static $chiave = "id_tessera";
 
     //Metodi per ottenere il nome della tabella, i valori, la classe e la chiave primaria
@@ -24,13 +24,13 @@ class FTessera{
     public static function creaOggTessera($risultatoQuery){
         //Se c'è solo un risultato, crea un singolo oggetto tessera
         if(count($risultatoQuery) == 1){
-            $tessera = new ETessera($risultatoQuery[0]['id_utente'],$risultatoQuery[0]['Data_Scadenza'],$risultatoQuery[0]['Data_Inizio']);
+            $tessera = new ETessera($risultatoQuery[0]['id_utenteRegistrato'],$risultatoQuery[0]['Data_Scadenza'],$risultatoQuery[0]['Data_Inizio']);
             $tessera->setIdTessera($risultatoQuery[0]['id_tessera']);
             return $tessera;
         }elseif(count($risultatoQuery) > 1){ //Se ci sono più risultati, crea un array di oggetti Tessera
             $tessere = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $tessera = new ETessera($risultatoQuery[$i]['id_utente'],$risultatoQuery[$i]['Data_Scadenza'],$risultatoQuery[$i]['Data_Inizio']);
+                $tessera = new ETessera($risultatoQuery[$i]['id_utenteRegistrato'],$risultatoQuery[$i]['Data_Scadenza'],$risultatoQuery[$i]['Data_Inizio']);
                 $tessera->setIdTessera($risultatoQuery[$i]['id_tessera']);
                 $tessere[] = $tessera;
             }
@@ -45,6 +45,7 @@ class FTessera{
         $dichiarazione->bindValue(':Data_Scadenza',$tessera->getDataScadenza(),PDO::PARAM_LOB);
         $dichiarazione->bindValue(':Data_Inizio',$tessera->getDataInizio(),PDO::PARAM_LOB);
         $dichiarazione->bindValue(':id_tessera',$tessera->getIdTessera(),PDO::PARAM_INT);
+        $$dichiarazione->bindValue(':id_utenteRegistrato', $tessera->getIdUtente(), PDO::PARAM_INT);
     }
 
     //Metodo per verificare se un oggetto esiste nel DB
@@ -64,10 +65,10 @@ class FTessera{
         }
     }
     public static function VerificaTesseramentoUtente($pdo,$idutente){
-        $sql = "SELECT id_utente FROM Tessera WHERE id_utente = :id_utente ";
+        $sql = "SELECT id_utenteRegistrato FROM Tessera WHERE id_utenteRegistrato = :id_utenteRegistrato";
         $dichiarazione = $pdo->prepare($sql);
         $dichiarazione->execute([
-            ':id_utente' => $idutente
+            ':id_utenteRegistrato' => $idutente
         ]);
         return $dichiarazione->rowCount() > 0; // verifica se la query ha restituita almeno una riga , cioè se quell'utente ha effettuato un tesseramento
    }

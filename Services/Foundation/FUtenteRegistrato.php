@@ -9,7 +9,6 @@ class FUtenteRegistrato{
      */
     private static $valore = "(:id_utenteRegistrato,:nome,:cognome,:password,:email,:ban,:id_tessera)";
 
-
     private static $chiave = "id_utenteRegistrato";
 
     public static function getTabella(){
@@ -59,7 +58,6 @@ class FUtenteRegistrato{
         $dichiarazione->bindValue(":id_utenteRegistrato",$UtenteRegistrato->getId(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":id_tessera",$UtenteRegistrato->getid_tessera(), PDO::PARAM_INT);
         $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
-
     }
     /**
      * Il metodo restituisce un oggetto Utente Registrato.
@@ -88,17 +86,18 @@ class FUtenteRegistrato{
             try{
                 FEntityManager::getIstanza()->getdb()->beginTransaction();//tramite l'unico oggetto entity manager viene richiamato il metodo getdb() che mi rida un riferimento ad un database ovvero mi rida una variabile o oggetto che rappresenta il database e tramite tale variabile(variabile e non oggetto perchè senno credo che non potevo richiamre il metodo begintransaction()) richiamo il metodo begintransaction().
                 //begintransaction() viene richiamato per iniziare una nuova transazione . Una transazione è un insieme di operazionii sul database che vengono eseguite come un'unità , cioè come un unica azione. Se una delle operazioni fallisce , tutte le altre operazioni nella transazione vengono annullate e il database rimane invariato.
-                $salvaUtenteRegistrato = FEntityManager::getIstanza()->SalvaOgg(FUtenteRegistrao::getClasse(),$ogg);//Questa riga salva l'oggetto utente Registrato nel database nella tabella Utente e restituisce l'ID dell'oggetto appena inserito. Questo ID viene assegnato alla variabile $salvaUtenteRegistrato
+                $salvaUtenteRegistrato = FEntityManager::getIstanza()->SalvaOgg(FUtenteRegistrato::getClasse(),$ogg);//Questa riga salva l'oggetto utente Registrato nel database nella tabella Utente e restituisce l'ID dell'oggetto appena inserito. Questo ID viene assegnato alla variabile $salvaUtenteRegistrato
                 if($salvaUtenteRegistrato !==null){
-                    $salvaUtente = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$ogg,$salvaUtenteRegistrato);//se $salvaUtenteRegistrato non è null ma è pari all'id dell'utente registrato, salviamo l'oggetto utente registrato  tramite l'id nel database. L'oggetto da salvare è contenuto nella variabile $salvautenteregistrato.
+                    //$salvaUtente = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$ogg,$salvaUtenteRegistrato);//se $salvaUtenteRegistrato non è null ma è pari all'id dell'utente registrato, salviamo l'oggetto utente registrato  tramite l'id nel database. L'oggetto da salvare è contenuto nella variabile $salvautenteregistrato.
                     //SalvaOggdaID restituisce true o false se l'oggetto è stato salvato o no quindi $salvaUtente è = true o false a seconda se l'utente è stato salvato o no.
                     FEntityManager::getIstanza()->getdb()->commit(); // fino a commit con l'oggetto Entity Manager richiamo il metodo getDB che mi rida un riferimento al db , cioè tramite ciò otteniamo un oggetto db ovvero un db, tramite il metodo commit() le modifiche che abbiamo fatto al database aggiungendo un oggetto Utente registrato tramite il suo ID vengono rese permanenti finchè non viene richiamato il metodo commit() di nuovo.
                     //le modifiche vengono fatte in una transazione temporanea . Queste modifiche non diventano permanenti finchè non si richiama il metodo commit().
-                    if($salvaUtente){// se il metodo salvaOggdaID mi rida true, cioè l'oggetto utente viene salvato nel DB, viene ritornato l'id dell'utente salvato.
-                        return $salvaUtenteRegistrato;
-                    }else{
-                        return false;//se il metodo salvaOggdaID mi rida false, cioè l'oggetto utente non viene salvato nel DB, ritorna false.
-                    }
+                    //if($salvaUtente){// se il metodo salvaOggdaID mi rida true, cioè l'oggetto utente viene salvato nel DB, viene ritornato l'id dell'utente salvato.
+                        //return $salvaUtenteRegistrato;
+                    //}else{
+                        //return false;//se il metodo salvaOggdaID mi rida false, cioè l'oggetto utente non viene salvato nel DB, ritorna false.
+                    //}
+                    return $salvaUtenteRegistrato;
                 }else{
                     return false; // se  l'oggetto utente non è stato salvato e si ritorna false.
                 }
@@ -121,7 +120,7 @@ class FUtenteRegistrato{
                         //quindi il metodo aggiorna il valore del campo di una tupla dove la chiave primaria cioè l'id ha un determinato valore dato da $ogg->getId.
                     
                     }else{
-                        FEntityManager::getIstanza()->updateOgg(FUtente::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
+                        FEntityManager::getIstanza()->updateOgg(FUtenteRegistrato::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
                         //se il campo è pari a password il valore della password viene aggiornato nella tabella Utente che è la stessa di Utenteregistrato e dunque l'aggiornamento è corretto.
                         //ovviamente aggiorniamo solo il valore del campo password della tupla che ha un certo ID.
                     }

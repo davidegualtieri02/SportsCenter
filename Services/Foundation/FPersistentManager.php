@@ -45,7 +45,7 @@ class FPersistentManager{
     /**
      * Metodo che recupera le tuple di una tabella 
      */
-    public static function RecuperaTuple($tabella){
+    public static function recuperaTuple($tabella){
         $risultato = FEntityManager::recuperaTuple($tabella);
         return $risultato;
     }
@@ -201,10 +201,10 @@ class FPersistentManager{
     * @return EUtente
     */
 
-   public static function CreaUtente($risultatoQuery){
-    $risultato = FUtente::creaOggUtente($risultatoQuery);
-    return $risultato;
-   }
+    public static function CreaUtente($risultatoQuery){
+        $risultato = FUtente::creaOggUtente($risultatoQuery);
+        return $risultato;
+    }
 
     /**
      * Metodo per impostare i valori degli attributi di un utente
@@ -215,15 +215,15 @@ class FPersistentManager{
         FUtente::bind($dichiarazione,$utente);
     }
 
-   /**
+    /**
     * Metodo che verifica se esiste l'id di un'utente nella tabella Utente del db
     *@param $campo è il campo ID
     *@param $idUtente è il valore dell'ID
     *@return bool
     */
-   public static function Verifica($campo,$idUtente){
-    $risultato = FUtente::verifica($campo,$idUtente);
-    return $risultato;
+    public static function Verifica($campo,$idUtente){
+        $risultato = FUtente::verifica($campo,$idUtente);
+        return $risultato;
    }
    //-----------------------------------------------------Amministratore-------------------------------------------------------------------------------
    /**
@@ -253,7 +253,7 @@ class FPersistentManager{
     * @param $risultatoQuery è il risultato della query
     *@return EUtenteRegistrato
     */
-   public static function  CreaUtenteRegistrato($risultatoQuery){
+   public static function CreaUtenteRegistrato($risultatoQuery){
     $risultato = FUtenteRegistrato::CreaOggUtenteRegistrato($risultatoQuery);
     return $risultato;
    }
@@ -724,11 +724,11 @@ class FPersistentManager{
     $risultato = FAmministratore::getAmmByEmail($email);
     return $risultato;
    }
-   public static function updatePasswordUtente($utenteRegistrato){
-    $campo = [['password',$utenteRegistrato->getPassword()]];// campo è un arraymultidimensionale che ha una coppia chiave valore che sono 'password' (chiave) e $utenteRegistrato->getPassword() (valore)
-    $risultato= FUtenteRegistrato::salvaOgg($utenteRegistrato,$campo);
-    return $risultato;
-}
+    public static function updatePasswordUtente($utenteRegistrato){
+        $campo = [['password',$utenteRegistrato->getPassword()]];// campo è un arraymultidimensionale che ha una coppia chiave valore che sono 'password' (chiave) e $utenteRegistrato->getPassword() (valore)
+        $risultato= FUtenteRegistrato::salvaOgg($utenteRegistrato,$campo);
+        return $risultato;
+    }   
     public static function updateBanUtente($utente){
         $field = [['ban', $utente->isBanned()]];
         $risultato = FUtenteRegistrato::salvaOgg($utente, $field);
@@ -740,10 +740,4 @@ class FPersistentManager{
         return $risultato;
 
     }
-
-
-
-    
-
 }
-

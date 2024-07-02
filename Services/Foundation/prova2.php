@@ -11,7 +11,7 @@ $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::ge
 
 
 require_once(__DIR__."/../../Entity/EUtenteRegistrato.php");
-$utreg = new EUtenteRegistrato("Nom", "Cogn", "emaill", "pass");
+$utreg = new EUtenteRegistrato("Fede", "Dido", "fede@dido.it", "passfede");
 
 //FUNZIONA
 //$risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(), 1);
@@ -32,3 +32,25 @@ $utreg = new EUtenteRegistrato("Nom", "Cogn", "emaill", "pass");
 
 //FUNZIONA
 //print_r(FEntityManager::updateOgg("UtenteRegistrato", "email", "di@ego.it", "nome", "Diego"));
+
+require_once("FPersistentManager.php");
+//FUNZIONA
+//print_r(FPersistentManager::recuperaOggetto("EUtenteRegistrato", 3));
+
+//FUNZIONA
+//print_r(FPersistentManager::RecuperaTuple("Tessera"));
+
+//FUNZIONA
+//print_r(FPersistentManager::uploadOgg($utreg));
+
+//FUNZIONA
+//print_r(FPersistentManager::CreaUtenteRegistrato($risultato));
+
+require_once("FTessera.php");
+//FUNZIONA
+//print_r(FTessera::creaOggTessera(FEntityManager::getIstanza()->recuperaOggetto("Tessera" ,"id_tessera", 2)));
+
+//FUNZIONA
+//print_r(FTessera::getOgg(2));
+
+//att.ne: verificatesseramento non testato
