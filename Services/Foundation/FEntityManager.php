@@ -194,7 +194,7 @@ class FEntityManager{
      */
     public static function updateOgg($tabella,$campo,$campoValore,$condizione,$valoreCondizione){
         try{
-            $query = "UPDATE".$tabella ."SET".$campo." = '".$campoValore. " 'WHERE ".$condizione." = '".$valoreCondizione . "';"; // Questa è la query che sarà eseguita via SQL. In SQL le stringhe per esempio " = ' " vengono messe sempre tra un apice singolo (') e quindi mettiamo sia " " che sono gli apici di php e poi poniamo ' che è l'apice per le stringhe in SQL.
+            $query = "UPDATE ".$tabella ." SET ".$campo." = '".$campoValore. "' WHERE ".$condizione." = '".$valoreCondizione . "';"; // Questa è la query che sarà eseguita via SQL. In SQL le stringhe per esempio " = ' " vengono messe sempre tra un apice singolo (') e quindi mettiamo sia " " che sono gli apici di php e poi poniamo ' che è l'apice per le stringhe in SQL.
             $dichiarazione = self::$db->prepare($query);// self::$db si riferisce a una variabile di classe statica cioè $db che dovrebbe essere un'istanza di un oggetto di connessione al db. il metodo prepare è un metodo dell'oggetto di connessione al database che prepara la query SQL per l'esecuzione . La query da preparare è quella contenuta nella variabile $query.
             $dichiarazione->execute();
             return true; //se l'attributo e il valore dell'attributo vengono aggiornati il metodo ritorna true , altrinenti se avviene un errore , viene ritornato false.
@@ -212,10 +212,10 @@ class FEntityManager{
     public static function SalvaOgg($ClasseFound,$ogg){
         try{
             $query = "INSERT INTO ". $ClasseFound::getTabella() ." VALUES " . $ClasseFound::getValore();// query viene posta uguale a questa stringa che inizia la query SQL. INSERT INTO  è un comando SQL che viene utilizzato per inserire nuove righe in una tabella del database
-            // $ClasseFound ::getTable() è un metodo statico della classe indicata dalla variabile $classefound( cioè è il metodo di una classe entity contenuta in foundation),questo metodo restituisce il nome della tabella del database in cui si desidera inserire la nuova riga.
+            // $ClasseFound ::getTabella() è un metodo statico della classe indicata dalla variabile $classefound( cioè è il metodo di una classe entity contenuta in foundation),questo metodo restituisce il nome della tabella del database in cui si desidera inserire la nuova riga.
             // Values è un costrutto SQL che precede i valori da inserire nella riga per ogni attributo.
-            //$ClasseFound::getValue() è un metodo statico xkè invocato con ::, questo metodo restituisce i valori da inserire nella riga da aggiungere  per ogni attributo .
-            $dichiarazione = self ::$db->prepare($query); // prende come parametro la query da preparare
+            //$ClasseFound::getValore() è un metodo statico xkè invocato con ::, questo metodo restituisce i valori da inserire nella riga da aggiungere  per ogni attributo .
+            $dichiarazione = self::$db->prepare($query); // prende come parametro la query da preparare
             $ClasseFound::bind($dichiarazione,$ogg);// metodo presente nella classe entity poste in foundation
             $dichiarazione->execute();
             $id = self::$db->lastInsertId(); // Dopo l'esecuzione della query , questa linea  di codice recupera l'ID dell'ultima riga inserita in una tabella del db. Recuperare tale ID e restituirlo con return $id è utile per verificare che la riga sia stata aggiunta correttamanete alla tabella del db in questione.
@@ -322,7 +322,7 @@ class FEntityManager{
      */
     public static function getOggCercato($tabella,$campo,$stringa){
         try{
-            $query = " SELECT * FROM ".$tabella."WHERE".$campo." LIKE '%".$stringa." %'";
+            $query = " SELECT * FROM ".$tabella." WHERE ".$campo." LIKE '%".$stringa." %'";
             $dichiarazione = self::$db->prepare($query);
             $dichiarazione->execute();
             $countRighe= $dichiarazione->rowCount();

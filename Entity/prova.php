@@ -25,8 +25,16 @@ $carta = new ECartadiPagamento("nomtit", "cogntit", 1111222233334444, new DateTi
 print_r($carta); 
 */
 
-include("EAttrezzatura_Basket.php");
+//include("EAttrezzatura_Basket.php");
 
-$attr = new EAttrezzatura_Basket(5, 6);
+//$attr = new EAttrezzatura_Basket(5, 6);
 
-print_r($attr);
+//print_r($attr);
+
+
+require_once("EUtenteRegistrato.php");
+//FUNZIONANO
+$ut1 = new EUtenteRegistrato("Daieg", "Roma", "da@ieg.it", "pwdaieg");
+$ut1->setBan(true);
+$ut1->setEmail("di@ego.it");
+print_r($ut1);

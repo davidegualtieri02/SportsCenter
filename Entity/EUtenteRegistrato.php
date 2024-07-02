@@ -3,15 +3,11 @@
 require_once "EUtente.php";
 
 class EUtenteRegistrato extends EUtente{
-    protected bool $ban = false;
-
-    protected int $id_utenteRegistrato;
     private static $entità = EUtenteRegistrato::class;
-    public function __construct($nome, $cognome, $email, $password,$ban){
+    public function __construct($nome, $cognome, $email, $password){
         parent::__construct($nome, $cognome, $email, $password);//parent::__construct è un modo per richiamare il costruttore di EUtente 
         // in modo che il costruttore di EUtenteRegistato ottenga come parametri i parametri del costruttore
         // di EUtente + $id_utenteRegistrato e $ban
-        $this->ban = $ban;
     }
     public static function getEntità():string{
         return self::$entità;
@@ -29,7 +25,8 @@ class EUtenteRegistrato extends EUtente{
     public function setBan($boolean){
         $this->ban = $boolean;
     }
+    public function getid_tessera(){
+        return $this->id_tessera;
+    }
      //metodo toString esiste predefinito
-    
-
 }

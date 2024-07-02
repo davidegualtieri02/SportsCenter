@@ -1,5 +1,4 @@
 <?php
-
 class FUtente{
     //questi attributi sono statici perchè possiamo creare gli oggetti riferiti a tale attributi solo nella classe stessa FUtente .Lo stesso vale per i metodi sono statici e quindi possono essere richiamati senza dover istanziare un oggetto della classe.
     private static $tabella = "Utente"; 
@@ -10,7 +9,7 @@ class FUtente{
      * :nome,:cognome,:email,:password  : questi sono dei segnaposto . Ogni segnaposto sarà poi sostituito con un valore reale quando la query viene eseguita.
      */
     private static $valore = "(NULL,:nome,:cognome,:password,:email)";
-    private static $chiave = "id_utente";
+    private static $chiave = "id_utenteRegistrato";
 
     public static function getTabella(){
         return self::$tabella;
@@ -27,15 +26,15 @@ class FUtente{
    //riprende un utente dal db
     public static function creaOggUtente($risultatoQuery){
         if(count($risultatoQuery) == 1){
-            $utente = new EUtente($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
-            $utente->setId($risultatoQuery[0]['id_utente']);
+            $utente = new EUtenteRegistrato($risultatoQuery[0]['nome'], $risultatoQuery[0]['cognome'], $risultatoQuery[0]['email'], $risultatoQuery[0]['password']);
+            $utente->setId($risultatoQuery[0]['id_utenteRegistrato']);
             $utente->setHashPassword($risultatoQuery[0]['password']);
             return $utente;
         }elseif(count($risultatoQuery) > 1){
             $utenti = array();
             for($i = 0; $i < count($risultatoQuery); $i++){
-                $utente = new EUtente($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
-                $utente->setId($risultatoQuery[$i]['id_utente']);
+                $utente = new EUtenteRegistrato($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['cognome'], $risultatoQuery[$i]['email'], $risultatoQuery[$i]['password']);
+                $utente->setId($risultatoQuery[$i]['id_utenteRegistrato']);
                 $utente->setHashPassword($risultatoQuery[$i]['password']);
                 $utenti[] = $utente;
             }
@@ -57,7 +56,9 @@ class FUtente{
         $dichiarazione->bindValue(":cognome",$utente->getCognome(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":email",$utente->getEmail(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);
-        $dichiarazione->bindValue(":id_utente",$utente->getId(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_utenteRegistrato",$utente->getId(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_tessera",$utente->getid_tessera(), PDO::PARAM_INT);
+        $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
     }
     /**
      * Metodo che verifica se un certo oggetto esiste nel database
@@ -80,6 +81,4 @@ class FUtente{
             return null;
         }
     }
-   
-
 }

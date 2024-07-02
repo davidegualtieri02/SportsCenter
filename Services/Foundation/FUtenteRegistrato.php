@@ -7,7 +7,7 @@ class FUtenteRegistrato{
      * NULL è usato per un campo(attributo del database) auto-incrementante  come l'ID, il database assegna automaticamente il prossimo numero disponibile.
      * :nome,:cognome,:email,:password  : questi sono dei segnaposto . Ogni segnaposto sarà poi sostituito con un valore reale quando la query viene eseguita.
      */
-    private static $valore = "(NULL,:nome,:cognome,:password,:email,:ban,:id_utente)";
+    private static $valore = "(:id_utenteRegistrato,:nome,:cognome,:password,:email,:ban,:id_tessera)";
 
 
     private static $chiave = "id_utenteRegistrato";
@@ -27,9 +27,9 @@ class FUtenteRegistrato{
     public static function CreaOggUtenteRegistrato($risultatoQuery){
         if (count($risultatoQuery)==1){// se l'array ottenuto come risultato dalla query ha un solo elemento viene creato un solo oggetto UtenteRegistrato con i dati presenti nel primo ed unico elemento  nell'array risultatoquery
             $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteRegistrato",$risultatoQuery[0]['id_utenteRegistrato']);//questo metodo recupera la tupla che ha nella colonna IDUtenteRegistrato il valore dell'id presente nell'array $risultatoQuery nel primo elemento cioè [0] e in corrispondenza della chiave IDUtenteRegistrato.
-            $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password'], $risultatoQuery[0]['ban']);
+            $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[0]['nome'],$risultatoQuery[0]['cognome'],$risultatoQuery[0]['email'],$risultatoQuery[0]['password']);
             $utenteRegistrato->setId($risultatoQuery[0]['id_utenteRegistrato']);
-            $utenteRegistrato->setHashPassword($risultatoQuery[0]['password']);
+            //$utenteRegistrato->setHashPassword($risultatoQuery[0]['password']);
             $utenteRegistrato->setBan($attributi[0]['ban']);//qui al posto di $risultatoQuery utilizziamo $arrayUtente anche se entrambi gli array contengono un solo elemento cioè quell'utente che ci interessa
             return $utenteRegistrato;
         }
@@ -37,7 +37,7 @@ class FUtenteRegistrato{
             $utentiRegistrati= array();
             for($i=0;$i<count($risultatoQuery);$i++){//ripeto il ciclo un numero di volte  pari al numero di elementi contenuti in $risultatoquery
                 $attributi = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),"id_utenteRegistrato",$risultatoQuery[$i]['id_utenteRegistrato']);//la funzione recuperaOggetto viene chiamata per ogni utente nell'array $risultatoQuery e restitusce un array di attributi per quell'utente specifico 
-                $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password'],$risultatoQuery[$i]['ban']);// per ogni elemento di $risultatoQuery viene creato un Utente registrato. Per esempio iò secondo elemento dell'array avra un certo nome in corrispondenza della chiave nome , un certo cognome in corrispondenza della chiave cognome ect per ogni nome , cognome ect viene creato un elemento diverso.
+                $utenteRegistrato = new EUtenteRegistrato($risultatoQuery[$i]['nome'],$risultatoQuery[$i]['cognome'],$risultatoQuery[$i]['email'],$risultatoQuery[$i]['password']);// per ogni elemento di $risultatoQuery viene creato un Utente registrato. Per esempio iò secondo elemento dell'array avra un certo nome in corrispondenza della chiave nome , un certo cognome in corrispondenza della chiave cognome ect per ogni nome , cognome ect viene creato un elemento diverso.
                 $utenteRegistrato->setId(($risultatoQuery[$i]['id_utenteRegistrato']));
                 $utenteRegistrato->setBan(($attributi[0]['ban']));// scriviamo attributi[0] perchè per ogni iterazione del ciclo $attributi contiene un solo elemento (cioè un array di attributi) quindi si usa $attributi [0] per accedere a quell'array di attributi che ha un solo elemento cioè  gli attributi dell 'utente che stiamo analizzando in quella iterazione del ciclo 
                 $utentiRegistrati[] = $utenteRegistrato; // ad ogni iterazione ogni utente viene posto nella lista utenti registrati
@@ -52,8 +52,13 @@ class FUtenteRegistrato{
      * Questo metodo associa tramite la funzione bindvalue il valore del parametro ban con il risultato del metodo isbanned() , se isbanned() rida true il valore del parametro ban è true altrimenti false
      */
     public static function bind($dichiarazione,$UtenteRegistrato){
+        $dichiarazione->bindValue(":nome",$UtenteRegistrato->getNome(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":cognome",$UtenteRegistrato->getCognome(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":email",$UtenteRegistrato->getEmail(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":password",$UtenteRegistrato->getPassword(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":id_utenteRegistrato",$UtenteRegistrato->getId(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_tessera",$UtenteRegistrato->getid_tessera(), PDO::PARAM_INT);
         $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
-        $dichiarazione ->bindValue(":id_utenteRegistrato",$UtenteRegistrato->getId(),PDO::PARAM_INT);
 
     }
     /**
@@ -61,7 +66,7 @@ class FUtenteRegistrato{
      * @param $id si riferisce all'id passato come parametro al metodo.
      */
     public static function getOgg($id){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtente::getTabella(),FUtente::getChiave(),$id);
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(),$id);
         //questa linea recupera un oggetto dalla tabella FUtenteRegistrato specificando un Id . self::getkey() mi rida la chiave primaria della tabella del database ovvero mi rida l'attributo ID. $id contiene il valore dell'id associato alla chiave ID . Quindi accediamo alla tabella  Utente del database , si accede alla colonna con l'attributo primario cioè Id e poi viene recuperata la tupla della tabella che ha quell'id posto come parametro al metodo nella colonna degli Id.
         if (count($risultato)>0){//se c'è un elemento nell array risultato allora
             $utenteRegistrato= self::CreaOggUtenteRegistrato($risultato);//creo un utente registrato tramite i dati recuperati dalla tabella Utente tramite il metodo statico creaOggUtenteRegistrato() . Un metodo statico implementato in una classe se richiamato nella stessa classe deve essere richiamato tramite self::,self indica che il metodo è statico ed è della stessa classe.
@@ -83,7 +88,7 @@ class FUtenteRegistrato{
             try{
                 FEntityManager::getIstanza()->getdb()->beginTransaction();//tramite l'unico oggetto entity manager viene richiamato il metodo getdb() che mi rida un riferimento ad un database ovvero mi rida una variabile o oggetto che rappresenta il database e tramite tale variabile(variabile e non oggetto perchè senno credo che non potevo richiamre il metodo begintransaction()) richiamo il metodo begintransaction().
                 //begintransaction() viene richiamato per iniziare una nuova transazione . Una transazione è un insieme di operazionii sul database che vengono eseguite come un'unità , cioè come un unica azione. Se una delle operazioni fallisce , tutte le altre operazioni nella transazione vengono annullate e il database rimane invariato.
-                $salvaUtenteRegistrato = FEntityManager::getIstanza()->SalvaOgg(FUtente::getClasse(),$ogg);//Questa riga salva l'oggetto utente Registrato nel database nella tabella Utente e restituisce l'ID dell'oggetto appena inserito. Questo ID viene assegnato alla variabile $salvaUtenteRegistrato
+                $salvaUtenteRegistrato = FEntityManager::getIstanza()->SalvaOgg(FUtenteRegistrao::getClasse(),$ogg);//Questa riga salva l'oggetto utente Registrato nel database nella tabella Utente e restituisce l'ID dell'oggetto appena inserito. Questo ID viene assegnato alla variabile $salvaUtenteRegistrato
                 if($salvaUtenteRegistrato !==null){
                     $salvaUtente = FEntityManager::getIstanza()->SalvaOggdaID(self::getClasse(),$ogg,$salvaUtenteRegistrato);//se $salvaUtenteRegistrato non è null ma è pari all'id dell'utente registrato, salviamo l'oggetto utente registrato  tramite l'id nel database. L'oggetto da salvare è contenuto nella variabile $salvautenteregistrato.
                     //SalvaOggdaID restituisce true o false se l'oggetto è stato salvato o no quindi $salvaUtente è = true o false a seconda se l'utente è stato salvato o no.
@@ -141,6 +146,4 @@ class FUtenteRegistrato{
             return null;
         }
     }
-
-
 }

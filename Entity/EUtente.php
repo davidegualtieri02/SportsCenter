@@ -1,13 +1,14 @@
 <?php
 
-
 class EUtente{
     
     protected String $nome;
     protected String $cognome;
     protected String $email;
     protected String $password;
-    protected int $id_utente;
+    protected int $id_utenteRegistrato = 0;
+    protected int $id_tessera = 0;
+    protected bool $ban = false;
 
     private static $entità = EUtente::class;//Quando usi EPerson::class in PHP, ottieni il nome completamente qualificato della classe EPerson. 
     //Quindi, se EPerson è definita nel namespace App\Entities,
@@ -36,7 +37,7 @@ class EUtente{
 
     
     public function getId(){
-        return $this->id_utente;
+        return $this->id_utenteRegistrato;
     }
     public function getNome(){
         return $this->nome;
@@ -51,8 +52,8 @@ class EUtente{
     public function getPassword(){
         return $this->password;
     }
-    public function setId($id_utente){
-        $this->id_utente = $id_utente;
+    public function setId($id_utenteRegistrato){
+        $this->id_utenteRegistrato = $id_utenteRegistrato;
     }
     public function setNome($nome){
         $this->nome = $nome;
@@ -70,5 +71,5 @@ class EUtente{
     public function setEmail($email){
         $this->email = $email;
     }
-     //metodo toString esiste predefinito
+    //metodo toString esiste predefinito
 }
