@@ -36,11 +36,7 @@ class CTesseramento{
                 $cvvCarta = UMetodiHTTP::post('CVV');
                 $dataInizioStr = UMetodiHTTP::post("Data_Inizio"); // l'utente insersice una stringa perciò dobbiamo convertire la stringa in un oggetto DateTime
                 // conversione della data di inizio in oggetto DateTime
-                try{
-                    $dataInizio = new DateTime($dataInizioStr);
-                } catch(Exception $errore){
-                     return " Errore: la data inserita non è corretta " . $errore->getMessage();
-                }
+                $dataInizio = new DateTime($dataInizioStr); // la dataInizio può essere solo la data giornaiera di quel giorno 
                 $dataScadenza = clone $dataInizio; // la data scadenza è ottenuta dalla clonazione di $dataInizio
                 $dataScadenza->modify('+1 year'); // siccome il tesseramento dura un anno $dataScadenza viene modificata di un anno rispetto a dataInizio, dunque la dataSacdenza è pari a dataInizio + un anno.
                 //questo perchè il tesseramento dura un anno
@@ -49,17 +45,16 @@ class CTesseramento{
                     $pm::uploadOgg($tesseramento); // Aggiunta del tesseramento nel database
                     $utenteTesserato = new EUtenteTesserato($utente->getNome(),$utente->getCognome(),$utente->getEmail(),$utente->getPassword(),false);// se l'utente si sta tesserando il ban è impostato a false
                     $pm::uploadOgg($utenteTesserato);//aggiungo l'utente tesserato al database 
-                    $view->mostraMessaggioTesseramento('Tesseramento effettuato con successo');
-                }else {
-                    $view->mostraMessaggioErrore( 'Errore durante il tesseramento');
+                    $view->MostraMessaggioTesseramento();
                 }
-        }else {
-                header('Location: /SportsCenter/Utente/login');
-                exit;
-            }  
+            }
+        }else{
+            header('Location: /SportsCenter/Utente/login');
+            exit;
         }  
-        
-    }
+          
+    }   
+    
     //se l'utente è tesserato al posto di tesseramento sulla sbarra in alto abbiamo annulla tesseramento e questo caso d'uso annulla il tesseramento
     public static function annullaTesseramento($idtessera,$idUtente,$dataScadenza){
         $pm = FPersistentManager::getIstanza();
@@ -67,18 +62,15 @@ class CTesseramento{
         $view = new VTesseramento();
         if(Userver::getRichiestaMetodo()=='GET'){
             $utente = unserialize($sessione->LeggiValore('Utente'));
-            $view->MostraTesseramento();
+            $view->MostraModuloTesseramento($utente);
         }
         elseif(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
             $utente = unserialize($sessione->LeggiValore('Utente'));
             $pdo = new PDO('mysql:host=localhost;dnname =Prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
             if($pm::VerificaTesseramento($pdo,$utente->getId())) {
                 $pm::deleteOgg('Tesseramento',$utente->getId(),'id_utenteRegistrato') ;
-                $view->MostraMessaggioConferma("Tesseramento annullato con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
-            }else{
-                $view->MostraMessaggioErrore("Errore nell'annullamento del tesseramento");// se la prenotazione non viene rimossa , viene printato questo messaggio 
+                $view->MostraAnnullamentoTesseramento(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
             }
-            
         }
     }
     

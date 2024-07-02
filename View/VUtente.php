@@ -38,14 +38,14 @@ class VUtente{
     }
     public function erroreLogin($errore){
         switch($errore){
-            case 'bannato':
-                $this->smarty->assign('banErrore', "banErrore");
+            case 'ban':
+                $this->smarty->assign('ban', true);
                 break;
-            case 'password errata':
-                $this->smarty->assign('passworderrata', "passworderrata");
+            case 'passwordErrata':
+                $this->smarty->assign('passwordErrata',false);
                 break;
-            case 'email Errata':
-                $this->smarty->assign('emailerrata', "emailerrata");
+            case 'emailErrata':
+                $this->smarty->assign('emailErrata', false);
                 break;
         }
         $this->smarty->display('.Smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
@@ -53,7 +53,7 @@ class VUtente{
     public function erroreRegistrazione($errore){
         switch ($errore){
             case 'emailEsistente':
-                $this->smarty->assign('Email esistente', "emailEsistente");
+                $this->smarty->assign('emailEsistente', false);
                 break;
         }
         $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');

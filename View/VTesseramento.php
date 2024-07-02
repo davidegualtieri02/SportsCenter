@@ -9,24 +9,19 @@ class VTesseramento{
         $this->smarty->assign('Utente',$utente);
         $this->smarty->display('form_tesseramento.tpl');
     }
-    public function MostraMessaggioTesseramento($messaggio){
-        switch ($messaggio){
-            case 'Tesseramento effettuato con successo':
-                $this->smarty->assign('Tesseramento effettuato con successo'."Tesseramento effettuato con successo");
-                break;
-        }
+    public function MostraMessaggioTesseramento(){
+        $this->smarty->assign('conferma',true);
         $this->smarty->display('mostra_confermaTesseramento.tpl');
 
     }
-    public function MostraMessaggioErrore($errore){
-        switch ($errore){
-            case 'Errore durante il tesseramento':
-                $this->smarty->assign(' Errore durante il tesseramento'," Errore durante il tesseramento");
-                break;
-        }
-        $this->smarty->display('errore_Tesseramento.tpl');
-
-
+    public function MostraModuloTesseramento($utente){
+        $this->smarty->assign('Utente',$utente);
+        $this->smarty->display('Tessera.tpl');
     }
+    public function MostraAnnullamentoTesseramento(){
+        $this->smarty->assign('Conferma',true);
+        $this->smarty->display('mostra_conferma.tpl');
+    }
+    
 
 }

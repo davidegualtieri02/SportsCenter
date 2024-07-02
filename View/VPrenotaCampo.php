@@ -69,8 +69,8 @@ class VPrenotaCampo{
 
    }
    //non credo che sia cosi 
-   public function MostraMessaggioConferma($conferma){
-     $this->smarty->assign('conferma',$conferma);
+   public function MostraMessaggioConferma(){
+     $this->smarty->assign('conferma',true);
      $this->smarty->display('./Smarty/libs/templates/annulla_prenotazione.tpl');
    }
 

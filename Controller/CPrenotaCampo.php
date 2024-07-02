@@ -158,7 +158,7 @@ class CPrenotaCampo{
             $utente = unserialize($sessione->LeggiValore('Utente'));
             $idPrenotazione = $sessione::getElementoSessione('id_prenotazione');
             $pm::deletePrenotazione($idPrenotazione,$utente->getId());
-            $view->MostraMessaggioConferma("Prenotazione annullata con successo!"); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
+            $view->MostraMessaggioConferma(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
         }
     }
 

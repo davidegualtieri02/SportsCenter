@@ -25,4 +25,9 @@ public function MostraRecensioni($recensioni,$utente){
     $this->smarty->assign('Utente',$utente);
     $this->smarty->display('mostra_recensioni.tpl');
 }
+public function MostraPrenotazioni($prenotazioni,$utente){
+    $this->smarty->assign('prenotazioni',$prenotazioni);
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->display('mostra_prenotazioni.tpl');
+}
 }

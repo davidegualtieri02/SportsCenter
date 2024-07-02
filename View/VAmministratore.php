@@ -6,7 +6,6 @@ class VAmministratore{
     }
     public function MostraloginForm(){
         $this->smarty->display('Amministratore-login.tpl');
-        $this->smarty->display('Amministratore-login.tpl');
     }
     public function MostraFormPrenotazione($amm,$campo,$data,$orario,$attrezzatura){
         $this->smarty->assign('amministratore',$amm);
