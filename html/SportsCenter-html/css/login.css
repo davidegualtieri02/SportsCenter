@@ -1,0 +1,126 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #fbc531, #e1b12c);
+  font-family: 'Poppins', sans-serif;
+}
+
+.login_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.form-value form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-value h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.inputbox {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #666;
+}
+
+.inputbox input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.inputbox input:focus {
+  border-color: #fbc531;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.inputbox input:focus ~ label,
+.inputbox input:valid ~ label {
+  top: -5px;
+  left: 35px;
+  color: #fbc531;
+  font-size: 12px;
+}
+
+.forget {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.forget a {
+  color: #fbc531;
+  text-decoration: none;
+}
+
+.forget a:hover {
+  text-decoration: underline;
+}
+
+button {
+  background: #fbc531;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #e1b12c;
+}
+
+.register {
+  margin-top: 20px;
+}
+
+.register p {
+  color: #333;
+}
+
+.register a {
+  color: #fbc531;
+  text-decoration: none;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}
