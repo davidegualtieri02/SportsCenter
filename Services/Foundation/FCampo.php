@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__."/../../Entity/ECampo.php");
 class FCampo{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Campo"; 
