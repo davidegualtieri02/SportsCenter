@@ -3,7 +3,7 @@ require_once(__DIR__."/../../Entity/ECampo.php");
 class FCampo{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Campo"; 
-    private static $valore = "(NULL,:id_campo,:copertura)";
+    private static $valore = "(:id_campo,:copertura,:titoloCampo,:prezzo)";
     private static $chiave = "id_campo";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -49,8 +49,10 @@ class FCampo{
 
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$campo){
-        $dichiarazione ->bindValue(":id_campo",$campo->getId_campo(),PDO::PARAM_INT);
-        $dichiarazione ->bindValue(":copertura",$campo->getCopertura(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":id_campo",$campo->getId_campo(),PDO::PARAM_INT);
+        $dichiarazione->bindValue(":copertura",$campo->getCopertura(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":titoloCampo",$campo->getTitolo(),PDO::PARAM_STR);
+        $dichiarazione->bindValue(":prezzo",$campo->getPrezzo(),PDO::PARAM_INT);
     }
 
     //Metodo public che verifica se un oggetto esiste nel DB

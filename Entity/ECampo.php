@@ -1,15 +1,14 @@
 <?php
 class ECampo {
-    private string $TitoloCampo;
+    private string $titoloCampo;
     private int $prezzo;
     protected String $copertura;
-    protected int $id_campo;
-
+    protected int $id_campo = 0;
     private static $entità = ECampo::class;
 
-    public function __construct($copertura,$TitoloCampo,$prezzo){
+    public function __construct($copertura,$titoloCampo,$prezzo){
         $this->copertura = $copertura;
-        $this->TitoloCampo=$TitoloCampo;
+        $this->titoloCampo = $titoloCampo;
         $this->prezzo = $prezzo;
     }
     public function getCopertura(){
@@ -18,7 +17,7 @@ class ECampo {
     public function setCopertura($coper){
         $this->copertura = $coper;
     }
-    public static function  getId_campo(){
+    public static function getId_campo(){
         return self::$id_campo;
     }
     public function setId_campo($id){

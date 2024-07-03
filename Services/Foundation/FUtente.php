@@ -58,16 +58,9 @@ class FUtente{
         $dichiarazione->bindValue(":password",$utente->getPassword(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":id_utenteRegistrato",$utente->getId(),PDO::PARAM_INT);
         $dichiarazione->bindValue(":id_tessera",$utente->getid_tessera(), PDO::PARAM_INT);
-        $dichiarazione->bindvalue(":ban",$UtenteRegistrato->isBanned(),PDO::PARAM_BOOL);
+        $dichiarazione->bindvalue(":ban",$utente->isBanned(),PDO::PARAM_BOOL);
     }
-    /**
-     * Metodo che verifica se un certo oggetto esiste nel database
-     * 
-     */
-    public static function verifica($campo,$id){
-        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
-        return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery); // il metodo verifica tramite un oggetto FEntityMAnager che richiama il metodo esisteNelDB() restituisce true se esiste l'oggetto che cerchiamo nel db  altrimenti false .
-    }
+    
     //FentityManager::getIstanza() è un metodo che viene utilizzato per ottenere un'istanza(oogetto) della classe FEntityManager, questo è un esempio di singleton .
     // Quando scriviamo FentityManager::getIstanza() stiamo facendo riferimento all'unico oggetto  FentityManager che esiste nel nostro programma(applicazione).  Questo singleton permette di utilizzare lo stesso oggetto FEntityManager in diverse parti del codice senza dover creare un tale oggetto ogni volta che ci serve.
     // una volta che abbiamo ottenuto un'oggetto FentityManager tramite il metodo recuperoOggetto() recuperimo un oggetto(non una tupla ma proprio il valore di un certo campo di una certa tupla specificati nei parametri del metodo recuperoOggetto) ponendo in tale metodo recuperaOggetto una certa tabella , un certo campo e un certo valore del campo stesso(id).

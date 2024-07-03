@@ -44,7 +44,6 @@ class EUtente{
     }
     public function getCognome(){
         return $this->cognome;
-
     }
     public function getEmail(){
         return $this->email;

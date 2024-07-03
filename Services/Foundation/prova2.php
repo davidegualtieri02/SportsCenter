@@ -11,7 +11,7 @@ $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::ge
 
 
 require_once(__DIR__."/../../Entity/EUtenteRegistrato.php");
-$utreg = new EUtenteRegistrato("Fede", "Dido", "fede@dido.it", "passfede");
+$utreg = new EUtenteRegistrato("Lorenzo", "Fracassi", "lo@renzo.it", "pwlorenzo");
 
 //FUNZIONA
 //$risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(), 1);
@@ -54,3 +54,36 @@ require_once("FTessera.php");
 //print_r(FTessera::getOgg(2));
 
 //att.ne: verificatesseramento non testato
+
+require_once("FCampo.php");
+//FUNZIONA
+//print_r(FCampo::verifica("id_campo", 1));
+
+$risultato1 = FEntityManager::getIstanza()->recuperaOggetto(FCampo::getTabella(),FCampo::getChiave(), 1);
+//FUNZIONA
+//print_r(FCampo::creaOggCampo($risultato1));
+
+//FUNZIONA
+//print_r(FPersistentManager::VerificaCampo("id_campo", 1));
+
+//FUNZIONA
+//FEntityManager::getIstanza()->updateOgg("UtenteRegistrato","ban",1,"id_utenteRegistrato",2);
+
+
+//FUNZIONA
+//print_r(FUtenteRegistrato::getId($utreg));
+
+//FUNZIONA
+//print_r(FUtenteRegistrato::getId($utreg));
+
+//FUNZIONA
+//print_r(FUtenteRegistrato::getBan($utreg));
+
+//FUNZIONA
+//print_r(FUtenteRegistrato::isBanned($utreg));
+
+//FUNZIONA
+//print_r(FPersistentManager::updateBanUtente($utreg));
+
+//FUNZIONA
+//print_r(FPersistentManager::VerificaEmailUtente("di@ego.it"));

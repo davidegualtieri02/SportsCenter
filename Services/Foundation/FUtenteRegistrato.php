@@ -116,11 +116,11 @@ class FUtenteRegistrato{
                 foreach($fieldArray as $array){//una alla volta tutti gli elementi di $fieldArray li pongo pari a $array
                     //$array avrà due elementi l'elemento zero che il campo e l'elemento 1 che è il valore del campo.
                     if($array[0]!='password'){// aggiorno il valore di un campo se il campo non è pari alla password
-                        FEntityManager::getIstanza()->updateOgg(FUtenteRegistrato::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());                            //il metodo updateOgg prende come parametro la tabella in cui vogliamo cambiare il valore del campo , $array[0] rappresenta il campo di cui vogliamo aggiornare il valore , $array[1] rappresenta il valore del campo da aggiornare , self::getChiave() rappresenta la condizione del metodo cioè cambiamo il valore del campo dove la chiave primaria ha un determinato valore , l'ultimo parametro rappresenta il valore della chiave primaria , cioè il valore dell'id
+                        FEntityManager::getIstanza()->updateOgg(self::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());                            //il metodo updateOgg prende come parametro la tabella in cui vogliamo cambiare il valore del campo , $array[0] rappresenta il campo di cui vogliamo aggiornare il valore , $array[1] rappresenta il valore del campo da aggiornare , self::getChiave() rappresenta la condizione del metodo cioè cambiamo il valore del campo dove la chiave primaria ha un determinato valore , l'ultimo parametro rappresenta il valore della chiave primaria , cioè il valore dell'id
                         //quindi il metodo aggiorna il valore del campo di una tupla dove la chiave primaria cioè l'id ha un determinato valore dato da $ogg->getId.
                     
                     }else{
-                        FEntityManager::getIstanza()->updateOgg(FUtenteRegistrato::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
+                        FEntityManager::getIstanza()->updateOgg(self::getTabella(),$array[0],$array[1],self::getChiave(),$ogg->getId());
                         //se il campo è pari a password il valore della password viene aggiornato nella tabella Utente che è la stessa di Utenteregistrato e dunque l'aggiornamento è corretto.
                         //ovviamente aggiorniamo solo il valore del campo password della tupla che ha un certo ID.
                     }
@@ -137,12 +137,36 @@ class FUtenteRegistrato{
         }
     }
     public static function getUtenteByEmail($email){
-        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtente::getTabella(),'email',$email);//viene recuperato un oggetto dalla tabella utente avente nel campo email un valore dell'email contenuto in $email
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'email',$email);//viene recuperato un oggetto dalla tabella utente avente nel campo email un valore dell'email contenuto in $email
         if(count($risultato)>0){ // se esiste un utente con quella email crea un utente registrato con quella email
             $Utente = self::CreaOggUtenteRegistrato($risultato);//se esiste l'utente viene 
             return $Utente;
         }else{// se non esiste ritorna null
             return null;
         }
+    }
+    public static function getId($ut){
+        $risultato = self::getUtenteByEmail($ut->getEmail());
+        return $risultato->getId();
+    }
+    //public static function setBan($ut){
+        //$risultato = self::getUtenteByEmail($ut->getEmail());
+        //return $risultato->isBanned();
+    //}
+    public static function isBanned($ut){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
+        if ($risultato[0]['ban'] == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * Metodo che verifica se un certo oggetto esiste nel database
+     * 
+     */
+    public static function verifica($campo,$id){
+        $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
+        return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery); // il metodo verifica tramite un oggetto FEntityMAnager che richiama il metodo esisteNelDB() restituisce true se esiste l'oggetto che cerchiamo nel db  altrimenti false .
     }
 }

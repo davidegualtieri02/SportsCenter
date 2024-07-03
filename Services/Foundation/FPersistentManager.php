@@ -707,12 +707,12 @@ class FPersistentManager{
     *@return boolean
     */
    public static function VerificaEmailUtente($email){
-    $risultato = FUtente::verifica('email',$email);
+    $risultato = FUtenteRegistrato::verifica('email',$email);
     return $risultato;
    }
    
    public static function VerificaPasswordUtente($pass){
-    $risultato = FUtente::verifica('password', $pass);
+    $risultato = FUtenteRegistrato::verifica('password', $pass);
     return $risultato;
    }
    //---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -728,16 +728,14 @@ class FPersistentManager{
         $campo = [['password',$utenteRegistrato->getPassword()]];// campo è un arraymultidimensionale che ha una coppia chiave valore che sono 'password' (chiave) e $utenteRegistrato->getPassword() (valore)
         $risultato= FUtenteRegistrato::salvaOgg($utenteRegistrato,$campo);
         return $risultato;
-    }   
-    public static function updateBanUtente($utente){
-        $field = [['ban', $utente->isBanned()]];
-        $risultato = FUtenteRegistrato::salvaOgg($utente, $field);
+    }
+    public static function updateBanUtente($utente) {
+        $newBanState = !(FUtenteRegistrato::isBanned($utente));
+        $risultato = self::UpdateOgg(FUtenteRegistrato::getTabella(),'ban',(int)$newBanState,'id_utenteRegistrato',FUtenteRegistrato::getId($utente));
         return $risultato;
     }
-    
     public static function VerificaTesseramento($pdo,$idutente){
         $risultato = FTessera::VerificaTesseramentoUtente($pdo,$idutente);
         return $risultato;
-
     }
 }
