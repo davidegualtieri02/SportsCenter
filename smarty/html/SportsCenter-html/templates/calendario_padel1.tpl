@@ -176,29 +176,19 @@
             <div class="calendar-wrapper">
               <div class="calendar-header">
                 <button id="btnPrev" type="button">Prev</button>
-                <h2 id="monthYear">{date_format time=$current_date format="%B %Y"}</h2>
+                <h2 id="monthYear"></h2>
                 <button id="btnNext" type="button">Next</button>
               </div>
-              <div id="divCal" class="calendar">
-                {foreach from=$days item=day}
-                  {if $day}
-                    <div class="day {if $selected_date == $day.date}selected{/if}">
-                      <a href="?selected_date={$day.date}">{$day.day}</a>
-                    </div>
-                  {else}
-                    <div class="day"></div>
-                  {/if}
-                {/foreach}
-              </div>
+              <div id="divCal" class="calendar"></div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campopallavoloaperto.jpeg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campopadelaperto.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da pallavolo all'aperto. Costo campo:60 euro</p>
+              <p>Campo da padel all'aperto. Costo campo:52 euro</p>
               <!-- Pulsante "Avanti" allineato a destra -->
               <button class="btn btn-avanti float-right">Avanti</button>
             </div>
@@ -334,4 +324,3 @@
   </script>
 </body>
 </html>
-

@@ -194,11 +194,11 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campopallavoloaperto.jpeg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campobasketchiuso.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da pallavolo all'aperto. Costo campo:60 euro</p>
+              <p>Campo da basket al chiuso. Costo campo:60 euro</p>
               <!-- Pulsante "Avanti" allineato a destra -->
               <button class="btn btn-avanti float-right">Avanti</button>
             </div>
@@ -334,4 +334,5 @@
   </script>
 </body>
 </html>
+
 
