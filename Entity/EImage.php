@@ -4,7 +4,7 @@
 class EImage{
 
     //Dichiarazione di una variabile privata per l'ID dell'immagine
-    private int $id_image;
+    private int $id_image = 0;
 
     //Dichiarazione di una variabile privata per il nome dell'immagine
     private string $nome;
@@ -13,7 +13,7 @@ class EImage{
     private int $grandezza;
 
     //Dichiarazione di una variabile privata per il tipo dell'immagine
-    private string $tipi;
+    private string $tipo;
 
     //Dichiarazione di una variabile privata per i dati dell'immagine
     private string $imageData;
@@ -25,22 +25,22 @@ class EImage{
     private static $entità = EImage::class;
 
     //Definizione del costruttore della classe
-    public function __construct($nome, $grandezza, $tipi, $imageData, $id_recensione){
+    public function __construct($nome, $grandezza, $tipo, $imageData, $id_recensione){
         $this->nome = $nome; //Assegnazione del valore del parametro al campo nome
         $this->grandezza = $grandezza; //Assegnazione del valore del parametro al campo grandezza
-        $this->tipi = $tipi; //Assegnazione del valore del parametro al campo tipi
+        $this->tipo = $tipo; //Assegnazione del valore del parametro al campo tipo
         $this->imageData = $imageData; //Assegnazione del valore del parametro al campo imageData
         $this->id_recensione = $id_recensione;
     }
 
     //Definizione di un metodo statico che restituisce l'entità dell'immagine
-    public static function getEntità(): string{
+    public static function getEntità(){
         return self::$entità; //Restituise il valore dell'entità
     }
 
     //Definizione di un metodo per ottenere l'ID dell'immagine
-    public static function getId(){
-        return self::$id_image; //Restituisce il valore dell'ID dell'immagine
+    public function getId(){
+        return $this->id_image; //Restituisce il valore dell'ID dell'immagine
     }
 
     //Definizione di un metodo per impostare l'ID dell'immagine
@@ -60,7 +60,7 @@ class EImage{
 
     //Definizione di un metodo per ottenere il tipo dell'immagine
     public function getTipo(){
-        return $this->tipi; //Restituisce il valore del tipo dell'immagine
+        return $this->tipo; //Restituisce il valore del tipo dell'immagine
     }
 
     //Definizione di un metodo per ottenere i dati dell'immagine
@@ -79,7 +79,7 @@ class EImage{
     }
 
     //Definizione di un metodo per impostare la recensione a cui è collegata l'immagine
-    public function setRecensione($id_recensione): void{
+    public function setRecensione($id_recensione){
          $this->id_recensione = $id_recensione ; //Assegna il valore del parametro al campo recensione
     }
 }

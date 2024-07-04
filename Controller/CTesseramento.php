@@ -23,11 +23,11 @@ class CTesseramento{
            //ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
             $tessera = $pm::recuperaOggetto('ETessera',$idtessera); //ha senso porre uploadOgg sia perchè la form prende come parametro la tessera  e anche perchè il form dovrà prendere i dati della tessera.
             if(UServer::getRichiestaMetodo()=="GET"){
-                $utente = unserialize($sessione->LeggiValore('Utente'));
+                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
                 $view ->MostraFormTesseramento($tessera,$utente); // viene mostrata la form per il tesseramento
             }
             elseif(UServer::getRichiestaMetodo()=="POST"){
-                $utente = unserialize($sessione->LeggiValore('Utente'));
+                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
                 $idUtente = $utente->getId();
                 $nome = UMetodiHTTP::post('Nome_Titolare');
                 $cognome = UMetodiHTTP::post('Cognome_Titolare');
@@ -43,8 +43,8 @@ class CTesseramento{
                 if(FPersistentManager::ProcessoPag($nome, $cognome, $numeroCarta, $scadenzaCarta, $cvvCarta)) {
                     $tesseramento = new ETessera($idUtente,$dataScadenza, $dataInizio); // Sostituire con i dati effettivi del tesseramento
                     $pm::uploadOgg($tesseramento); // Aggiunta del tesseramento nel database
-                    $utenteTesserato = new EUtenteTesserato($utente->getNome(),$utente->getCognome(),$utente->getEmail(),$utente->getPassword(),false);// se l'utente si sta tesserando il ban è impostato a false
-                    $pm::uploadOgg($utenteTesserato);//aggiungo l'utente tesserato al database 
+                    $utenteRegistratoTesserato = new EUtenteRegistrato($utente->getNome(),$utente->getCognome(),$utente->getEmail(),$utente->getPassword());// se l'utente si sta tesserando il ban è impostato a false
+                    $pm::uploadOgg($utenteRegistratoTesserato);//aggiungo l'utente tesserato al database 
                     $view->MostraMessaggioTesseramento();
                 }
             }
@@ -61,14 +61,14 @@ class CTesseramento{
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
         if(Userver::getRichiestaMetodo()=='GET'){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $view->MostraModuloTesseramento($utente);
         }
         elseif(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            $utente = unserialize($sessione->LeggiValore('Utente'));
-            $pdo = new PDO('mysql:host=localhost;dnname =Prova','root',' ', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,PDO::ATTR_EMULATE_PREPARES => false]);
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
+            $pdo = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8", DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false]);
             if($pm::VerificaTesseramento($pdo,$utente->getId())) {
-                $pm::deleteOgg('Tesseramento',$utente->getId(),'id_utenteRegistrato') ;
+                $pm::deleteOgg('Tessera',$utente->getId(),'id_utenteRegistrato') ;
                 $view->MostraAnnullamentoTesseramento(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
             }
         }
@@ -80,7 +80,7 @@ class CTesseramento{
         $view = new VTesseramento();
         if(UServer::getRichiestaMetodo()=='GET'){
             if(CUtente::Loggato()){
-                $utente = unserialize($sessione->LeggiValore('Utente'));
+                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
                 $view->MostraModuloTesseramento($utente);
             }else{
                 header('Location: /SportsCenter/Utente/login');
@@ -93,5 +93,3 @@ class CTesseramento{
     }
         
 }
-
-

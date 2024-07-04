@@ -1,7 +1,7 @@
 <?php
 class UMetodiHTTP{
     //Classe per accedere all'array $_POST per richieste http come $_POST e $_LIKE
-    // L'array $_POST invia al server i dati su una possibile prenotazione( cioè l'ora , il giorno e l'utente che prenota) , oppure invia i dati di un annullamento prenotazione etc.. . Invia i dati al server.
+    //L'array $_POST invia al server i dati su una possibile prenotazione (cioè l'ora , il giorno e l'utente che prenota), oppure invia i dati di un annullamento prenotazione etc.. . Invia i dati al server.
     // l'array $_FILES permette all'utente di inviare al server dei file per esempio come delle immagini .
 
    /**

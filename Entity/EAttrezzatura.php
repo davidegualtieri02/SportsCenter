@@ -1,11 +1,12 @@
 <?php
 class EAttrezzatura{
-    protected int $id_attrezzatura;
-
+    protected int $id_attrezzatura = 0;
+    protected String $descrizione;
 
     private static $entità = EAttrezzatura::class;
 
-    public function __construct(){
+    public function __construct($descrizione){
+        $this->descrizione = $descrizione;
  }
     public function getId_attrezzatura(){
         return $this->id_attrezzatura;

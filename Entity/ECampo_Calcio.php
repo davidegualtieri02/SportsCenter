@@ -3,7 +3,7 @@ require_once "ECampo.php";
 require_once "EImage.php";
 class ECampo_Calcio  extends ECampo{
     private static $id_campoCalcio;
-    private static $entità =ECampo_Calcio::class;
+    private static $entità = ECampo_Calcio::class;
     private EImage $fotoCampo;
 
     public function __construct($copertura,$TitoloCampo, $prezzo, EImage $fotoCampo){ 
@@ -11,9 +11,8 @@ class ECampo_Calcio  extends ECampo{
         $this->fotoCampo=$fotoCampo;
     }
        
-
-        public  function getEntità():string{
-    return self::$entità;
+    public  function getEntità():string{
+        return self::$entità;
     }
     public static function getIdCampoCalcio(){
         return self::$id_campoCalcio;

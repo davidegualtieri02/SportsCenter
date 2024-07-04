@@ -3,7 +3,7 @@ require_once(__DIR__."/../../Entity/ECampo.php");
 class FCampo{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Campo"; 
-    private static $valore = "(:id_campo,:copertura,:titoloCampo,:prezzo)";
+    private static $valore = "(:id_campo,:titoloCampo,:prezzo)";
     private static $chiave = "id_campo";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -25,7 +25,7 @@ class FCampo{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto campo. Non è necessario impostare l'ID del campo perchè l’ID del campo viene effettivamente impostato nel costruttore della classe ECampo quando viene creato un nuovo oggetto ECampo.
-            $campo = new ECampo($risultatoQuery[0]['copertura'], $risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
+            $campo = new ECampo($risultatoQuery[0]['titoloCampo'],$risultatoQuery[0]['prezzo']);
             $campo->setId_campo($risultatoQuery[0]['id_campo']);
             //Restituisci l'oggetto campo
             return $campo;
@@ -35,7 +35,7 @@ class FCampo{
             //Ciclo if per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto campo. Non va impostato l'ID del campo per lo stesso motivo spiegato nella riga 27
-                $campo = new ECampo($risultatoQuery[$i]['copertura'], $risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
+                $campo = new ECampo($risultatoQuery[$i]['titoloCampo'],$risultatoQuery[$i]['prezzo']);
                 $campo->setId_campo($risultatoQuery[$i]['id_campo']);
                 //Aggiunge l'oggetto campo nell'array
                 $campi[] = $campo;
@@ -50,7 +50,6 @@ class FCampo{
     //Metodo public che lega i valori ai rispettivi parametri nella dichiarazione SQL
     public static function bind($dichiarazione,$campo){
         $dichiarazione->bindValue(":id_campo",$campo->getId_campo(),PDO::PARAM_INT);
-        $dichiarazione->bindValue(":copertura",$campo->getCopertura(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":titoloCampo",$campo->getTitolo(),PDO::PARAM_STR);
         $dichiarazione->bindValue(":prezzo",$campo->getPrezzo(),PDO::PARAM_INT);
     }
@@ -89,6 +88,4 @@ class FCampo{
         return $dichiarazione->rowCount()===0;//ritorna true se non ci sono righe nell'array dichiarazione , cioè se il campo è libero in quella data e in quell'orario
         // altrimenti ritorna false e $dichiarazione contiene un elemento contenente l'id del campo, la data e l'orario.
     }
-    
-
 }

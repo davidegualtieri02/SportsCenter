@@ -11,7 +11,7 @@ $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::ge
 
 
 require_once(__DIR__."/../../Entity/EUtenteRegistrato.php");
-$utreg = new EUtenteRegistrato("Lorenzo", "Fracassi", "lo@renzo.it", "pwlorenzo");
+$utreg = new EUtenteRegistrato("Nome1", "Cognome1", "em@ail1.it", "pw1");
 
 //FUNZIONA
 //$risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),FUtenteRegistrato::getChiave(), 1);
@@ -55,11 +55,11 @@ require_once("FTessera.php");
 
 //att.ne: verificatesseramento non testato
 
-require_once("FCampo.php");
+//require_once("FCampo.php");
 //FUNZIONA
 //print_r(FCampo::verifica("id_campo", 1));
 
-$risultato1 = FEntityManager::getIstanza()->recuperaOggetto(FCampo::getTabella(),FCampo::getChiave(), 1);
+//$risultato1 = FEntityManager::getIstanza()->recuperaOggetto(FCampo::getTabella(),FCampo::getChiave(), 1);
 //FUNZIONA
 //print_r(FCampo::creaOggCampo($risultato1));
 
@@ -87,3 +87,25 @@ $risultato1 = FEntityManager::getIstanza()->recuperaOggetto(FCampo::getTabella()
 
 //FUNZIONA
 //print_r(FPersistentManager::VerificaEmailUtente("di@ego.it"));
+
+
+require_once("FCampo.php");
+//FUNZIONA
+//print_r(FCampo::verifica("id_campo", 1));
+
+//FUNZIONA
+//print_r(FCampo::getOgg(2));
+
+$risultato = FEntityManager::getIstanza()->recuperaOggetto(FCampo::getTabella(),FCampo::getChiave(), 1);
+//FUNZIONA
+//print_r(FCampo::creaOggCampo($risultato));
+
+
+require_once("FAttrezzatura.php");
+//FUNZIONA
+//print_r(FAttrezzatura::verifica("id_attrezzatura", 1));
+
+//FUNZIONA
+//print_r(FAttrezzatura::getOgg(1));
+
+require_once("FImage.php");

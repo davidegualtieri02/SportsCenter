@@ -9,18 +9,18 @@ class CRecensione{
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VRecensione;
-        $utente = unserialize($sessione->LeggiValore('Utente'));
+        $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
         $campo = $pm::recuperaOggetto('ECampo',$idcampo);
         $prenotazione = $sessione::getElementoSessione('id_prenotazione');
-        if(Userver::getRichiestaMetodo() =="GET"){
+        if(Userver::getRichiestaMetodo() == "GET"){
         //se il metodo di richiesta è GET viene mostrato il form per una nuova recensione, cioè il server manda al browser dell'utente  la form per recensire il campo
             $view->formNuovaRecensione($utente,$prenotazione,$campo);
         }//se la richiesta è POST l'utente scrive il commento e aggiunge la recensione al db
-        elseif(UServer::getRichiestaMetodo()=="POST"){
+        elseif(UServer::getRichiestaMetodo() == "POST"){
             $valutazione = VRecensione::getValutazione();
             $messaggio = VRecensione::getMessaggio();
-            $ora = VRecensione::getOra();
-            $recensione = new ERecensione($valutazione,$messaggio,$utente->getId(),$idcampo,$ora);
+            $data = VRecensione::getData();
+            $recensione = new ERecensione($valutazione,$messaggio,$idcampo,$utente,$data);
             $pm::uploadOgg($recensione);
             $imm=UMetodiHTTP::files('immagini');
                         // carica l'immagine dal browser dell'utente fino al server
@@ -42,7 +42,7 @@ class CRecensione{
 
                 }        
                     // Aggiorna la recensione nel database con le immagini aggiunte
-                $pm::updateOgg(FRecensione::getTabella(),'image',$immagini,'id_utente',$utente->getId()); // al posto del valore della colonna image poniamo le immagini relative al commento 
+                $pm::updateOgg(FRecensione::getTabella(),'image',$immagini,'id_utenteRegistrato',$utente->getId()); // al posto del valore della colonna image poniamo le immagini relative al commento 
         }
                     
                 //l'utente non ha prenotato questo campo , viene mostrato un messaggio di errore
@@ -58,10 +58,10 @@ class CRecensione{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         if(CUtente::Loggato()){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $idUtente = $utente->getId();
-            $prenotazioni =FPersistentManager::recuperaOggetti(FUtente::getTabella(),'id_utente', $idUtente);
-            if(UServer::getRichiestaMetodo()=='GET'){
+            $prenotazioni =FPersistentManager::recuperaOggetti(FUtenteRegistrato::getTabella(),'id_utenteRegistrato', $idUtente);
+            if(UServer::getRichiestaMetodo() == 'GET'){
                 $view->MostraPrenotazioni($prenotazioni,$utente);
              }
         }else {
@@ -76,7 +76,7 @@ class CRecensione{
     public static function eliminaRecensione($idRecensione) {
         // Verifica se l'utente è loggato
         if (CUtente::Loggato()) {
-            $utente = unserialize(USession::getIstanza()->LeggiValore('utente'));
+            $utente = unserialize(USession::getIstanza()->LeggiValore('utenteRegistrato'));
     
             // Recupera la recensione dal database
             $recensione = FPersistentManager::recuperaOggetto('ERecensione', $idRecensione);
@@ -110,16 +110,11 @@ class CRecensione{
         $sessione = USession::getIstanza();
         $view = new VRecensione();
         if(CUtente::Loggato()){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $recensioni = $pm::RecuperaTuple(FPrenotazione::getTabella());
-            if(UServer::getRichiestaMetodo()=='GET'){
+            if(UServer::getRichiestaMetodo() == 'GET'){
                 $view->MostraRecensioni($recensioni,$utente);
             }
-
         }
-
     }
-    
-
-
 }

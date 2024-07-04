@@ -4,7 +4,7 @@ class FImage{
 
     // Dichiarazione delle variabili private statiche
     private static $tabella = "image";
-    private static $valore = "(NULL, :nome, :grandezza, :tipi, :imageData, :id_recensione)";
+    private static $valore = "(:id_image, :nome, :grandezza, :tipo, :imageData, :id_recensione)";
     private static $chiave = "id_image";
 
     // Metodo per ottenere il valore della variabile $tabella
@@ -32,7 +32,7 @@ class FImage{
         if(count($risultatoQuery) > 0){
             $images = array();
             for ($i = 0; $i < count($risultatoQuery); $i++){
-                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipi'], $risultatoQuery[$i]['imageData'], $risultatoQuery[$i]['id_recensione']);
+                $im = new EImage($risultatoQuery[$i]['nome'], $risultatoQuery[$i]['grandezza'], $risultatoQuery[$i]['tipo'], $risultatoQuery[$i]['imageData'], $risultatoQuery[$i]['id_recensione']);
                 $im->setId($risultatoQuery[$i]['id_image']);
                 $images[] = $im;
             }
@@ -46,7 +46,7 @@ class FImage{
     public static function bind($dichiarazione, $image){
         $dichiarazione->bindValue(":nome", $image->getNome(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":grandezza", $image->getGrandezza(), PDO::PARAM_INT);
-        $dichiarazione->bindValue(":tipi", $image->getTipo(), PDO::PARAM_STR);
+        $dichiarazione->bindValue(":tipo", $image->getTipo(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":imageData", $image->getImageData(), PDO::PARAM_LOB);
         $dichiarazione->bindValue(":id_image", $image->getId(), PDO::PARAM_INT);
         if($image->getRecensione() !== null){

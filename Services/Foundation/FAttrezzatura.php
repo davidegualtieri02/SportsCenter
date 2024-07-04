@@ -1,9 +1,9 @@
 <?php
-
+require_once(__DIR__."/../../Entity/EAttrezzatura.php");
 class FAttrezzatura{
     //Definizione delle variabili private static che contengono il nome della tabella nel DB, il valore e la chiave primaria da inserire nel DB
     private static $tabella = "Attrezzatura"; 
-    private static $valore = "(NULL,:id_attrezzatura)";
+    private static $valore = "(:id_attrezzatura,:descrizione)";
     private static $chiave = "id_attrezzatura";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -25,7 +25,7 @@ class FAttrezzatura{
         //Se la query restituisce solo un risultato
         if(count($risultatoQuery) == 1){
             //Crea un nuovo oggetto attrezzatura
-            $attrezzatura = new EAttrezzatura();
+            $attrezzatura = new EAttrezzatura($risultatoQuery[0]['descrizione']);
             //Imposta l'ID dell'attrezzatura
             $attrezzatura->setId_attrezzatura($risultatoQuery[0]['id_attrezzatura']);
             //Restituisce l'oggetto attrezzatura
@@ -36,7 +36,7 @@ class FAttrezzatura{
             //Ciclo if per ogni risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Crea un nuovo oggetto attrezzatura
-                $attrezzatura = new EAttrezzatura();
+                $attrezzatura = new EAttrezzatura($risultatoQuery[$i]['descrizione']);
                 //Imposta l'ID dell'attrezzatura
                 $attrezzatura->setId_attrezzatura($risultatoQuery[$i]['id_attrezzatura']);
                 //Aggiunge l'oggetto attrezzatura nell'array

@@ -19,7 +19,7 @@ class CUtente {
             self::Bannato();// se loggato = true attraverso questo metodo Bannato() vediamo se l'utente è stato bannato 
         }
         if(!$loggato){ // se l'utente non è ancora loggato , cioè $loggato = false
-            header('Location : /SportsCenter/Utente/login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
+            header('Location: /SportsCenter/Utente/login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
             exit;// viene terminato l'esecuzione dello script per farsi che l'utente venga reindirizzato alla pagina di login
         }
         return true; // viene ritornato true se l'utente è loggato correttamente
@@ -51,7 +51,7 @@ class CUtente {
             }
         }
         if(USession ::isSetElementoSessione('utenteRegistrato')){//verifica se un elemento con chiave utenteRegistrato è stato inserito nell'array superglobale $_SESSION
-            header('Location : /SportsCenter/UtenteRegistrato/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
+            header('Location: /SportsCenter/UtenteRegistrato/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
         }
         $view = new VUtente();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
         $view->MostraLoginFormUtente();
@@ -65,7 +65,7 @@ class CUtente {
         $view = new VUtente();
         if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false && FPersistentManager::getIstanza()->VerificaPasswordUtente(UMetodiHTTP::post('password'))==false){// in questa riga di codice vengono verificate le credenziali
             // nell'if viene verificato se l'email , la password non sono gia state utilizzate , cioè sono uguali a false , se non sono state utilizzate  viene creato un utente con tali credenziali 
-            $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('password'),UMetodiHTTP::post('email'),UMetodiHTTP::post('ban')); // creazione utente con le credenziali fornite
+            $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('email'),UMetodiHTTP::post('password')); // creazione utente con le credenziali fornite
             FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);// viene caricato l'utente nel db tramite uploadOgg
             $view->MostraFormRegistrazione();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
         }else{
@@ -95,12 +95,12 @@ class CUtente {
             if(password_verify(UMetodiHTTP::post('password'),$utenteRegistrato->getPassword())){
                 if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
                     $view->erroreLogin('ban'); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
-                }elseif(USession::getStatoSessione()==PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
+                }elseif(USession::getStatoSessione() == PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
                     USession::getIstanza();// viene ridata un istanza sessione 
                     USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getId());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
-                    header ('Location : /SportsCenter/UtenteRegistrato/home');
+                    header ('Location: /SportsCenter/UtenteRegistrato/home');
                 }
             }else {
                 $view->erroreLogin('passwordErrata');
@@ -120,7 +120,7 @@ class CUtente {
             $NuovaPass = UMetodiHTTP::post('password'); // la nuova password viene posta come valore della chiave password nell'array $_POST
             $utente->setPassword($NuovaPass);
             FPersistentManager::getIstanza()->updatePasswordUtente($utente);
-            header ('Location : /SportsCenter/UtenteRegistrato/home');
+            header ('Location: /SportsCenter/UtenteRegistrato/home');
 
         }
      }

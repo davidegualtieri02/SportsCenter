@@ -35,6 +35,15 @@ print_r($carta);
 require_once("EUtenteRegistrato.php");
 //FUNZIONANO
 $ut1 = new EUtenteRegistrato("Daieg", "Roma", "da@ieg.it", "pwdaieg");
-$ut1->setBan(true);
-$ut1->setEmail("di@ego.it");
-print_r($ut1);
+//$ut1->setBan(true);
+//$ut1->setEmail("di@ego.it");
+//print_r($ut1);
+
+require_once("ERecensione.php");
+//$rc = new ERecensione(3, "bel campo", 2, $ut1, 2020-04-04);
+//print_r($rc);
+
+require_once("ECampo.php");
+//FUNZIONA
+//$c1 = new ECampo("Campo da tennis al chiuso", 99);
+//print_r($c1);

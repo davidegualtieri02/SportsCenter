@@ -4,7 +4,7 @@
 class FPrenotazione {
     //Definisco le variabili statiche private che contengono i nomi della tabella, i valori e la chiave primaria
     private static $tabella = "Prenotazione";
-    private static $valore = "(NULL, :data, :orario, :pagata, :id_campo, :id_attrezzatura)";
+    private static $valore = "(:id_prenotazione,:data,:orario,:pagata,:id_campo,:id_attrezzatura,:id_utenteRegistrato)";
     private static $chiave = "id_prenotazione";
 
     //Metodi public che restituiscono il nome della tabella, il valore, la classe e la chiave primaria
@@ -17,7 +17,6 @@ class FPrenotazione {
     public static function getClasse(){
         return self::class;
     }
-
     public static function getChiave(){
         return self::$chiave;
     }
@@ -25,7 +24,7 @@ class FPrenotazione {
     //Funzione per creare un oggetto Prenotazione da un risultato di una query
     public static function CreaOggPrenotazione($risultatoQuery){
         if(count($risultatoQuery) == 1){
-            $prenotazione = new EPrenotazione($risultatoQuery[0]['data'], $risultatoQuery[0]['orario'], $risultatoQuery[0]['pagata'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['id_attrezzatura']);
+            $prenotazione = new EPrenotazione($risultatoQuery[0]['data'], $risultatoQuery[0]['orario'], $risultatoQuery[0]['pagata'], $risultatoQuery[0]['id_campo'], $risultatoQuery[0]['id_attrezzatura'], $risultatoQuery[0]['id_utenteRegistrato']);
             $prenotazione->setIdPrenotazione($risultatoQuery[0]['id_prenotazione']);
             return $prenotazione;
         }
@@ -36,7 +35,7 @@ class FPrenotazione {
             //Ciclo for per ogni elemento del risultato della query
             for($i = 0; $i < count($risultatoQuery); $i++){
                 //Creazione di un nuovo oggetto Prenotazione con i dati ottenuti dalla query
-                $prenotazione = new EPrenotazione($risultatoQuery[$i]['data'],$risultatoQuery[$i]['orario'], $risultatoQuery[$i]['pagata'],$risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['id_attrezzatura']);
+                $prenotazione = new EPrenotazione($risultatoQuery[$i]['data'],$risultatoQuery[$i]['orario'], $risultatoQuery[$i]['pagata'],$risultatoQuery[$i]['id_campo'], $risultatoQuery[$i]['id_attrezzatura'], $risultatoQuery[$i]['id_utenteRegistrato']);
                 $prenotazione->setIdPrenotazione($risultatoQuery[$i]['id_prenotazione']);
                 //Aggiungo la recensione all'array delle prenotazioni
                 $prenotazioni[] = $prenotazione;
@@ -50,12 +49,13 @@ class FPrenotazione {
 
     //Funzione per associare i valori dell'oggetto Prenotazione ai parametri della dichiarazione SQL
     public static function bind($dichiarazione, $prenotazione){
+        $dichiarazione->bindValue(":id_prenotazione", $prenotazione->getIdPrenotazione(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":data", $prenotazione->getData(), PDO::PARAM_STR);
         $dichiarazione->bindValue(":orario", $prenotazione->getOrario(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":pagata", $prenotazione->getPagata(), PDO::PARAM_BOOL);
-        $dichiarazione->bindValue(":id_prenotazione", $prenotazione->getIdPrenotazione(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":id_campo", $prenotazione->getIdCampo(), PDO::PARAM_INT);
         $dichiarazione->bindValue(":id_attrezzatura", $prenotazione->getIdAttrezzatura(), PDO::PARAM_INT);
+        $dichiarazione->bindValue(":id_utenteRegistrato", $prenotazione->getIdUtente(), PDO::PARAM_INT);
     }
 
     //Funzione per ottenere un oggetto Prenotazione dal DB
@@ -111,14 +111,14 @@ class FPrenotazione {
     }
 
     //Funzione per eliminare una Prenotazione dal DB
-    public static function eliminaPrenotazioneDalDB($id_prenotazione, $id_utente){
+    public static function eliminaPrenotazioneDalDB($id_prenotazione, $id_utenteRegistrato){
         //Inizia una transizione
         try{
             FEntityManager::getIstanza()->getdb()->beginTransaction();
             //Recupera l'oggetto Prenotazione dal DB
             $queryResult = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(), self::getChiave(), $id_prenotazione);
             //Verifica se l'oggetto esiste nel DB e se l'utente è il creatore dell'oggetto
-            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_utente)){
+            if(FEntityManager::getIstanza()->esisteNelDb($queryResult) && FEntityManager::getIstanza()->verificaCreatore($queryResult, $id_utenteRegistrato)){
                 //Elimina la recensione dal DB
                 FEntityManager::getIstanza()->deleteOggInDb(self::getTabella(), self::getChiave(), $id_prenotazione);
                 //Conferma le modifiche al DB
@@ -142,12 +142,12 @@ class FPrenotazione {
     /**
      * Metodo che verifica se la prenotazione è di un utente loggato
      */
-    public static function VerificaUtentePrenotazione($pdo,$idPrenotazione, $id_utente) {
-        $sql = "SELECT id_utente FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utente = :id_utente";
+    public static function VerificaUtentePrenotazione($pdo,$idPrenotazione,$id_utenteRegistrato) {
+        $sql = "SELECT id_utenteRegistrato FROM Prenotazione WHERE id_prenotazione = :id_prenotazione AND id_utenteRegistrato = :id_utenteRegistrato";
         $dichiarazione = $pdo->prepare($sql);
         $dichiarazione->execute([
             ':id_prenotazione' => $idPrenotazione,
-            ':id_utente' => $id_utente
+            ':id_utenteRegistrato' => $id_utenteRegistrato
         ]);
         return $dichiarazione->rowCount() > 0;// verifica se la query ha restituita almeno una riga , cioè se quell'utente ha prenotato almeno una prenotazione 
     }

@@ -8,7 +8,7 @@ class FUtente{
      * NULL è usato per un campo(attributo del database) auto-incrementante  come l'ID, il database assegna automaticamente il prossimo numero disponibile.
      * :nome,:cognome,:email,:password  : questi sono dei segnaposto . Ogni segnaposto sarà poi sostituito con un valore reale quando la query viene eseguita.
      */
-    private static $valore = "(NULL,:nome,:cognome,:password,:email)";
+    private static $valore = "(:id_utenteRegistrato,:nome,:cognome,:password,:email,:ban,:id_tessera)";
     private static $chiave = "id_utenteRegistrato";
 
     public static function getTabella(){

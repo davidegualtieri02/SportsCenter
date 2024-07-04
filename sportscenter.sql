@@ -161,7 +161,7 @@ CREATE TABLE Recensione (
     FOREIGN KEY (id_utente) REFERENCES Utente(id_utente),
     FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-CREATE TABLE image(
+CREATE TABLE Image(
     id_image INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50),
     grandezza VARCHAR(50),

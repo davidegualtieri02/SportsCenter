@@ -16,9 +16,9 @@ class CPrenotaCampo{
         $campo = $sessione::getElementoSessione('campo');
         $data = $sessione::getElementoSessione('data');
         $orario = $sessione::getElementoSessione('orario');
-        if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
-            $utente = unserialize($sessione->LeggiValore('Utente'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
-            $idcampo = $campo->getId();
+        if(UServer::getRichiestaMetodo() == "GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
+            $idcampo = $campo->getId_campo();
             $titolocampo = $campo->getTitolo();
             if(($titolocampo = "Campo Basket 1") || ($titolocampo = "Campo Basket 2")){
                 $view->MostraFormAttrezzaturaBasket($utente,$idcampo,$attrezzatura,$titolocampo); //viene mostrata la form per la prenotazione
@@ -26,18 +26,18 @@ class CPrenotaCampo{
             if(($titolocampo = "Campo Calcio 1") || ($titolocampo = "Campo Calcio 2")){
                 $view->MostraFormAttrezzaturaCalcio($utente,$idcampo,$attrezzatura,$titolocampo);
             }
-            if(($titolocampo = "Campo Padel 1") ||($titolocampo = " Campo Padel 2")){
+            if(($titolocampo = "Campo Padel 1") ||($titolocampo = "Campo Padel 2")){
                 $view->MostraFormAttrezzaturaPadel($utente,$idcampo,$attrezzatura,$titolocampo);
             }
-            if(($titolocampo = "Campo Pallavolo 1") ||($titolocampo = " Campo Pallavolo 2")){
+            if(($titolocampo = "Campo Pallavolo 1") ||($titolocampo = "Campo Pallavolo 2")){
                 $view->MostraFormAttrezzaturaPallavolo($utente,$idcampo,$attrezzatura,$titolocampo);
             }
-            if(($titolocampo = "Campo Tennis 1") || ($titolocampo= " Campo Tennis 2")){
+            if(($titolocampo = "Campo Tennis 1") || ($titolocampo= "Campo Tennis 2")){
                 $view->MostraFormAttrezzaturaTennis($utente,$idcampo,$attrezzatura,$titolocampo);
             }
         }
-        elseif(UServer::getRichiestaMetodo()=="POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+        elseif(UServer::getRichiestaMetodo() == "POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $idAttrezzatura = UMetodiHTTP::post('id_attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
             $view->MostraFormPagamento($utente,$idAttrezzatura,$campo,$data,$orario);
     
@@ -58,12 +58,12 @@ class CPrenotaCampo{
         $orario = $sessione::getElementoSessione('orario');
         $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
         if(UServer::getRichiestaMetodo()=="GET"){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $view ->MostraFormPagamento($utente,$campo,$data,$orario,$attrezzatura);
             
         }
         elseif(UServer::getRichiestaMetodo()=="POST"){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $nome = UMetodiHTTP::post('Nome_Titolare');
             $cognome = UMetodiHTTP::post('Cognome_Titolare');
             $scadenza = UMetodiHTTP::post('Data_Scadenza');
@@ -75,7 +75,7 @@ class CPrenotaCampo{
                 $view->MostraErrore();
             }else{
             //altrimenti procediamo con la creazione della prenotazione e la conferma della prenotazione
-            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura);
+            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura->getId_attrezzatura());
             $pm::uploadOgg($prenotazione);
             $view->ConfermaPrenotazione($utente,$nome,$cognome,$scadenza,$numero,$cvv);
             }
@@ -89,8 +89,8 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
-        if(UServer::getRichiestaMetodo()=="GET"){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+        if(UServer::getRichiestaMetodo() == "GET"){
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $view->MostraCalendario($utente,$campo);
              
         }
@@ -102,8 +102,8 @@ class CPrenotaCampo{
     public static function MostraOrari($giorno){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo(); 
-        if(UServer::getRichiestaMetodo()=="POST"){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+        if(UServer::getRichiestaMetodo() == "POST"){
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $campo = $sessione::getElementoSessione('campo');// la sessione mantiene il campo scelto in sessione e viene ripreso
             $giornoStr = UMetodiHTTP::post('data');
             $giorno = new DateTime($giornoStr);
@@ -117,15 +117,15 @@ class CPrenotaCampo{
     public static function MostraAttrezzatura($orario){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-       if(UServer::getRichiestaMetodo()=='GET'){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+       if(UServer::getRichiestaMetodo() == 'GET'){
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $campo = $sessione::getElementoSessione('campo');
             $giorno = $sessione::getElementoSessione('data');
             $orari = FPersistentManager::orariDisponibili($giorno);
             $view->MostraListaOrari($utente,$campo,$giorno,$orari);
          }
-        elseif(UServer::getRichiestaMetodo()=='POST'){
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+        elseif(UServer::getRichiestaMetodo() == 'POST'){
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $campo = $sessione::getElementoSessione('campo');
             $giorno = $sessione::getElementoSessione('data');
             $orario = UMetodiHTTP::post('orario') ;
@@ -140,7 +140,7 @@ class CPrenotaCampo{
     public function MostraPrenotazione($idPrenotazione){
         $view = new VPrenotaCampo();
         $sessione = USession::getIstanza();
-        $utente =  unserialize($sessione->LeggiValore('Utente'));
+        $utente =  unserialize($sessione->LeggiValore('utenteRegistrato'));
         $prenotazione = FPersistentManager::recuperaOggetto('EPrenotazione',$utente->getId());
         $idPrenotazione = $prenotazione->getIdPrenotazione();
         $view->mostraInfoPrenotazione($utente,$prenotazione);
@@ -155,7 +155,7 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            $utente = unserialize($sessione->LeggiValore('Utente'));
+            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $idPrenotazione = $sessione::getElementoSessione('id_prenotazione');
             $pm::deletePrenotazione($idPrenotazione,$utente->getId());
             $view->MostraMessaggioConferma(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
@@ -167,9 +167,9 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         if (CUtente::Loggato()){
-            $utente= unserialize($sessione->LeggiValore('Utente'));
+            $utente= unserialize($sessione->LeggiValore('utenteRegistrato'));
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
-            if(UServer::getRichiestaMetodo()=='GET'){
+            if(UServer::getRichiestaMetodo() == 'GET'){
                 $campi_basket[] = $pm::RecuperaTuple(FCampo_Basket::getTabella());
                  $campi_pallavolo[] = $pm::RecuperaTuple(FCampo_Pallavolo::getTabella());
                 $campi_calcio[] = $pm::RecuperaTuple(FCampo_Calcio::getTabella());
@@ -186,8 +186,6 @@ class CPrenotaCampo{
             header("Location: SportsCenter/Utente/login");
             exit;
             }
-
         }
-   }
+    }
 }
-
