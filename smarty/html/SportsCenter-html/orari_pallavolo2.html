@@ -13,66 +13,12 @@
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="calendario.css">
+  <link href="css/orari.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f4f8;
       margin: 0;
-    }
-    .calendar-wrapper {
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      width: 100%;
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .calendar-header h2 {
-      margin: 0;
-    }
-    button {
-      background-color: #a5eb99;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #a5eb99;
-    }
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .day {
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      background-color: #e9ecef;
-    }
-    .day:hover {
-      background-color: #dee2e6;
-    }
-    .selected {
-      background-color: #a5eb99;
-      color: white;
     }
     .navbar-nav .nav-link {
       color: #000;
@@ -81,7 +27,6 @@
     .navbar-nav .nav-link:hover {
       color: #fff !important;
     }
-    /* Aggiunta stile per il pulsante "Avanti" */
     .btn-avanti {
       background-color: #a5eb99;
       color: white;
@@ -94,6 +39,37 @@
     }
     .btn-avanti:hover {
       background-color: #a5eb99;
+    }
+    .orari-table {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .orari-table th {
+      background-color: #a5eb99;
+      color: white;
+      padding: 12px;
+      text-transform: uppercase;
+    }
+    .orari-table td {
+      background-color: #e9ecef;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .orari-table td:hover {
+      background-color: #dee2e6;
+    }
+    .orari-table .selected {
+      background-color: #a5eb99;
+      color: white;
+    }
+    .orari-table td:not(.selected):hover {
+      background-color: #cfd8dc;
     }
   </style>
 </head>
@@ -173,22 +149,49 @@
       <div class="layout_padding2-top">
         <div class="row">
           <div class="col-md-6">
-            <div class="calendar-wrapper">
-              <div class="calendar-header">
-                <button id="btnPrev" type="button">Prev</button>
-                <h2 id="monthYear"></h2>
-                <button id="btnNext" type="button">Next</button>
-              </div>
-              <div id="divCal" class="calendar"></div>
-            </div>
+            <!-- Tabella degli orari -->
+            <table class="orari-table">
+              <thead>
+                <tr>
+                  <th>Ore disponibili</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Inserimento delle ore da 08 a 23 -->
+                <tr>
+                  <td onclick="selectTime(this)">08:00</td>
+                  <td onclick="selectTime(this)">09:00</td>
+                  <td onclick="selectTime(this)">10:00</td>
+                  <td onclick="selectTime(this)">11:00</td>
+                </tr>
+                <tr>
+                  <td onclick="selectTime(this)">12:00</td>
+                  <td onclick="selectTime(this)">13:00</td>
+                  <td onclick="selectTime(this)">14:00</td>
+                  <td onclick="selectTime(this)">15:00</td>
+                </tr>
+                <tr>
+                  <td onclick="selectTime(this)">16:00</td>
+                  <td onclick="selectTime(this)">17:00</td>
+                  <td onclick="selectTime(this)">18:00</td>
+                  <td onclick="selectTime(this)">19:00</td>
+                </tr>
+                <tr>
+                  <td onclick="selectTime(this)">20:00</td>
+                  <td onclick="selectTime(this)">21:00</td>
+                  <td onclick="selectTime(this)">22:00</td>
+                  <td onclick="selectTime(this)">23:00</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campobasketchiuso.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campopallavolochiuso.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da basket al chiuso . Costo campo:60 euro</p>
+              <p>Campo da pallavolo al chiuso. Costo campo: 60 euro</p>
               <!-- Pulsante "Avanti" allineato a destra -->
               <button class="btn btn-avanti float-right">Avanti</button>
             </div>
@@ -247,6 +250,18 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script>
+    function selectTime(cell) {
+      // Rimuove la classe 'selected' da tutte le celle della tabella
+      const allCells = document.querySelectorAll('.orari-table td');
+      allCells.forEach(c => c.classList.remove('selected'));
+
+      // Aggiunge la classe 'selected' alla cella selezionata
+      cell.classList.add('selected');
+
+      // Esempio di output del tempo selezionato
+      console.log('Orario selezionato:', cell.textContent.trim());
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
@@ -267,59 +282,21 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-      const divCal = document.getElementById('divCal');
-      const monthYear = document.getElementById('monthYear');
-      const btnPrev = document.getElementById('btnPrev');
-      const btnNext = document.getElementById('btnNext');
+      const btnAvanti = document.querySelector('.btn-avanti');
+      const orariCells = document.querySelectorAll('.orari-table td');
 
-      const months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
-      let currentMonth = new Date().getMonth();
-      let currentYear = new Date().getFullYear();
-
-      function renderCalendar(month, year) {
-        divCal.innerHTML = '';
-        monthYear.textContent = `${months[month]} ${year}`;
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        for (let i = 0; i < firstDay; i++) {
-          const emptyCell = document.createElement('div');
-          divCal.appendChild(emptyCell);
-        }
-
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dayElement = document.createElement('div');
-          dayElement.classList.add('day');
-          dayElement.textContent = day;
-          dayElement.addEventListener('click', function () {
-            document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
-            dayElement.classList.add('selected');
-            console.log('Giorno selezionato:', day);
-          });
-          divCal.appendChild(dayElement);
-        }
-      }
-
-      btnPrev.addEventListener('click', function () {
-        currentMonth--;
-        if (currentMonth < 0) {
-          currentMonth = 11;
-          currentYear--;
-        }
-        renderCalendar(currentMonth, currentYear);
+      orariCells.forEach(cell => {
+        cell.addEventListener('click', function () {
+          orariCells.forEach(c => c.classList.remove('selected'));
+          cell.classList.add('selected');
+          console.log('Orario selezionato:', cell.textContent.trim());
+        });
       });
 
-      btnNext.addEventListener('click', function () {
-        currentMonth++;
-        if (currentMonth > 11) {
-          currentMonth = 0;
-          currentYear++;
-        }
-        renderCalendar(currentMonth, currentYear);
+      btnAvanti.addEventListener('click', function () {
+        // Logica per procedere al passaggio successivo
+        console.log('Passaggio al passo successivo');
       });
-
-      renderCalendar(currentMonth, currentYear);
     });
   </script>
 </body>

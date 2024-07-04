@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>SportsCenter</title>
+  <meta name="keywords" content="{$meta_keywords}">
+  <meta name="description" content="{$meta_description}">
+  <meta name="author" content="{$meta_author}">
+  <title>{$page_title}</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
       margin: 0;
     }
     button {
-      background-color: #a5eb99;
+      background-color: #007bff;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -50,7 +50,7 @@
       transition: background-color 0.3s;
     }
     button:hover {
-      background-color: #a5eb99;
+      background-color: #0056b3;
     }
     .calendar {
       display: grid;
@@ -71,7 +71,7 @@
       background-color: #dee2e6;
     }
     .selected {
-      background-color: #a5eb99;
+      background-color: #007bff;
       color: white;
     }
     .navbar-nav .nav-link {
@@ -83,7 +83,7 @@
     }
     /* Aggiunta stile per il pulsante "Avanti" */
     .btn-avanti {
-      background-color: #a5eb99;
+      background-color: #28a745;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -93,7 +93,7 @@
       transition: background-color 0.3s;
     }
     .btn-avanti:hover {
-      background-color: #a5eb99;
+      background-color: #218838;
     }
   </style>
 </head>
@@ -103,27 +103,27 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="">
-            <span>SportsCenter</span>
+            <img src="{$logo_src}" alt="">
+            <span>{$site_name}</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">
                   <img src="images/location.png" alt="">
-                  <span>Location</span>
+                  <span>{$location_text}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="service.html">
                   <img src="images/call.png" alt="">
-                  <span>Tel: +393661830182</span>
+                  <span>{$phone_text}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="service.html">
                   <img src="images/envelope.png" alt="">
-                  <span>daiegrom@gmail.com</span>
+                  <span>{$email_text}</span>
                 </a>
               </li>
             </ul>
@@ -148,8 +148,7 @@
                     <a class="nav-link" href="about.html">About </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="service.html">Services </a>
-                  </li>
+                    <a class="nav-link" href="service.html">Services </a></li>
                   <li class="nav-item active">
                     <a class="nav-link" href="contact.html">Contact Us</a>
                   </li>
@@ -184,13 +183,13 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campobasketchiuso.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="{$campo_img_src}" alt="{$campo_img_alt}" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da basket al chiuso . Costo campo:60 euro</p>
+              <p>{$campo_descrizione}</p>
               <!-- Pulsante "Avanti" allineato a destra -->
-              <button class="btn btn-avanti float-right">Avanti</button>
+              <button class="btn btn-avanti float-right">{$avanti_button_text}</button>
             </div>
           </div>
         </div>
@@ -201,8 +200,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h6>Il nostro centro è pazzesco</h6>
-          <p>veramente</p>
+          <h6>{$centro_heading}</h6>
+          <p>{$centro_description}</p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>Menus</h6>
@@ -217,19 +216,19 @@
         <div class="col-md-3">
           <h6>Useful Links</h6>
           <ul>
-            <li><a href="#">Adipiscing</a></li>
-            <li><a href="#">Elit, sed</a></li>
-            <li><a href="#">do Eiusmod</a></li>
-            <li><a href="#">Tempor</a></li>
-            <li><a href="#">incididunt</a></li>
+            <li><a href="#">{$link1_text}</a></li>
+            <li><a href="#">{$link2_text}</a></li>
+            <li><a href="#">{$link3_text}</a></li>
+            <li><a href="#">{$link4_text}</a></li>
+            <li><a href="#">{$link5_text}</a></li>
           </ul>
         </div>
         <div class="col-md-3">
           <h6>Contact Us</h6>
           <div class="info_link-box">
-            <a href=""><img src="images/location-white.png" alt=""><span> Coppito1,Via Vetoio 3</span></a>
-            <a href=""><img src="images/call-white.png" alt=""><span>+393661830182</span></a>
-            <a href=""><img src="images/mail-white.png" alt=""><span> daiegrom@gmail.com</span></a>
+            <a href=""><img src="images/location-white.png" alt=""><span>{$address}</span></a>
+            <a href=""><img src="images/call-white.png" alt=""><span>{$phone}</span></a>
+            <a href=""><img src="images/mail-white.png" alt=""><span>{$email}</span></a>
           </div>
           <div class="info_social">
             <div><a href=""><img src="images/facebook-logo-button.png" alt=""></a></div>
@@ -242,7 +241,7 @@
     </div>
   </section>
   <section class="container-fluid footer_section">
-    <p>&copy; 2019 All Rights Reserved. Design by <a href="https://html.design/">Free Html Templates</a></p>
+    <p>&copy; {$current_year} All Rights Reserved. Design by <a href="https://html.design/">Free Html Templates</a></p>
   </section>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>

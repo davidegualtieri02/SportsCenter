@@ -1,0 +1,50 @@
+.orari-table {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.orari-table th {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  text-transform: uppercase;
+}
+
+.orari-table td {
+  background-color: #e9ecef;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 25%; /* Imposta larghezza fissa del 25% per uniformare le celle */
+  font-size: 14px; /* Regola la dimensione del carattere per mantenere il contenuto leggibile */
+}
+
+.orari-table td:hover {
+  background-color: #dee2e6;
+}
+
+.orari-table .selected {
+  background-color: #007bff; /* Cambia il colore di sfondo dell'ora selezionata */
+  color: blue;
+}
+
+.orari-table td:not(.selected):hover {
+  background-color: #007bff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
