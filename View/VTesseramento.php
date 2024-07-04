@@ -22,6 +22,4 @@ class VTesseramento{
         $this->smarty->assign('Conferma',true);
         $this->smarty->display('mostra_conferma.tpl');
     }
-    
-
 }

@@ -78,5 +78,4 @@ class VUtente{
         $this->smarty->assign('utente', $utente);
         $this->smarty->display('./smarty/libs/templates/mod_password.tpl');
     }
-    
 }
