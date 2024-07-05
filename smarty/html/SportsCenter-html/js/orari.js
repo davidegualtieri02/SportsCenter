@@ -1,30 +1,52 @@
-// Funzione per gestire il clic su un'ora
-function selectHour(hourOption) {
-  // Rimuove la classe 'selected' da tutte le opzioni delle ore
-  const hourOptions = document.querySelectorAll('.hour-option');
-  hourOptions.forEach(option => option.classList.remove('selected'));
+ function selectTime(cell) {
+      // Rimuove la classe 'selected' da tutte le celle della tabella
+      const allCells = document.querySelectorAll('.orari-table td');
+      allCells.forEach(c => c.classList.remove('selected'));
 
-  // Aggiunge la classe 'selected' all'opzione dell'ora cliccata
-  hourOption.classList.add('selected');
+      // Aggiunge la classe 'selected' alla cella selezionata
+      cell.classList.add('selected');
 
-  // Recupera l'ora selezionata e aggiorna il testo visualizzato
-  const hour = hourOption.textContent;
-  const minute = '00'; // Imposta i minuti a "00"
-  const formattedTime = `${hour}:${minute}`;
-  document.getElementById('selectedTime').innerText = `Orario selezionato: ${formattedTime}`;
-}
+      // Esempio di output del tempo selezionato
+      console.log('Orario selezionato:', cell.textContent.trim());
+    }
 
-// Genera le opzioni delle ore cliccabili da 08 a 23
-const hourOptionsContainer = document.getElementById('hourOptions');
-for (let hour = 8; hour <= 23; hour++) {
-  const hourOption = document.createElement('div');
-  hourOption.textContent = hour.toString().padStart(2, '0');
-  hourOption.classList.add('hour-option');
-  hourOption.addEventListener('click', function() {
-    selectHour(hourOption);
-  });
-  hourOptionsContainer.appendChild(hourOption);
-}
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+      navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function () {
+          this.style.color = '#fff'; /* Cambia il colore del testo al passaggio del mouse */
+        });
+
+        link.addEventListener('mouseleave', function () {
+          this.style.color = '#000'; /* Ripristina il colore nero al termine del passaggio del mouse */
+        });
+      });
+    });
+
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const btnAvanti = document.querySelector('.btn-avanti');
+      const orariCells = document.querySelectorAll('.orari-table td');
+
+      orariCells.forEach(cell => {
+        cell.addEventListener('click', function () {
+          orariCells.forEach(c => c.classList.remove('selected'));
+          cell.classList.add('selected');
+          console.log('Orario selezionato:', cell.textContent.trim());
+        });
+      });
+
+      btnAvanti.addEventListener('click', function () {
+        // Logica per procedere al passaggio successivo
+        console.log('Passaggio al passo successivo');
+      });
+    });
+
 
 
 
