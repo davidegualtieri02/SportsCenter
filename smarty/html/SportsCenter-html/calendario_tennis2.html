@@ -13,89 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="calendario.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      margin: 0;
-    }
-    .calendar-wrapper {
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      width: 100%;
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .calendar-header h2 {
-      margin: 0;
-    }
-    button {
-      background-color: #a5eb99;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #a5eb99;
-    }
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-    .day {
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      background-color: #e9ecef;
-    }
-    .day:hover {
-      background-color: #dee2e6;
-    }
-    .selected {
-      background-color: #a5eb99;
-      color: white;
-    }
-    .navbar-nav .nav-link {
-      color: #000;
-      transition: color 0.3s;
-    }
-    .navbar-nav .nav-link:hover {
-      color: #fff !important;
-    }
-    /* Aggiunta stile per il pulsante "Avanti" */
-    .btn-avanti {
-      background-color: #a5eb99;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .btn-avanti:hover {
-      background-color: #a5eb99;
-    }
-  </style>
+  <link rel="stylesheet" href="css/calendario.css">
 </head>
 <body class="sub_page">
   <div class="hero_area">
@@ -142,24 +60,24 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html">About </a>
+                    <a class="nav-link" href="about.html">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="service.html">Services </a>
+                    <a class="nav-link" href="servizi.html">Servizi</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="contact.html">Contact Us</a>
+                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="profilo.html">Profilo</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="index.html">Logout</a>
                   </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                  <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                </form>
               </div>
             </div>
           </nav>
@@ -208,9 +126,9 @@
           <h6>Menus</h6>
           <ul>
             <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="about.html">About </a></li>
-            <li><a href="service.html">Services </a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html">Prenotazioni</a></li>
+            <li><a href="servizi.html">Servizi</a></li>
+            <li><a href="contattaci.html">Contattaci</a></li>
             <li><a href="index.html">Logout</a></li>
           </ul>
         </div>
@@ -246,81 +164,6 @@
   </section>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
-      navLinks.forEach(link => {
-        link.addEventListener('mouseenter', function () {
-          this.style.color = '#fff'; /* Cambia il colore del testo al passaggio del mouse */
-        });
-
-        link.addEventListener('mouseleave', function () {
-          this.style.color = '#000'; /* Ripristina il colore nero al termine del passaggio del mouse */
-        });
-      });
-    });
-
-    function openNav() {
-      document.getElementById("myNav").classList.toggle("menu_width");
-      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const divCal = document.getElementById('divCal');
-      const monthYear = document.getElementById('monthYear');
-      const btnPrev = document.getElementById('btnPrev');
-      const btnNext = document.getElementById('btnNext');
-
-      const months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
-      let currentMonth = new Date().getMonth();
-      let currentYear = new Date().getFullYear();
-
-      function renderCalendar(month, year) {
-        divCal.innerHTML = '';
-        monthYear.textContent = `${months[month]} ${year}`;
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        for (let i = 0; i < firstDay; i++) {
-          const emptyCell = document.createElement('div');
-          divCal.appendChild(emptyCell);
-        }
-
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dayElement = document.createElement('div');
-          dayElement.classList.add('day');
-          dayElement.textContent = day;
-          dayElement.addEventListener('click', function () {
-            document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
-            dayElement.classList.add('selected');
-            console.log('Giorno selezionato:', day);
-          });
-          divCal.appendChild(dayElement);
-        }
-      }
-
-      btnPrev.addEventListener('click', function () {
-        currentMonth--;
-        if (currentMonth < 0) {
-          currentMonth = 11;
-          currentYear--;
-        }
-        renderCalendar(currentMonth, currentYear);
-      });
-
-      btnNext.addEventListener('click', function () {
-        currentMonth++;
-        if (currentMonth > 11) {
-          currentMonth = 0;
-          currentYear++;
-        }
-        renderCalendar(currentMonth, currentYear);
-      });
-
-      renderCalendar(currentMonth, currentYear);
-    });
-  </script>
+  <script type = "text/javascript" src ="js/calendario.js"></script>
 </body>
 </html>

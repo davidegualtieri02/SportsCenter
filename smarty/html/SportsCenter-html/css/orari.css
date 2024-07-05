@@ -30,7 +30,7 @@
 
 .orari-table .selected {
   background-color: #007bff; /* Cambia il colore di sfondo dell'ora selezionata */
-  color: blue;
+  color: white;
 }
 
 .orari-table td:not(.selected):hover {

@@ -1,158 +1,74 @@
-var Cal = function(divId) {
+ document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-  //Store div id
-  this.divId = divId;
+      navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function () {
+          this.style.color = '#fff'; /* Cambia il colore del testo al passaggio del mouse */
+        });
 
-  // Days of week, starting on Sunday
-  this.DaysOfWeek = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-  ];
+        link.addEventListener('mouseleave', function () {
+          this.style.color = '#000'; /* Ripristina il colore nero al termine del passaggio del mouse */
+        });
+      });
+    });
 
-  // Months, stating on January
-  this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
-
-  // Set the current month, year
-  var d = new Date();
-
-  this.currMonth = d.getMonth();
-  this.currYear = d.getFullYear();
-  this.currDay = d.getDate();
-
-};
-
-// Goes to next month
-Cal.prototype.nextMonth = function() {
-  if ( this.currMonth == 11 ) {
-    this.currMonth = 0;
-    this.currYear = this.currYear + 1;
-  }
-  else {
-    this.currMonth = this.currMonth + 1;
-  }
-  this.showcurr();
-};
-
-// Goes to previous month
-Cal.prototype.previousMonth = function() {
-  if ( this.currMonth == 0 ) {
-    this.currMonth = 11;
-    this.currYear = this.currYear - 1;
-  }
-  else {
-    this.currMonth = this.currMonth - 1;
-  }
-  this.showcurr();
-};
-
-// Show current month
-Cal.prototype.showcurr = function() {
-  this.showMonth(this.currYear, this.currMonth);
-};
-
-// Show month (year, month)
-Cal.prototype.showMonth = function(y, m) {
-
-  var d = new Date()
-  // First day of the week in the selected month
-  , firstDayOfMonth = new Date(y, m, 1).getDay()
-  // Last day of the selected month
-  , lastDateOfMonth =  new Date(y, m+1, 0).getDate()
-  // Last day of the previous month
-  , lastDayOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
-
-
-  var html = '<table>';
-
-  // Write selected month and year
-  html += '<thead><tr>';
-  html += '<td colspan="7">' + this.Months[m] + ' ' + y + '</td>';
-  html += '</tr></thead>';
-
-
-  // Write the header of the days of the week
-  html += '<tr class="days">';
-  for(var i=0; i < this.DaysOfWeek.length;i++) {
-    html += '<td>' + this.DaysOfWeek[i] + '</td>';
-  }
-  html += '</tr>';
-
-  // Write the days
-  var i=1;
-  do {
-
-    var dow = new Date(y, m, i).getDay();
-
-    // If Sunday, start new row
-    if ( dow == 0 ) {
-      html += '<tr>';
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
     }
-    // If not Sunday but first day of the month
-    // it will write the last days from the previous month
-    else if ( i == 1 ) {
-      html += '<tr>';
-      var k = lastDayOfLastMonth - firstDayOfMonth+1;
-      for(var j=0; j < firstDayOfMonth; j++) {
-        html += '<td class="not-current">' + k + '</td>';
-        k++;
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const divCal = document.getElementById('divCal');
+      const monthYear = document.getElementById('monthYear');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+
+      const months = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+      let currentMonth = new Date().getMonth();
+      let currentYear = new Date().getFullYear();
+
+      function renderCalendar(month, year) {
+        divCal.innerHTML = '';
+        monthYear.textContent = `${months[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDay; i++) {
+          const emptyCell = document.createElement('div');
+          divCal.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayElement = document.createElement('div');
+          dayElement.classList.add('day');
+          dayElement.textContent = day;
+          dayElement.addEventListener('click', function () {
+            document.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
+            dayElement.classList.add('selected');
+            console.log('Giorno selezionato:', day);
+          });
+          divCal.appendChild(dayElement);
+        }
       }
-    }
 
-    // Write the current day in the loop
-    var chk = new Date();
-    var chkY = chk.getFullYear();
-    var chkM = chk.getMonth();
-    if (chkY == this.currYear && chkM == this.currMonth && i == this.currDay) {
-      html += '<td class="today">' + i + '</td>';
-    } else {
-      html += '<td class="normal">' + i + '</td>';
-    }
-    // If Saturday, closes the row
-    if ( dow == 6 ) {
-      html += '</tr>';
-    }
-    // If not Saturday, but last day of the selected month
-    // it will write the next few days from the next month
-    else if ( i == lastDateOfMonth ) {
-      var k=1;
-      for(dow; dow < 6; dow++) {
-        html += '<td class="not-current">' + k + '</td>';
-        k++;
-      }
-    }
+      btnPrev.addEventListener('click', function () {
+        currentMonth--;
+        if (currentMonth < 0) {
+          currentMonth = 11;
+          currentYear--;
+        }
+        renderCalendar(currentMonth, currentYear);
+      });
 
-    i++;
-  }while(i <= lastDateOfMonth);
+      btnNext.addEventListener('click', function () {
+        currentMonth++;
+        if (currentMonth > 11) {
+          currentMonth = 0;
+          currentYear++;
+        }
+        renderCalendar(currentMonth, currentYear);
+      });
 
-  // Closes table
-  html += '</table>';
-
-  // Write HTML to the div
-  document.getElementById(this.divId).innerHTML = html;
-};
-
-// On Load of the window
-window.onload = function() {
-
-  // Start calendar
-  var c = new Cal("divCal");      
-  c.showcurr();
-
-  // Bind next and previous button clicks
-  getId('btnNext').onclick = function() {
-    c.nextMonth();
-  };
-  getId('btnPrev').onclick = function() {
-    c.previousMonth();
-  };
-}
-
-// Get element by id
-function getId(id) {
-  return document.getElementById(id);
-}
+      renderCalendar(currentMonth, currentYear);
+    });

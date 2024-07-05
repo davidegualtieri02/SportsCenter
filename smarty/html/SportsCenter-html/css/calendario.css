@@ -6,127 +6,85 @@
 @calendar-fade-color:#c0c0c0;
 @body-color:#444;
 
-html, body {
-  height:100%;
-}
 body {
-  font-size:100%;
-  line-height:1.5;
-  font-family: "Roboto Condensed", sans-serif;
-  background:@main-bg;
-  background-image:linear-gradient(@main-bg 0%, darken(@main-bg,12%) 100%);
-  color:@body-color;
-}
-
-*, *:before, *:after {
-  box-sizing:border-box;
-}
-
-.group {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-img {
-  max-width:100%;
-  height:auto;
-  vertical-align:baseline;
-}
-
-a {
-  text-decoration:none;
-}
-
-.max(@maxWidth;
-  @rules) {
-    @media only screen and (max-width: @maxWidth) {
-      @rules();
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
     }
-  }
-
-.min(@minWidth;
-  @rules) {
-    @media only screen and (min-width: @minWidth) {
-      @rules();
+    .calendar-wrapper {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
-  }
-
-
-.calendar-wrapper {
-  width:360px;
-  margin:3em auto;
-  padding:2em;
-  border:1px solid @calendar-border;
-  border-radius:5px;
-  background:@calendar-bg;
-  
-}
-table {
-  clear:both;
-  width:100%;
-  border:1px solid @calendar-border;
-  border-radius:3px;
-  border-collapse:collapse;
-  color:@calendar-color;
-}
-td {
-  height:48px;
-  text-align:center;
-  vertical-align:middle;
-  border-right:1px solid @calendar-border;
-  border-top:1px solid @calendar-border;
-  width:100% / 7;
-}
-td.not-current {
-  color:@calendar-fade-color;;
-}
-td.normal {}
-td.today {
-  font-weight:700;
-  color:@calendar-standout;
-  font-size:1.5em;
-}
-thead td {
-  border:none;
-  color:@calendar-standout;
-  text-transform:uppercase;
-  font-size:1.5em;
-}
-#btnPrev {
-  float:left;
-  margin-bottom:20px;
-  &:before {
-    content:'\f104';
-    font-family:FontAwesome;
-    padding-right:4px;
-  }
-}
-#btnNext {
-  float:right;
-  margin-bottom:20px;
-  &:after {
-    content:'\f105';
-    font-family:FontAwesome;
-    padding-left:4px;
-  }
-}
-#btnPrev, #btnNext {
-  background:transparent;
-  border:none;
-  outline:none;
-  font-size:1em;
-  color:@calendar-fade-color;
-  cursor:pointer;
-  font-family:"Roboto Condensed", sans-serif;
-  text-transform:uppercase;
-  transition:all 0.3s ease;
-  &:hover {
-    color:@calendar-standout;
-    font-weight:bold;
-  }
-}
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .calendar-header h2 {
+      margin: 0;
+    }
+    button {
+      background-color: #a5eb99;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #a5eb99;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .day {
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      background-color: #e9ecef;
+    }
+    .day:hover {
+      background-color: #dee2e6;
+    }
+    .selected {
+      background-color: #a5eb99;
+      color: white;
+    }
+    .navbar-nav .nav-link {
+      color: #000;
+      transition: color 0.3s;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+    }
+    /* Aggiunta stile per il pulsante "Avanti" */
+    .btn-avanti {
+      background-color: #a5eb99;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-avanti:hover {
+      background-color: #a5eb99;
+    }
 
 
