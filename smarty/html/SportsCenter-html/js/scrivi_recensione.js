@@ -29,4 +29,22 @@ document.getElementById('recensione-immagini').addEventListener('change', functi
 
       console.log('Recensione testuale:', recensioneText);
       console.log('Immagini caricate:', files);
-      
+      // Esempio di chiamata AJAX per inviare i dati al backend (sostituire con il codice reale)
+      /*
+      $.ajax({
+        url: 'url_del_backend',
+        method: 'POST',
+        data: {
+          recensione: recensioneText,
+          immagini: files
+        },
+        success: function(response) {
+          // Gestire la risposta del backend
+          console.log('Risposta dal backend:', response);
+        },
+        error: function(error) {
+          console.error('Errore durante l\'invio dei dati:', error);
+        }
+      });
+      */
+    });

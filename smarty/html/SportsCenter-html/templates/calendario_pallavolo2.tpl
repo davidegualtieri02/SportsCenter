@@ -27,19 +27,19 @@
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">
+                <a class="nav-link" href="contattaci.html">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="service.html">
+                <a class="nav-link" href="contattaci.html">
                   <img src="images/call.png" alt="">
                   <span>Tel: +393661830182</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="service.html">
+                <a class="nav-link" href="contattaci.html">
                   <img src="images/envelope.png" alt="">
                   <span>daiegrom@gmail.com</span>
                 </a>
@@ -63,7 +63,7 @@
                     <a class="nav-link" href="home.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="servizi.html">Servizi</a>
@@ -75,7 +75,7 @@
                     <a class="nav-link" href="profilo.html">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -102,14 +102,18 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campobasket.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campopallavolochiuso.jpg" alt="" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da basket all'aperto</p>
-              <!-- Pulsante "Avanti" allineato a destra -->
-              <button class="btn btn-avanti float-right">Avanti</button>
+              <p>Campo da pallavolo al chiuso</p>
+              <!-- Form per inviare la data selezionata -->
+              <form id="bookingForm" method="post" action="prenota.php">
+                <input type="hidden" id="selectedDate" name="selectedDate">
+                <button type="submit" class="btn btn-avanti float-right">Avanti</button>
+              </form>
             </div>
+            <p>Stai prenotando per il giorno: {$prenotazione_data}</p>
           </div>
         </div>
       </div>
@@ -128,13 +132,13 @@
              <li><a href="home.html">Home</a></li>
             <li><a href="prenotazioni.html">Prenotazioni</a></li>
             <li><a href="servizi.html">Servizi</a></li>
-            <li><a href="contattaci.html">Contattaci</a></li>
+            <li><a href="contattaci.html">Contattaci</li>
             <li><a href="profilo.html">Profilo</a></li>
             <li><a href="index.html">Logout</a></li>
           </ul>
         </div>
         <div class="col-md-3">
-          <h6>Contact Us</h6>
+          <h6>Contattaci</h6>
           <div class="info_link-box">
             <a href=""><img src="images/location-white.png" alt=""><span> Coppito1,Via Vetoio 3</span></a>
             <a href=""><img src="images/call-white.png" alt=""><span>+393661830182</span></a>
@@ -155,9 +159,6 @@
   </section>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/calendario.js"></script>
+  <script type="text/javascript" src="js/calendario.js"></script>    
 </body>
 </html>
-
-
-

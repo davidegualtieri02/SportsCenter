@@ -72,3 +72,9 @@
 
       renderCalendar(currentMonth, currentYear);
     });
+    // Aggiungi un listener per aggiornare l'input nascosto con la data selezionata. la variabile selectedDate viene aggiornata con il valore della data scelta dall'utente
+    document.querySelectorAll('.calendar .day').forEach(day => {
+      day.addEventListener('click', function() {
+        document.getElementById('selectedDate').value = this.dataset.date;
+      });
+    });
