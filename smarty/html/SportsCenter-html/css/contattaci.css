@@ -1,0 +1,38 @@
+    .social_links {
+      margin-bottom: 20px;
+    }
+    .social_links h4 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .social_links ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .social_links ul li {
+      margin-bottom: 10px;
+    }
+    .social_links ul li a {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .social_links ul li a:hover {
+      background: #0056b3;
+    }
+    .info_link-box a {
+      display: block;
+      color: black;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+    .info_link-box a img {
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+  
