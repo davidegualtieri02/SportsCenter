@@ -93,8 +93,8 @@
                   <li class="nav-item">
                     <a class="nav-link" href="contattaci.html">Contattaci</a>
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="profilo.html">Profilo<span class="sr-only">(current)</span></a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="profilo.html">Profilo</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="index.html">Logout</a>
@@ -114,23 +114,41 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Account Utente
+          Prenotazione
         </h2>
       </div>
       <div class="box">
-        <div class="img-box">
-          <img src="images/utente.jpg" alt="">
-        </div>
         <div class="detail-box">
           <p>
-            Qui ci saranno tutti i dati dell'utente
+            Qui ci saranno i dati della prenotazione effettuata dall'utente
           </p>
-          <a class="btn btn-primary" href="tesseramento.html" id="tesseramento-button">Tesseramento</a>
         </div>
       </div>
     </div>
   </section>
   <!-- end about section -->
+
+  <!-- recensione section -->
+  <section class="recensione_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Lascia una Recensione
+        </h2>
+      </div>
+      <div class="box">
+        <div class="detail-box">
+          <textarea id="recensione-text" rows="4" cols="50" placeholder="Scrivi la tua recensione qui..."></textarea>
+          <br>
+          <input type="file" id="recensione-immagini" multiple>
+          <div id="preview"></div>
+          <br>
+          <button class="btn btn-success" id="submit-recensione">Invia Recensione</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end recensione section -->
 
   <!-- info section -->
   <section class="info_section layout_padding2-top">
@@ -161,8 +179,8 @@
             <li class="">
               <a class="" href="contattaci.html">Contattaci</a>
             </li>
-            <li class="active">
-              <a class="" href="profilo.html">Profilo<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="profilo.html">Profilo</a>
             </li>
             <li class="">
               <a class="" href="index.html">Logout</a>
@@ -227,7 +245,8 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="js/profilo.js"></script>
-
+  <script type="text/javascript"  src= "js/scrivi_recensione.js"></script>                           
+   
 </body>
 
 </html>

@@ -938,3 +938,34 @@ a:focus {
   color:#90EE90;
   background-color: transparent;
 }
+/* stile per il pulsante "Tesseramento" */
+#tesseramento-button {
+  background-color:  #90EE90;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px; /* Margine superiore per separare il pulsante dal testo */
+}
+.recensione_section {
+  margin-top: 20px;
+}
+
+#recensione-text {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submit-recensione {
+  background-color: #90EE90;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
