@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/calendario.css">
+  <link href="css/attrezzatura.css" rel="stylesheet">
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -35,19 +35,19 @@
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="contact.tpl">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="service.tpl">
                   <img src="images/call.png" alt="">
                   <span>Tel: +393661830182</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="service.tpl">
                   <img src="images/envelope.png" alt="">
                   <span>daiegrom@gmail.com</span>
                 </a>
@@ -68,16 +68,16 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="home.tpl">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazione.tpl">Prenotazione</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link current-page" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="profilo.tpl">Profilo</a>
@@ -93,35 +93,29 @@
       </div>
     </section>
   </div>
-  <section class="contact_section layout_padding" style="padding-top: 50px; padding-bottom: 50px;">
+  <section class="contact_section layout_padding" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="container">
       <div class="heading_container"></div>
       <div class="layout_padding2-top">
         <div class="row">
           <div class="col-md-6">
-            <div class="calendar-wrapper">
-              <div class="calendar-header">
-                <button id="btnPrev" type="button">Prev</button>
-                <h2 id="monthYear"></h2>
-                <button id="btnNext" type="button">Next</button>
-              </div>
-              <div id="divCal" class="calendar"></div>
+            <!-- Singola casella di controllo -->
+            <div class="equipment-list">
+              <h3>Seleziona l'attrezzatura:</h3>
+              <form id="equipmentForm" method="post" action="process_equipment.php">
+                <label><input type="checkbox" name="attrezzatura" value="true"> Attrezzatura</label>
+                <button type="submit" class="btn btn-avanti float-right">Continua e paga</button>
+              </form>
             </div>
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campotennischiuso.jpg" alt="" style="max-width: 100%; height: auto;">
+              <img src="images/campobasket.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da tennis al chiuso</p>
-              <!-- Form per inviare la data selezionata -->
-              <form id="bookingForm" method="post" action="CPrenotaCampo.php?action=MostraOrari">
-                <input type="hidden" id="selectedDate" name="selectedDate">
-                <button type="submit" class="btn btn-avanti float-right">Avanti</button>
-              </form>
+              <p>Campo da basket all'aperto. Costo campo: 60 euro</p>
             </div>
-            <p>Stai prenotando per il giorno: {$prenotazione_data}</p>
           </div>
         </div>
       </div>
@@ -131,16 +125,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h6>Informazioni SportsCenter</h6>
-          <p>Progetto università</p>
+          <h6>Il nostro centro è pazzesco</h6>
+          <p>veramente</p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>Menù</h6>
           <ul>
-             <li><a href="home.tpl">Home</a></li>
+            <li class="active"><a href="home.tpl">Home <span class="sr-only">(current)</span></a></li>
             <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
             <li><a href="servizi.tpl">Servizi</a></li>
-            <li><a href="contattaci.tpl">Contattaci</li>
+            <li><a href="contattaci.tpl">Contattaci</a></li>
             <li><a href="profilo.tpl">Profilo</a></li>
             <li><a href="index.tpl">Logout</a></li>
           </ul>
@@ -163,10 +157,10 @@
     </div>
   </section>
   <section class="container-fluid footer_section">
-    <p>&copy; 2024 Tutti i diritti sono riservati. Disegnato da<a href="https://html.design/">Frack,das e daieg</a></p>
+    <p>&copy; 2024 All Rights Reserved. Design by <a href="https://html.design/">Frack,daieg e das</a></p>
   </section>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/calendario.js"></script>    
+  <script  type="text/javascript" src="js/attrezzatura.js"></script>
 </body>
 </html>
