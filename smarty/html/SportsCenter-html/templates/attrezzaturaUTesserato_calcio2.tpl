@@ -114,7 +114,7 @@
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da calcio a 5 al chiuso. Costo campo: 60 euro</p>
+              <p>Campo da calcio a 5 al chiuso. Costo campo: 40 euro</p>
             </div>
           </div>
         </div>

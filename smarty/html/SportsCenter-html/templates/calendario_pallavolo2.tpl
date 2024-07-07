@@ -116,7 +116,7 @@
               <h3>Descrizione del campo:</h3>
               <p>Campo da pallavolo al chiuso</p>
               <!-- Form per inviare la data selezionata -->
-              <form id="bookingForm" method="post" action="CPrenotaCampo.php?action=MostraOrari">
+              <form id="bookingForm" method="post" action=" ">
                 <input type="hidden" id="selectedDate" name="selectedDate">
                 <button type="submit" class="btn btn-avanti float-right">Avanti</button>
               </form>

@@ -35,19 +35,19 @@
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contact.tpl">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="service.tpl">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="">
                   <span>Tel: +393661830182</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="service.tpl">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="">
                   <span>daiegrom@gmail.com</span>
                 </a>
@@ -68,7 +68,7 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="prenotazione.tpl">Prenotazione</a>
@@ -102,7 +102,7 @@
             <!-- Singola casella di controllo -->
             <div class="equipment-list">
               <h3>Seleziona l'attrezzatura:</h3>
-              <form id="equipmentForm" method="post" action="process_equipment.php">
+              <form id="equipmentForm" method="post">
                 <label><input type="checkbox" name="attrezzatura" value="true"> Attrezzatura</label>
                 <button type="submit" class="btn btn-avanti float-right">Continua e paga</button>
               </form>
@@ -131,7 +131,7 @@
         <div class="col-md-2 offset-md-1">
           <h6>Menù</h6>
           <ul>
-            <li class="active"><a href="home.tpl">Home <span class="sr-only">(current)</span></a></li>
+            <li class=""><a href="home.tpl">Home</a></li>
             <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
             <li><a href="servizi.tpl">Servizi</a></li>
             <li><a href="contattaci.tpl">Contattaci</a></li>

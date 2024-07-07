@@ -110,11 +110,11 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campocalciointerno.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campotennisaperto.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da calcio a 5 al chiuso. Costo campo: 60 euro</p>
+              <p>Campo da tennis all'aperto. Costo campo: 8 euro</p>
             </div>
           </div>
         </div>

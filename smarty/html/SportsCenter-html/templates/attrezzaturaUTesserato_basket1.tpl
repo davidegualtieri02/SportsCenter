@@ -110,11 +110,11 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="images/campocalciointerno.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
+              <img src="images/campobasket.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>Campo da calcio a 5 al chiuso. Costo campo: 60 euro</p>
+              <p>Campo da basket all'aperto. Costo campo: 40 euro</p>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@
         <div class="col-md-2 offset-md-1">
           <h6>Menù</h6>
           <ul>
-            <li class=" "><a href="home.tpl">Home</a></li>
+            <li class=""><a href="home.tpl">Home</a></li>
             <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
             <li><a href="servizi.tpl">Servizi</a></li>
             <li><a href="contattaci.tpl">Contattaci</a></li>
@@ -161,6 +161,6 @@
   </section>
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/attrezzatura.js"></script>
+  <script  type="text/javascript" src="js/attrezzatura.js"></script>
 </body>
 </html>
