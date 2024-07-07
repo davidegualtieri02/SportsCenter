@@ -29,6 +29,13 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    .about_section {
+      background-image: url('images/ragazzi.png');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
 </head>
 
 <body class="sub_page about_page">
@@ -119,9 +126,6 @@
         </h2>
       </div>
       <div class="box">
-        <div class="img-box">
-          <img src="images/utente.jpg" alt="">
-        </div>
         <div class="detail-box">
           <p>
             Qui ci saranno tutti i dati dell'utente
@@ -134,24 +138,26 @@
   <!-- end about section -->
 
   <!-- info section -->
+
   <section class="info_section layout_padding2-top">
+
     <div class="container">
       <div class="row">
         <div class="col-md-3">
           <h6>
-            Informazioni SportsCenter
+            Qualche info su SportsCenter
           </h6>
           <p>
-            Progetto esame
+            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
           </p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>
-            Menù
+            Menu
           </h6>
           <ul>
-            <li class="">
-              <a class="" href="home.html">Home</a>
+            <li class=" active">
+              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="">
               <a class="" href="prenotazioni.html">Prenotazioni</a>
@@ -162,11 +168,8 @@
             <li class="">
               <a class="" href="contattaci.html">Contattaci</a>
             </li>
-            <li class="active">
-              <a class="" href="profilo.html">Profilo<span class="sr-only">(current)</span></a>
-            </li>
             <li class="">
-              <a class="" href="index.html">Logout</a>
+              <a class="" href="login_form.html">Login</a>
             </li>
           </ul>
         </div>
@@ -175,61 +178,60 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="">
+            <a href="contattaci.html">
               <img src="images/location-white.png" alt="">
-              <span> coppito1,via vetoio3</span>
+              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="">
+            <a href="contattaci.html">
               <img src="images/call-white.png" alt="">
-              <span>+39 3661830182</span>
+              <span>(+39) 0862 123456</span>
             </a>
-            <a href="">
+            <a href="contattaci.html">
               <img src="images/mail-white.png" alt="">
-              <span> lorfrac@gmail.com</span>
+              <span>info@sportscenter.com</span>
             </a>
           </div>
-          <div class="info_social">
-            <div>
-              <a href="">
-                <img src="images/facebook-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/twitter-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/linkedin.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/instagram.png" alt="">
-              </a>
-            </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <a href="https://www.facebook.com/univaq.it">
+              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/univaq.it">
+              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://x.com/univaq">
+              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.tiktok.com/">
+              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <!-- end info section -->
 
+
   <!-- footer section -->
-  <section class="container-fluid footer_section">
+  <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 All Rights Reserved. Design by
-      <a href="https://html.design/">frack,daieg e das</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
     </p>
   </section>
   <!-- footer section -->
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/profilo.js"></script>
-
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
-

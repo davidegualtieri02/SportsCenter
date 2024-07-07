@@ -83,7 +83,23 @@ class VUtente{
         $this->smarty->assign('nomeUtente', $nomeUtente);
         $this->smarty->display('./smarty/libs/templates/home.tpl');
     }
+
+    public function profilo($nomeUtente,$cognomeUtente,$emailUtente,$id_tesseraUtente){
+        $this->smarty->assign('nomeUtente', $nomeUtente);
+        $this->smarty->assign('cognomeUtente', $cognomeUtente);
+        $this->smarty->assign('emailUtente', $emailUtente);
+        $this->smarty->assign('id_tesseraUtente', $id_tesseraUtente);
+        $this->smarty->display('./smarty/libs/templates/profilo.tpl');
+    }
+
+    public function prenotazioniUtente($listaPrenotazioni){
+        $this->smarty->assign('listaPrenotazioni', $listaPrenotazioni);
+        $this->smarty->display('./smarty/libs/templates/prenotazioni.tpl');
+    }
 }
+
+
+
 
 
 

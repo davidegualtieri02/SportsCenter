@@ -28,5 +28,8 @@ class EUtenteRegistrato extends EUtente{
     public function getid_tessera(){
         return $this->id_tessera;
     }
-     //metodo toString esiste predefinito
+    public function getTabella(){
+        return "UtenteRegistrato";
+    }
+    //metodo toString esiste predefinito
 }

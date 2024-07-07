@@ -115,14 +115,19 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Prenotazioni utente
+          Prenotazioni effettuate da {$nomeUtente}:
         </h2>
       </div>
       <div class="box">
         <div class="detail-box">
-          <p>
-            Qui ci sarà la lista di prenotazioni effettuate dall'utente
-          </p>
+          {foreach $listaPrenotazioni as $prenotazione}
+          <ol> 
+            <li>
+              <p>Prenotazione: {$prenotazione->getIdPrenotazione()}; data: {$prenotazione->getData(); orario: {$prenotazione->getOrario()}; $prenotazione->getIdCampo()//?aggiumgere titolocampo nel db nella tabella prenotazione?}
+              <a class="btn btn-primary" href="scrivi_recensione.tpl" id="tesseramento-button">Recensisci</a> //Se è già stata recensita bisogna togliere il bottone (?)
+            </p>
+          </ol>
+          {/foreach}
         </div>
       </div>
     </div>

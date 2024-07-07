@@ -29,6 +29,13 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    .about_section {
+      background-image: url('images/ragazzi.png');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
 </head>
 
 <body class="sub_page about_page">
@@ -37,7 +44,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -46,19 +53,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -83,22 +90,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="home.tpl">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="prenotazioni.html"><span class="sr-only">(current)</span>Prenotazioni</a>
+                    <a class="nav-link" href="profilo.tpl">Profilo<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -115,14 +122,25 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Prenotazioni utente
+          Profilo di {$nomeUtente}
         </h2>
       </div>
       <div class="box">
         <div class="detail-box">
-          <p>
-            Qui ci sarà la lista di prenotazioni effettuate dall'utente
-          </p>
+          <h2>
+            Di seguito, trovi tutti i tuoi dati:
+          </h2>
+          <ul>
+            <li>Nome: {$nomeUtente}</li>
+            <li>Cognome: {$cognomeUtente}</li>
+            <li>Email: {$emailUtente}</li>
+            {if $id_tesseraUtente == 0}
+            <li>Tessera: non posseduta</li>
+            {else}
+            <li>ID tessera: {$id_tesseraUtente}</li>
+            {/if}
+          </ul>
+          <a class="btn btn-primary" href="tesseramento.tpl" id="tesseramento-button">Tesseramento</a>
         </div>
       </div>
     </div>
@@ -149,19 +167,19 @@
           </h6>
           <ul>
             <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.html">Login</a>
+              <a class="" href="login_form.tpl">Login</a>
             </li>
           </ul>
         </div>
@@ -170,15 +188,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>

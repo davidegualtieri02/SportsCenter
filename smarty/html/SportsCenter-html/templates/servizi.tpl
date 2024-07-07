@@ -115,37 +115,12 @@
             </ul>
           </div>
         </div>
-      </nav>
-    </div>
-  </div>
-  <div class="slider_container">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
-          <div class="detail-box">
-            <h2>
-              {$nomeUtente}, gioca insieme a noi
-            </h2>
-            <h1>
-              Prenota un campo
-            </h1>
-            <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
-            <div class="btn-box">
-              <a href="servizi.tpl" class="btn-1">
-                Prenota ora
-              </a>
-              <a href="recensioni.tpl" class="btn-1">
-                Recensioni
-              </a>
-            </div>
-          </div>
+          </nav>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- end slider section -->
   </div>
-</section>
-<!-- end slider section -->
-
 
   <!-- service section -->
 
@@ -163,7 +138,7 @@
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio1.html">
+            <a href="calendario_calcio1.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -177,7 +152,7 @@
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio2.html">
+            <a href="calendario_calcio2.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -191,7 +166,7 @@
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel1.html">
+            <a href="calendario_padel1.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -205,7 +180,7 @@
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel2.html">
+            <a href="calendario_padel2.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -219,7 +194,7 @@
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis1.html">
+            <a href="calendario_tennis1.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -233,7 +208,7 @@
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis2.html">
+            <a href="calendario_tennis2.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -247,7 +222,7 @@
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo1.html">
+            <a href="calendario_pallavolo1.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -261,7 +236,7 @@
             PALLAVOLO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo2.html">
+            <a href="calendario_pallavolo2.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -275,7 +250,7 @@
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket1.html">
+            <a href="calendario_basket1.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -289,7 +264,7 @@
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket2.html">
+            <a href="calendario_basket2.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -302,226 +277,6 @@
   </section>
 
   <!-- end service section -->
-
-    <!-- Us section -->
-
-    <section class="us_section layout_padding">
-      <div class="container">
-        <div class="heading_container">
-          <h2>
-            Perché scegliere noi
-          </h2>
-        </div>
-        <div class="us_container">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/u-1.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                ATTREZZATURA DI QUALITÀ
-              </h5>
-              <p>
-                La nostra attrezzatura è di qualità A++, certificata CONI.
-              </p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="img-box">
-              <img src="images/u-2.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                STRUTTURA ALL'AVANGUARDIA
-              </h5>
-              <p>
-                Tutti i nostri campi sono di ultima generazione e sottoposti a regolare manutenzione.
-              </p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="img-box">
-              <img src="images/u-3.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                COMFORT E COMODITÀ
-              </h5>
-              <p>
-                Ogni prenotazione comprende uno spogliatoio dotato di bagni e docce.
-              </p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="img-box">
-              <img src="images/u-4.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                BASTANO POCHI CLICK!
-              </h5>
-              <p>
-                Tramite la nostra piattaforma, è possibile prenotare il campo, l'attrezzatura e saldare la quota in pochi minuti.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- end us section -->
-
-
-  <!-- client section -->
-
-  <section class="client_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Riconoscimenti e iniziative
-        </h2>
-      </div>
-      <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExample2Indicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExample2Indicators" data-slide-to="1"></li>
-          <li data-target="#carouselExample2Indicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/coni.png" alt="CONI">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Qualifiche sportive CONI
-                </h5>
-                <p>
-                  Il centro sportivo SportsCenter è uno dei pochi ad avere solo ed esclusivamente personale altamente qualificato. Tutto il personale ha ricevuto dal CONI riconoscimenti tecnico-formativi delle qualifiche sportive.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/stemma_laquila.png" alt="Stemma L'Aquila">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Parter del Comune dell'Aquila
-                </h5>
-                <p>
-                  Il centro sportivo SportsCenter è dal 2020 partner ufficiale del Comune dell'Aquila, nonché primo sponsor della Perdonanza Celestiniana, evento storico-religioso annuale tra i più importanti d'Italia.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/idc.png" alt="Istituto Dottrina Cristiana">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Scuola e formazione
-                </h5>
-                <p>
-                  Il centro sportivo SportsCenter è da sempre al fianco dei ragazzi e delle ragazze, sin dalle scuole elementari. È promotore di numerose iniziative al fianco dell'Istituto Dottrina Cristiana dell'Aquila, per far avvicinare i più piccoli ad uno stile di vita sano, che non può mancare di sport e movimento.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- end client section -->
-
-    <!-- result section -->
-
-    <section class="result_section">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 px-0">
-            <div class="img-box">
-              <img src="images/result-img.jpg" alt="">
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-5">
-            <div class="detail-box">
-              <h2>
-                DIVENTA PARTNER: <br>
-                TESSERATI CON NOI
-              </h2>
-              <p>
-                Tesserati subito con noi: versando una quota annuale, puoi usufruire di fantastici sconti e vantaggi esclusivi!
-              </p>
-              <a href="tesseramento.tpl">
-                Scopri di più
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- end result section -->
-
-
-  <!-- contact section -->
-  <section class="contact_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          <span>
-            Dove trovarci
-          </span>
-        </h2>
-      </div>
-      <div class="layout_padding2-top">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="social_links">
-          <div class="info_link-box">
-            <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_logo.png" alt="Logo Facebook" width=10% height=auto>
-              <span>Trovaci su Facebook</span>
-            </a>
-            <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_logo.png" alt="Logo Instagram" width=10% height=auto>
-              <span>Trovaci su Instagram</span>
-            </a>
-            <a href="https://x.com/univaq">
-              <img src="images/twitter_logo.png" alt="Logo Twitter" width=10% height=auto>
-              <span>Trovaci su Twitter/X</span>
-            </a>
-            <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_logo.png" alt="Logo TikTok" width=10% height=auto>
-              <span>Trovaci su TikTok</span>
-            </a>
-          </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="map_container">
-              <div class="map-responsive">
-                <iframe
-                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Università+degli+Studi+dell'Aquila+Coppito"
-                  width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
-                  allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end contact section -->
-
 
   <!-- info section -->
 

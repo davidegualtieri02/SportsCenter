@@ -125,12 +125,37 @@ class CUtente {
         }
      }
 
-     public static function home(){
+    public static function home(){
         if(CUtente::Loggato()){
             $view = new VUtente();
-            $utente = USession::getIstanza()->getElementoSessione('utenteRegistrato'); //direttamente nome?
-            $nomeUtente = $utente->getNome(); //quindi forse inutile?
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $nomeUtente = $idUtente->getNome();
             $view->home($nomeUtente);
         }
-     }
+    }
+
+    public static function profilo(){
+        if(CUtente::Loggato()){
+            $view = new VUtente();
+            $idUtente = USession::getIstanza->getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
+            $nomeUtente = $utente['nome'];
+            $cognomeUtente = $utente['cognome'];
+            $emailUtente = $utente['email'];
+            $id_tesseraUtente = $utente['id_tessera'];
+            $view->profilo($nomeUtente,$cognomeUtente,$emailUtente,$id_tesseraUtente);
+        }
+    }
+
+    public static function prenotazioniUtente(){
+        if(CUtente::Loggato()){
+            $view = new VUtente();
+            $idUtente = USession::getIstanza->getElementoSessione('utenteRegistrato');
+            $listaPrenotazioni = FPersistentManager::getIstanza()->recuperaoggetti(EPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
+            $view->prenotazioniUtente($listaPrenotazioni);
+        }
+    }
 }
+
+
+
