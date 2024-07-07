@@ -22,7 +22,7 @@ class ECampo {
     public function setId_campo($id){
         $this->id_campo = $id;
     }
-    public function getEntità():string{
+    public static function getEntità():string{
         return self::$entità;
     }
     public function getTitolo(){
@@ -38,4 +38,5 @@ class ECampo {
         $this->prezzo = $prezzo;
     }
      //metodo toString esiste predefinito
+   
 }

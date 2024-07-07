@@ -10,7 +10,7 @@ class CRecensione{
         $sessione = USession::getIstanza();
         $view = new VRecensione;
         $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-        $campo = $pm::recuperaOggetto('ECampo',$idcampo);
+        $campo = $pm::recuperaOggetto(ECampo::getEntità(),$idcampo);
         $prenotazione = $sessione::getElementoSessione('id_prenotazione');
         if(Userver::getRichiestaMetodo() == "GET"){
         //se il metodo di richiesta è GET viene mostrato il form per una nuova recensione, cioè il server manda al browser dell'utente  la form per recensire il campo
@@ -79,7 +79,7 @@ class CRecensione{
             $utente = unserialize(USession::getIstanza()->LeggiValore('utenteRegistrato'));
     
             // Recupera la recensione dal database
-            $recensione = FPersistentManager::recuperaOggetto('ERecensione', $idRecensione);
+            $recensione = FPersistentManager::recuperaOggetto(ERecensione::getEntità(), $idRecensione);
     
             // Verifica se l'utente è l'autore della recensione o ha i permessi per eliminarla
             if ($recensione && $recensione->getIdUtente() == $utente->getId()) {

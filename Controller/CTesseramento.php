@@ -21,7 +21,7 @@ class CTesseramento{
         if(CUtente::Loggato()){
             //con questi due metodi unserialize  e Leggivalore otteniamo l'utente loggato dalla sessione
            //ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
-            $tessera = $pm::recuperaOggetto('ETessera',$idtessera); //ha senso porre uploadOgg sia perchè la form prende come parametro la tessera  e anche perchè il form dovrà prendere i dati della tessera.
+            $tessera = $pm::recuperaOggetto(ETessera::getEntità(),$idtessera); //ha senso porre uploadOgg sia perchè la form prende come parametro la tessera  e anche perchè il form dovrà prendere i dati della tessera.
             if(UServer::getRichiestaMetodo()=="GET"){
                 $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
                 $view ->MostraFormTesseramento($tessera,$utente); // viene mostrata la form per il tesseramento
@@ -68,7 +68,7 @@ class CTesseramento{
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $pdo = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8", DB_USER, DB_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false]);
             if($pm::VerificaTesseramento($pdo,$utente->getId())) {
-                $pm::deleteOgg('Tessera',$utente->getId(),'id_utenteRegistrato') ;
+                $pm::deleteOgg(FTessera::getTabella(),$utente->getId(),'id_utenteRegistrato') ;
                 $view->MostraAnnullamentoTesseramento(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione del tesseramento è avvenuto con successo
             }
         }

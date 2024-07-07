@@ -10,7 +10,7 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
         //prendendo un oggetto attrezzatura viene preso un kit standard di attrezzatura per esempio un attrezzatura calcio fa prendere 5 casacche e 2 palloni , il num casacca e il num palloni sono contentuti nella tupla dell'attrezzatura
         //nel db
-        $attrezzatura = $pm::recuperaOggetto('FAttrezzatura',$idAttrezzatura);// recuperiamo l'oggetto campo sportivo nel db
+        $attrezzatura = $pm::recuperaOggetto(EAttrezzatura::getEntità(),$idAttrezzatura);// recuperiamo l'oggetto campo sportivo nel db
         //if($attrezzatura == FAttrezzatura_Basket::getOgg($idAttrezzatura))
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         $campo = $sessione::getElementoSessione('campo');
@@ -50,7 +50,7 @@ class CPrenotaCampo{
     public static function MostraConfermaPrenotazione($idcarta){
         $sessione = USession::getIstanza();
         $pm = FPersistentManager::getIstanza();
-        $carta = FPersistentManager::recuperaOggetto("ECartadiPagamento",$idcarta);
+        $carta = FPersistentManager::recuperaOggetto(ECartadiPagamento::getEntità(),$idcarta);
         $idcarta= $carta->getIdCarta();
         $view = new VPrenotaCampo();
         $campo = $sessione::getElementoSessione('campo');
@@ -75,7 +75,7 @@ class CPrenotaCampo{
                 $view->MostraErrore();
             }else{
             //altrimenti procediamo con la creazione della prenotazione e la conferma della prenotazione
-            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura->getId_attrezzatura());
+            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura->getId_attrezzatura(),$utente->getId());
             $pm::uploadOgg($prenotazione);
             $view->ConfermaPrenotazione($utente,$nome,$cognome,$scadenza,$numero,$cvv);
             }
@@ -88,7 +88,7 @@ class CPrenotaCampo{
     public static function MostraCalendario($idCampo){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
-        $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+        $campo = FPersistentManager::recuperaOggetto(ECampo::getEntità(),$idCampo);
         if(UServer::getRichiestaMetodo() == "GET"){
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $view->MostraCalendario($utente,$campo);
@@ -141,7 +141,7 @@ class CPrenotaCampo{
         $view = new VPrenotaCampo();
         $sessione = USession::getIstanza();
         $utente =  unserialize($sessione->LeggiValore('utenteRegistrato'));
-        $prenotazione = FPersistentManager::recuperaOggetto('EPrenotazione',$utente->getId());
+        $prenotazione = FPersistentManager::recuperaOggetto(EPrenotazione::getEntità(),$utente->getId());
         $idPrenotazione = $prenotazione->getIdPrenotazione();
         $view->mostraInfoPrenotazione($utente,$prenotazione);
     }
