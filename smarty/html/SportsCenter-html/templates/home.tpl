@@ -308,7 +308,7 @@
       <div class="container">
         <div class="heading_container">
           <h2>
-            Perchè scegliere noi
+            Perché scegliere noi
           </h2>
         </div>
         <div class="us_container">
