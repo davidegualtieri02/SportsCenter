@@ -14,7 +14,7 @@
 
   <title>SportsCenter</title>
   <link rel="icon" href="images/logo.png" type="image/x-icon" />
- 
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
@@ -31,6 +31,16 @@
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+    
 </head>
 
 <body>

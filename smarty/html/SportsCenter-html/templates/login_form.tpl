@@ -14,7 +14,7 @@
 
   <title>SportsCenter</title>
   <link rel="icon" href="images/logo.png" type="image/x-icon" />
- 
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
@@ -27,10 +27,19 @@
   <link href="css/responsive.css" rel="stylesheet" />
   <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
   <link href="css/login.css" rel="stylesheet"/>
-  <link href = "css/pagamento.css" rel="stylesheet"/>
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+    
 </head>
 
 <body>
@@ -44,7 +53,7 @@
       <div class="form-box">
         <div class="form-value">
           <form action="">
-            <h2>Inserisci i dati della carta</h2>
+            <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
               <input type="text" required>
@@ -56,21 +65,19 @@
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
-              <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Numero della carta</label>
+              <ion-icon name="mail-outline"></ion-icon>
+              <input type="email" required>
+              <label for="">Email</label>
             </div>
             <div class="inputbox">
-              <ion-icon name="calendar-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Data di scadenza (MM/AAAA)</label>
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input type="password" required>
+              <label for="">Password</label>
             </div>
-            <div class="inputbox">
-              <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">CVV (XYZ)</label>
+            <button>Registarti</button>
+            <div class="login">
+              <p>Hai già un profilo? <a href="login_form.html">Login</a></p>
             </div>
-            <button>Conferma e paga</button>
           </form>
         </div>
       </div>
@@ -92,4 +99,5 @@
 </body>
 
 </html>
+
 
