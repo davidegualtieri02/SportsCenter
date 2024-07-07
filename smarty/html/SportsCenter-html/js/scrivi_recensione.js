@@ -1,50 +1,38 @@
-document.getElementById('recensione-immagini').addEventListener('change', function(event) {
-      var files = event.target.files;
-      var preview = document.getElementById('preview');
-      preview.innerHTML = '';
-      
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-          var image = document.createElement('img');
-          image.style.maxWidth = '200px';
-          image.style.maxHeight = '200px';
-          image.style.marginRight = '10px';
-          image.src = e.target.result;
-          preview.appendChild(image);
-        };
-        
-        reader.readAsDataURL(file);
-      }
-    });
+document.getElementById('submit-recensione').addEventListener('click', function() {
+  var recensioneText = document.getElementById('recensione-text').value;
+  var files = document.getElementById('recensione-immagini').files;
 
-    document.getElementById('submit-recensione').addEventListener('click', function() {
-      var recensioneText = document.getElementById('recensione-text').value;
-      var files = document.getElementById('recensione-immagini').files;
+  // Creare un oggetto FormData per inviare i dati
+  var formData = new FormData();
+  formData.append('recensione', recensioneText);
+  for (var i = 0; i < files.length; i++) {
+    formData.append('immagini[]', files[i]);
+  }
 
-      // Eseguire l'invio dei dati al backend, includendo i file (immagini) caricati
-      // In questa sezione si implementa la logica per inviare i dati della recensione e le immagini al backend
-
-      console.log('Recensione testuale:', recensioneText);
-      console.log('Immagini caricate:', files);
-      // Esempio di chiamata AJAX per inviare i dati al backend (sostituire con il codice reale)
-      /*
-      $.ajax({
-        url: 'url_del_backend',
-        method: 'POST',
-        data: {
-          recensione: recensioneText,
-          immagini: files
-        },
-        success: function(response) {
-          // Gestire la risposta del backend
-          console.log('Risposta dal backend:', response);
-        },
-        error: function(error) {
-          console.error('Errore durante l\'invio dei dati:', error);
-        }
-      });
-      */
-    });
+  // Eseguire la chiamata AJAX o fetch per inviare i dati al backend
+  fetch('/Controller/CRecensione.php', {// è il percorso in cui ho il metodo scriviRecensione()
+    method: 'POST',
+    body: formData
+  })
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error('Errore durante l\'invio dei dati');
+    }
+    return response.json(); // Se il server risponde con JSON, altrimenti usa response.text()
+  })
+  .then(function(data) {
+    // Gestire la risposta dal backend, se necessario
+    console.log('Risposta dal backend:', data);
+    // Esempio: aggiornare l'UI per mostrare che la recensione è stata inviata
+    alert('Recensione inviata con successo!');
+    // Esempio: ripulire il form o fare altro aggiornamento dell'interfaccia utente
+    document.getElementById('recensione-text').value = '';
+    document.getElementById('recensione-immagini').value = ''; // Resetta l'input file se necessario
+    document.getElementById('preview').innerHTML = ''; // Ripulisci la preview delle immagini
+  })
+  .catch(function(error) {
+    console.error('Errore durante l\'invio dei dati:', error);
+    // Gestire gli errori, ad esempio mostrando un messaggio all'utente
+    alert('Si è verificato un errore durante l\'invio della recensione.');
+  });
+});
