@@ -48,7 +48,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -57,19 +57,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -94,22 +94,22 @@
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="home.html">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="home.tpl">Home<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="servizi.html">Servizi</a>
+                <a class="nav-link" href="servizi.tpl">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">Contattaci</a>
+                <a class="nav-link" href="contattaci.tpl">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="profilo.html">Profilo</a>
+                <a class="nav-link" href="profilo.tpl">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Logout</a>
+                <a class="nav-link" href="index.tpl">Logout</a>
               </li>
             </ul>
           </div>
@@ -130,10 +130,10 @@
             </h1>
             <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
-              <a href="servizi.html" class="btn-1">
+              <a href="servizi.tpl" class="btn-1">
                 Prenota ora
               </a>
-              <a href="recensioni.html" class="btn-1">
+              <a href="recensioni.tpl" class="btn-1">
                 Recensioni
               </a>
             </div>
@@ -162,7 +162,7 @@
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="servizi.html">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -176,7 +176,7 @@
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -190,7 +190,7 @@
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -204,7 +204,7 @@
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -218,7 +218,7 @@
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -232,7 +232,7 @@
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -246,7 +246,7 @@
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -274,7 +274,7 @@
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -288,7 +288,7 @@
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="">
+            <a href="servizi.tpl">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -462,7 +462,7 @@
               <p>
                 Tesserati subito con noi: versando una quota annuale, puoi usufruire di fantastici sconti e vantaggi esclusivi!
               </p>
-              <a href="tesseramento.html">
+              <a href="tesseramento.tpl">
                 Scopri di più
               </a>
             </div>
@@ -545,19 +545,19 @@
           </h6>
           <ul>
             <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.html">Login</a>
+              <a class="" href="index.tpl">Logout</a>
             </li>
           </ul>
         </div>

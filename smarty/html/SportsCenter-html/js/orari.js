@@ -46,6 +46,10 @@
         console.log('Passaggio al passo successivo');
       });
     });
+    function selectTime(td) {
+      var selectedTime = td.innerHTML;
+      document.getElementById('selected_time').value = selectedTime;
+    }
 
 
 
