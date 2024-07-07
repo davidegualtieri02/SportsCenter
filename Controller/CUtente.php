@@ -124,4 +124,13 @@ class CUtente {
 
         }
      }
+
+     public static function home(){
+        if(CUtente::Loggato()){
+            $view = new VUtente();
+            $utente = USession::getIstanza()->getElementoSessione('utenteRegistrato'); //direttamente nome?
+            $nomeUtente = $utente->getNome(); //quindi forse inutile?
+            $view->home($nomeUtente);
+        }
+     }
 }

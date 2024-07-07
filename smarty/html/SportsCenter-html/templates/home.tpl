@@ -30,6 +30,16 @@
   <link href="css/responsive.css" rel="stylesheet" />
    <link href="css/index.css" rel="stylesheet" />
    <link href="css/contattaci.css" rel="stylesheet" />
+
+   <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+
 </head>
 
 <body>
@@ -113,14 +123,12 @@
         <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
           <div class="detail-box">
             <h2>
-              Gioca insieme a noi!
+              {$nomeUtente}, gioca insieme a noi
             </h2>
             <h1>
-              PRENOTA UN CAMPO
+              Prenota un campo
             </h1>
-            <p>
-              Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click
-            </p>
+            <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
               <a href="servizi.html" class="btn-1">
                 Prenota ora
@@ -352,7 +360,7 @@
                 BASTANO UN PAIO DI CLICK!
               </h5>
               <p>
-                Tramite la nostra piattaforma è possibile prenotare il campo, l'attrezzatura e saldare la quota in pochi minuti.
+                Tramite la nostra piattaforma è possibile prenotare il campo, l'attrezzatura e saldare la quota in pochi minuti
               </p>
             </div>
           </div>

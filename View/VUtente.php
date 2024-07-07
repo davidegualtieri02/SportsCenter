@@ -78,4 +78,12 @@ class VUtente{
         $this->smarty->assign('utente', $utente);
         $this->smarty->display('./smarty/libs/templates/mod_password.tpl');
     }
+
+    public function home($nomeUtente){
+        $this->smarty->assign('nomeUtente', $nomeUtente);
+        $this->smarty->display('./smarty/libs/templates/home.tpl');
+    }
 }
+
+
+

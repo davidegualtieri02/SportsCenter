@@ -55,7 +55,7 @@ require_once(__DIR__ . '/../../../../config/config.php');
      * metodo che restituisce un elemento dell'array $_SESSION
      */
     public static function getElementoSessione($id){
-        return $_SESSION [$id]; // mi rida il valore dell'elemento associato alla chiave $id nell'array superglobale .
+        return $_SESSION[$id]; // mi rida il valore dell'elemento associato alla chiave $id nell'array superglobale .
     }
     
     /**
