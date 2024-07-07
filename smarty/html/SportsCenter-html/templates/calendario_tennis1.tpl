@@ -20,26 +20,26 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="">
             <span>SportsCenter</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="">
                   <span>Tel: +393661830182</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="">
                   <span>daiegrom@gmail.com</span>
                 </a>
@@ -60,22 +60,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
+                    <a class="nav-link" href="profilo.tpl">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -108,7 +108,7 @@
               <h3>Descrizione del campo:</h3>
               <p>Campo da tennis all'aperto</p>
               <!-- Form per inviare la data selezionata -->
-              <form id="bookingForm" method="post" action="prenota.php">
+              <form id="bookingForm" method="post" action="CPrenotaCampo.php?action=MostraOrari">
                 <input type="hidden" id="selectedDate" name="selectedDate">
                 <button type="submit" class="btn btn-avanti float-right">Avanti</button>
               </form>
@@ -129,12 +129,12 @@
         <div class="col-md-2 offset-md-1">
           <h6>Menù</h6>
           <ul>
-             <li><a href="home.html">Home</a></li>
-            <li><a href="prenotazioni.html">Prenotazioni</a></li>
-            <li><a href="servizi.html">Servizi</a></li>
-            <li><a href="contattaci.html">Contattaci</li>
-            <li><a href="profilo.html">Profilo</a></li>
-            <li><a href="index.html">Logout</a></li>
+             <li><a href="home.tpl">Home</a></li>
+            <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
+            <li><a href="servizi.tpl">Servizi</a></li>
+            <li><a href="contattaci.tpl">Contattaci</li>
+            <li><a href="profilo.tpl">Profilo</a></li>
+            <li><a href="index.tpl">Logout</a></li>
           </ul>
         </div>
         <div class="col-md-3">
