@@ -1,3 +1,6 @@
+.tesseramento_section {
+    padding-top: 50px; /* aggiunto per garantire spazio superiore */
+  }
 .inputbox {
     position: relative;
     margin-bottom: 15px;
