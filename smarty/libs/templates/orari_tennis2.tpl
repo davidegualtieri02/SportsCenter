@@ -112,7 +112,7 @@
                                 <tbody>
                                     {section name=i loop=16}
                                     {if $i % 4 == 0}<tr>{/if}
-                                    <td onclick="selectTime(this)">{$i+8}:00</td>
+                                    <td onclick="selectTime(this)" data-time= "{$i+8}:00">{$i+8}:00</td>
                                     {if $i % 4 == 3}</tr>{/if}
                                     {/section}
                                 </tbody>
@@ -179,5 +179,14 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/orari.js"></script>
+    <script>
+        function selectTime(element) {
+            // Ottieni l'orario selezionato dall'elemento cliccato
+            var selectedTime = element.getAttribute('data-time');
+            // Imposta il valore dell'input nascosto 'selected_time' con l'orario selezionato
+            document.getElementById('selected_time').value = selectedTime;
+        }
+    </script>
+</body>
 </body>
 </html>

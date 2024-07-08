@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>SportsCenter</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
@@ -112,7 +113,7 @@
                                 <tbody>
                                     {section name=i loop=16}
                                     {if $i % 4 == 0}<tr>{/if}
-                                    <td onclick="selectTime(this)">{$i+8}:00</td>
+                                    <td onclick="selectTime(this)" data-time="{$i+8}:00">{$i+8}:00</td>
                                     {if $i % 4 == 3}</tr>{/if}
                                     {/section}
                                 </tbody>
@@ -179,5 +180,14 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/orari.js"></script>
+
+    <script>
+        function selectTime(element) {
+            // Ottieni l'orario selezionato dall'elemento cliccato
+            var selectedTime = element.getAttribute('data-time');
+            // Imposta il valore dell'input nascosto 'selected_time' con l'orario selezionato
+            document.getElementById('selected_time').value = selectedTime;
+        }
+    </script>
 </body>
 </html>
