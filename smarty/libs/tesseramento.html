@@ -29,9 +29,9 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
   <link href="css/tesseramento.css" rel="stylesheet" />
-
   <!-- Custom login styles -->
   <link rel="stylesheet" href="css/login.css">
+
 </head>
 
 <body>
@@ -49,37 +49,37 @@
           <form id="tesseramentoForm">
             <h2>Modulo di Tesseramento</h2>
             <div class="inputbox">
-              <label for="nome">Nome:</label>
-              <input type="text" id="nome" name="nome" required>
+              <input type="text" id="nome" name="nome" required placeholder=" ">
+              <label for="nome">Nome</label>
             </div>
             <div class="inputbox">
-              <label for="cognome">Cognome:</label>
-              <input type="text" id="cognome" name="cognome" required>
+              <input type="text" id="cognome" name="cognome" required placeholder=" ">
+              <label for="cognome">Cognome</label>
             </div>
             <div class="inputbox">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" required placeholder=" ">
+              <label for="email">Email</label>
             </div>
             <h3>Dati della Carta di Pagamento</h3>
             <div class="inputbox">
-              <label for="cartaNome">Nome del Titolare:</label>
-              <input type="text" id="cartaNome" name="cartaNome" required>
+              <input type="text" id="cartaNome" name="cartaNome" required placeholder=" ">
+              <label for="cartaNome">Nome del Titolare</label>
             </div>
             <div class="inputbox">
-              <label for="cartaCognome">Cognome del Titolare:</label>
-              <input type="text" id="cartaCognome" name="cartaCognome" required>
+              <input type="text" id="cartaCognome" name="cartaCognome" required placeholder=" ">
+              <label for="cartaCognome">Cognome del Titolare</label>
             </div>
             <div class="inputbox">
-              <label for="cartaNumero">Numero della Carta:</label>
-              <input type="text" id="cartaNumero" name="cartaNumero" required>
+              <input type="text" id="cartaNumero" name="cartaNumero" required placeholder=" ">
+              <label for="cartaNumero">Numero della Carta</label>
             </div>
             <div class="inputbox">
-              <label for="cvv">Codice CVV:</label>
-              <input type="text" id="cvv" name="cvv" required>
+              <input type="text" id="cvv" name="cvv" required placeholder=" ">
+              <label for="cvv">Codice CVV</label>
             </div>
             <div class="inputbox">
-              <label for="costo">Costo del Tesseramento: 150€</label>
-              <input type="text" id="costo" name="costo" readonly>
+              <input type="text" id="costo" name="costo" value="150 €" readonly placeholder=" ">
+              <label for="costo">Costo del Tesseramento</label>
             </div>
             <button type="submit">Tesserati</button>
           </form>
@@ -101,3 +101,4 @@
   </script>
 </body>
 </html>
+
