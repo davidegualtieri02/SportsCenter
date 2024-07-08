@@ -8,6 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SportsCenter</title>
+  <link rel="icon" href="images/logo.png" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
@@ -23,33 +24,36 @@
         document.addEventListener("DOMContentLoaded", ready);
     </script>
 </head>
-<body class="sub_page">
+<body>
   <div class="hero_area">
+    <!-- header section strats -->
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="home.tpl">
-            <img src="images/logo.png" alt="">
-            <span>SportsCenter</span>
+            <img src="images/logo.png" alt="" />
+            <span>
+              SportsCenter
+            </span>
           </a>
-          <div class="contact_nav">
-            <ul class="navbar-nav">
+          <div class="contact_nav" id="">
+            <ul class="navbar-nav ">
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/location.png" alt="">
+                  <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/call.png" alt="">
-                  <span>Tel: +393661830182</span>
+                  <img src="images/call.png" alt="" />
+                  <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/envelope.png" alt="">
-                  <span>daiegrom@gmail.com</span>
+                  <img src="images/envelope.png" alt="" />
+                  <span>info@sportscenter.com</span>
                 </a>
               </li>
             </ul>
@@ -57,6 +61,7 @@
         </nav>
       </div>
     </header>
+<!-- end header section -->
     <section class="slider_section position-relative">
       <div class="container">
         <div class="custom_nav2">
@@ -122,45 +127,98 @@
     </div>
   </section>
   <section class="info_section layout_padding2-top">
+
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h6>Il nostro centro è pazzesco</h6>
-          <p>veramente</p>
+          <h6>
+            Qualche info su SportsCenter
+          </h6>
+          <p>
+            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
+          </p>
         </div>
         <div class="col-md-2 offset-md-1">
-          <h6>Menù</h6>
+          <h6>
+            Menu
+          </h6>
           <ul>
-            <li class=" "><a href="home.tpl">Home</a></li>
-            <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
-            <li><a href="servizi.tpl">Servizi</a></li>
-            <li><a href="contattaci.tpl">Contattaci</a></li>
-            <li><a href="profilo.tpl">Profilo</a></li>
-            <li><a href="index.tpl">Logout</a></li>
+            <li class=" active">
+              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="">
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+            </li>
+            <li class="">
+              <a class="" href="servizi.tpl">Servizi</a>
+            </li>
+            <li class="">
+              <a class="" href="contattaci.tpl">Contattaci</a>
+            </li>
+            <li class="">
+              <a class="" href="login_form.tpl">Login</a>
+            </li>
           </ul>
         </div>
         <div class="col-md-3">
-          <h6>Contattaci</h6>
+          <h6>
+            Contattaci
+          </h6>
           <div class="info_link-box">
-            <a href=""><img src="images/location-white.png" alt=""><span> Coppito1,Via Vetoio 3</span></a>
-            <a href=""><img src="images/call-white.png" alt=""><span>+393661830182</span></a>
-            <a href=""><img src="images/mail-white.png" alt=""><span> daiegrom@gmail.com</span></a>
+            <a href="contattaci.tpl">
+              <img src="images/location-white.png" alt="">
+              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
+            </a>
+            <a href="contattaci.tpl">
+              <img src="images/call-white.png" alt="">
+              <span>(+39) 0862 123456</span>
+            </a>
+            <a href="contattaci.tpl">
+              <img src="images/mail-white.png" alt="">
+              <span>info@sportscenter.com</span>
+            </a>
           </div>
-          <div class="info_social">
-            <div><a href=""><img src="images/facebook-logo-button.png" alt=""></a></div>
-            <div><a href=""><img src="images/twitter-logo-button.png" alt=""></a></div>
-            <div><a href=""><img src="images/linkedin.png" alt=""></a></div>
-            <div><a href=""><img src="images/instagram.png" alt=""></a></div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <a href="https://www.facebook.com/univaq.it">
+              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/univaq.it">
+              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://x.com/univaq">
+              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.tiktok.com/">
+              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="container-fluid footer_section">
-    <p>&copy; 2024 All Rights Reserved. Design by <a href="https://html.design/">Frack,daieg e das</a></p>
+
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
+    </p>
   </section>
+  <!-- footer section -->
+
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script  type="text/javascript" src="js/attrezzatura.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
