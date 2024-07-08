@@ -131,7 +131,7 @@
         </div>
       </div>
 
-      {foreach from=$recensioni item=recensione}
+      {foreach from=$recensioni item=$recensione}
       <div class="box">
         <div class="detail-box">
           <h4>{$recensione.utente}</h4>

@@ -23,7 +23,7 @@ class VRecensione{
     public function MostraRecensioni($recensioni,$utente){
         $this->smarty->assign('recensioni',$recensioni);
         $this->smarty->assign('Utente',$utente);
-        $this->smarty->display('mostra_recensioni.tpl');
+        $this->smarty->display('recensioni.tpl');
     }
     public function MostraPrenotazioni($prenotazioni,$utente){
         $this->smarty->assign('prenotazioni',$prenotazioni);
