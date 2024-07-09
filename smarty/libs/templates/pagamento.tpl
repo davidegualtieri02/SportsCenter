@@ -57,30 +57,30 @@
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="nome" name = "nome" value = "{$nomeTitolare}" required>
               <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="cognome" name = "cognome" value = "{$cognomeTitolare}" required>
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
+              <input type="numero"  name = "numero" value = "{$numeroCarta}" required>
               <label for="">Numero della carta</label>
             </div>
             <div class="inputbox">
               <ion-icon name="calendar-outline"></ion-icon>
-              <input type="text" required>
+              <input type="data" name = "data" value = "{$dataScadenza}" required>
               <label for="">Data di scadenza (MM/AAAA)</label>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
+              <input type="codice" name = "codice" value ="{$cvv}" required>
               <label for="">CVV (XYZ)</label>
             </div>
-            <button>Conferma e paga</button>
+            <a href = "confermaPrenotazione.tpl">Conferma e paga </a>
           </form>
         </div>
       </div>

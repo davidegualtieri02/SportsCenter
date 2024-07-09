@@ -93,8 +93,8 @@
                   <li class="nav-item">
                     <a class="nav-link" href="home.html">Home</a>
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="prenotazioni.html"><span class="sr-only">(current)</span>Prenotazioni</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="servizi.html">Servizi</a>
