@@ -1,0 +1,6 @@
+{
+    "require": {
+        "league/route": "^5.1",
+        "laminas/laminas-diactoros": "^3.3"
+    }
+}
