@@ -5,7 +5,7 @@ class CPrenotaCampo{
      * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
-    public static function MostraPagamento($idCampo,$giorno,$orario,$idAttrezzatura){ //Con GET il server invia la form di prenotazione 
+    public static function MostraPagamento($idCampo,$data,$orario,$idAttrezzatura){ //Con GET il server invia la form di prenotazione 
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
         //prendendo un oggetto attrezzatura viene preso un kit standard di attrezzatura per esempio un attrezzatura calcio fa prendere 5 casacche e 2 palloni , il num casacca e il num palloni sono contentuti nella tupla dell'attrezzatura
@@ -14,17 +14,17 @@ class CPrenotaCampo{
         //if($attrezzatura == FAttrezzatura_Basket::getOgg($idAttrezzatura))
         $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
         $campo = $sessione::getElementoSessione('campo');
+        $idCampo=$campo->getId_campo();
         $data = $sessione::getElementoSessione('data');
         $orario = $sessione::getElementoSessione('orario');
         if(UServer::getRichiestaMetodo() == "GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
-            $idcampo = $campo->getId_campo();
-            $view->MostraFormAttrezzatura($utente,$idcampo,$attrezzatura); 
+            $view->MostraFormAttrezzatura($utente,$idCampo,$data,$orario); 
         }
         elseif(UServer::getRichiestaMetodo() == "POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $attrezzatura = UMetodiHTTP::post('attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
-            $view->MostraFormPagamento($utente,$attrezzatura,$campo,$data,$orario);
+            $view->MostraFormPagamento($utente,$attrezzatura,$idCampo,$data,$orario);
     
         }
         
@@ -32,19 +32,20 @@ class CPrenotaCampo{
     /**
      * Metodo che mi rida la form con i dati del pagamento
      */
-    public static function MostraConfermaPrenotazione($idCampo,$giorno,$orario,$idAttrezzatura,$idcarta){
+    public static function MostraConfermaPrenotazione($idCampo,$data,$orario,$attrezzatura,$idcarta){
         $sessione = USession::getIstanza();
         $pm = FPersistentManager::getIstanza();
         $carta = FPersistentManager::recuperaOggetto(ECartadiPagamento::getEntità(),$idcarta);
         $idcarta= $carta->getIdCarta();
         $view = new VPrenotaCampo();
         $campo = $sessione::getElementoSessione('campo');
+        $idCampo = $campo->getId_campo();
         $data = $sessione::getElementoSessione('data');
         $orario = $sessione::getElementoSessione('orario');
-        $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
+        $attrezzatura = $sessione::getElementoSessione('attrezzatura');
         if(UServer::getRichiestaMetodo()=="GET"){
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-            $view ->MostraFormPagamento($utente,$campo,$data,$orario,$attrezzatura);
+            $view ->MostraFormPagamento($utente,$attrezzatura,$idCampo,$data,$orario);
             
         }
         elseif(UServer::getRichiestaMetodo()=="POST"){
@@ -60,7 +61,7 @@ class CPrenotaCampo{
                 $view->MostraErrore();
             }else{
             //altrimenti procediamo con la creazione della prenotazione e la conferma della prenotazione
-            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura->getId_attrezzatura(),$utente->getId());
+            $prenotazione = new EPrenotazione($data,$orario,true,$idCampo,$attrezzatura->getId_attrezzatura(),$utente->getId());
             $pm::uploadOgg($prenotazione);
             $view->ConfermaPrenotazione($utente,$nome,$cognome,$scadenza,$numero,$cvv);
             }
