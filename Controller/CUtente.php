@@ -150,8 +150,8 @@ class CUtente {
     public static function prenotazioniUtente(){
         if(CUtente::Loggato()){
             $view = new VUtente();
-            $idUtente = USession::getIstanza->getElementoSessione('utenteRegistrato');
-            $listaPrenotazioni = FPersistentManager::getIstanza()->recuperaoggetti(EPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $listaPrenotazioni = FPersistentManager::getIstanza()->recuperaoggetti(FPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
             $view->prenotazioniUtente($listaPrenotazioni);
         }
     }
