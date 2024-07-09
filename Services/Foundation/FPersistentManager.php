@@ -311,6 +311,34 @@ class FPersistentManager{
         FImage::bind($dichiarazione,$immagine);
     }
 
+    //--------------------------------------------------------ImageCampo----------------------------------------------------------------------------------
+
+/**
+ * Metodo che crea un immagine
+ * @param $risultatoQuery è il risultato della query da cui otteniamo l'immagine
+ * @return array
+ */
+ public static function CreaImmagineCampo($risultatoQuery){
+    $risultato = FImageCampo::CreaOggImage($risultatoQuery);
+    return $risultato;
+ }
+
+  /**
+     * Metodo per impostare i valori degli attributi di un immagine
+     * @param $dichiarazione è la dichiarazione del db
+     * @param $immagine è l'immagine stessa
+     */
+    public static function bindImageCampo($dichiarazione,$immagine){
+        FImageCampo::bind($dichiarazione,$immagine);
+    }
+
+    public static function campoeImageCampo($id_campo){
+        $campo = self::recuperaOggetto(FCampo::getClasse(), $id_campo);
+        $arrayData = array($campo, self::recuperaOggetto(FImageCampo::getClasse(), $campo->getIdimageCampo()));
+        $result[] = $arrayData;
+        return $result;
+    }
+
  //-----------------------------------------------------Carta di Pagamento----------------------------------------------------------------------
 
  /**

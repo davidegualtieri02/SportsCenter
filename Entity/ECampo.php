@@ -4,11 +4,14 @@ class ECampo {
     private int $prezzo;
     protected int $id_campo = 0;
 
+    protected string $id_imageCampo;
+
     private static $entità = ECampo::class;
 
-    public function __construct($titoloCampo,$prezzo){
+    public function __construct($titoloCampo,$prezzo,$id_imageCampo){
         $this->titoloCampo = $titoloCampo;
         $this->prezzo = $prezzo;
+        $this->imageCampo = $id_imageCampo;
     }
     //public function getCopertura(){
         //return $this->copertura;
@@ -36,6 +39,10 @@ class ECampo {
     }
     public function setPrezzo($prezzo){
         $this->prezzo = $prezzo;
+    }
+
+    public function getIdimageCampo(){
+        return $this->id_imageCampo;
     }
      //metodo toString esiste predefinito
    

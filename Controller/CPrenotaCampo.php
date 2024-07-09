@@ -89,10 +89,15 @@ class CPrenotaCampo{
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
         $campo = FPersistentManager::recuperaOggetto(ECampo::getEntità(),$idCampo);
+        $titoloCampo = $campo->getTitolo();
+        $prezzoCampo = $campo->getPrezzo();
+        $id_imageCampo = $campo->getIdimageCampo();
+        $imageCampo = FPersistentManager::recuperaOggetto(EImageCampo::getEntità,$id_imageCampo);
         if(UServer::getRichiestaMetodo() == "GET"){
-            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-            $view->MostraCalendario($utente,$campo);
-             
+            $idUtente = unserialize($sessione->LeggiValore('utenteRegistrato'));
+            $nomeUtente = $idUtente->getNome();
+            $id_tesseraUtente = $idUtente->getid_tessera();
+            $view->MostraCalendario($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo);
         }
     }
     /**
