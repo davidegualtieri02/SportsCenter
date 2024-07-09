@@ -52,26 +52,26 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="">
+          <form action="CUtente.php?action=registrazione" method="post">
             <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="nome" name ="nome" value ="{$nome}" required>
               <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="cognome" name = "{$cognome}" required>
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" required>
+              <input type="email" name="email" value="{$email}" required>
               <label for="">Email</label>
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" required>
+              <input type="password" name="password" value="{$password}" required>
               <label for="">Password</label>
             </div>
             <button>Registarti</button>
