@@ -179,6 +179,9 @@
               <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
+              <a class="" href="profilo.tpl">Profilo</a>
+            </li>
+            <li class="">
               <a class="" href="index.tpl">Logout</a>
             </li>
           </ul>
