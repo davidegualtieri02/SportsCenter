@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f6ea077_95869592',
+  'unifunc' => 'content_668d99aaccdc92_14499926',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '13829e717c1479bc9152fb893a0adf69d985f1f3' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/login_form.tpl',
-      1 => 1720360852,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f6ea077_95869592 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aaccdc92_14499926 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -48,8 +48,8 @@ function content_668c565f6ea077_95869592 (Smarty_Internal_Template $_smarty_tpl)
   <!-- Custom styles -->
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
-  <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
   <link href="css/login.css" rel="stylesheet"/>
+
   <!-- Ionicons -->
   <?php echo '<script'; ?>
  type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
@@ -60,60 +60,51 @@ function content_668c565f6ea077_95869592 (Smarty_Internal_Template $_smarty_tpl)
 
   <?php echo '<script'; ?>
 >
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    <?php echo '</script'; ?>
+    function ready(){
+      if (!navigator.cookieEnabled) {
+        alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+    }
+    document.addEventListener("DOMContentLoaded", ready);
+  <?php echo '</script'; ?>
 >
-    
 </head>
 
 <body>
   <div>
     <a href="index.html">
-    <img src="images/logo.png" alt="SportsCenter"></a>
+      <img src="images/logo.png" alt="SportsCenter">
+    </a>
   </div>
-  <!-- Registration section -->
+  <!-- Login section -->
   <section class="login_section layout_padding">
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="">
-            <h2>Registrati su SportsCenter</h2>
-            <div class="inputbox">
-              <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Nome</label>
-            </div>
-            <div class="inputbox">
-              <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Cognome</label>
-            </div>
+          <form action="CUtente.php?action=VerificaLogin" method="post">
+            <h2>Accedi a SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" required>
+              <input type="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+" required>
               <label for="">Email</label>
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" required>
+              <input type="password" name="password" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
+" required>
               <label for="">Password</label>
             </div>
-            <button>Registarti</button>
+            <a type="submit" href = "home.tpl">Accedi</a>
             <div class="login">
-              <p>Hai già un profilo? <a href="login_form.html">Login</a></p>
+              <p>Non hai un profilo? <a href="registrazione.tpl">Registrati</a></p>
             </div>
           </form>
         </div>
       </div>
     </div>
   </section>
-  <!-- End registration section -->
-
+  <!-- End login section -->
   <!-- Scripts -->
   <?php echo '<script'; ?>
  type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
@@ -132,9 +123,5 @@ function content_668c565f6ea077_95869592 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '</script'; ?>
 >
 </body>
-
-</html>
-
-
-<?php }
+</html><?php }
 }

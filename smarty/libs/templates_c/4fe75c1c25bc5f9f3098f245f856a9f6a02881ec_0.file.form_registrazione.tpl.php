@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f6d7a94_58843421',
+  'unifunc' => 'content_668d99aac68420_37249768',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4fe75c1c25bc5f9f3098f245f856a9f6a02881ec' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
-      1 => 1720360852,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f6d7a94_58843421 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aac68420_37249768 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -81,32 +81,36 @@ function content_668c565f6d7a94_58843421 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="">
+          <form action="CUtente.php?action=registrazione" method="post">
             <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="nome" name ="nome" value ="<?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
+" required>
               <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="cognome" name = "<?php echo $_smarty_tpl->tpl_vars['cognome']->value;?>
+" required>
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" required>
+              <input type="email" name="email" value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
+" required>
               <label for="">Email</label>
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" required>
+              <input type="password" name="password" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
+" required>
               <label for="">Password</label>
             </div>
-            <button>Registarti</button>
+            <a href="home.tpl">Registrati</a>
             <p> </p>
             <div class="login">
-              <p>Hai già un profilo? <a href="login_form.html">Login</a></p>
+              <p>Hai già un profilo? <a href="login_form.tpl">Login</a></p>
             </div>
           </form>
         </div>

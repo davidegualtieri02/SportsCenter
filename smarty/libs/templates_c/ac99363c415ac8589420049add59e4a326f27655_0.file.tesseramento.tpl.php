@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/tesseramento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f687d53_38154308',
+  'unifunc' => 'content_668d99aac2bd82_46676771',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ac99363c415ac8589420049add59e4a326f27655' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/tesseramento.tpl',
-      1 => 1720472585,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f687d53_38154308 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aac2bd82_46676771 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -70,7 +70,7 @@ function content_668c565f687d53_38154308 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form id="tesseramentoForm" method="post" action="process_tesseramento.php">
+          <form id="tesseramentoForm" method="post" action="CTesseramento.php?action=MostraConfermaTesseramento">
             <h2>Modulo di Tesseramento</h2>
             <div class="inputbox">
               <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['nome']->value, ENT_QUOTES, 'UTF-8', true);?>

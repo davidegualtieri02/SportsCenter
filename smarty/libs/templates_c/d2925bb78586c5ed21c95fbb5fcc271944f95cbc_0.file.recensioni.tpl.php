@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/recensioni.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f6cdeb3_61651590',
+  'unifunc' => 'content_668d99aac51689_40238140',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd2925bb78586c5ed21c95fbb5fcc271944f95cbc' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/recensioni.tpl',
-      1 => 1720472585,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f6cdeb3_61651590 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aac51689_40238140 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -36,6 +36,7 @@ function content_668c565f6cdeb3_61651590 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
+  <link rel="icon" href="images/logo.png" type="image/x-icon" />
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -214,6 +215,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             </li>
             <li class="">
               <a class="" href="contattaci.tpl">Contattaci</a>
+            </li>
+            <li class="">
+              <a class="" href="profilo.tpl">Profilo</a>
             </li>
             <li class="">
               <a class="" href="index.tpl">Logout</a>
