@@ -130,9 +130,11 @@
                         <!-- Singola casella di controllo -->
                         <div class="equipment-list">
                             <h3>Seleziona l'attrezzatura:</h3>
-                            <form id="equipmentForm" method="post" >
-                                <label><input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true"> Attrezzatura</label>
-                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura" value="">
+                            <form id="equipmentForm" method="post" action="CPrenotaCampo.php?action=MostraPagamento">
+                                <label>
+                                    <input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true" onchange="updateAttrezzaturaHidden()"> Attrezzatura
+                                </label>
+                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden" value="">
                                 <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
                                 <input type="hidden" id="selectedTime" name="selected_time" value="{$selected_time}">
                                 <button type="submit" class="btn btn-avanti float-right">Continua e paga</button>
@@ -234,5 +236,16 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script>
+    function updateAttrezzaturaHidden() {
+        var checkbox = document.getElementById('attrezzaturaCheckbox');
+        var hiddenField = document.getElementById('attrezzaturaHidden');
+        hiddenField.value = checkbox.checked ? 'true' : 'false';
+    }
+
+    document.getElementById('equipmentForm').addEventListener('submit', function() {
+        updateAttrezzaturaHidden();
+    });
+</script>
 </body>
 </html>
