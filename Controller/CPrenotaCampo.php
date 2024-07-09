@@ -47,7 +47,7 @@ class CPrenotaCampo{
     /**
      * Metodo che mi rida la form con i dati del pagamento
      */
-    public static function MostraConfermaPrenotazione($idcarta){
+    public static function MostraConfermaPrenotazione($idCampo,$giorno,$orario,$idAttrezzatura,$idcarta){
         $sessione = USession::getIstanza();
         $pm = FPersistentManager::getIstanza();
         $carta = FPersistentManager::recuperaOggetto(ECartadiPagamento::getEntità(),$idcarta);
