@@ -128,7 +128,14 @@
                         </div>
                         <div class="campo-description">
                             <h3>Descrizione del campo:</h3>
-                            <p>Campo da basket all'aperto</p>
+                            <p>{$titoloCampo}.
+                            Costo del campo:
+                            {if $id_tesseraUtente ==0}
+                                {$prezzoCampo} euro
+                            {else}
+                                {math equation = "x-(x * y / 100)" x =$prezzocampo y=30 assign ="prezzo_scontato"} 
+                                Prezzo originale : {$prezzoCampo} euro , prezzo scontato per utenti tesserati : {$prezzo_scontato} euro.
+                            </p>
                         </div>
                     </div>
                 </div>

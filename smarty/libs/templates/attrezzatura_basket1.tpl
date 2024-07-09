@@ -130,7 +130,7 @@
                         <!-- Singola casella di controllo -->
                         <div class="equipment-list">
                             <h3>Seleziona l'attrezzatura:</h3>
-                            <form id="equipmentForm" method="post">
+                            <form id="equipmentForm" method="post" >
                                 <label><input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true"> Attrezzatura</label>
                                 <input type="hidden" id="attrezzaturaHidden" name="attrezzatura" value="">
                                 <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
