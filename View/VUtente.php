@@ -25,16 +25,16 @@ class VUtente{
         $this->smarty->assign('errore',false);
         $this->smarty->assign('ban',false);
         $this->smarty->assign('regErr',false);
-        $this->smarty->display('./Smarty/libs/templates/login_form.tpl');
+        $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
     public function MostraFormRegistrazione(){
-        $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
+        $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
     }
     public function loginBan(){
         $this->smarty->assign('errore',false);
         $this->smarty->assign('ban',true);
         $this->smarty->assign('regErr',false);
-        $this->smarty->display('.Smarty/libs/templates/login_form.tpl');
+        $this->smarty->display('.smarty/libs/templates/login_form.tpl');
     }
     public function erroreLogin($errore){
         switch($errore){
@@ -48,7 +48,7 @@ class VUtente{
                 $this->smarty->assign('emailErrata', false);
                 break;
         }
-        $this->smarty->display('.Smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
+        $this->smarty->display('.smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
     }
     public function erroreRegistrazione($errore){
         switch ($errore){
@@ -56,15 +56,9 @@ class VUtente{
                 $this->smarty->assign('emailEsistente', false);
                 break;
         }
-        $this->smarty->display('.Smarty/libs/templates/form_registrazione.tpl');
+        $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
     }
-    public function profilo($utente,$idutente){
-        if(CUtente::Loggato()) $this->smarty->assign('utenteloggato','loggato');
-        else $this->smarty->assign('utenteloggato','nonloggato');
-        $this->smarty->assign('Utente', $utente);
-        $this->smarty->assign('idutente', $idutente);
 
-    }
     public function ModificaPassword($utente, $error){
 
         if (CUtente::Loggato()) $this->smarty->assign('utenteloggato', 'loggato');
@@ -76,7 +70,7 @@ class VUtente{
                 break;
         }
         $this->smarty->assign('utente', $utente);
-        $this->smarty->display('./smarty/libs/templates/mod_password.tpl');
+        $this->smarty->display('./smarty/libs/templates/mod_password.tpl'); //NON ESISTE
     }
 
     public function home($nomeUtente){

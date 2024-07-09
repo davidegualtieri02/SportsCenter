@@ -14,7 +14,7 @@ class CCampi{
                 $campi_tennis[] = $pm::RecuperaTuple(FCampo_Tennis::getTabella());
                  $campi_padel[] = $pm::RecuperaTuple(FCampo_Padel::getTabella());
             // Aggiunge tutti i campi contenuti negli array sopra  in un unico array campi
-                 $campi = array_merge($campi_basket, $campi_pallavolo, $campi_calcio, $campi_tennis,$campi_padel);
+                 $campi = array_merge($campi_basket, $campi_pallavolo, $campi_calcio, $campi_tennis, $campi_padel);
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
