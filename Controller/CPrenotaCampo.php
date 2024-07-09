@@ -5,7 +5,7 @@ class CPrenotaCampo{
      * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
-    public static function MostraPagamento($idAttrezzatura){ //Con GET il server invia la form di prenotazione 
+    public static function MostraPagamento($idCampo,$giorno,$orario,$idAttrezzatura){ //Con GET il server invia la form di prenotazione 
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
         //prendendo un oggetto attrezzatura viene preso un kit standard di attrezzatura per esempio un attrezzatura calcio fa prendere 5 casacche e 2 palloni , il num casacca e il num palloni sono contentuti nella tupla dell'attrezzatura
