@@ -29,9 +29,13 @@ class VPrenotaCampo{
      $this->smarty->display('./Smarty/libs/templates/info_pagamento.tpl');
 
    }
-   public function MostraCalendario($utente,$campo){
-     $this->smarty->assign('Utente',$utente);
-     $this->smarty->assign('Campo',$campo);
+   public function MostraCalendario($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo){
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+     $this->smarty->assign('idCampo',$idCampo);
+     $this->smarty->assign('titoloCampo',$titoloCampo);
+     $this->smarty->assign('prezzoCampo',$prezzoCampo);
+     $this->smarty->assign('imageCampo',$imageCampo);
      $this->smarty->display('./Smarty/libs/templates/calendario.tpl');
    }
    public function MostraOrari($utente,$giorno,$campo){
