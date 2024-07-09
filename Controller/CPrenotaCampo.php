@@ -104,7 +104,7 @@ class CPrenotaCampo{
      * Metodo che mostrerà una volta che l'utente fornisce la data gli orari disponibili per quel campo e quel giorno
      * qui clicchiamo il giorno
      */
-    public static function MostraOrari($giorno){
+    public static function MostraOrari($idCampo,$giorno){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo(); 
         if(UServer::getRichiestaMetodo() == "POST"){
@@ -119,7 +119,7 @@ class CPrenotaCampo{
      * Metodo che mostra l'array di orari disponibili per la prenotazione di quel campo in quel giorno 
      * e fa scegliere all'utente uno di questi orari per prenotare il campo
      */
-    public static function MostraAttrezzatura($orario){
+    public static function MostraAttrezzatura($idCampo,$giorno,$orario){
         $sessione = USession::getIstanza();
         $view = new VPrenotaCampo();
        if(UServer::getRichiestaMetodo() == 'GET'){
