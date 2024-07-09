@@ -25,66 +25,55 @@
   <!-- Custom styles -->
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
-  <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
   <link href="css/login.css" rel="stylesheet"/>
+
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    </script>
-    
+    function ready(){
+      if (!navigator.cookieEnabled) {
+        alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+    }
+    document.addEventListener("DOMContentLoaded", ready);
+  </script>
 </head>
 
 <body>
   <div>
     <a href="index.html">
-    <img src="images/logo.png" alt="SportsCenter"></a>
+      <img src="images/logo.png" alt="SportsCenter">
+    </a>
   </div>
-  <!-- Registration section -->
+  <!-- Login section -->
   <section class="login_section layout_padding">
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="">
-            <h2>Registrati su SportsCenter</h2>
-            <div class="inputbox">
-              <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Nome</label>
-            </div>
-            <div class="inputbox">
-              <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
-              <label for="">Cognome</label>
-            </div>
+          <form action="CUtente.php?action=VerificaLogin" method="post">
+            <h2>Accedi a SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" required>
+              <input type="email" name="email" value="{$email}" required>
               <label for="">Email</label>
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" required>
+              <input type="password" name="password" value="{$password}" required>
               <label for="">Password</label>
             </div>
-            <button>Registarti</button>
+            <button type="submit">Accedi</button>
             <div class="login">
-              <p>Hai già un profilo? <a href="login_form.html">Login</a></p>
+              <p>Non hai un profilo? <a href="registrazione.tpl">Registrati</a></p>
             </div>
           </form>
         </div>
       </div>
     </div>
   </section>
-  <!-- End registration section -->
-
+  <!-- End login section -->
   <!-- Scripts -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -97,7 +86,4 @@
     }
   </script>
 </body>
-
 </html>
-
-

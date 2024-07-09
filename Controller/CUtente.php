@@ -137,7 +137,7 @@ class CUtente {
     public static function profilo(){
         if(CUtente::Loggato()){
             $view = new VUtente();
-            $idUtente = USession::getIstanza->getElementoSessione('utenteRegistrato');
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
             $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
             $nomeUtente = $utente['nome'];
             $cognomeUtente = $utente['cognome'];
