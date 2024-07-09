@@ -119,7 +119,7 @@
                             </table>
                             <input type="hidden" name="selected_time" id="selected_time" value="">
                             <input type="hidden" name="selected_day" value="{$giorno}">
-                            <button type="submit" class="btn btn-avanti float-right">Avanti</button>
+                            <a type="submit" class="btn btn-avanti float-right" href ="attrezzatura.tpl">Avanti</a>
                         </form>
                     </div>
                     <div class="col-md-6">

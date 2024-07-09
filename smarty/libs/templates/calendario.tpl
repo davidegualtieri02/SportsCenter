@@ -33,26 +33,26 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="">
             <span>SportsCenter</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="">
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
@@ -73,22 +73,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
+                    <a class="nav-link" href="profilo.tpl">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -129,7 +129,7 @@
                 Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
               </p>
               <!-- Pulsante "Avanti" allineato a destra -->
-              <a class="btn btn-avanti float-right" href = "orari_calcio1.html">Avanti</a>
+              <a class="btn btn-avanti float-right" href = "orari.tpl">Avanti</a>
             </div>
           </div>
         </div>
@@ -156,20 +156,20 @@
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="home.tpl">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="index.html">Logout</a>
+              <a class="" href="index.tpl">Logout</a>
             </li>
           </ul>
         </div>

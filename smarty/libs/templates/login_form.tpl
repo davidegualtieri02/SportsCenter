@@ -64,7 +64,7 @@
               <input type="password" name="password" value="{$password}" required>
               <label for="">Password</label>
             </div>
-            <button type="submit">Accedi</button>
+            <a type="submit" href = "home.tpl">Accedi</a>
             <div class="login">
               <p>Non hai un profilo? <a href="registrazione.tpl">Registrati</a></p>
             </div>

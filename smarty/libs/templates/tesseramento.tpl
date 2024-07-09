@@ -47,7 +47,7 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form id="tesseramentoForm" method="post" action="process_tesseramento.php">
+          <form id="tesseramentoForm" method="post" action="CTesseramento.php?action=MostraConfermaTesseramento">
             <h2>Modulo di Tesseramento</h2>
             <div class="inputbox">
               <input type="text" id="nome" name="nome" value="{$nome|escape}" required placeholder=" ">

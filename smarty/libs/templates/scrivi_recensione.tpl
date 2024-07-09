@@ -151,7 +151,7 @@
             </div>
             <div class="box">
                 <div class="detail-box">
-                    <form id="recensione-form" action="CRecensione.php" method="post" enctype="multipart/form-data">
+                    <form id="recensione-form" action="CRecensione.php?action=scriviRecensione" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="azione" value="scrivi_recensione">
                         <input type="hidden" name="prenotazione" value="{$prenotazione}">
                         <input type="hidden" name="idutente" value="{$idutente}">
