@@ -1,0 +1,111 @@
+/* Aggiorna i tuoi stili CSS con questi aggiustamenti per la nuova form */
+
+.login_section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.form-box {
+  background: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.form-value {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inputbox {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.inputbox input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 30px;
+  border: none;
+  outline: none;
+  background: #f2f2f2;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.inputbox input:focus {
+  background: #e0e0e0;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.inputbox input:focus~label,
+.inputbox input:valid~label {
+  top: 0;
+  left: 10px;
+  font-size: 12px;
+  color: #90EE90;
+}
+
+button {
+  background: #90EE90; /* Verde */
+  border: none;
+  padding: 12px 20px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background: #78c257; /* Verde */
+}
+
+.login {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login p {
+  font-size: 14px;
+  color: #888;
+}
+
+.login a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+

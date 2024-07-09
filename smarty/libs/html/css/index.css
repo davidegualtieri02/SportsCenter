@@ -1,0 +1,5 @@
+/* Additional CSS to change text color on hover */
+.contact_nav .nav-item a:hover span {
+ color: white;
+}
+  
