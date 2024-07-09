@@ -74,10 +74,10 @@
               <input type="password" name="password" value="{$password}" required>
               <label for="">Password</label>
             </div>
-            <button>Registarti</button>
+            <button>Registrati</button>
             <p> </p>
             <div class="login">
-              <p>Hai già un profilo? <a href="login_form.html">Login</a></p>
+              <p>Hai già un profilo? <a href="login_form.tpl">Login</a></p>
             </div>
           </form>
         </div>
