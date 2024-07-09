@@ -155,9 +155,4 @@ class CUtente {
             $view->prenotazioniUtente($listaPrenotazioni);
         }
     }
-
-    public static function index(){
-            $view = new VUtente();
-            $view->index();
-    }
 }

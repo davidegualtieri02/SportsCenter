@@ -97,11 +97,6 @@ class VUtente{
         $this->smarty->display('./smarty/libs/templates/prenotazioni.tpl');
     }
 
-    public function index(){
-        $this->smarty->display('./smarty/libs/templates/index.tpl');
-    }
-
-
 }
 
 
