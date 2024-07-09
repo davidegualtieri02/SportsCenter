@@ -105,7 +105,12 @@ function route($uri){
             session_destroy();
             header('Location: /');
             break;
-
+        case '/prenotazioni/prenotazione' :
+            require 'Controller/CPrenotaCampo.php';
+            $controller = new CPrenotaCampo();
+            $controller->annullaPrenotazione($idPrenotazione);
+            $smarty->display('prenotazioni.tpl');
+            break;
             
 
     }

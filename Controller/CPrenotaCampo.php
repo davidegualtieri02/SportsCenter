@@ -19,27 +19,12 @@ class CPrenotaCampo{
         if(UServer::getRichiestaMetodo() == "GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
             $idcampo = $campo->getId_campo();
-            $titolocampo = $campo->getTitolo();
-            if(($titolocampo = "Campo Basket 1") || ($titolocampo = "Campo Basket 2")){
-                $view->MostraFormAttrezzaturaBasket($utente,$idcampo,$attrezzatura,$titolocampo); //viene mostrata la form per la prenotazione
-            }
-            if(($titolocampo = "Campo Calcio 1") || ($titolocampo = "Campo Calcio 2")){
-                $view->MostraFormAttrezzaturaCalcio($utente,$idcampo,$attrezzatura,$titolocampo);
-            }
-            if(($titolocampo = "Campo Padel 1") ||($titolocampo = "Campo Padel 2")){
-                $view->MostraFormAttrezzaturaPadel($utente,$idcampo,$attrezzatura,$titolocampo);
-            }
-            if(($titolocampo = "Campo Pallavolo 1") ||($titolocampo = "Campo Pallavolo 2")){
-                $view->MostraFormAttrezzaturaPallavolo($utente,$idcampo,$attrezzatura,$titolocampo);
-            }
-            if(($titolocampo = "Campo Tennis 1") || ($titolocampo= "Campo Tennis 2")){
-                $view->MostraFormAttrezzaturaTennis($utente,$idcampo,$attrezzatura,$titolocampo);
-            }
+            $view->MostraFormAttrezzatura($utente,$idcampo,$attrezzatura); 
         }
         elseif(UServer::getRichiestaMetodo() == "POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-            $idAttrezzatura = UMetodiHTTP::post('id_attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
-            $view->MostraFormPagamento($utente,$idAttrezzatura,$campo,$data,$orario);
+            $attrezzatura = UMetodiHTTP::post('attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
+            $view->MostraFormPagamento($utente,$attrezzatura,$campo,$data,$orario);
     
         }
         
@@ -92,7 +77,7 @@ class CPrenotaCampo{
         $titoloCampo = $campo->getTitolo();
         $prezzoCampo = $campo->getPrezzo();
         $id_imageCampo = $campo->getIdimageCampo();
-        $imageCampo = FPersistentManager::recuperaOggetto(EImageCampo::getEntità,$id_imageCampo);
+        $imageCampo = FPersistentManager::recuperaOggetto(EImageCampo::getEntità(),$id_imageCampo);
         if(UServer::getRichiestaMetodo() == "GET"){
             $idUtente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $nomeUtente = $idUtente->getNome();
