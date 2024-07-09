@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:27
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/scrivi_recensione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f76b2f4_14933424',
+  'unifunc' => 'content_668d99ab26d617_34535625',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4078c603edbacc8129eb042dd7642b87b6259d91' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/scrivi_recensione.tpl',
-      1 => 1720472585,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f76b2f4_14933424 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99ab26d617_34535625 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -180,7 +180,7 @@ function content_668c565f76b2f4_14933424 (Smarty_Internal_Template $_smarty_tpl)
             </div>
             <div class="box">
                 <div class="detail-box">
-                    <form id="recensione-form" action="CRecensione.php" method="post" enctype="multipart/form-data">
+                    <form id="recensione-form" action="CRecensione.php?action=scriviRecensione" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="azione" value="scrivi_recensione">
                         <input type="hidden" name="prenotazione" value="<?php echo $_smarty_tpl->tpl_vars['prenotazione']->value;?>
 ">

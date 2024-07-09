@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/pagamento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f71f320_81193571',
+  'unifunc' => 'content_668d99aadb2631_25795103',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dde7894f75af98374336bfc9655fa9d4bf58322a' => 
     array (
       0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/pagamento.tpl',
-      1 => 1720360852,
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f71f320_81193571 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aadb2631_25795103 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -86,30 +86,35 @@ function content_668c565f71f320_81193571 (Smarty_Internal_Template $_smarty_tpl)
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="nome" name = "nome" value = "<?php echo $_smarty_tpl->tpl_vars['nomeTitolare']->value;?>
+" required>
               <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" required>
+              <input type="cognome" name = "cognome" value = "<?php echo $_smarty_tpl->tpl_vars['cognomeTitolare']->value;?>
+" required>
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
+              <input type="numero"  name = "numero" value = "<?php echo $_smarty_tpl->tpl_vars['numeroCarta']->value;?>
+" required>
               <label for="">Numero della carta</label>
             </div>
             <div class="inputbox">
               <ion-icon name="calendar-outline"></ion-icon>
-              <input type="text" required>
+              <input type="data" name = "data" value = "<?php echo $_smarty_tpl->tpl_vars['dataScadenza']->value;?>
+" required>
               <label for="">Data di scadenza (MM/AAAA)</label>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" required>
+              <input type="codice" name = "codice" value ="<?php echo $_smarty_tpl->tpl_vars['cvv']->value;?>
+" required>
               <label for="">CVV (XYZ)</label>
             </div>
-            <button>Conferma e paga</button>
+            <a href = "confermaPrenotazione.tpl">Conferma e paga </a>
           </form>
         </div>
       </div>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-08 23:13:03
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
   from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/orari_basket2.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668c565f733384_94916675',
+  'unifunc' => 'content_668d99aae612b6_95067160',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668c565f733384_94916675 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aae612b6_95067160 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -139,7 +139,7 @@ function content_668c565f733384_94916675 (Smarty_Internal_Template $_smarty_tpl)
                                     <?php
 $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
 if (true) {
-for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_5_iteration <= 16; $__section_i_5_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+for ($__section_i_4_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_4_iteration <= 16; $__section_i_4_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
                                     <?php if ($_smarty_tpl->tpl_vars['i']->value%4 == 0) {?><tr><?php }?>
                                     <td onclick="selectTime(this)" data-time="<?php echo $_smarty_tpl->tpl_vars['i']->value+8;?>

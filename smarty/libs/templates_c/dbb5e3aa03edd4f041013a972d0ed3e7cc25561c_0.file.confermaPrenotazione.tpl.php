@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-09 22:12:27
-  from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/calendario_tennis1.tpl' */
+/* Smarty version 4.3.2, created on 2024-07-09 22:12:26
+  from '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/confermaPrenotazione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668d99ab2997d5_94687635',
+  'unifunc' => 'content_668d99aacc5369_71175056',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'aa1f581d7aaed1c1b25fb91558be190c201364ca' => 
+    'dbb5e3aa03edd4f041013a972d0ed3e7cc25561c' => 
     array (
-      0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/calendario_tennis1.tpl',
-      1 => 1720472585,
+      0 => '/home/davide/Desktop/prog_web/SportsCenter/smarty/libs/templates/confermaPrenotazione.tpl',
+      1 => 1720555774,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d99aacc5369_71175056 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
@@ -31,53 +31,39 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/calendario.css">
-  <?php echo '<script'; ?>
->
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    <?php echo '</script'; ?>
->
+  <link href="css/attrezzatura.css" rel="stylesheet">
 </head>
-<body>
+<body class="sub_page">
   <div class="hero_area">
-    <!-- header section strats -->
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="home.tpl">
-            <img src="images/logo.png" alt="" />
-            <span>
-              SportsCenter
-            </span>
+            <img src="images/logo.png" alt="">
+            <span>SportsCenter</span>
           </a>
-          <div class="contact_nav" id="">
-            <ul class="navbar-nav ">
+          <div class="contact_nav">
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/location.png" alt="" />
+                  <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/call.png" alt="" />
-                  <span>Tel: (+39) 0862 123456</span>
+                  <img src="images/call.png" alt="">
+                  <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/envelope.png" alt="" />
+                  <img src="images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -86,7 +72,6 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
         </nav>
       </div>
     </header>
-<!-- end header section -->
     <section class="slider_section position-relative">
       <div class="container">
         <div class="custom_nav2">
@@ -101,13 +86,13 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
                     <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni/a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link current-page" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="profilo.tpl">Profilo</a>
@@ -116,6 +101,9 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
                     <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                  <button class="btn my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
               </div>
             </div>
           </nav>
@@ -123,43 +111,34 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
       </div>
     </section>
   </div>
-  <section class="contact_section layout_padding" style="padding-top: 50px; padding-bottom: 50px;">
+  <section class="contact_section layout_padding" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="container">
-      <div class="heading_container"></div>
+      <div class="heading_container">
+        <h2>Prenotazione effettuata</h2>
+      </div>
       <div class="layout_padding2-top">
         <div class="row">
-          <div class="col-md-6">
-            <div class="calendar-wrapper">
-              <div class="calendar-header">
-                <button id="btnPrev" type="button">Prev</button>
-                <h2 id="monthYear"></h2>
-                <button id="btnNext" type="button">Next</button>
-              </div>
-              <div id="divCal" class="calendar"></div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="text-center mb-4">
-              <img src="images/campotennisaperto.jpg" alt="" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="campo-description">
-              <h3>Descrizione del campo:</h3>
-              <p>Campo da tennis all'aperto</p>
-              <!-- Form per inviare la data selezionata -->
-              <form id="bookingForm" method="post" action="CPrenotaCampo.php?action=MostraOrari">
-                <input type="hidden" id="selectedDate" name="selectedDate">
-                <button type="submit" class="btn btn-avanti float-right">Avanti</button>
-              </form>
-            </div>
-            <p>Stai prenotando per il giorno: <?php echo $_smarty_tpl->tpl_vars['prenotazione_data']->value;?>
+          <div class="col-md-12 text-center">
+            <p style="font-size: 18px;">Dati della prenotazione:</p>
+            <p>Data: <?php echo $_smarty_tpl->tpl_vars['data']->value;?>
 </p>
+            <p>Ora: <?php echo $_smarty_tpl->tpl_vars['ora']->value;?>
+</p>
+            <p>Attività: <?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
+</p>
+            <p>Costo: <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
+</p>
+            <p>Attrezzatura: <?php if ($_smarty_tpl->tpl_vars['attrezzatura']->value) {?>Sì<?php } else { ?>No<?php }?></p>
+            <p>Pagamento: Pagamento effettuato con successo</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="info_section layout_padding2-top">
 
+  <!-- info section -->
+
+  <section class="info_section layout_padding2-top">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -167,28 +146,31 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
             Qualche info su SportsCenter
           </h6>
           <p>
-            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
+            In realtà non esiste nessun centro sportivo, è il progetto per un esame universitario.
           </p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>
-            Menu
+            Menù
           </h6>
           <ul>
             <li class=" active">
-              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+              <a class="" href="home.tpl">Home</a>
             </li>
             <li class="">
               <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="servizi.html">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="contattaci.html">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.tpl">Login</a>
+            <a class="" href="profilo.tpl">Profilo</a>
+          </li>
+            <li class="">
+              <a class="" href="index.tpl">Logout</a>
             </li>
           </ul>
         </div>
@@ -197,40 +179,40 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="">
               <img src="images/location-white.png" alt="">
-              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
+              <span>Via Vetoio, Coppito 1, L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="">
               <img src="images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="">
               <img src="images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div>
-            <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
-            </a>
+          <div class="info_social">
+            <div>
+              <a href="">
+                <img src="images/facebook-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/twitter-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/linkedin.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/instagram.png" alt="">
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -238,7 +220,6 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
   </section>
 
   <!-- end info section -->
-
 
   <!-- footer section -->
   <section class="container-fluid footer_section ">
@@ -256,8 +237,9 @@ function content_668d99ab2997d5_94687635 (Smarty_Internal_Template $_smarty_tpl)
  type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+ src="js/attrezzatura.js"><?php echo '</script'; ?>
 >
 </body>
-</html><?php }
+</html>
+<?php }
 }
