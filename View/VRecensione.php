@@ -20,9 +20,9 @@ class VRecensione{
         $this->smarty->assign('Campo',$campo);
         $this->smarty->display('nuova_recensione.tpl');
     }
-    public function MostraRecensioni($recensioni,$utente){
+    public function MostraRecensioni($recensioni,$idUtente){
         $this->smarty->assign('recensioni',$recensioni);
-        $this->smarty->assign('Utente',$utente);
+        $this->smarty->assign('idUtente',$idUtente);
         $this->smarty->display('recensioni.tpl');
     }
     public function MostraPrenotazioni($prenotazioni,$utente){

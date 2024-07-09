@@ -13,6 +13,7 @@
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
+  <link rel="icon" href="images/logo.png" type="image/x-icon" />
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"

@@ -110,10 +110,10 @@ class CRecensione{
         $sessione = USession::getIstanza();
         $view = new VRecensione();
         if(CUtente::Loggato()){
-            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
+            $idUtente = unserialize($sessione->LeggiValore('utenteRegistrato'));
             $recensioni = $pm::RecuperaTuple(FPrenotazione::getTabella());
             if(UServer::getRichiestaMetodo() == 'GET'){
-                $view->MostraRecensioni($recensioni,$utente);
+                $view->MostraRecensioni($recensioni,$idUtente);
             }
         }
     }
