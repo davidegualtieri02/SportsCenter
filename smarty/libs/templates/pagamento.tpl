@@ -97,7 +97,7 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="/SportsCenter/home/" onsubmit="return validateForm()">
+          <form action="/SportsCenter/PrenotaCampo/MostraConfermaPrenotazione" onsubmit="return validateForm()">
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>

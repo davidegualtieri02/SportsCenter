@@ -102,7 +102,7 @@
                     <div class="col-md-6">
                         <h3>Seleziona un orario per il giorno: {$giorno}</h3>
                         <!-- Tabella degli orari -->
-                        <form id="timeForm" method="post" action="CPrenotaCampo.php?action=MostraAttrezzatura">
+                        <form id="timeForm" method="post" action="/SportsCenter/PrenotaCampo/MostraOrari">
                             <table class="orari-table">
                                 <thead>
                                     <tr>
@@ -117,6 +117,7 @@
                                     {/section}
                                 </tbody>
                             </table>
+                            
                             <input type="hidden" name="selected_time" id="selected_time" value="">
                             <input type="hidden" name="selected_day" value="{$giorno}">
                             <a type="submit" class="btn btn-avanti float-right" href ="/SportsCenter/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura">Avanti</a>
@@ -173,7 +174,10 @@
               <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
+              <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home/logout">Logout</a>
             </li>
           </ul>
         </div>

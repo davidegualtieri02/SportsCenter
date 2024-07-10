@@ -555,7 +555,10 @@
               <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
+              <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/">Logout</a>
             </li>
           </ul>
         </div>
