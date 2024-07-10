@@ -63,11 +63,11 @@ class CUtente {
      */
     public static function registrazione(){
         $view = new VUtente();
-        if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false && FPersistentManager::getIstanza()->VerificaPasswordUtente(UMetodiHTTP::post('password'))==false){// in questa riga di codice vengono verificate le credenziali
-            // nell'if viene verificato se l'email , la password non sono gia state utilizzate , cioè sono uguali a false , se non sono state utilizzate  viene creato un utente con tali credenziali 
+        if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false){// in questa riga di codice vengono verificate le credenziali
+            // nell'if viene verificato se l'email non è gia utilizzata cioè è uguale a false , se non è stata utilizzata  viene creato un utente con tali credenziali 
             $utenteRegistrato = new EUtenteRegistrato(UMetodiHTTP::post('nome'),UMetodiHTTP::post('cognome'),UMetodiHTTP::post('email'),UMetodiHTTP::post('password')); // creazione utente con le credenziali fornite
             FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);// viene caricato l'utente nel db tramite uploadOgg
-            $view->MostraFormRegistrazione();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
+            $view->MostraLoginFormUtente();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
         }else{
             $view->erroreRegistrazione('emailEsistente');//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
         }

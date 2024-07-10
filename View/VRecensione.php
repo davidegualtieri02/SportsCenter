@@ -18,16 +18,16 @@ class VRecensione{
         $this->smarty->assign('Utente',$utente);
         $this->smarty->assign('prenotazione',$prenotazione);
         $this->smarty->assign('Campo',$campo);
-        $this->smarty->display('nuova_recensione.tpl');
+        $this->smarty->display('./smarty/libs/templates/scrivi_recensione.tpl'); //é GIUSTO???
     }
     public function MostraRecensioni($recensioni,$idUtente){
         $this->smarty->assign('recensioni',$recensioni);
         $this->smarty->assign('idUtente',$idUtente);
-        $this->smarty->display('recensioni.tpl');
+        $this->smarty->display('./smarty/libs/templates/recensioni.tpl');
     }
     public function MostraPrenotazioni($prenotazioni,$utente){
         $this->smarty->assign('prenotazioni',$prenotazioni);
         $this->smarty->assign('Utente',$utente);
-        $this->smarty->display('mostra_prenotazioni.tpl');
+        $this->smarty->display('./smarty/libs/templates/prenotazioni.tpl');
     }
 }
