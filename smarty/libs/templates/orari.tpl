@@ -28,20 +28,20 @@
         <header class="header_section">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand" href="home.tpl">
+                    <a class="navbar-brand" href="/SportsCenter/Utente/home">
                         <img src="images/logo.png" alt="">
                         <span>SportsCenter</span>
                     </a>
                     <div class="contact_nav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="contattaci.tpl">
+                                <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
                                     <img src="images/location.png" alt="">
                                     <span>Location</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contattaci.tpl">
+                                <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
                                     <img src="images/call.png" alt="">
                                     <span>Tel: +393661830182</span>
                                 </a>
@@ -68,22 +68,22 @@
                             <div class="d-flex flex-column flex-lg-row align-items-center">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="home.tpl">Home</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="servizi.tpl">Servizi</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home/servizi">Servizi</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="profilo.tpl">Profilo</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home/profilo">Profilo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.tpl">Logout</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/home/index">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -119,7 +119,7 @@
                             </table>
                             <input type="hidden" name="selected_time" id="selected_time" value="">
                             <input type="hidden" name="selected_day" value="{$giorno}">
-                            <a type="submit" class="btn btn-avanti float-right" href ="attrezzatura.tpl">Avanti</a>
+                            <a type="submit" class="btn btn-avanti float-right" href ="/SportsCenter/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura">Avanti</a>
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -144,40 +144,83 @@
     </section>
 
     <section class="info_section layout_padding2-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h6>Il nostro centro è pazzesco</h6>
-                    <p>veramente</p>
-                </div>
-                <div class="col-md-2 offset-md-1">
-                    <h6>Menù</h6>
-                    <ul>
-                        <li class=""><a href="home.tpl">Home</a></li>
-                        <li><a href="prenotazioni.tpl">Prenotazioni</a></li>
-                        <li><a href="servizi.tpl">Servizi</a></li>
-                        <li><a href="contattaci.tpl">Contattaci</a></li>
-                        <li><a href="profilo.tpl">Profilo</a></li>
-                        <li><a href="index.tpl">Logout</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h6>Contattaci</h6>
-                    <div class="info_link-box">
-                        <a href=""><img src="images/location-white.png" alt=""><span> Coppito1,Via Vetoio 3</span></a>
-                        <a href=""><img src="images/call-white.png" alt=""><span>+393661830182</span></a>
-                        <a href=""><img src="images/mail-white.png" alt=""><span> daiegrom@gmail.com</span></a>
-                    </div>
-                    <div class="info_social">
-                        <div><a href=""><img src="images/facebook-logo-button.png" alt=""></a></div>
-                        <div><a href=""><img src="images/twitter-logo-button.png" alt=""></a></div>
-                        <div><a href=""><img src="images/linkedin.png" alt=""></a></div>
-                        <div><a href=""><img src="images/instagram.png" alt=""></a></div>
-                    </div>
-                </div>
-            </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h6>
+            Qualche info su SportsCenter
+          </h6>
+          <p>
+            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
+          </p>
         </div>
-    </section>
+        <div class="col-md-2 offset-md-1">
+          <h6>
+            Menu
+          </h6>
+          <ul>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6>
+            Contattaci
+          </h6>
+          <div class="info_link-box">
+            <a href="contattaci.tpl">
+              <img src="images/location-white.png" alt="">
+              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
+            </a>
+            <a href="contattaci.tpl">
+              <img src="images/call-white.png" alt="">
+              <span>(+39) 0862 123456</span>
+            </a>
+            <a href="contattaci.tpl">
+              <img src="images/mail-white.png" alt="">
+              <span>info@sportscenter.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <a href="https://www.facebook.com/univaq.it">
+              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/univaq.it">
+              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://x.com/univaq">
+              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.tiktok.com/">
+              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <section class="container-fluid footer_section">
         <p>&copy; 2024 Tutti i diritti sono riservati. Disegnato da<a href="https://html.design/">Frack,daieg e das</a></p>

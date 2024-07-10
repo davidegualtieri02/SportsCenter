@@ -129,7 +129,7 @@
                 Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
               </p>
               <!-- Pulsante "Avanti" allineato a destra -->
-              <a class="btn btn-avanti float-right" href = "orari.tpl">Avanti</a>
+              <a class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari">Avanti</a>
             </div>
           </div>
         </div>
@@ -157,19 +157,19 @@
           </h6>
           <ul>
             <li class="">
-              <a class="" href="home.tpl">Home</a>
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="index.tpl">Logout</a>
+              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
             </li>
           </ul>
         </div>

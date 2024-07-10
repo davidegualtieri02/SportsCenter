@@ -97,12 +97,12 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="confermaPrenotazione.tpl" onsubmit="return validateForm()">
+          <form action="/SportsCenter/home/" onsubmit="return validateForm()">
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="nome" value="{$nomeTitolare}" required>
-              <label for="">Nome</label>
+              <label for="username" class="form-label">Username</label>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Username" autocomplete="off">
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
