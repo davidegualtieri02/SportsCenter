@@ -102,6 +102,8 @@
     <div class="container">
       <div class="heading_container"></div>
       <div class="layout_padding2-top">
+      <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
+        <input type="hidden" name="idCampo" value="{$idCampo}">
         <div class="row">
           <div class="col-md-6"> <!--div colonna del calendario-->
             <div class="calendar-wrapper">
@@ -136,6 +138,7 @@
             </div>
           </div>
         </div>
+      </form>
       </div>
     </div>
   </section>
