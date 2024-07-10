@@ -113,7 +113,7 @@ class CPrenotaCampo{
             $campo = $sessione::getElementoSessione('campo');
             $giorno = $sessione::getElementoSessione('data');
             $orari = FPersistentManager::orariDisponibili($giorno);
-            $view->MostraListaOrari($utente,$campo,$giorno,$orari);
+            $view->MostraOrari($utente,$campo,$giorno,$orari);
          }
         elseif(UServer::getRichiestaMetodo() == 'POST'){
             $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));

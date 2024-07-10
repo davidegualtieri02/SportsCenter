@@ -32,36 +32,57 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    function ready(){
+      if (!navigator.cookieEnabled) {
+        alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+    }
+
+    function validateForm() {
+      const password = document.querySelector('input[name="password"]').value;
+
+      const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+
+      let isValid = true;
+      let errorMessage = '';
+
+      if (!passwordPattern.test(password)) {
+        isValid = false;
+        errorMessage += 'La password deve contenere almeno 6 caratteri, inclusi sia caratteri numerici che non numerici.\n';
+      }
+
+      if (!isValid) {
+        alert(errorMessage);
+      }
+
+      return isValid;
+    }
+
+    document.addEventListener("DOMContentLoaded", ready);
+  </script>
     
 </head>
 
 <body>
   <div>
     <a href="index.html">
-    <img src="images/logo.png" alt="SportsCenter"></a>
+      <img src="images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
   <section class="login_section layout_padding">
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="CUtente.php?action=registrazione" method="post">
+          <form action="CUtente.php?action=registrazione" method="post" onsubmit="return validateForm()">
             <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="nome" name ="nome" value ="{$nome}" required>
+              <input type="text" name="nome" value="{$nome}" required>
               <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="cognome" name = "{$cognome}" required>
+              <input type="text" name="cognome" value="{$cognome}" required>
               <label for="">Cognome</label>
             </div>
             <div class="inputbox">
@@ -74,8 +95,8 @@
               <input type="password" name="password" value="{$password}" required>
               <label for="">Password</label>
             </div>
-            <a href="home.tpl">Registrati</a>
-            <p> </p>
+            <button type="submit">Registrati</button>
+            <p></p>
             <div class="login">
               <p>Hai già un profilo? <a href="login_form.tpl">Login</a></p>
             </div>
@@ -100,5 +121,6 @@
 </body>
 
 </html>
+
 
 

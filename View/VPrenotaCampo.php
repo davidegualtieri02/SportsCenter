@@ -1,7 +1,7 @@
 <?php
 class VPrenotaCampo{
-     private $smarty;
-    private function __construct(){
+   private $smarty;
+   private function __construct(){
          $this->smarty = StartSmarty::configuration();
         }
    public function getTitolo(){
@@ -11,12 +11,12 @@ class VPrenotaCampo{
     return UMetodiHTTP::post('prezzo');
     }
 
-   public function MostraFormPagamento($utente, $campo, $data, $orario, $idattrezzatura){
+   public function MostraFormPagamento($utente, $attrezzatura, $idCampo, $data, $orario){
      $this->smarty->assign('Utente',$utente);
-     $this->smarty->assign('Campo',$campo);
+     $this->smarty->assign('idCampo',$idCampo);
      $this->smarty->assign('data',$data);
      $this->smarty->assign('orario',$orario);
-     $this->smarty->assign('id_attrezzatura',$idattrezzatura);
+     $this->smarty->assign('attrezzatura',$attrezzatura);
      $this->smarty->display('./smarty/libs/templates/pagamento.tpl');
    }
    public function ConfermaPrenotazione($utente, $nome, $cognome, $scadenza, $numerocarta, $cvv){
@@ -73,14 +73,14 @@ class VPrenotaCampo{
    }
  
    public function MostraMessaggioConferma(){
-     $this->smarty->assign('conferma',true);
-     $this->smarty->display('./smarty/libs/templates/annulla_prenotazione.tpl');
+    $this->smarty->assign('conferma',true);
+    $this->smarty->display('./smarty/libs/templates/annulla_prenotazione.tpl');
    }
 
    public function MostraCampiUtente($campi,$utente){
-     $this->smarty->assign('campi',$campi);
-     $this->smarty->assign('Utente',$utente);
-     $this->smarty->display('./smarty/libs/templates/servizi.tpl');
+    $this->smarty->assign('campi',$campi);
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->display('./smarty/libs/templates/servizi.tpl');
 
 
    }
@@ -88,6 +88,13 @@ class VPrenotaCampo{
     $this->smarty->assign('errore',true);
     $this->smarty->display('./smarty/libs/templates/errore.tpl'); //NON ESISTE
    }
+  public function MostraFormAttrezzatura($utente,$idcampo,$attrezzatura,$orario){
+    $this->smarty->assign('Utente',$utente);
+    $this->smarty->assign('id_campo',$idcampo);
+    $this->smarty->assign('attrezzatura',$attrezzatura);
+    $this->smarty->assign('orario',$orario);
+    $this->smarty->display('./smarty/libs/templates/attrezzatura.tpl');
+  }
    
 
    //Funzioni commentate: non dovrebbero servire
