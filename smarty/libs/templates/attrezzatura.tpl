@@ -130,11 +130,11 @@
                         <!-- Singola casella di controllo -->
                         <div class="equipment-list">
                             <h3>Seleziona l'attrezzatura:</h3>
-                            <form id="equipmentForm" method="post" action="CPrenotaCampo.php?action=MostraPagamento">
+                            <form id="equipmentForm" method="post" action="/SportsCenter/PrenotaCampo/MostraPagamento">
                                 <label>
                                     <input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true" onchange="updateAttrezzaturaHidden()"> Attrezzatura
                                 </label>
-                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden" value="">
+                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden">
                                 <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
                                 <input type="hidden" id="selectedTime" name="selected_time" value="{$selected_time}">
                                 <button type="submit" class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura/{$attrezzatura                                                                                                                                                                                         }">Continua e paga</button>

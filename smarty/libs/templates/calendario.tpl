@@ -33,26 +33,26 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
+          <a class="navbar-brand" href="/SportsCenter/home">
             <img src="images/logo.png" alt="">
             <span>SportsCenter</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/home/contattaci">
                   <img src="images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="SportsCenter/home/contattaci">
                   <img src="images/call.png" alt="">
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="SportsCenter/home/contattaci">
                   <img src="images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
@@ -73,22 +73,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home/servizi">Servizi</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.tpl">Profilo</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.tpl">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -128,6 +128,9 @@
                 {math equation="x - (x * y / 100)" x=$prezzocampo y=30 assign="prezzo_scontato"}
                 Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
               </p>
+              <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
+                <input type="hidden" name="idCampo" value="{$idCampo}">
+              </form>
               <!-- Pulsante "Avanti" allineato a destra -->
               <a class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari">Avanti</a>
             </div>
@@ -169,7 +172,10 @@
               <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/">Logout</a>
             </li>
           </ul>
         </div>
