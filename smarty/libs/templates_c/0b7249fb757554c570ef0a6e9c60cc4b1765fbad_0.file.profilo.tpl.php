@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/profilo.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb3048124a9_34820689',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '0b7249fb757554c570ef0a6e9c60cc4b1765fbad' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/profilo.tpl',
+      1 => 1720427587,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -29,14 +52,23 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-  <script>
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    </script>
+  <style>
+    .about_section {
+      background-image: url('images/ragazzi.png');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+  <?php echo '<script'; ?>
+>
+  function ready(){
+      if (!navigator.cookieEnabled) {
+          alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+  }
+  document.addEventListener("DOMContentLoaded", ready);
+<?php echo '</script'; ?>
+>
 </head>
 
 <body class="sub_page about_page">
@@ -45,7 +77,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -54,19 +86,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -91,22 +123,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="profilo.tpl">Profilo<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -123,19 +155,30 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Prenotazioni effettuate da {$nomeUtente}:
+          Profilo di <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+
         </h2>
       </div>
       <div class="box">
         <div class="detail-box">
-          {foreach $listaPrenotazioni as $prenotazione}
-          <ol> 
-            <li>
-              <p>Prenotazione: {$prenotazione->getIdPrenotazione()}; data: {$prenotazione->getData()}; orario: {$prenotazione->getOrario()}; {$prenotazione->getIdCampo()}
-              <a class="btn btn-primary" href="scrivi_recensione.tpl" id="tesseramento-button">Recensisci</a>
-            </p>
-          </ol>
-          {/foreach}
+          <h2>
+            Di seguito, trovi tutti i tuoi dati:
+          </h2>
+          <ul>
+            <li>Nome: <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+</li>
+            <li>Cognome: <?php echo $_smarty_tpl->tpl_vars['cognomeUtente']->value;?>
+</li>
+            <li>Email: <?php echo $_smarty_tpl->tpl_vars['emailUtente']->value;?>
+</li>
+            <?php if ($_smarty_tpl->tpl_vars['id_tesseraUtente']->value == 0) {?>
+            <li>Tessera: non posseduta</li>
+            <?php } else { ?>
+            <li>ID tessera: <?php echo $_smarty_tpl->tpl_vars['id_tesseraUtente']->value;?>
+</li>
+            <?php }?>
+          </ul>
+          <a class="btn btn-primary" href="tesseramento.tpl" id="tesseramento-button">Tesseramento</a>
         </div>
       </div>
     </div>
@@ -162,19 +205,19 @@
           </h6>
           <ul>
             <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.html">Login</a>
+              <a class="" href="login_form.tpl">Login</a>
             </li>
           </ul>
         </div>
@@ -183,15 +226,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.html">
+            <a href="contattaci.tpl">
               <img src="images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
@@ -234,9 +277,16 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+>
 </body>
 
-</html>
+</html><?php }
+}

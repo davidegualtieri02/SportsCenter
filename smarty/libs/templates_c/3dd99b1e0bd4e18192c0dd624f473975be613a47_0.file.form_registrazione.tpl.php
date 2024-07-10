@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304767c34_41888121',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '3dd99b1e0bd4e18192c0dd624f473975be613a47' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
+      1 => 1720627965,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304767c34_41888121 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -28,11 +51,16 @@
   <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
   <link href="css/login.css" rel="stylesheet"/>
   <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <?php echo '<script'; ?>
+ type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"><?php echo '</script'; ?>
+>
 
-  {literal}
-  <script>
+  
+  <?php echo '<script'; ?>
+>
     function ready(){
       if (!navigator.cookieEnabled) {
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
@@ -60,8 +88,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", ready);
-  </script>
-  {/literal}
+  <?php echo '</script'; ?>
+>
+  
     
 </head>
 
@@ -110,19 +139,27 @@
   <!-- End registration section -->
 
   <!-- Scripts -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
     function openNav() {
       document.getElementById("myNav").classList.toggle("menu_width");
       document
         .querySelector(".custom_menu-btn")
         .classList.toggle("menu_btn-style");
     }
-  </script>
+  <?php echo '</script'; ?>
+>
 </body>
 
 </html>
 
 
 
+<?php }
+}

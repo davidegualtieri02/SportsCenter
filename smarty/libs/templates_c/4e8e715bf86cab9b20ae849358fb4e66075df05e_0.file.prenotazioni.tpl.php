@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/prenotazioni.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb30478dc84_96296318',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4e8e715bf86cab9b20ae849358fb4e66075df05e' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/prenotazioni.tpl',
+      1 => 1720627746,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb30478dc84_96296318 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -29,14 +52,16 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-  <script>
+  <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    <?php echo '</script'; ?>
+>
 </head>
 
 <body class="sub_page about_page">
@@ -123,19 +148,31 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Prenotazioni effettuate da {$nomeUtente}:
+          Prenotazioni effettuate da <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+:
         </h2>
       </div>
       <div class="box">
         <div class="detail-box">
-          {foreach $listaPrenotazioni as $prenotazione}
+          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listaPrenotazioni']->value, 'prenotazione');
+$_smarty_tpl->tpl_vars['prenotazione']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['prenotazione']->value) {
+$_smarty_tpl->tpl_vars['prenotazione']->do_else = false;
+?>
           <ol> 
             <li>
-              <p>Prenotazione: {$prenotazione->getIdPrenotazione()}; data: {$prenotazione->getData()}; orario: {$prenotazione->getOrario()}; {$prenotazione->getIdCampo()}
+              <p>Prenotazione: <?php echo $_smarty_tpl->tpl_vars['prenotazione']->value->getIdPrenotazione();?>
+; data: <?php echo $_smarty_tpl->tpl_vars['prenotazione']->value->getData();?>
+; orario: <?php echo $_smarty_tpl->tpl_vars['prenotazione']->value->getOrario();?>
+; <?php echo $_smarty_tpl->tpl_vars['prenotazione']->value->getIdCampo();?>
+
               <a class="btn btn-primary" href="scrivi_recensione.tpl" id="tesseramento-button">Recensisci</a>
             </p>
           </ol>
-          {/foreach}
+          <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
       </div>
     </div>
@@ -234,9 +271,16 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+>
 </body>
 
-</html>
+</html><?php }
+}

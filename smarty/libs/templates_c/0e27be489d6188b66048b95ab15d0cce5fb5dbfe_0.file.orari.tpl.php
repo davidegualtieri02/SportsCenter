@@ -1,3 +1,28 @@
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/orari.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304855016_70178933',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '0e27be489d6188b66048b95ab15d0cce5fb5dbfe' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/orari.tpl',
+      1 => 1720627607,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304855016_70178933 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -14,14 +39,16 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
     <link href="css/orari.css" rel="stylesheet">
-    <script>
+    <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    <?php echo '</script'; ?>
+>
 </head>
 <body class="sub_page">
     <div class="hero_area">
@@ -100,7 +127,8 @@
             <div class="layout_padding2-top">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Seleziona un orario per il giorno: {$giorno}</h3>
+                        <h3>Seleziona un orario per il giorno: <?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+</h3>
                         <!-- Tabella degli orari -->
                         <form id="timeForm" method="post" action="/SportsCenter/PrenotaCampo/MostraOrari">
                             <table class="orari-table">
@@ -110,17 +138,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {section name=i loop=16}
-                                    {if $i % 4 == 0}<tr>{/if}
-                                    <td onclick="selectTime(this)" data-time="{$i+8}:00">{$i+8}:00</td>
-                                    {if $i % 4 == 3}</tr>{/if}
-                                    {/section}
+                                    <?php
+$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
+if (true) {
+for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_5_iteration <= 16; $__section_i_5_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+?>
+                                    <?php if ($_smarty_tpl->tpl_vars['i']->value%4 == 0) {?><tr><?php }?>
+                                    <td onclick="selectTime(this)" data-time="<?php echo $_smarty_tpl->tpl_vars['i']->value+8;?>
+:00"><?php echo $_smarty_tpl->tpl_vars['i']->value+8;?>
+:00</td>
+                                    <?php if ($_smarty_tpl->tpl_vars['i']->value%4 == 3) {?></tr><?php }?>
+                                    <?php
+}
+}
+?>
                                 </tbody>
                             </table>
                             
                             <input type="hidden" name="selected_time" id="selected_time" value="">
-                            <input type="hidden" name="selected_day" value="{$giorno}">
-                            <a type="submit" class="btn btn-avanti float-right" href ="/SportsCenter/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura">Avanti</a>
+                            <input type="hidden" name="selected_day" value="<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+">
+                            <a type="submit" class="btn btn-avanti float-right" href ="/SportsCenter/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario/<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
+/orari/<?php echo $_smarty_tpl->tpl_vars['selected_time']->value;?>
+/attrezzatura">Avanti</a>
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -129,14 +170,19 @@
                         </div>
                         <div class="campo-description">
                             <h3>Descrizione del campo:</h3>
-                            <p>{$titoloCampo}.
+                            <p><?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
+.
                             Costo del campo:
-                            {if $id_tesseraUtente ==0}
-                                {$prezzoCampo} euro
-                            {else}
-                                {math equation = "x-(x * y / 100)" x =$prezzocampo y=30 assign ="prezzo_scontato"} 
-                                Prezzo originale : {$prezzoCampo} euro , prezzo scontato per utenti tesserati : {$prezzo_scontato} euro.
-                            {/if}
+                            <?php if ($_smarty_tpl->tpl_vars['id_tesseraUtente']->value == 0) {?>
+                                <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
+ euro
+                            <?php } else { ?>
+                                <?php echo smarty_function_math(array('equation'=>"x-(x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzocampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
+ 
+                                Prezzo originale : <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
+ euro , prezzo scontato per utenti tesserati : <?php echo $_smarty_tpl->tpl_vars['prezzo_scontato']->value;?>
+ euro.
+                            <?php }?>
                             </p>
                         </div>
                     </div>
@@ -231,16 +277,26 @@
         <p>&copy; 2024 Tutti i diritti sono riservati. Disegnato da<a href="https://html.design/">Frack,daieg e das</a></p>
     </section>
 
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/orari.js"></script>
-    <script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/orari.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
     function selectTime(element) {
         // Ottieni l'orario selezionato dall'elemento cliccato
         var selectedTime = element.getAttribute('data-time');
         // Imposta il valore dell'input nascosto 'selected_time' con l'orario selezionato
         document.getElementById('selected_time').value = selectedTime;
     }
-</script>
+<?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

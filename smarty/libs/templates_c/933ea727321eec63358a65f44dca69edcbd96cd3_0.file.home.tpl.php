@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304823552_37586071',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '933ea727321eec63358a65f44dca69edcbd96cd3' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl',
+      1 => 1720626627,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -32,14 +55,16 @@
    <link href="/SportsCenter/smarty/libs/css/index.css" rel="stylesheet" />
    <link href="/SportsCenter/smarty/libs/css/contattaci.css" rel="stylesheet" />
 
-   <script>
+   <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    <?php echo '</script'; ?>
+>
 
 </head>
 
@@ -124,7 +149,8 @@
         <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
           <div class="detail-box">
             <h2>
-              {$nomeUtente}, gioca insieme a noi
+              <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+, gioca insieme a noi
             </h2>
             <h1>
               Prenota un campo
@@ -163,7 +189,8 @@
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -177,7 +204,8 @@
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -191,7 +219,8 @@
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -205,7 +234,8 @@
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -219,7 +249,8 @@
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -233,7 +264,8 @@
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -247,7 +279,8 @@
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -261,7 +294,8 @@
             PALLAVOLO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -275,7 +309,8 @@
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -289,7 +324,8 @@
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
+            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -619,8 +655,15 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"></script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

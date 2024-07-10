@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/recensioni.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304b11583_09057267',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'faa77fa621785e535c9570c748805c1e3e4c85c1' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/recensioni.tpl',
+      1 => 1720534287,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -29,14 +52,17 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-  <script>
-        function ready(){
-            if (!navigator.cookieEnabled) {
-                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    </script>
+  </style>
+  <?php echo '<script'; ?>
+>
+  function ready(){
+      if (!navigator.cookieEnabled) {
+          alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+  }
+  document.addEventListener("DOMContentLoaded", ready);
+<?php echo '</script'; ?>
+>
 </head>
 
 <body class="sub_page about_page">
@@ -45,7 +71,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home.tpl">
             <img src="images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -54,19 +80,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contattaci.tpl">
                   <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -91,22 +117,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
+                    <a class="nav-link" href="profilo.tpl">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -123,21 +149,38 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Prenotazioni effettuate da {$nomeUtente}:
+          Recensioni campi
         </h2>
       </div>
       <div class="box">
         <div class="detail-box">
-          {foreach $listaPrenotazioni as $prenotazione}
-          <ol> 
-            <li>
-              <p>Prenotazione: {$prenotazione->getIdPrenotazione()}; data: {$prenotazione->getData()}; orario: {$prenotazione->getOrario()}; {$prenotazione->getIdCampo()}
-              <a class="btn btn-primary" href="scrivi_recensione.tpl" id="tesseramento-button">Recensisci</a>
-            </p>
-          </ol>
-          {/foreach}
         </div>
       </div>
+
+      <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['recensioni']->value, 'recensione');
+$_smarty_tpl->tpl_vars['recensione']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['recensione']->value) {
+$_smarty_tpl->tpl_vars['recensione']->do_else = false;
+?>
+      <div class="box">
+        <div class="detail-box">
+          <h4><?php echo $_smarty_tpl->tpl_vars['recensione']->value['utente'];?>
+</h4>
+          <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value['testo'];?>
+</p>
+          <p><strong>Campo:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['campo'];?>
+</p>
+          <p><strong>Data della recensione:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['data_recensione'];?>
+</p>
+          <p><strong>Valutazione:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['valutazione'];?>
+</p>
+        </div>
+      </div>
+      <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+      
     </div>
   </section>
   <!-- end about section -->
@@ -153,70 +196,74 @@
             Qualche info su SportsCenter
           </h6>
           <p>
-            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
+            In realtà non esiste nessun centro sportivo, è il progetto per un esame universitario.
           </p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>
-            Menu
+            Menù
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+            <li class=" ">
+              <a class="" href="home.tpl">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.html">Login</a>
+              <a class="" href="profilo.tpl">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="index.tpl">Logout</a>
             </li>
           </ul>
         </div>
+        
         <div class="col-md-3">
           <h6>
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.html">
+            <a href="">
               <img src="images/location-white.png" alt="">
-              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
+              <span>Via Vetoio, Coppito 1, L'Aquila</span>
             </a>
-            <a href="contattaci.html">
+            <a href="">
               <img src="images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.html">
+            <a href="">
               <img src="images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div>
-            <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
-            </a>
-          </div>
-          <div>
-            <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
-            </a>
+          <div class="info_social">
+            <div>
+              <a href="">
+                <img src="images/facebook-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/twitter-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/linkedin.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/instagram.png" alt="">
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -225,18 +272,27 @@
 
   <!-- end info section -->
 
-
   <!-- footer section -->
   <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
     </p>
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/profilo.js"><?php echo '</script'; ?>
+>
+
 </body>
 
 </html>
+<?php }
+}

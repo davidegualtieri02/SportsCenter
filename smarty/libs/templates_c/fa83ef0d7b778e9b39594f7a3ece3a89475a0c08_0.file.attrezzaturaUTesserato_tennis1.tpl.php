@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzaturaUTesserato_tennis1.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304738a81_77052606',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'fa83ef0d7b778e9b39594f7a3ece3a89475a0c08' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzaturaUTesserato_tennis1.tpl',
+      1 => 1720446448,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304738a81_77052606 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -7,53 +30,54 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>SportsCenter</title>
   <link rel="icon" href="images/logo.png" type="image/x-icon" />
-
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/calendario.css">
-
-  <script>
+  <link href="css/attrezzatura.css" rel="stylesheet">
+  <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
-    
+    <?php echo '</script'; ?>
+>
 </head>
-<body class="sub_page">
+<body>
   <div class="hero_area">
+    <!-- header section strats -->
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="/SportsCenter/home">
-            <img src="images/logo.png" alt="">
-            <span>SportsCenter</span>
+          <a class="navbar-brand" href="home.tpl">
+            <img src="images/logo.png" alt="" />
+            <span>
+              SportsCenter
+            </span>
           </a>
-          <div class="contact_nav">
-            <ul class="navbar-nav">
+          <div class="contact_nav" id="">
+            <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/home/contattaci">
-                  <img src="images/location.png" alt="">
+                <a class="nav-link" href="contattaci.tpl">
+                  <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
-                  <img src="images/call.png" alt="">
-                  <span>(+39) 0862 123456</span>
+                <a class="nav-link" href="contattaci.tpl">
+                  <img src="images/call.png" alt="" />
+                  <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
-                  <img src="images/envelope.png" alt="">
+                <a class="nav-link" href="contattaci.tpl">
+                  <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -62,6 +86,7 @@
         </nav>
       </div>
     </header>
+<!-- end header section -->
     <section class="slider_section position-relative">
       <div class="container">
         <div class="custom_nav2">
@@ -73,22 +98,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
+                    <a class="nav-link" href="home.tpl">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+                    <a class="nav-link" href="prenotazione.tpl">Prenotazione</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/home/servizi">Servizi</a>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+                    <a class="nav-link" href="servizi.tpl">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+                    <a class="nav-link current-page" href="contattaci.tpl">Contattaci</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/">Logout</a>
+                    <a class="nav-link" href="profilo.tpl">Profilo</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.tpl">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -98,54 +123,34 @@
       </div>
     </section>
   </div>
-  <section class="contact_section layout_padding" style="padding-top: 50px; padding-bottom: 50px;">
+  <section class="contact_section layout_padding" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="container">
       <div class="heading_container"></div>
       <div class="layout_padding2-top">
-      <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
-        <input type="hidden" name="idCampo" value="{$idCampo}">
         <div class="row">
-          <div class="col-md-6"> <!--div colonna del calendario-->
-            <div class="calendar-wrapper">
-              <div class="calendar-header">
-                <button id="btnPrev" type="button"><</button>
-                <h2 id="monthYear"></h2>
-                <button id="btnNext" type="button">></button>
-              </div>
-              <div id="divCal" class="calendar"></div>
+          <div class="col-md-6">
+            <!-- Singola casella di controllo -->
+            <div class="equipment-list">
+              <h3>Seleziona l'attrezzatura:</h3>
+              <form id="equipmentForm" method="post">
+                <label><input type="checkbox" name="attrezzatura" value="true"> Attrezzatura</label>
+                <button type="submit" class="btn btn-avanti float-right">Continua e paga</button>
+              </form>
             </div>
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="data:{$imageCampo->getTipo()};base64,{$imageCampo->getEncodedData()}" alt="{$titoloCampo}" style="max-width: 100%; height: auto;">
+              <img src="images/campotennisaperto.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
-              <p>
-              {$titoloCampo}. 
-              Costo del campo: 
-              {if $id_tesseraUtente == 0}
-                {$prezzoCampo} euro
-              {else}
-                {math equation="x - (x * y / 100)" x=$prezzocampo y=30 assign="prezzo_scontato"}
-                Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
-              {/if}
-              </p>
-              <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
-                <input type="hidden" name="idCampo" value="{$idCampo}">
-              </form>
-              <!-- Pulsante "Avanti" allineato a destra -->
-              <a class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari">Avanti</a>
+              <p>Campo da tennis all'aperto. Costo campo: 8 euro</p>
             </div>
           </div>
         </div>
-      </form>
       </div>
     </div>
   </section>
-  
-    <!-- info section -->
-
   <section class="info_section layout_padding2-top">
 
     <div class="container">
@@ -163,23 +168,20 @@
             Menu
           </h6>
           <ul>
-            <li class="">
-              <a class="" href="/SportsCenter/Utente/home">Home</a>
+            <li class=" active">
+              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+              <a class="" href="servizi.tpl">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+              <a class="" href="contattaci.tpl">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
-            </li>
-            <li class="">
-              <a class="" href="/SportsCenter/">Logout</a>
+              <a class="" href="login_form.tpl">Login</a>
             </li>
           </ul>
         </div>
@@ -228,30 +230,27 @@
     </div>
   </section>
 
-  <!-- end info section -->  
-  
-    <!-- footer section -->
-    <section class="container-fluid footer_section ">
-      <p>
-        &copy; 2024 Tutti i diritti sono riservati. Realizzato da
-        <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
-      </p>
-    </section>
-    <!-- footer section -->
+  <!-- end info section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type = "text/javascript" src ="js/calendario.js"></script>
-    
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
+</html><?php }
+}

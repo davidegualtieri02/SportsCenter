@@ -1,3 +1,28 @@
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzatura.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304ab27d6_05810734',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'f6a6efa060f986d44aee3c6d5ecdf352f9707c8d' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzatura.tpl',
+      1 => 1720627587,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304ab27d6_05810734 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -15,7 +40,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
     <link href="css/attrezzatura.css" rel="stylesheet">
-    <script>
+    <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
@@ -45,7 +71,8 @@
         if (checkbox) {
             checkbox.addEventListener('click', handleCheckboxClick);
         }
-    </script>
+    <?php echo '</script'; ?>
+>
 </head>
 <body>
     <div class="hero_area">
@@ -135,26 +162,40 @@
                                     <input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true" onchange="updateAttrezzaturaHidden()"> Attrezzatura
                                 </label>
                                 <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden">
-                                <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
-                                <input type="hidden" id="selectedTime" name="selected_time" value="{$selected_time}">
-                                <a type="submit" class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura/{$attrezzatura}">Continua e paga</a>
+                                <input type="hidden" id="selectedDay" name="selected_day" value="<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
+">
+                                <input type="hidden" id="selectedTime" name="selected_time" value="<?php echo $_smarty_tpl->tpl_vars['selected_time']->value;?>
+">
+                                <a type="submit" class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/calendario/<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
+/orari/<?php echo $_smarty_tpl->tpl_vars['selected_time']->value;?>
+/attrezzatura/<?php echo $_smarty_tpl->tpl_vars['attrezzatura']->value;?>
+">Continua e paga</a>
                             </form>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="text-center mb-4">
-                        <img src="data:{$imageCampo->getTipo()};base64,{$imageCampo->getEncodedData()}" alt="{$titoloCampo}" style="max-width: 100%; height: auto;">
+                        <img src="data:<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getTipo();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getEncodedData();?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
+" style="max-width: 100%; height: auto;">
                         </div>
                         <div class="campo-description">
                             <h3>Descrizione del campo:</h3>
-                            <p>{$titoloCampo}.
+                            <p><?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
+.
                             Costo del campo:
-                            {if $id_tesseraUtente ==0}
-                                {$prezzoCampo} euro
-                            {else}
-                                {math equation = "x-(x * y / 100)" x =$prezzocampo y=30 assign ="prezzo_scontato"} 
-                                Prezzo originale : {$prezzoCampo} euro , prezzo scontato per utenti tesserati : {$prezzo_scontato} euro.
-                            {/if}
+                            <?php if ($_smarty_tpl->tpl_vars['id_tesseraUtente']->value == 0) {?>
+                                <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
+ euro
+                            <?php } else { ?>
+                                <?php echo smarty_function_math(array('equation'=>"x-(x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzocampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
+ 
+                                Prezzo originale : <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
+ euro , prezzo scontato per utenti tesserati : <?php echo $_smarty_tpl->tpl_vars['prezzo_scontato']->value;?>
+ euro.
+                            <?php }?>
                             </p>
                         </div>
                     </div>
@@ -241,10 +282,17 @@
         </p>
     </section>
     <!-- footer section -->
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
     function updateAttrezzaturaHidden() {
         var checkbox = document.getElementById('attrezzaturaCheckbox');
         var hiddenField = document.getElementById('attrezzaturaHidden');
@@ -254,6 +302,9 @@
     document.getElementById('equipmentForm').addEventListener('submit', function() {
         updateAttrezzaturaHidden();
     });
-</script>
+<?php echo '</script'; ?>
+>
 </body>
 </html>
+<?php }
+}

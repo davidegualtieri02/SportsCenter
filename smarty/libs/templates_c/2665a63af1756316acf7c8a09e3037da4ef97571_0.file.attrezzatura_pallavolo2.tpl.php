@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzatura_pallavolo2.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_668eb304afab19_80989716',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2665a63af1756316acf7c8a09e3037da4ef97571' => 
+    array (
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/attrezzatura_pallavolo2.tpl',
+      1 => 1720467749,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_668eb304afab19_80989716 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +38,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
     <link href="css/attrezzatura.css" rel="stylesheet">
-    <script>
+    <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
@@ -45,36 +69,37 @@
         if (checkbox) {
             checkbox.addEventListener('click', handleCheckboxClick);
         }
-    </script>
+    <?php echo '</script'; ?>
+>
 </head>
 <body>
     <div class="hero_area">
         <!-- header section strats -->
-                        <header class="header_section">
-                        <div class="container">
-                        <nav class="navbar navbar-expand-lg custom_nav-container">
-                            <a class="navbar-brand" href="/SportsCenter/Utente/home">
-                            <img src="images/logo.png" alt="" />
-                            <span>
-                                SportsCenter
-                            </span>
-                            </a>
-                            <div class="contact_nav" id="">
-                            <ul class="navbar-nav ">
-                                <li class="nav-item">
-                                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+        <header class="header_section">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                    <a class="navbar-brand" href="home.tpl">
+                        <img src="images/logo.png" alt="" />
+                        <span>
+                            SportsCenter
+                        </span>
+                    </a>
+                    <div class="contact_nav" id="">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="contattaci.tpl">
                                     <img src="images/location.png" alt="" />
                                     <span>Location</span>
                                 </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contattaci.tpl">
                                     <img src="images/call.png" alt="" />
                                     <span>Tel: (+39) 0862 123456</span>
                                 </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contattaci.tpl">
                                     <img src="images/envelope.png" alt="" />
                                     <span>info@sportscenter.com</span>
                                 </a>
@@ -95,23 +120,23 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <div class="d-flex flex-column flex-lg-row align-items-center">
                                 <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/home">Home<</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/index">Logout</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="home.tpl">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="prenotazione.tpl">Prenotazione</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="servizi.tpl">Servizi</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link current-page" href="contattaci.tpl">Contattaci</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="profilo.tpl">Profilo</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.tpl">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -130,32 +155,24 @@
                         <!-- Singola casella di controllo -->
                         <div class="equipment-list">
                             <h3>Seleziona l'attrezzatura:</h3>
-                            <form id="equipmentForm" method="post" action="/SportsCenter/PrenotaCampo/MostraAttrezzatura">
-                                <label>
-                                    <input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true" onchange="updateAttrezzaturaHidden()"> Attrezzatura
-                                </label>
-                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden">
-                                <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
-                                <input type="hidden" id="selectedTime" name="selected_time" value="{$selected_time}">
-                                <a type="submit" class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura/{$attrezzatura}">Continua e paga</a>
+                            <form id="equipmentForm" method="post">
+                                <label><input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true"> Attrezzatura</label>
+                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura" value="">
+                                <input type="hidden" id="selectedDay" name="selected_day" value="<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
+">
+                                <input type="hidden" id="selectedTime" name="selected_time" value="<?php echo $_smarty_tpl->tpl_vars['selected_time']->value;?>
+">
+                                <button type="submit" class="btn btn-avanti float-right">Continua e paga</button>
                             </form>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="text-center mb-4">
-                        <img src="data:{$imageCampo->getTipo()};base64,{$imageCampo->getEncodedData()}" alt="{$titoloCampo}" style="max-width: 100%; height: auto;">
+                            <img src="images/campopallavolochiuso.jpg" alt="Campo in erba esterna, costo campo: 60 euro" style="max-width: 100%; height: auto;">
                         </div>
                         <div class="campo-description">
                             <h3>Descrizione del campo:</h3>
-                            <p>{$titoloCampo}.
-                            Costo del campo:
-                            {if $id_tesseraUtente ==0}
-                                {$prezzoCampo} euro
-                            {else}
-                                {math equation = "x-(x * y / 100)" x =$prezzocampo y=30 assign ="prezzo_scontato"} 
-                                Prezzo originale : {$prezzoCampo} euro , prezzo scontato per utenti tesserati : {$prezzo_scontato} euro.
-                            {/if}
-                            </p>
+                            <p>Campo da pallavolo al chiuso. Costo campo: 60 euro</p>
                         </div>
                     </div>
                 </div>
@@ -178,23 +195,23 @@
                         Menu
                     </h6>
                     <ul>
-                        <li class="">
-                        <a class="" href="/SportsCenter/Utente/home">Home</a>
+                        <li class=" ">
+                            <a class="" href="home.tpl">Home</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+                            <a class="" href="prenotazioni.tpl">Prenotazioni</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+                            <a class="" href="servizi.tpl">Servizi</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+                            <a class="" href="contattaci.tpl">Contattaci</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+                            <a class="" href="profilo.tpl">Profilo</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/logout">Logout</a>
+                            <a class="" href="index.tpl">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -241,19 +258,15 @@
         </p>
     </section>
     <!-- footer section -->
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script>
-    function updateAttrezzaturaHidden() {
-        var checkbox = document.getElementById('attrezzaturaCheckbox');
-        var hiddenField = document.getElementById('attrezzaturaHidden');
-        hiddenField.value = checkbox.checked ? 'true' : 'false';
-    }
-
-    document.getElementById('equipmentForm').addEventListener('submit', function() {
-        updateAttrezzaturaHidden();
-    });
-</script>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}
