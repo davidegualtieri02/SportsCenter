@@ -73,32 +73,32 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="CUtente.php?action=registrazione" method="post" onsubmit="return validateForm()">
+          <form action="SportsCenter/Utente/registrazione" method="post" onsubmit="return validateForm()">
             <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="nome" value="{$nome}" required>
-              <label for="">Nome</label>
+              <label class="form-label">Nome</label>
+              <input name = "nome" type="text" class="form-control" placeholder="inserisci il tuo nome">
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="cognome" value="{$cognome}" required>
-              <label for="">Cognome</label>
+              <label class="form-label">Cognome</label>
+              <input name = "cognome" type="text" class="form-control" placeholder="inserisci il tuo cognome">
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" name="email" value="{$email}" required>
-              <label for="">Email</label>
+              <label class="form-label">Email</label>
+              <input name = "email" type="text" class="form-control" placeholder="inserisci l'email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" name="password" value="{$password}" required>
-              <label for="">Password</label>
+              <label class="form-label">Password</label>
+              <input name = "password" type="text" class="form-control" placeholder="inserisci password">
             </div>
-            <button type="submit">Registrati</button>
+            <a  type="submit" href = "/SportsCeneter/Utente/login" >Registrati</a>
             <p></p>
             <div class="login">
-              <p>Hai già un profilo? <a href="login_form.tpl">Login</a></p>
+              <p>Hai già un profilo? <a href="/SportsCeneter/Utente/login">Login</a></p>
             </div>
           </form>
         </div>

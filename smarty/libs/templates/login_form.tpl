@@ -52,7 +52,7 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="CUtente.php?action=VerificaLogin" method="post">
+          <form action="/SportsCenter/Utente/login" method="post">
             <h2>Accedi a SportsCenter</h2>
             {if $error == true}
               <p style="color: red; margin-left: 11%">credenziali errate</p>
@@ -73,7 +73,7 @@
               <label for="password" class="form-label">Password</label>
                 <input type="text" id="password" name="password" class="form-control" placeholder="password" autocomplete="off">
             </div>
-            <a type="submit" href = "/SportsCenter/Utente/home">Accedi</a>
+            <a type="submit" href ="/SportsCenter/Utente/home">Accedi</a>
             <div class="login">
               <p>Non hai un profilo? <a href="/SportsCenter/Utente/registrazione">Registrati</a></p>
             </div>
