@@ -49,7 +49,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
             <img src="images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -58,19 +58,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
                   <img src="images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
                   <img src="images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
                   <img src="images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -94,23 +94,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="home.tpl">Home<span class="sr-only">(current)</span></a>
+              <li class="nav-item">
+                <a class="nav-link" href="/SportsCenter/Utente/home">Home<</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="servizi.tpl">Servizi</a>
+                <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="profilo.tpl">Profilo</a>
+                <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.tpl">Logout</a>
+                <a class="nav-link" href="/SportsCenter/Utente/index">Logout</a>
               </li>
             </ul>
           </div>
@@ -131,10 +131,10 @@
             </h1>
             <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
-              <a href="servizi.tpl" class="btn-1">
+              <a href="/SportsCenter/Utente/servizi" class="btn-1">
                 Prenota ora
               </a>
-              <a href="recensioni.tpl" class="btn-1">
+              <a href="/SportsCenter/Utente/recensioni" class="btn-1">
                 Recensioni
               </a>
             </div>
@@ -163,7 +163,7 @@
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio1.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -177,7 +177,7 @@
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio2.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -191,7 +191,7 @@
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel1.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -205,7 +205,7 @@
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel2.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -219,7 +219,7 @@
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis1.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -233,7 +233,7 @@
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis2.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -247,7 +247,7 @@
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo1.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -261,7 +261,7 @@
             PALLAVOLO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo2.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -275,7 +275,7 @@
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket1.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -289,7 +289,7 @@
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket2.html">
+            <a href="/SportsCenter/Utente/home/servizi/{$idCampo}/calendario">
               <img src="images/link.png" alt="">
             </a>
             <h6>
@@ -460,7 +460,7 @@
               <p>
                 Tesserati subito con noi: versando una quota annuale, puoi usufruire di fantastici sconti e vantaggi esclusivi!
               </p>
-              <a href="tesseramento.tpl">
+              <a href="/SportsCenter/Utente/profilo/tesseramento">
                 Scopri di più
               </a>
             </div>
@@ -542,20 +542,20 @@
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.tpl">Login</a>
+              <a class="" href="/SportsCenter/Utente/home/login">Login</a>
             </li>
           </ul>
         </div>
