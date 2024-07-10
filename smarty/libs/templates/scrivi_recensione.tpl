@@ -135,8 +135,7 @@
                         Campo: {$prenotazione.campo}<br>
                         Attrezzatura: {$prenotazione.attrezzatura}<br>
                     </p>
-                    per daieg: fare tipo in orari per fare un'azione e richiamare annullaPrenotazione in CPrenotaCampo. penso
-                    <a class="btn btn-primary" href="annulla_prenotazione.tpl" id="annullaPrenotazione">Annulla prenotazione</a>
+                    <a class="btn btn-primary" href="CPrenotaCampo.php?action=annullaPrenotazione&prenotazioneId={$prenotazione->getId()}">Annulla prenotazione</a>
                 </div>
             </div>
         </div>
