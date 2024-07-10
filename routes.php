@@ -112,7 +112,10 @@ function route($uri){
             $smarty->display('prenotazioni.tpl');
             break;
         case '/registrazione' :
-            require 'Controller/'   
+            require 'Controller/CUtente.php' ;
+            $controller= new CUtente();
+            $controller->registrazione();
+            $smarty->display('registrazione.tpl');
 
     }
 }
