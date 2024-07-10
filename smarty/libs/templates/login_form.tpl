@@ -54,19 +54,28 @@
         <div class="form-value">
           <form action="CUtente.php?action=VerificaLogin" method="post">
             <h2>Accedi a SportsCenter</h2>
+            {if $error == true}
+              <p style="color: red; margin-left: 11%">credenziali errate</p>
+              {/if}
+            {if $ban == true}
+              <p style="color: red; margin-left: 7%">L'utente che sta provando ad accedere è bannato</p>
+              {/if}
+              {if $regErr == true}
+                <p style="color: red; margin-left: 7%">email o password sono già in uso</p>
+                {/if}
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <input type="email" name="email" value="{$email}" required>
-              <label for="">Email</label>
+              <label for="email" class="form-label">Email</label>
+              <input type="text" id="email" name="email" class="form-control" placeholder="email" autocomplete="off">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <input type="password" name="password" value="{$password}" required>
-              <label for="">Password</label>
+              <label for="password" class="form-label">Password</label>
+                <input type="text" id="password" name="password" class="form-control" placeholder="password" autocomplete="off">
             </div>
-            <a type="submit" href = "home.tpl">Accedi</a>
+            <a type="submit" href = "/home">Accedi</a>
             <div class="login">
-              <p>Non hai un profilo? <a href="registrazione.tpl">Registrati</a></p>
+              <p>Non hai un profilo? <a href="/registrazione">Registrati</a></p>
             </div>
           </form>
         </div>

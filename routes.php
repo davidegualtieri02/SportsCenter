@@ -111,7 +111,8 @@ function route($uri){
             $controller->annullaPrenotazione($idPrenotazione);
             $smarty->display('prenotazioni.tpl');
             break;
-            
+        case '/registrazione' :
+            require 'Controller/'   
 
     }
 }
