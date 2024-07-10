@@ -73,9 +73,9 @@
               <label for="password" class="form-label">Password</label>
                 <input type="text" id="password" name="password" class="form-control" placeholder="password" autocomplete="off">
             </div>
-            <a type="submit" href = "/home">Accedi</a>
+            <a type="submit" href = "/SportsCenter/Utente/home">Accedi</a>
             <div class="login">
-              <p>Non hai un profilo? <a href="/registrazione">Registrati</a></p>
+              <p>Non hai un profilo? <a href="/SportsCenter/Utente/registrazione">Registrati</a></p>
             </div>
           </form>
         </div>
