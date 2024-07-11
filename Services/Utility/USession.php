@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../../../../config/config.php');
+require_once(__DIR__ . '/../../config/config.php');
 /**
  * Classe per accedere all'array superglobale $_SESSION. 
  * $_SESSION contiene per esempio i dati dell'utente , il suo id , nome e cognome , la lingua per esempio in cui l'utente vuole visionare le pagine ect. Cioè $_SESSION contiene i dati della sessione per l'utente corrente .
