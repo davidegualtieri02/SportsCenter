@@ -11,16 +11,29 @@ class VPrenotaCampo{
     return UMetodiHTTP::post('prezzo');
     }
 
-   public function MostraFormPagamento($utente, $attrezzatura, $idCampo, $data, $orario){
-     $this->smarty->assign('Utente',$utente);
-     $this->smarty->assign('idCampo',$idCampo);
-     $this->smarty->assign('data',$data);
+   public function MostraFormPagamento($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno,$orario,$attrezzatura){
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+     $this->smarty->assign('campo',$idCampo);
+     $this->smarty->assign('titoloCampo',$titoloCampo);
+     $this->smarty->assign('prezzoCampo',$prezzoCampo);
+     $this->smarty->assign('imageCampo',$imageCampo);
+     $this->smarty->assign('data',$giorno);
      $this->smarty->assign('orario',$orario);
      $this->smarty->assign('attrezzatura',$attrezzatura);
      $this->smarty->display('./smarty/libs/templates/pagamento.tpl');
    }
-   public function ConfermaPrenotazione($utente, $nome, $cognome, $scadenza, $numerocarta, $cvv){
-     $this->smarty->assign('Utente',$utente);
+   public function ConfermaPrenotazione($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno,$orario,$attrezzatura, $nome, $cognome, $scadenza, $numerocarta, $cvv){
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+     $this->smarty->assign('campo',$idCampo);
+     $this->smarty->assign('titoloCampo',$titoloCampo);
+     $this->smarty->assign('prezzoCampo',$prezzoCampo);
+     $this->smarty->assign('imageCampo',$imageCampo);
+     $this->smarty->assign('giorno',$giorno);
+     $this->smarty->assign('orario',$orario);
+     $this->smarty->assign('attrezzatura',$attrezzatura);
      $this->smarty->assign('Nome_Titolare',$nome);
      $this->smarty->assign('Cognome_Titolare',$cognome);
      $this->smarty->assign('Data_Scadenza',$scadenza);
@@ -32,32 +45,44 @@ class VPrenotaCampo{
    public function MostraCalendario($nomeUtente, $id_tesseraUtente, $idCampo, $titoloCampo, $prezzoCampo, $imageCampo){
      $this->smarty->assign('nomeUtente',$nomeUtente);
      $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
-     $this->smarty->assign('idCampo',$idCampo);
+     $this->smarty->assign('campo',$idCampo);
      $this->smarty->assign('titoloCampo',$titoloCampo);
      $this->smarty->assign('prezzoCampo',$prezzoCampo);
      $this->smarty->assign('imageCampo',$imageCampo);
      $this->smarty->display('./smarty/libs/templates/calendario.tpl');
    }
-   public function MostraOrari($utente,$giorno,$campo){
-     $this->smarty->assign('Utente',$utente);
+   public function MostraOrari($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno){
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+     $this->smarty->assign('campo',$idCampo);
+     $this->smarty->assign('titoloCampo',$titoloCampo);
+     $this->smarty->assign('prezzoCampo',$prezzoCampo);
+     $this->smarty->assign('imageCampo',$imageCampo);
      $this->smarty->assign('giorno',$giorno);
-     $this->smarty->assign('Campo',$campo);
      $this->smarty->display('./smarty/libs/templates/orari.tpl');
    }
    
-   //public function MostraListaOrari($utente,$giorno,$campo,$orari){
-    //$this->smarty->assign('Utente',$utente);
-    //$this->smarty->assign('giorno',$giorno);
-    //$this->smarty->assign('Campo',$campo);
-    //$this->smarty->assign('orari',$orari);
-    //$this->smarty->display('./smarty/libs/templates/orari.tpl');
-  //}
+   public function MostraListaOrari($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno,$orari){
+    $this->smarty->assign('nomeUtente',$nomeUtente);
+    $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+    $this->smarty->assign('campo',$idCampo);
+    $this->smarty->assign('titoloCampo',$titoloCampo);
+    $this->smarty->assign('prezzoCampo',$prezzoCampo);
+    $this->smarty->assign('imageCampo',$imageCampo);
+    $this->smarty->assign('giorno',$giorno);
+    $this->smarty->assign('orari',$orari);
+    $this->smarty->display('./smarty/libs/templates/orari.tpl');
+  }
 
-   public function MostraPagAttrezzatura($utente,$orario,$giorno,$campo){
-     $this->smarty->assign('Utente',$utente);
-     $this->smarty->assign('orario',$orario);
+   public function MostraPagAttrezzatura($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno,$orario){
+     $this->smarty->assign('nomeUtente',$nomeUtente);
+     $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
+     $this->smarty->assign('campo',$idCampo);
+     $this->smarty->assign('titoloCampo',$titoloCampo);
+     $this->smarty->assign('prezzoCampo',$prezzoCampo);
+     $this->smarty->assign('imageCampo',$imageCampo);
      $this->smarty->assign('giorno',$giorno);
-     $this->smarty->assign('Campo',$campo);
+     $this->smarty->assign('orario',$orario);
      $this->smarty->display('./smarty/libs/templates/attrezzatura.tpl');
    }
    // è legata ad un metodo che fa vedere le informazioni su una prenotazione
@@ -87,13 +112,7 @@ class VPrenotaCampo{
     $this->smarty->assign('errore',true);
     $this->smarty->display('./smarty/libs/templates/errore.tpl'); //NON ESISTE
    }
-  public function MostraFormAttrezzatura($utente,$idcampo,$attrezzatura,$orario){
-    $this->smarty->assign('Utente',$utente);
-    $this->smarty->assign('id_campo',$idcampo);
-    $this->smarty->assign('attrezzatura',$attrezzatura);
-    $this->smarty->assign('orario',$orario);
-    $this->smarty->display('./smarty/libs/templates/attrezzatura.tpl');
-  }
+  
    
 
    //Funzioni commentate: non dovrebbero servire

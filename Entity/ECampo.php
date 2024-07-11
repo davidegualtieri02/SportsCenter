@@ -11,7 +11,7 @@ class ECampo {
     public function __construct($titoloCampo,$prezzo,$id_imageCampo){
         $this->titoloCampo = $titoloCampo;
         $this->prezzo = $prezzo;
-        $this->imageCampo = $id_imageCampo;
+        $this->id_imageCampo = $id_imageCampo;
     }
     //public function getCopertura(){
         //return $this->copertura;
