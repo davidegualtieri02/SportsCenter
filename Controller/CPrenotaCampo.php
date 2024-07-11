@@ -31,42 +31,33 @@ class CPrenotaCampo{
     /**
      * Metodo che mi rida la form con i dati del pagamento
      */
-    public static function MostraConfermaPrenotazione($idCampo,$data,$orario,$attrezzatura,$idcarta){
-        $sessione = USession::getIstanza();
-        $pm = FPersistentManager::getIstanza();
-        $carta = FPersistentManager::recuperaOggetto(ECartadiPagamento::getEntità(),$idcarta);
-        $idcarta= $carta->getIdCarta();
+    public static function MostraConfermaPrenotazione(){
+        $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+        $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato',$idUtente);
+        $idCampo = USession::getIstanza()->getElementoSessione('campo');
+        $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+        $titoloCampo = $campo->getTitolo();
+        $prezzoCampo = $campo->getPrezzo();
+        $id_imageCampo = $campo->getIdimageCampo();
+        $nomeUtente=$utente->getNome();
+        $id_tesseraUtente = $utente->getid_tessera();
+        $data = USession::getElementoSessione('data');
+        $orario = USession::getElementoSessione('orario');
+        $attrezzatura = USession::getElementoSessione('attrezzatura');
         $view = new VPrenotaCampo();
-        $campo = $sessione::getElementoSessione('campo');
-        $idCampo = $campo->getId_campo();
-        $data = $sessione::getElementoSessione('data');
-        $orario = $sessione::getElementoSessione('orario');
-        $attrezzatura = $sessione::getElementoSessione('attrezzatura');
-        if(UServer::getRichiestaMetodo()=="GET"){
-            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-            $view ->MostraFormPagamento($utente,$attrezzatura,$idCampo,$data,$orario);
-            
-        }
-        elseif(UServer::getRichiestaMetodo()=="POST"){
-            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
+        if(UServer::getRichiestaMetodo()=="POST"){
             $nome = UMetodiHTTP::post('Nome_Titolare');
             $cognome = UMetodiHTTP::post('Cognome_Titolare');
             $scadenza = UMetodiHTTP::post('Data_Scadenza');
             $numero = UMetodiHTTP::post('Numero_Carta');
             $cvv = UMetodiHTTP::post('CVV');
-            $errore = $pm::ProcessoPag($nome,$cognome,$numero,$scadenza,$cvv);
-            if($errore){
-                //se ci sono errori nella validazione ,mostriamo il form di pagamento con un messaggio di errore
-                $view->MostraErrore();
-            }else{
-            //altrimenti procediamo con la creazione della prenotazione e la conferma della prenotazione
             $prenotazione = new EPrenotazione($data,$orario,true,$idCampo,$attrezzatura->getId_attrezzatura(),$utente->getId());
-            $pm::uploadOgg($prenotazione);
-            $view->ConfermaPrenotazione($utente,$nome,$cognome,$scadenza,$numero,$cvv);
+            FPersistentManager::uploadOgg($prenotazione);
+            $view->ConfermaPrenotazione($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo,$data,$orario,$attrezzatura, $nome, $cognome, $scadenza, $numero, $cvv);
             }
         }
 
-    }
+    
     /**
      * Metodo che dopo aver cliccato sul campo da prenotare mostra le info del campo e il calendario
      */
@@ -151,11 +142,10 @@ class CPrenotaCampo{
      * @param $idPrenotazione è l'id della prenotazione che l'utente vuole annullare
      */
     public static function annullaPrenotazione($idPrenotazione) {
-        $pm = FPersistentManager::getIstanza();
-        $sessione = USession::getIstanza();
+
         $view = new VPrenotaCampo();
         if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
+            $utente = USession::getElementoSessione('utenteRegistrato');
             $idPrenotazione = $sessione::getElementoSessione('id_prenotazione');
             $pm::deletePrenotazione($idPrenotazione,$utente->getId());
             $view->MostraMessaggioConferma(); // se l array $dichiarazione ha più di 0 elementi  allora l'eliminazione della prenotazione è avvenuta con successo
