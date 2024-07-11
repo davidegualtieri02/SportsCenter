@@ -221,10 +221,6 @@ class FPersistentManager{
     *@param $idUtente è il valore dell'ID
     *@return bool
     */
-    public static function Verifica($campo,$idUtente){
-        $risultato = FUtente::verifica($campo,$idUtente);
-        return $risultato;
-   }
    //-----------------------------------------------------Amministratore-------------------------------------------------------------------------------
    /**
     * Metodo che crea un amministratore

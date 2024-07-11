@@ -69,7 +69,7 @@ class CUtente {
             FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);// viene caricato l'utente nel db tramite uploadOgg
             $view->MostraLoginFormUtente();// metodo da implementare in VUtenteRegistrato , viene mostrato il login dopo la registarzione per far in modo che l'utente acceda con e credenziali appena registrate
         }else{
-            $view->erroreRegistrazione('emailEsistente');//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
+            $view->erroreRegistrazione();//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
         }
      /**
      * Metodo per uscire dal profilo , viene reindirizzato l'utente alla pagina di login 
