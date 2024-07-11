@@ -13,19 +13,19 @@
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
 
   <!-- Custom styles -->
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link href="css/login.css" rel="stylesheet"/>
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/login.css" rel="stylesheet"/>
 
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -44,7 +44,7 @@
 <body>
   <div>
     <a href="index.html">
-      <img src="images/logo.png" alt="SportsCenter">
+      <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
   <!-- Login section -->
@@ -84,8 +84,8 @@
   </section>
   <!-- End login section -->
   <!-- Scripts -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
   <script>
     function openNav() {
       document.getElementById("myNav").classList.toggle("menu_width");
