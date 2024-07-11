@@ -67,10 +67,10 @@ class CAmministratore{
                     header ('Location : /SportsCenter/Amministratore/home');
                 }
             }else {
-                $view->erroreLogin('Password errata');
+                $view->erroreLogin();
             }
         }else{
-            $view->erroreLogin('Email errata');// se l'email non esiste viene dato un errore di login 
+            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
         }
     }
 
@@ -104,15 +104,13 @@ class CAmministratore{
     }
 
     //primo metodo per la prenotazione di un campo 
-    public static function mostraCampi(){
-        $pm = FPersistentManager::getIstanza();
-        $sessione = USession::getIstanza();
-        $view = new VCampi();
+    /**public static function mostraCampi(){
         if (CAmministratore::Loggato()){
-            $amministratore= unserialize($sessione->LeggiValore('Amministratore'));
+            $view = new VCampi();
+            $amministratore= USession::getElementoSessione('Amministratore');
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
             if(UServer::getRichiestaMetodo()=='GET'){
-                $campi_basket[] = $pm::RecuperaTuple(FCampo_Basket::getTabella());
+                $campi = $pm::RecuperaTuple(FCampo_Basket::getTabella());
                  $campi_pallavolo[] = $pm::RecuperaTuple(FCampo_Pallavolo::getTabella());
                 $campi_calcio[] = $pm::RecuperaTuple(FCampo_Calcio::getTabella());
                 $campi_tennis[] = $pm::RecuperaTuple(FCampo_Tennis::getTabella());
@@ -129,178 +127,80 @@ class CAmministratore{
             }
 
         }
+
    }
+/** */
 
    //secondo metodo per prenotare un campo
    /**
      * Metodo che dopo aver cliccato sul campo da prenotare mostra le info del campo e il calendario
      */
-    public static function MostraCalendario($idCampo){
-        $sessione = USession::getIstanza();
-        $view = new VPrenotaCampo();
-        $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
-        if(UServer::getRichiestaMetodo()=="GET"){
-            if(CAmministratore::Loggato()){
-                $amministratore = unserialize($sessione->LeggiValore('Amministratore'));
-                $view->mostraCalendario($amministratore,$campo);
-            }
-         }
-    }
-    //terzo passaggio per la prenotazione di un campo
-     /**
-     * Metodo che mostrerà una volta che l'utente fornisce la data gli orari disponibili per quel campo e quel giorno
-     */
-    public static function MostraOrari($giorno){
-        $sessione = USession::getIstanza();
-        $view = new VPrenotaCampo();
-        if(UServer::getRichiestaMetodo()=="POST"){
-            $campo  = $sessione::getElementoSessione('campo');// la sessione mantiene il campo scelto in sessione e viene ripreso
-            $amministratore = unserialize($sessione->LeggiValore('Amministratore'));
-            $giornoStr = UMetodiHTTP::post('data');
-            $giorno = new DateTime($giornoStr);
-            $view->MostraOrari($amministratore,$giorno,$campo);
-        }
-    }
-
-    //quarto passaggio per la prenotazione di un campo
-    /**
-     * Metodo che mostra l'array di orari disponibili per la prenotazione di quel campo in quel giorno 
-     * e fa scegliere all'utente uno di questi orari per prenotare il campo
-     */
-    public static function MostraAttrezzatura($orario){
-        $sessione = USession::getIstanza();
-        $view = new VPrenotaCampo();
-        if(UServer::getRichiestaMetodo()=='GET'){
-            $amministratore = unserialize($sessione->LeggiValore('Utente'));
-            $campo = $sessione::getElementoSessione('campo');//riprendo dalla sessione la data e il campo
-            $giorno = $sessione::getElementoSessione('data');
-            $orari = FPersistentManager::orariDisponibili($giorno);
-            $view->MostraListaOrari($amministratore,$giorno,$campo,$orari);
-         }
-        elseif(UServer::getRichiestaMetodo()=='POST'){
-            $amministratore = unserialize($sessione->LeggiValore('Utente'));
-            $campo = $sessione::getElementoSessione('campo');//riprendo dalla sessione la data e il campo
-            $giorno = $sessione::getElementoSessione('data');
-            $orario = UMetodiHTTP::post('orario') ;//viene scelto un orario tra quelli disponibili
-
-            $view->MostraPagAttrezzatura($amministratore,$orario,$giorno,$campo);
-        }
-    }
-   
-
-
-    //quinto passaggio
-     /**
+      /**
      * Metodo per confermare ed inviare  la prenotazione 
      * @param $idCampo è l'id del campo che l'utente vuole prenotare
      */
-    public static function ScegliAttrezzatura($idAttrezzatura){ //Con GET il server invia la form di prenotazione 
-        $pm = FPersistentManager::getIstanza();
-        $sessione = USession::getIstanza(); // otteniamo un'istanza della sessione utente  
-        //prendendo un oggetto attrezzatura viene preso un kit standard di attrezzatura per esempio un attrezzatura calcio fa prendere 5 casacche e 2 palloni , il num casacca e il num palloni sono contentuti nella tupla dell'attrezzatura
-        //nel db
-        $attrezzatura = $pm::recuperaOggetto('FAttrezzatura',$idAttrezzatura);// recuperiamo l'oggetto campo sportivo nel db
-        //if($attrezzatura == FAttrezzatura_Basket::getOgg($idAttrezzatura))
-        $view = new VPrenotaCampo();//creiamo un'istanza della view per la prenotazione del campo
-        if(UServer::getRichiestaMetodo()=="GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
-            if(CAmministratore::Loggato()){
-                $amministratore = unserialize($sessione->LeggiValore('Amministratore'));//ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente 
-                $campo = $sessione::getElementoSessione('campo');
-                $data = $sessione::getElementoSessione('data');
-                $orario = $sessione::getElementoSessione('orario');
-                $idcampo = $campo->getId();
-                $titolocampo = $campo->getTitolo();
-                if(($titolocampo = "Campo Basket 1") || ($titolocampo = "Campo Basket 2")){
-                    $view->MostraFormAttrezzaturaBasket($amministratore,$idcampo,$attrezzatura,$titolocampo); //viene mostrata la form per la prenotazione
-                }
-                if(($titolocampo = "Campo Calcio 1") || ($titolocampo = "Campo Calcio 2")){
-                    $view->MostraFormAttrezzaturaCalcio($amministratore,$idcampo,$attrezzatura,$titolocampo);
-                }
-                if(($titolocampo = "Campo Padel 1") ||($titolocampo = " Campo Padel 2")){
-                    $view->MostraFormAttrezzaturaPadel($amministratore,$idcampo,$attrezzatura,$titolocampo);
-                }
-                if(($titolocampo = "Campo Pallavolo 1") ||($titolocampo = " Campo Pallavolo 2")){
-                    $view->MostraFormAttrezzaturaPallavolo($amministratore,$idcampo,$attrezzatura,$titolocampo);
-                }
-                if(($titolocampo = "Campo Tennis 1") || ($titolocampo= " Campo Tennis 2")){
-                    $view->MostraFormAttrezzaturaTennis($amministratore,$idcampo,$attrezzatura,$titolocampo);
-                }
-               
-            }else{// se l'utente non è loggato viene reindirizzato alla pagina di login 
-                header('Location: /SportsCenter/Amministratore/login');
-                exit;//fa in modo che il codice dopo non viene eseguito se l'utente non è loggato.
-            }    
-        }
-        elseif(UServer::getRichiestaMetodo()=="POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
-            $amministratore= unserialize($sessione->LeggiValore('Amministratore'));
-            $campo = $sessione::getElementoSessione('campo');
-            $data = $sessione::getElementoSessione('data');
-            $orario = $sessione::getElementoSessione('orario');
-            $idAttrezzatura = UMetodiHTTP::post('id_attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
-            $view->MostraFormPagamento($amministratore,$idAttrezzatura,$campo,$data,$orario);
-    
-        }
-    }
-    //ultimo metodo prenotazione
-    /**
-     * Metodo per confermare la prenotazione
-     * @param $idCampo è l'id del campo che l'utente vuole prenotare
-     */
-    public static function MostraConfermaPrenotazioneAmm(){
-        $sessione = USession::getIstanza();
-        $pm = FPersistentManager::getIstanza();
-        $view = new VAmministratore();
-        if(UServer::getRichiestaMetodo()=="GET"){
-            if(CAmministratore::Loggato()){
-                $amm = unserialize($sessione->LeggiValore('Amministratore'));
-                $campo = $sessione::getElementoSessione('campo');
-                $data = $sessione::getElementoSessione('data');
-                $orario = $sessione::getElementoSessione('orario');
-                $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
-                $view->MostraFormPrenotazione($amm,$campo,$data,$orario,$attrezzatura);
+    public static function SceltaAttrezzatura(){ //Con GET il server invia la form di prenotazione 
+        if(CAmministratore::Loggato()){
+            $view = new VAmministratore();
+            $idAmm = USession::getIstanza()->getElementoSessione('amministratore');
+            $amministratore = FPersistentManager::recuperaOggetto('EAmministratore',$idAmm);
+            $idCampo = USession::getIstanza()->getElementoSessione('campo');
+            $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+            $titoloCampo = $campo->getTitolo();
+            $prezzoCampo = $campo->getPrezzo();
+            $id_imageCampo = $campo->getIdimageCampo();
+            $nomeAmministratore=$amministratore->getNome();
+            $giorno =  USession::getElementoSessione('data');
+            $orario = USession::getElementoSessione('orario');
+            if(UServer::getRichiestaMetodo() == "GET"){//verifichiamo se la richiesta al server è di tipo GET, cioè manda i dati dal server al client , il server manda i dati sui campi disponibili all'utente
+                $view->MostraFormPrenotazioneAmm($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo,$giorno,$orario,false); 
+            }
+             elseif(UServer::getRichiestaMetodo() == "POST"){//Con POST l'utente che prenota i campi invia i dati della prenotazione al server per vedere se sono disponibili
+                $attrezzatura = UMetodiHTTP::post('attrezzatura'); //viene mandato al server l'id dell'attrezzatura che ha scelto l'utente
+                $view->MostraFormPrenotazioneAmm($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo,$giorno,$orario,$attrezzatura);
             }
         }
-        elseif(UServer::getRichiestaMetodo()=="POST"){
-            $amministratore = unserialize($sessione->LeggiValore('Amministratore'));
-            $amm = unserialize($sessione->LeggiValore('Amministratore'));
-            $campo = $sessione::getElementoSessione('campo');
-            $data = $sessione::getElementoSessione('data');
-            $orario = $sessione::getElementoSessione('orario');
-            $attrezzatura = $sessione::getElementoSessione('id_attrezzatura');
-            $prenotazione = new EPrenotazione($data,$orario,true,$campo->getId_campo(),$attrezzatura);
-            $pm::uploadOgg($prenotazione);
-            $view->ConfermaPrenotazione($amministratore);
-
-
-        }
-
     }
-    /**
-     * Metodo per annullare una prenotazione
-     * @param $idPrenotazione è l'id della prenotazione che l'utente vuole annullare
-     */
-    public static function annullaPrenotazioneAmm($idPrenotazione) {
-        $pm = FPersistentManager::getIstanza();
-        $sessione = USession::getIstanza();
-        $view = new VAmministratore();
-        if(UServer::getRichiestaMetodo()=="GET"){
-            $amministratore =  unserialize($sessione->LeggiValore('amministratore'));
-            $prenotazioni = FPersistentManager::RecuperaTuple('Prenotazione');
-            $view->MostraPrenotazioniAmm($amministratore,$prenotazioni);
-        }
-        if(UServer::getRichiestaMetodo() == "POST") { // Verifica se la richiesta è POST
-            $amministratore = unserialize($sessione->LeggiValore('utente'));
-            $pm::deleteOgg('Prenotazione',$idPrenotazione,'id_prenotazione');
-            $view->MostraMessaggioConferma($amministratore);
-                
-        } else {
-             header('Location: /SportsCenter/Utente/login');
-            exit;
-
-            }
-   }
     
+    public static function SceltaGiorno(){
+        if(CAmministratore::Loggato()){
+            $view = new VAmministratore(); 
+            $idCampo = USession::getIstanza()->getElementoSessione('campo');
+            $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+            $idAmministratore = USession::getIstanza()->getElementoSessione('amministratore');
+            $amministratore = FPersistentManager::recuperaOggetto('EUtenteRegistrato',$idAmministratore);
+            $titoloCampo = $campo->getTitolo();
+            $prezzoCampo = $campo->getPrezzo();
+            $id_imageCampo = $campo->getIdimageCampo();
+            $imageCampo = FPersistentManager::recuperaOggetto('EImageCampo',$id_imageCampo);
+            if(UServer::getRichiestaMetodo() == "GET"){
+                $nomeAmministratore = $amministratore->getNome();
+                $view->MostraGiorno($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo);
+            }
+        }
+    }
+
+    public static function SceltaOrari(){
+        if(CAmministratore::Loggato()){
+            $view = new VAmministratore(); 
+            $idAmministratore= USession::getIstanza()->getElementoSessione('amministratore');
+            $amministratore = FPersistentManager::recuperaOggetto('EAmministratore',$idAmministratore);
+            $idCampo = USession::getIstanza()->getElementoSessione('campo');
+            $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+            $titoloCampo = $campo->getTitolo();
+            $prezzoCampo = $campo->getPrezzo();
+            $id_imageCampo = $campo->getIdimageCampo();
+            $nomeAmministratore =$amministratore->getNome();
+            if(UServer::getRichiestaMetodo() == "POST"){
+                $giornoStr = UMetodiHTTP::post('data');
+                $giorno = new DateTime($giornoStr);
+                $view->MostraOra($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo,$giorno);
+            }
+        }
+    }
+
 }
+
 
 
 

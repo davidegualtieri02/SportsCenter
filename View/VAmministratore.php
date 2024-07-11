@@ -7,19 +7,18 @@ class VAmministratore{
     public function MostraloginForm(){
         $this->smarty->display('Amministratore-login.tpl'); //NON ESISTE, va messo login.tpl?
     }
-    public function MostraFormPrenotazione($amm,$campo,$data,$orario,$attrezzatura){
-        $this->smarty->assign('amministratore',$amm);
-        $this->smarty->assign('Campo',$campo);
+    public function MostraFormPrenotazioneAmm($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$data,$orario,$attrezzatura){
+        $this->smarty->assign('NomeAmministratore',$nomeAmministratore);
+        $this->smarty->assign('campo',$idCampo);
         $this->smarty->assign('data',$data);
         $this->smarty->assign('orario',$orario);
+        $this->smarty->assign('titoloCampo',$titoloCampo);
+        $this->smarty->assign('prezzoCampo',$prezzoCampo);
+        $this->smarty->assign('imageCampo',$imageCampo);
         $this->smarty->assign('attrezzatura',$attrezzatura);
-        $this->smarty->display('./smarty/libs/templates/form_prenotazione_amministratore.tpl'); //NON ESISTE
+        $this->smarty->display('./smarty/libs/templates/attrezzatura.tpl');
     }
-    public function ConfermaPrenotazione($amministratore){
-        $this->smarty->asssign('amministratore',$amministratore);
-        $this->smarty->display('./smarty/libs/templates/prenotazione_amministratore.tpl'); //NON ESISTE
-
-    }
+    
    
     public function MostraMessaggioConferma($amministratore){
         $this->smarty->assign('attrezzatura',$amministratore);
@@ -33,4 +32,24 @@ class VAmministratore{
 
 
     }
+   
+    public function MostraGiorno($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo){
+        $this->smarty->assign('NomeAmministratore',$nomeAmministratore);
+        $this->smarty->assign('campo',$idCampo);
+        $this->smarty->assign('titoloCampo',$titoloCampo);
+        $this->smarty->assign('prezzoCampo',$prezzoCampo);
+        $this->smarty->assign('imageCampo',$imageCampo);
+        $this->smarty->display('./smarty/libs/templates/calendario.tpl');
+    }
+    public function MostraOra($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno){
+        $this->smarty->assign('NomeAmministratore',$nomeAmministratore);
+        $this->smarty->assign('campo',$idCampo);
+        $this->smarty->assign('titoloCampo',$titoloCampo);
+        $this->smarty->assign('prezzoCampo',$prezzoCampo);
+        $this->smarty->assign('imageCampo',$imageCampo);
+        $this->smarty->assign('data',$giorno);
+
+    }
+
+   
 }
