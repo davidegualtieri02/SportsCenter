@@ -30,19 +30,19 @@ class EPrenotazione {
         return $this->orario;
     }
     public function setOrario($orario):void{
-        $this->giorno = $orario;
+        $this->orario = $orario;
     }
     public function getPagata(){
         return $this->pagata;
     }
     public function setPagata($pagata):void{
-        $this->giorno = $pagata;
+        $this->pagata = $pagata;
     }
     public function getIdPrenotazione(){
         return $this->id_prenotazione;
     }
     public function setIdPrenotazione($id_prenotazione):void{
-        $this->giorno = $id_prenotazione;
+        $this->data = $id_prenotazione;
     }
     public static function getEntità():string{
         return self::$entità;

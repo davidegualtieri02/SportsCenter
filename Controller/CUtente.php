@@ -31,7 +31,7 @@ class CUtente {
     public static function Bannato()
     {
         $IDUtente = USession::getElementoSessione('utenteRegistrato');//IDUtente assume come valore il valore della chiave Utente in $_SESSION , cioè assume come valore il valore dell'ID dell'utente
-        $utenteRegistrato = FPersistentManager::getIstanza()->recuperaOggetto(EUtenteRegistrato::getEntità(), $IDUtente); // $Utenteregistrato punterà ad utente registrato , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
+        $utenteRegistrato = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $IDUtente); // $Utenteregistrato punterà ad utente registrato , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
         if($utenteRegistrato->Bannato()){
             $view = new VUtente(); // se l'utente è bannato viene creato un oggetto VUtente e viene chiusa e distrutta la sessione perchè giustamente un utente bannato non può prenotare un campo 
             USession::annullaSessione();
@@ -94,7 +94,7 @@ class CUtente {
             //questo if qui sotto controlla se la password di un utenteregistrato ottenuta da getpassword è uguale ad una password digitata dall'utente ed inviata tramite una richiesta HTTP POST al server 
             if(password_verify(UMetodiHTTP::post('password'),$utenteRegistrato->getPassword())){
                 if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
-                    $view->erroreLogin('ban'); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
+                    $view->erroreLogin(); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
                 }elseif(USession::getStatoSessione() == PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
                     USession::getIstanza();// viene ridata un istanza sessione 
                     USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getId());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
@@ -103,10 +103,10 @@ class CUtente {
                     header ('Location: /SportsCenter/UtenteRegistrato/home');
                 }
             }else {
-                $view->erroreLogin('passwordErrata');
+                $view->erroreLogin();
             }
         }else{
-            $view->erroreLogin('emailErrata');// se l'email non esiste viene dato un errore di login 
+            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
         }
     }
     /**

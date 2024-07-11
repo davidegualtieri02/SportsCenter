@@ -36,26 +36,16 @@ class VUtente{
         $this->smarty->assign('regErr',false);
         $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
-    public function erroreLogin($errore){
-        switch($errore){
-            case 'ban':
-                $this->smarty->assign('ban', true);
-                break;
-            case 'passwordErrata':
-                $this->smarty->assign('passwordErrata',false);
-                break;
-            case 'emailErrata':
-                $this->smarty->assign('emailErrata', false);
-                break;
-        }
+    public function erroreLogin(){
+        $this->smarty->assign('errore', false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr', false);
         $this->smarty->display('.smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
     }
-    public function erroreRegistrazione($errore){
-        switch ($errore){
-            case 'emailEsistente':
-                $this->smarty->assign('emailEsistente', false);
-                break;
-        }
+    public function erroreRegistrazione(){
+        $this->smarty->assign('errore', false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
     }
 
