@@ -161,6 +161,24 @@ class CAmministratore{
             }
         }
     }
+    public static function ConfermaPrenotazioneAmm(){
+        if(CAmministratore::Loggato()){
+            $view = new VAmministratore();
+            $idAmm = USession::getIstanza()->getElementoSessione('amministratore');
+            $amministratore = FPersistentManager::recuperaOggetto('EAmministratore',$idAmm);
+            $idCampo = USession::getIstanza()->getElementoSessione('campo');
+            $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
+            $titoloCampo = $campo->getTitolo();
+            $prezzoCampo = $campo->getPrezzo();
+            $id_imageCampo = $campo->getIdimageCampo();
+            $nomeAmministratore=$amministratore->getNome();
+            $giorno =  USession::getElementoSessione('data');
+            $orario = USession::getElementoSessione('orario');
+            $attrezzatura = USession::getElementoSessione('attrezzatura');
+            $view->ConfermaPrenotazioneAmm($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$id_imageCampo,$giorno,$orario,$attrezzatura);
+
+        }
+    }
     
     public static function SceltaGiorno(){
         if(CAmministratore::Loggato()){

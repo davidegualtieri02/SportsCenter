@@ -18,7 +18,17 @@ class VAmministratore{
         $this->smarty->assign('attrezzatura',$attrezzatura);
         $this->smarty->display('./smarty/libs/templates/attrezzatura.tpl');
     }
-    
+    public function ConfermaPrenotazioneAmm($nomeAmministratore,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$data,$orario,$attrezzatura){
+        $this->smarty->assign('NomeAmministratore',$nomeAmministratore);
+        $this->smarty->assign('campo',$idCampo);
+        $this->smarty->assign('data',$data);
+        $this->smarty->assign('orario',$orario);
+        $this->smarty->assign('titoloCampo',$titoloCampo);
+        $this->smarty->assign('prezzoCampo',$prezzoCampo);
+        $this->smarty->assign('imageCampo',$imageCampo);
+        $this->smarty->assign('attrezzatura',$attrezzatura);
+        $this->smarty->display('./smarty/libs/templates/confermaPrenotazioneAmm.tpl');
+    }
    
     public function MostraMessaggioConferma($amministratore){
         $this->smarty->assign('attrezzatura',$amministratore);
