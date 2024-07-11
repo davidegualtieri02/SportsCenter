@@ -10,25 +10,19 @@ class CTesseramento{
             //quindi l'array multidimensionale può contentere altri  array con + tessere
 
      //  Durante la fase GET, mostra il form vuoto. Durante la fase POST, valida i dati e salva l'utente nel database.      
-    public static function MostraConfermaTesseramento($idtessera,$idUtente,$dataScadenza){
-        //if(CUtente::Loggato()){
-            //recupera l'id dell'utente dalla sessione
-           // $id_utente = USession::getIstanza()->getElementoSessione('Utente');
-          
-        $pm = FPersistentManager::getIstanza();
-        $sessione = USession::getIstanza();
-        $view = new VTesseramento();
+    public static function MostraTesseramento(){
         if(CUtente::Loggato()){
+            $view = new VTesseramento();
+            //recupera l'id dell'utente dalla sessione
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato',$idUtente);
             //con questi due metodi unserialize  e Leggivalore otteniamo l'utente loggato dalla sessione
            //ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
-            $tessera = $pm::recuperaOggetto(ETessera::getEntità(),$idtessera); //ha senso porre uploadOgg sia perchè la form prende come parametro la tessera  e anche perchè il form dovrà prendere i dati della tessera.
+        
             if(UServer::getRichiestaMetodo()=="GET"){
-                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-                $view ->MostraFormTesseramento($tessera,$utente); // viene mostrata la form per il tesseramento
+                $view ->MostraModuloTesseramento($idUtente); // viene mostrata la form per il tesseramento
             }
             elseif(UServer::getRichiestaMetodo()=="POST"){
-                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-                $idUtente = $utente->getId();
                 $nome = UMetodiHTTP::post('Nome_Titolare');
                 $cognome = UMetodiHTTP::post('Cognome_Titolare');
                 $numeroCarta = UMetodiHTTP::post('Numero_Carta');
@@ -40,14 +34,13 @@ class CTesseramento{
                 $dataScadenza = clone $dataInizio; // la data scadenza è ottenuta dalla clonazione di $dataInizio
                 $dataScadenza->modify('+1 year'); // siccome il tesseramento dura un anno $dataScadenza viene modificata di un anno rispetto a dataInizio, dunque la dataSacdenza è pari a dataInizio + un anno.
                 //questo perchè il tesseramento dura un anno
-                if(FPersistentManager::ProcessoPag($nome, $cognome, $numeroCarta, $scadenzaCarta, $cvvCarta)) {
                     $tesseramento = new ETessera($idUtente,$dataScadenza, $dataInizio); // Sostituire con i dati effettivi del tesseramento
-                    $pm::uploadOgg($tesseramento); // Aggiunta del tesseramento nel database
-                    $utenteRegistratoTesserato = new EUtenteRegistrato($utente->getNome(),$utente->getCognome(),$utente->getEmail(),$utente->getPassword());// se l'utente si sta tesserando il ban è impostato a false
-                    $pm::uploadOgg($utenteRegistratoTesserato);//aggiungo l'utente tesserato al database 
+                    FPersistentManager::uploadOgg($tesseramento); // Aggiunta del tesseramento nel database
+                    $utenteRegistratoTesserato = new EUtenteTesserato($nome,$cognome,$utente->getEmail(),$utente->getPassword(),false);// se l'utente si sta tesserando il ban è impostato a false
+                    FPersistentManager::uploadOgg($utenteRegistratoTesserato);//aggiungo l'utente tesserato al database 
                     $view->MostraMessaggioTesseramento();
                 }
-            }
+            
         }else{
             header('Location: /SportsCenter/Utente/login');
             exit;
@@ -56,7 +49,7 @@ class CTesseramento{
     }   
     
     //se l'utente è tesserato al posto di tesseramento sulla sbarra in alto abbiamo annulla tesseramento e questo caso d'uso annulla il tesseramento
-    public static function annullaTesseramento($idtessera,$idUtente,$dataScadenza){
+    /**public static function annullaTesseramento($idtessera,$idUtente,$dataScadenza){
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
         $view = new VTesseramento();
@@ -73,23 +66,26 @@ class CTesseramento{
             }
         }
     }
+    /** */
     
     //cliccando su Tesseramento nel menù a tendina dopo aver cliccato su profilo appare tramite questo metodo un modulo di tesseramento 
-    public static function MostraTesseramento(){
-        $sessione = USession::getIstanza();
-        $view = new VTesseramento();
-        if(UServer::getRichiestaMetodo()=='GET'){
-            if(CUtente::Loggato()){
-                $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-                $view->MostraModuloTesseramento($utente);
-            }else{
-                header('Location: /SportsCenter/Utente/login');
-                exit;
-
+    /* public static function MostraTesseramento(){
+        if(CUtente::Loggato()){
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $view = new VTesseramento();
+            if(UServer::getRichiestaMetodo()=='GET'){
+                $view->MostraModuloTesseramento($idUtente);
             }
+       }else{
+            header('Location: /SportsCenter/Utente/login');
+            exit;
+
+        }
 
         }
 
     }
+/** */
+
         
 }

@@ -47,7 +47,7 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form id="tesseramentoForm" method="post" action="CTesseramento.php?action=MostraConfermaTesseramento">
+          <form id="tesseramentoForm" method="post" action="/SportsCenter/Tesseramento/MostraTesseramento">
             <h2>Modulo di Tesseramento</h2>
             <div class="inputbox">
               <input type="text" id="nome" name="nome" value="{$nome|escape}" required placeholder=" ">
@@ -79,6 +79,10 @@
               <label for="cvv">Codice CVV</label>
             </div>
             <div class="inputbox">
+              <input type="text" id="cartaScadenza" name="cartaScadenza" value="{$scadenza|escape}" required placeholder="MM/AA">
+              <label for="cartaScadenza">Data di Scadenza</label>
+            </div>
+            <div class="inputbox">
               <input type="text" id="costo" name="costo" value="150 €" readonly placeholder=" ">
               <label for="costo">Costo del Tesseramento</label>
             </div>
@@ -95,10 +99,43 @@
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
   <script>
-    function openNav() {
-      document.getElementById("myNav").classList.toggle("menu_width");
-      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
-    }
+    document.getElementById('tesseramentoForm').addEventListener('submit', function(event) {
+      // Numero della carta di credito
+      const cartaNumero = document.getElementById('cartaNumero').value;
+      if (!/^\d{16}$/.test(cartaNumero)) {
+        alert('Il numero della carta deve essere di 16 cifre numeriche.');
+        event.preventDefault();
+        return;
+      }
+
+      // Codice CVV
+      const cvv = document.getElementById('cvv').value;
+      if (!/^\d{3}$/.test(cvv)) {
+        alert('Il codice CVV deve essere di 3 cifre numeriche.');
+        event.preventDefault();
+        return;
+      }
+
+      // Data di scadenza
+      const cartaScadenza = document.getElementById('cartaScadenza').value;
+      const scadenzaMatch = cartaScadenza.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
+      if (!scadenzaMatch) {
+        alert('La data di scadenza deve essere nel formato MM/AA.');
+        event.preventDefault();
+        return;
+      }
+
+      const month = parseInt(scadenzaMatch[1], 10);
+      const year = parseInt(scadenzaMatch[2], 10) + 2000;
+      const today = new Date();
+      const expirationDate = new Date(year, month);
+
+      if (expirationDate <= today) {
+        alert('La data di scadenza non può essere passata o uguale alla data odierna.');
+        event.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>
+
