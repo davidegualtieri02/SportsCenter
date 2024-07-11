@@ -28,13 +28,13 @@ class VUtente{
         $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
     public function MostraFormRegistrazione(){
-        $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
+        $this->smarty->display('./smarty/libs/templates/form_registrazione.tpl');
     }
     public function loginBan(){
         $this->smarty->assign('errore',false);
         $this->smarty->assign('ban',true);
         $this->smarty->assign('regErr',false);
-        $this->smarty->display('.smarty/libs/templates/login_form.tpl');
+        $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
     public function erroreLogin($errore){
         switch($errore){
