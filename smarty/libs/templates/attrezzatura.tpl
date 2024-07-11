@@ -28,7 +28,7 @@
             var checkbox = document.getElementById('attrezzaturaCheckbox');
             var attrezzaturaValue = checkbox.checked ? 'true' : 'false'; // 'true' se spuntato, altrimenti 'false'
             // Assegna il valore dell'attrezzatura a un campo nascosto nel form
-            document.getElementById('attrezzaturaHidden').value = attrezzaturaValue;
+            document.getElementById('attrezzatura').value = attrezzaturaValue;
         }
 
         // Funzione per selezionare l'orario
@@ -36,8 +36,8 @@
             var selectedTime = element.getAttribute('data-time');
             var selectedDay = element.getAttribute('data-day');
             // Imposta i valori dei campi nascosti per giorno e ora selezionati
-            document.getElementById('selectedDay').value = selectedDay;
-            document.getElementById('selectedTime').value = selectedTime;
+            document.getElementById('data').value = selectedDay;
+            document.getElementById('orario').value = selectedTime;
         }
 
         // Aggiungi event listener al checkbox per gestire il click
@@ -111,7 +111,7 @@
                                     <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/SportsCenter/Utente/index">Logout</a>
+                                    <a class="nav-link" href="/SportsCenter/">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -134,9 +134,9 @@
                                 <label>
                                     <input type="checkbox" id="attrezzaturaCheckbox" name="attrezzatura" value="true" onchange="updateAttrezzaturaHidden()"> Attrezzatura
                                 </label>
-                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura_hidden">
-                                <input type="hidden" id="selectedDay" name="selected_day" value="{$selected_day}">
-                                <input type="hidden" id="selectedTime" name="selected_time" value="{$selected_time}">
+                                <input type="hidden" id="attrezzaturaHidden" name="attrezzatura">
+                                <input type="hidden" id="selectedDay" name="data" value="{$selected_day}">
+                                <input type="hidden" id="selectedTime" name="orario" value="{$selected_time}">
                                 <a type="submit" class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari/{$selected_time}/attrezzatura/{$attrezzatura}">Continua e paga</a>
                             </form>
                         </div>
@@ -182,19 +182,19 @@
                         <a class="" href="/SportsCenter/Utente/home">Home</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+                        <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+                        <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+                        <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+                        <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
                         </li>
                         <li class="">
-                        <a class="" href="/SportsCenter/Utente/home/logout">Logout</a>
+                        <a class="" href="/SportsCenter/">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -247,7 +247,7 @@
     <script>
     function updateAttrezzaturaHidden() {
         var checkbox = document.getElementById('attrezzaturaCheckbox');
-        var hiddenField = document.getElementById('attrezzaturaHidden');
+        var hiddenField = document.getElementById('attrezzatura');
         hiddenField.value = checkbox.checked ? 'true' : 'false';
     }
 

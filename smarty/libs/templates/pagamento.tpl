@@ -89,7 +89,7 @@
 
 <body>
   <div>
-    <a href="index.html">
+    <a href="/SportsCenter/">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
@@ -101,8 +101,8 @@
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label for="username" class="form-label">Username</label>
-              <input type="text" id="username" name="username" class="form-control" placeholder="Username" autocomplete="off">
+              <input type="text" name="nome" value="{$NomeTitolare}" required>
+              <label for="">Nome</label>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>

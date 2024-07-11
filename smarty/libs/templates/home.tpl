@@ -110,7 +110,7 @@
                 <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/index">Logout</a>
+                <a class="nav-link" href="/SportsCenter/">Logout</a>
               </li>
             </ul>
           </div>
@@ -546,16 +546,16 @@
               <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/">Logout</a>

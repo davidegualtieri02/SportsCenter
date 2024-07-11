@@ -98,22 +98,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="profilo.tpl">Profilo<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.tpl">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -174,20 +174,20 @@
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="/SportsCenter/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.tpl">Login</a>
+              <a class="" href="/SportsCenter/login">Login</a>
             </li>
           </ul>
         </div>
