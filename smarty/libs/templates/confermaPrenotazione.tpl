@@ -9,11 +9,11 @@
   <meta name="author" content="">
   <title>SportsCenter</title>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/responsive.css" rel="stylesheet">
-  <link href="css/attrezzatura.css" rel="stylesheet">
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet">
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet">
+  <link href="/SportsCenter/smarty/libs/css/attrezzatura.css" rel="stylesheet">
 </head>
 <body class="sub_page">
   <div class="hero_area">
@@ -21,26 +21,26 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="/SportsCenter/Utente/home">
-            <img src="images/logo.png" alt="">
+            <img src="/SportsCenter/smarty/libs/images/logo.png" alt="">
             <span>SportsCenter</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
-                  <img src="images/location.png" alt="">
+                  <img src="/SportsCenter/smarty/libs/images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
-                  <img src="images/call.png" alt="">
+                  <img src="/SportsCenter/smarty/libs/images/call.png" alt="">
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
-                  <img src="images/envelope.png" alt="">
+                  <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -155,37 +155,37 @@
           </h6>
           <div class="info_link-box">
             <a href="">
-              <img src="images/location-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Coppito 1, L'Aquila</span>
             </a>
             <a href="">
-              <img src="images/call-white.png" alt="">
+              <img src="im/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
             <a href="">
-              <img src="images/mail-white.png" alt="">
+              <img src="ima/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
           <div class="info_social">
             <div>
               <a href="">
-                <img src="images/facebook-logo-button.png" alt="">
+                <img src="/SportsCenter/smarty/libs/images/facebook-logo-button.png" alt="">
               </a>
             </div>
             <div>
               <a href="">
-                <img src="images/twitter-logo-button.png" alt="">
+                <img src="/SportsCenter/smarty/libs/images/twitter-logo-button.png" alt="">
               </a>
             </div>
             <div>
               <a href="">
-                <img src="images/linkedin.png" alt="">
+                <img src="/SportsCenter/smarty/libs/images/linkedin.png" alt="">
               </a>
             </div>
             <div>
               <a href="">
-                <img src="images/instagram.png" alt="">
+                <img src="/SportsCenter/smarty/libs/images/instagram.png" alt="">
               </a>
             </div>
           </div>
@@ -205,8 +205,8 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script src="js/attrezzatura.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
+  <script src="/SportsCenter/smarty/libs/js/attrezzatura.js"></script>
 </body>
 </html>

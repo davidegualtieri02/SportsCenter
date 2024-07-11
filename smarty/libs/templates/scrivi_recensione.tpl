@@ -19,16 +19,16 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
     <!-- fonts style -->
     <link
         href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
         rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
     <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
     <script>
         function ready() {
             if (!navigator.cookieEnabled) {
@@ -46,7 +46,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container">
                     <a class="navbar-brand" href="home.tpl">
-                        <img src="images/logo.png" alt="" />
+                        <img src="/SportsCenter/smarty/libs/images/logo.png" alt="" />
                         <span>
                             SportsCenter
                         </span>
@@ -55,19 +55,19 @@
                         <ul class="navbar-nav ">
                             <li class="nav-item">
                                 <a class="nav-link" href="contattaci.tpl">
-                                    <img src="images/location.png" alt="" />
+                                    <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                                     <span>Location</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contattaci.tpl">
-                                    <img src="images/call.png" alt="" />
+                                    <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                                     <span>tel: +393661830182</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contattaci.tpl">
-                                    <img src="images/envelope.png" alt="" />
+                                    <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                                     <span>daiegrom@gmail.com</span>
                                 </a>
                             </li>
@@ -213,37 +213,37 @@
                     </h6>
                     <div class="info_link-box">
                         <a href="">
-                            <img src="images/location-white.png" alt="">
+                            <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
                             <span> coppito1,via vetoio3</span>
                         </a>
                         <a href="">
-                            <img src="images/call-white.png" alt="">
+                            <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
                             <span>+39 3661830182</span>
                         </a>
                         <a href="">
-                            <img src="images/mail-white.png" alt="">
+                            <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
                             <span> lorfrac@gmail.com</span>
                         </a>
                     </div>
                     <div class="info_social">
                         <div>
                             <a href="">
-                                <img src="images/facebook-logo-button.png" alt="">
+                                <img src="/SportsCenter/smarty/libs/images/facebook-logo-button.png" alt="">
                             </a>
                         </div>
                         <div>
                             <a href="">
-                                <img src="images/twitter-logo-button.png" alt="">
+                                <img src="/SportsCenter/smarty/libs/images/twitter-logo-button.png" alt="">
                             </a>
                         </div>
                         <div>
                             <a href="">
-                                <img src="images/linkedin.png" alt="">
+                                <img src="/SportsCenter/smarty/libs/images/linkedin.png" alt="">
                             </a>
                         </div>
                         <div>
                             <a href="">
-                                <img src="images/instagram.png" alt="">
+                                <img src="/SportsCenter/smarty/libs/images/instagram.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -262,9 +262,9 @@
     </section>
     <!-- footer section -->
 
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/profilo.js"></script>
+    <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/SportsCenter/smarty/libs/js/profilo.js"></script>
     
 
 </body>

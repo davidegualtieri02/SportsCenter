@@ -13,25 +13,25 @@
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
   <style>
     .about_section {
-      background-image: url('images/ragazzi.png');
+      background-image: url('/SportsCenter/smarty/libs/images/ragazzi.png');
       background-size: cover;
       background-position: center;
     }
@@ -53,7 +53,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="home.tpl">
-            <img src="images/logo.png" alt="" />
+            <img src="ima/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
             </span>
@@ -62,19 +62,19 @@
             <ul class="navbar-nav ">
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/location.png" alt="" />
+                  <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/call.png" alt="" />
+                  <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/envelope.png" alt="" />
+                  <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -197,15 +197,15 @@
           </h6>
           <div class="info_link-box">
             <a href="contattaci.tpl">
-              <img src="images/location-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
             <a href="contattaci.tpl">
-              <img src="images/call-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
             <a href="contattaci.tpl">
-              <img src="images/mail-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
@@ -213,22 +213,22 @@
         <div class="col-md-3">
           <div>
             <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
             </a>
           </div>
         </div>
@@ -247,9 +247,9 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"></script>
 </body>
 
 </html>
