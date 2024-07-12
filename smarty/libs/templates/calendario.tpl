@@ -117,7 +117,6 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="data:{$imageCampo->getTipo()};base64,{$imageCampo->getEncodedData()}" alt="{$titoloCampo}" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
@@ -127,7 +126,7 @@
               {if $id_tesseraUtente == 0}
                 {$prezzoCampo} euro
               {else}
-                {math equation="x - (x * y / 100)" x=$prezzocampo y=30 assign="prezzo_scontato"}
+                {math equation="x - (x * y / 100)" x=$prezzoCampo y=30 assign="prezzo_scontato"}
                 Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
               {/if}
               </p>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
   from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_66911332265d78_41841347',
+  'unifunc' => 'content_6691a0e346da07_88780716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8382db24aab8b7a77cdff7fc0a8faaf4fe30e2dd' => 
     array (
       0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl',
-      1 => 1720770429,
+      1 => 1720819895,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66911332265d78_41841347 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6691a0e346da07_88780716 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
 ?>
 <!DOCTYPE html>
@@ -145,10 +145,6 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
-              <img src="data:<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getTipo();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getEncodedData();?>
-" alt="<?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
-" style="max-width: 100%; height: auto;">
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>

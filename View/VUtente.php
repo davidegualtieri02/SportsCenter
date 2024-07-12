@@ -22,7 +22,7 @@ class VUtente{
      * Funzione che indirizza alla pagina con il form di login 
      */
     public function MostraLoginFormUtente(){
-        $this->smarty->assign('errore',false);
+        $this->smarty->assign('error',false);
         $this->smarty->assign('ban',false);
         $this->smarty->assign('regErr',false);
         $this->smarty->display('./smarty/libs/templates/login_form.tpl');
@@ -30,26 +30,26 @@ class VUtente{
     public function MostraFormRegistrazione(){
         $this->smarty->display('./smarty/libs/templates/form_registrazione.tpl');
     }
-    public function loginBan(){
-        $this->smarty->assign('errore',false);
+    public function loginBan(){ //utente bannato
+        $this->smarty->assign('error',false);
         $this->smarty->assign('ban',true);
         $this->smarty->assign('regErr',false);
         $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
-    public function erroreLogin(){
-        $this->smarty->assign('ban', true);
-        $this->smarty->assign('passwordErrata',false);
-        $this->smarty->assign('emailErrata', false);
-        $this->smarty->display('.smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
+    public function erroreLogin(){ //credenziali errate
+        $this->smarty->assign('ban', false);
+        $this->smarty->assign('error',true);
+        $this->smarty->assign('regErr',false);
+        $this->smarty->display('./smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
     }
-    public function erroreRegistrazione($errore){
-        switch ($errore){
-            case 'emailEsistente':
-                $this->smarty->assign('emailEsistente', false);
-                break;
-        }
-        $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
+
+    public function erroreRegistrazione(){ //email esistente
+        $this->smarty->assign('ban', false);
+        $this->smarty->assign('error',false);
+        $this->smarty->assign('regErr',true);
+        $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
+
 
     public function ModificaPassword($utente, $error){
 
@@ -82,7 +82,9 @@ class VUtente{
         $this->smarty->assign('listaPrenotazioni', $listaPrenotazioni);
         $this->smarty->display('./smarty/libs/templates/prenotazioni.tpl');
     }
-
+    public function index(){
+        $this->smarty->display('./smarty/libs/templates/index.tpl');
+    }
 }
 
 

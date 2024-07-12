@@ -200,4 +200,23 @@ class FUtenteRegistrato{
             echo 'Inserisci email e password!';
         }
     }
+
+    public static function getPW($ut){
+        //$risultato = self::getUtenteByEmail($ut->getEmail());
+        //return $risultato->getPassword();
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
+        return $risultato[0]['password'];
+    }
+
+    public static function getNome($ut){
+        //$risultato = self::getUtenteByEmail($ut->getEmail());
+        //return $risultato->getPassword();
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
+        return $risultato[0]['nome'];
+    }
+
+    public static function getId_tessera($ut){
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
+        return $risultato[0]['id_tessera'];
+    }
 }

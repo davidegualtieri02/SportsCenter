@@ -63,21 +63,21 @@ class CPrenotaCampo{
     /**
      * Metodo che dopo aver cliccato sul campo da prenotare mostra le info del campo e il calendario
      */
-    public static function MostraCalendario(){
+    public static function MostraCalendario($idCampo){
         if(CUtente::Loggato()){
             $view = new VPrenotaCampo(); 
-            $idCampo = USession::getIstanza()->getElementoSessione('campo');
+            //$idCampo = USession::getIstanza()->getElementoSessione('campo');
             $campo = FPersistentManager::recuperaOggetto('ECampo',$idCampo);
             $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
             $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato',$idUtente);
             $titoloCampo = $campo->getTitolo();
             $prezzoCampo = $campo->getPrezzo();
-            $id_imageCampo = $campo->getIdimageCampo();
-            $imageCampo = FPersistentManager::recuperaOggetto('EImageCampo',$id_imageCampo);
+            //$id_imageCampo = $campo->getIdimageCampo();
+            //$imageCampo = FPersistentManager::recuperaOggetto('EImageCampo',$id_imageCampo);
             if(UServer::getRichiestaMetodo() == "GET"){
                 $nomeUtente = $utente->getNome();
-                $id_tesseraUtente = $utente->getid_tessera();
-                $view->MostraCalendario($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo);
+                $id_tesseraUtente = FPersistentManager::getId_tessera($utente);
+                $view->MostraCalendario($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo);
             }
         }
     }
@@ -157,21 +157,26 @@ class CPrenotaCampo{
             }//quando si elimina una prenotazione si torna all pagina delle prenotazioni per vedere che la prenotazione è stata eliminata
         }
     }
-    public static function mostraCampi(){
+    public static function servizi(){
+        //$idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+        //$utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $idUtente);
+        //$view = new VPrenotaCampo();
+        //$view->MostraCampiUtente($utente);
         if (CUtente::Loggato()){
             $view = new VPrenotaCampo();
-            $utente=USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $idUtente);
             // Recupera i campi da tutte le tabelle specificate usando recuperaOggetto        
             if(UServer::getRichiestaMetodo() == 'GET'){
-                $campi = FPersistentManager::RecuperaTuple(FCampo::getTabella());
-            // Aggiunge tutti i campi contenuti negli array sopra  in un unico array campi
+                //$campi = FPersistentManager::RecuperaTuple(FCampo::getTabella());
+            // Aggiunge tutti i campi contenuti negli array sopra in un unico array campi
 
             // quando aggiungiamo un campo , siccome fotocampo è un attributo del campo viene caricata e visualizzata anche l'immagine del campo insieme a tutto il campo
              // Passa i dati alla vista per la visualizzazione
-                $view->MostraCampiUtente($campi,$utente);
+                $view->MostraCampiUtente($utente);
             }    
         else{
-            header("Location: SportsCenter/Utente/login");
+            header("Location: login");
             exit;
             }
         }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
   from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_66911332036d33_22813599',
+  'unifunc' => 'content_6691a0e32506e3_03086201',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2bd5f2a564a755b721147b6540bbff472b758e64' => 
     array (
       0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
-      1 => 1720771395,
+      1 => 1720784698,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66911332036d33_22813599 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6691a0e32506e3_03086201 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -66,6 +66,28 @@ function content_66911332036d33_22813599 (Smarty_Internal_Template $_smarty_tpl)
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
       }
     }
+    
+    function validateForm() { 
+      const password = document.querySelector('input[name="password"]').value;
+
+      const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+
+      let isValid = true;
+      let errorMessage = '';
+
+      if (!passwordPattern.test(password)) {
+        isValid = false;
+        errorMessage += 'La password deve contenere almeno 6 caratteri, inclusi sia caratteri numerici che non numerici.\n';
+      }
+
+      if (!isValid) {
+        alert(errorMessage);
+      }
+
+      return isValid;
+    }
+
+    document.addEventListener("DOMContentLoaded", ready);
   <?php echo '</script'; ?>
 >
   
@@ -74,7 +96,7 @@ function content_66911332036d33_22813599 (Smarty_Internal_Template $_smarty_tpl)
 
 <body>
   <div>
-    <a href="index.html">
+    <a href="home">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
@@ -82,34 +104,34 @@ function content_66911332036d33_22813599 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="SportsCenter/Utente/registrazione" method="post"> <!--onsubmit="return validateForm()"-->
             <h2>Registrati su SportsCenter</h2>
+            <form id = "myform" action="registrazione" method = "post" onsubmit="return validateForm()">
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label">Nome</label>
-              <input name = "nome" type="text" class="form-control" placeholder="inserisci il tuo nome">
+              <label class="form-label"></label>
+              <input id = "nome" name = "nome" type="text" class="form-control" placeholder="Inserisci il tuo nome">
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label">Cognome</label>
-              <input name = "cognome" type="text" class="form-control" placeholder="inserisci il tuo cognome">
+              <label class="form-label"></label>
+              <input id = "cognome" name = "cognome" type="text" class="form-control" placeholder="Inserisci il tuo cognome">
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <label class="form-label">Email</label>
-              <input name = "email" type="text" class="form-control" placeholder="inserisci l'email">
+              <label class="form-label"></label>
+              <input id = "email" name = "email" type="text" class="form-control" placeholder="Inserisci l'email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <label class="form-label">Password</label>
-              <input name = "password" type="text" class="form-control" placeholder="inserisci password">
+              <label class="form-label"></label>
+              <input id = "password" name = "password" type="password" class="form-control" placeholder="Inserisci la password">
             </div>
-            <a  type="submit" href = "/SportsCeneter/Utente/login" >Registrati</a>
+            <a href="registrazione"><button type="submit" id="submitButton">Registrati</button></a>
+            </form> 
             <p></p>
             <div class="login">
-              <p>Hai già un profilo? <a href="/SportsCeneter/Utente/login">Login</a></p>
+              <p>Hai già un profilo? <a href="login">Login</a></p>
             </div>
-          </form>
         </div>
       </div>
     </div>

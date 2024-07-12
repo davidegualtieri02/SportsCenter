@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:43:39
+/* Smarty version 4.3.2, created on 2024-07-12 16:15:23
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_669116eb174314_40259897',
+  'unifunc' => 'content_66913a7b785a42_10107648',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '678e6278e7d9534c3608e5da7891a0c18bbfec67' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/login_form.tpl',
-      1 => 1720783909,
+      1 => 1720793717,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669116eb174314_40259897 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
