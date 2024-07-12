@@ -38,8 +38,8 @@
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
       }
     }
-
-    function validateForm() {
+    
+    function validateForm() { 
       const password = document.querySelector('input[name="password"]').value;
 
       const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
