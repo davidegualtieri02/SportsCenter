@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-12 13:44:04
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb304767c34_41888121',
+  'unifunc' => 'content_66911704ed2868_87510852',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3dd99b1e0bd4e18192c0dd624f473975be613a47' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
-      1 => 1720627965,
+      1 => 1720783879,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb304767c34_41888121 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66911704ed2868_87510852 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -36,20 +36,20 @@ function content_668eb304767c34_41888121 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
 
   <!-- Custom styles -->
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
-  <link href="css/login.css" rel="stylesheet"/>
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
+  <link href="/SportsCenter/smarty/libs/css/login.css" rel="stylesheet"/>
   <!-- Ionicons -->
   <?php echo '<script'; ?>
  type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
@@ -96,42 +96,42 @@ function content_668eb304767c34_41888121 (Smarty_Internal_Template $_smarty_tpl)
 
 <body>
   <div>
-    <a href="index.html">
-      <img src="images/logo.png" alt="SportsCenter"></a>
+    <a href="home">
+      <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
   <section class="login_section layout_padding">
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="SportsCenter/Utente/registrazione" method="post" onsubmit="return validateForm()">
             <h2>Registrati su SportsCenter</h2>
+            <form id = "myform" action="registrazione" method = "post" onsubmit="return validateForm()">
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label">Nome</label>
-              <input name = "nome" type="text" class="form-control" placeholder="inserisci il tuo nome">
+              <label class="form-label"></label>
+              <input id = "nome" name = "nome" type="text" class="form-control" placeholder="Inserisci il tuo nome">
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label">Cognome</label>
-              <input name = "cognome" type="text" class="form-control" placeholder="inserisci il tuo cognome">
+              <label class="form-label"></label>
+              <input id = "cognome" name = "cognome" type="text" class="form-control" placeholder="Inserisci il tuo cognome">
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <label class="form-label">Email</label>
-              <input name = "email" type="text" class="form-control" placeholder="inserisci l'email">
+              <label class="form-label"></label>
+              <input id = "email" name = "email" type="text" class="form-control" placeholder="Inserisci l'email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <label class="form-label">Password</label>
-              <input name = "password" type="text" class="form-control" placeholder="inserisci password">
+              <label class="form-label"></label>
+              <input id = "password" name = "password" type="password" class="form-control" placeholder="Inserisci la password">
             </div>
-            <a  type="submit" href = "/SportsCeneter/Utente/login" >Registrati</a>
+            <a href="registrazione"><button type="submit" id="submitButton">Registrati</button></a>
+            </form> 
             <p></p>
             <div class="login">
-              <p>Hai già un profilo? <a href="/SportsCeneter/Utente/login">Login</a></p>
+              <p>Hai già un profilo? <a href="login">Login</a></p>
             </div>
-          </form>
         </div>
       </div>
     </div>
@@ -140,10 +140,10 @@ function content_668eb304767c34_41888121 (Smarty_Internal_Template $_smarty_tpl)
 
   <!-- Scripts -->
   <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
 >
