@@ -43,7 +43,7 @@
 
 <body>
   <div>
-    <a href="index.html">
+    <a href="home">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
@@ -52,8 +52,8 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="/SportsCenter/Utente/login" method="post">
             <h2>Accedi a SportsCenter</h2>
+            <form id = "myform" action="login" method = "post" onsubmit="return validateForm()">
             {if $error == true}
               <p style="color: red; margin-left: 11%">credenziali errate</p>
               {/if}
@@ -64,20 +64,20 @@
                 <p style="color: red; margin-left: 7%">email o password sono già in uso</p>
                 {/if}
             <div class="inputbox">
-              <ion-icon name="mail-outline"></ion-icon>
-              <label for="email" class="form-label">Email</label>
-              <input type="text" id="email" name="email" class="form-control" placeholder="email" autocomplete="off">
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id = "email" name = "email" type="text" class="form-control" placeholder="Inserisci la tua email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <label for="password" class="form-label">Password</label>
-                <input type="text" id="password" name="password" class="form-control" placeholder="password" autocomplete="off">
+              <label class="form-label"></label>
+              <input id = "password" name = "password" type="password" class="form-control" placeholder="Inserisci la password">
             </div>
-            <a type="submit" href ="/SportsCenter/Utente/home">Accedi</a>
+            <a href="login"><button type="submit" id="submitButton">Accedi</button></a>
+            </form>
             <div class="login">
-              <p>Non hai un profilo? <a href="/SportsCenter/Utente/registrazione">Registrati</a></p>
+              <p>Non hai un profilo? <a href="registrazione">Registrati</a></p>
             </div>
-          </form>
         </div>
       </div>
     </div>

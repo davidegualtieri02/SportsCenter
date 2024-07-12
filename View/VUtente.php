@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__ . "/../install/StartSmarty.php");
 class VUtente{
     private $smarty;
     public function __construct()
@@ -37,15 +37,17 @@ class VUtente{
         $this->smarty->display('./smarty/libs/templates/login_form.tpl');
     }
     public function erroreLogin(){
-        $this->smarty->assign('errore', false);
-        $this->smarty->assign('ban',false);
-        $this->smarty->assign('regErr', false);
+        $this->smarty->assign('ban', true);
+        $this->smarty->assign('passwordErrata',false);
+        $this->smarty->assign('emailErrata', false);
         $this->smarty->display('.smarty/libs/templates/login_form.tpl'); //quindi login_form.tpl deve prevedere di mostrare un eventuale messaggio di errore in caso di accesso negato
     }
-    public function erroreRegistrazione(){
-        $this->smarty->assign('errore', false);
-        $this->smarty->assign('ban',false);
-        $this->smarty->assign('regErr',false);
+    public function erroreRegistrazione($errore){
+        switch ($errore){
+            case 'emailEsistente':
+                $this->smarty->assign('emailEsistente', false);
+                break;
+        }
         $this->smarty->display('.smarty/libs/templates/form_registrazione.tpl');
     }
 
@@ -82,9 +84,6 @@ class VUtente{
     }
 
 }
-
-
-
 
 
 
