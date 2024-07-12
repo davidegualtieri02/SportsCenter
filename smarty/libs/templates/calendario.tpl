@@ -117,6 +117,13 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+              <!--<img src="data:{$imageCampo->getTipo()};base64,{$imageCampo->getEncodedData()}" alt="{$titoloCampo}" style="max-width: 100%; height: auto;"> -->
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>

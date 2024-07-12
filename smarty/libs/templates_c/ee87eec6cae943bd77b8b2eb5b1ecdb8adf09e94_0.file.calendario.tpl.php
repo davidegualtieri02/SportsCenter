@@ -1,18 +1,42 @@
 <?php
+<<<<<<< HEAD
 /* Smarty version 4.3.2, created on 2024-07-12 23:39:37
+=======
+<<<<<<< HEAD
+/* Smarty version 4.3.2, created on 2024-07-12 23:39:37
+=======
+/* Smarty version 4.3.2, created on 2024-07-12 23:23:47
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
+<<<<<<< HEAD
   'unifunc' => 'content_6691a299344d25_58680778',
+=======
+<<<<<<< HEAD
+  'unifunc' => 'content_6691a299344d25_58680778',
+=======
+  'unifunc' => 'content_66919ee3ccc5f5_62302493',
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ee87eec6cae943bd77b8b2eb5b1ecdb8adf09e94' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl',
+<<<<<<< HEAD
       1 => 1720820372,
+=======
+<<<<<<< HEAD
+      1 => 1720820372,
+=======
+      1 => 1720819421,
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
       2 => 'file',
     ),
   ),
@@ -20,7 +44,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
+<<<<<<< HEAD
 function content_6691a299344d25_58680778 (Smarty_Internal_Template $_smarty_tpl) {
+=======
+<<<<<<< HEAD
+function content_6691a299344d25_58680778 (Smarty_Internal_Template $_smarty_tpl) {
+=======
+function content_66919ee3ccc5f5_62302493 (Smarty_Internal_Template $_smarty_tpl) {
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
 ?>
 <!DOCTYPE html>
@@ -145,6 +177,16 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+              <!--<img src="data:<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getTipo();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['imageCampo']->value->getEncodedData();?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['titoloCampo']->value;?>
+" style="max-width: 100%; height: auto;"> -->
+>>>>>>> dbf6e815863dd891e55285a37f4a3423bbeb0002
+>>>>>>> 826b77b8756692393f765615cdd3bbeec41a333f
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
