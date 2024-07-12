@@ -762,4 +762,21 @@ class FPersistentManager{
         $risultato = FTessera::VerificaTesseramentoUtente($pdo,$idutente);
         return $risultato;
     }
+
+    public static function getPWutente($ut){
+        return FUtenteRegistrato::getPW($ut);
+    }
+
+    public static function isBanned($ut){
+        return FUtenteRegistrato::isBanned($ut);
+    }
+    public static function getId($ut){
+        return FUtenteRegistrato::getId($ut);
+    }
+    public static function getNome($ut){
+        return FUtenteRegistrato::getNome($ut);
+    }
+    public static function getId_tessera($ut){
+        return FUtenteRegistrato::getId_tessera($ut);
+    }
 }
