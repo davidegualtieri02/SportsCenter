@@ -169,4 +169,35 @@ class FUtenteRegistrato{
         $risultatoQuery = FEntityManager::getIstanza()->recuperaOggetto(self::getTabella(),$campo,$id);
         return FEntityManager::getIstanza()->esisteNelDB($risultatoQuery); // il metodo verifica tramite un oggetto FEntityMAnager che richiama il metodo esisteNelDB() restituisce true se esiste l'oggetto che cerchiamo nel db  altrimenti false .
     }
+
+    public static function verificaCredenziali() {
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            $emailInserita = $_POST['email'];
+            $passwordInserita = $_POST['password'];
+    
+            // Connessione al database (modifica i parametri in base alla tua configurazione)
+            try {
+                $pdo = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8", DB_USER, DB_PASS);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+                // Query per ottenere l'utente con l'email inserita
+                $stmt = $pdo->prepare('SELECT email, password FROM utenti WHERE email = :email');
+                $stmt->bindParam(':email', $emailInserita);
+                $stmt->execute();
+    
+                $utente = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                if ($utente && $passwordInserita === $utente['password']) {
+                    echo 'Credenziali corrette!';
+                    // Puoi eseguire ulteriori azioni qui, come avviare una sessione utente
+                } else {
+                    echo 'Email o password errate!';
+                }
+            } catch (PDOException $e) {
+                echo 'Errore di connessione: ' . $e->getMessage();
+            }
+        } else {
+            echo 'Inserisci email e password!';
+        }
+    }
 }

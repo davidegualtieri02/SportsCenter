@@ -32,13 +32,7 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   {literal}
-  <script>
-    function ready(){
-      if (!navigator.cookieEnabled) {
-        alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-      }
-    }
-    
+  <script>    
     function validateForm() { 
       const password = document.querySelector('input[name="password"]').value;
 
