@@ -38,28 +38,6 @@
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
       }
     }
-
-    function validateForm() {
-      const password = document.querySelector('input[name="password"]').value;
-
-      const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
-
-      let isValid = true;
-      let errorMessage = '';
-
-      if (!passwordPattern.test(password)) {
-        isValid = false;
-        errorMessage += 'La password deve contenere almeno 6 caratteri, inclusi sia caratteri numerici che non numerici.\n';
-      }
-
-      if (!isValid) {
-        alert(errorMessage);
-      }
-
-      return isValid;
-    }
-
-    document.addEventListener("DOMContentLoaded", ready);
   </script>
   {/literal}
     
@@ -75,7 +53,7 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="SportsCenter/Utente/registrazione" method="post" onsubmit="return validateForm()">
+          <form action="SportsCenter/Utente/registrazione" method="post"> <!--onsubmit="return validateForm()"-->
             <h2>Registrati su SportsCenter</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
