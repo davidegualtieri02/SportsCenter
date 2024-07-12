@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
   from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_669113320f8438_92697524',
+  'unifunc' => 'content_6691a0e32f6e51_78812475',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c084449b0129dada730aec111a87463048b4fe89' => 
     array (
       0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/home.tpl',
-      1 => 1720770429,
+      1 => 1720814586,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669113320f8438_92697524 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6691a0e32f6e51_78812475 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -83,19 +83,19 @@ function content_669113320f8438_92697524 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -120,22 +120,22 @@ function content_669113320f8438_92697524 (Smarty_Internal_Template $_smarty_tpl)
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
+                <a class="nav-link" href="home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
+                <a class="nav-link" href="prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                <a class="nav-link" href="servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                <a class="nav-link" href="contattaci">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
+                <a class="nav-link" href="profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
               </li>
             </ul>
           </div>
@@ -157,10 +157,10 @@ function content_669113320f8438_92697524 (Smarty_Internal_Template $_smarty_tpl)
             </h1>
             <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
-              <a href="/SportsCenter/Utente/servizi" class="btn-1">
+              <a href = "/SportsCenter/PrenotaCampo/servizi" class="btn-1">
                 Prenota ora
               </a>
-              <a href="/SportsCenter/Utente/recensioni" class="btn-1">
+              <a href="/../Recensione/recensioni" class="btn-1">
                 Recensioni
               </a>
             </div>

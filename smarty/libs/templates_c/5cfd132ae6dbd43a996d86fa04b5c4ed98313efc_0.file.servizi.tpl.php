@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
   from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/servizi.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_669113321dc248_13268990',
+  'unifunc' => 'content_6691a0e33dd7e6_86779530',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5cfd132ae6dbd43a996d86fa04b5c4ed98313efc' => 
     array (
       0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/servizi.tpl',
-      1 => 1720686748,
+      1 => 1720818599,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6691a0e33dd7e6_86779530 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -83,19 +83,19 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -106,36 +106,37 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
       </div>
     </header>
 <!-- end header section -->
+
 <!-- slider section -->
-<section class="slider_section position-relative">
-  <div class="container">
-    <div class="custom_nav2">
-      <nav class="navbar navbar-expand-lg custom_nav-container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <section class="slider_section position-relative">
+      <div class="container">
+        <div class="custom_nav2">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="prenotazioni">Prenotazioni</a>
+              </li>
               <li class="nav-item active">
-                <a class="nav-link" href="home.tpl">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="servizi">Servizi<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                <a class="nav-link" href="contattaci">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="servizi.tpl">Servizi</a>
+                <a class="nav-link" href="profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">Contattaci</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="profilo.tpl">Profilo</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.tpl">Logout</a>
+                <a class="nav-link" href="index">Logout</a>
               </li>
             </ul>
           </div>
@@ -163,7 +164,7 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio1.tpl">
+            <a href="MostraCalendario/calcio1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -322,20 +323,23 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="login_form.tpl">Login</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/">Logout</a>
             </li>
           </ul>
         </div>
@@ -345,15 +349,15 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
           </h6>
           <div class="info_link-box">
             <a href="contattaci.tpl">
-              <img src="images/location-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
             <a href="contattaci.tpl">
-              <img src="images/call-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
             <a href="contattaci.tpl">
-              <img src="images/mail-white.png" alt="">
+              <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
@@ -361,22 +365,22 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
         <div class="col-md-3">
           <div>
             <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
             </a>
           </div>
         </div>
@@ -390,7 +394,8 @@ function content_669113321dc248_13268990 (Smarty_Internal_Template $_smarty_tpl)
   <!-- footer section -->
   <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
     </p>
   </section>
   <!-- footer section -->

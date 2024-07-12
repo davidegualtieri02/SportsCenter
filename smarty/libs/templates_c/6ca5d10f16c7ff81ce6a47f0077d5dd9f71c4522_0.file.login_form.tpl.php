@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
   from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_669113321321b9_00708852',
+  'unifunc' => 'content_6691a0e332e738_78405985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6ca5d10f16c7ff81ce6a47f0077d5dd9f71c4522' => 
     array (
       0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/login_form.tpl',
-      1 => 1720683427,
+      1 => 1720793717,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669113321321b9_00708852 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6691a0e332e738_78405985 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +72,7 @@ function content_669113321321b9_00708852 (Smarty_Internal_Template $_smarty_tpl)
 
 <body>
   <div>
-    <a href="index.html">
+    <a href="home">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
@@ -81,8 +81,8 @@ function content_669113321321b9_00708852 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="/SportsCenter/Utente/login" method="post">
             <h2>Accedi a SportsCenter</h2>
+            <form id = "myform" action="login" method = "post" onsubmit="return validateForm()">
             <?php if ($_smarty_tpl->tpl_vars['error']->value == true) {?>
               <p style="color: red; margin-left: 11%">credenziali errate</p>
               <?php }?>
@@ -93,20 +93,20 @@ function content_669113321321b9_00708852 (Smarty_Internal_Template $_smarty_tpl)
                 <p style="color: red; margin-left: 7%">email o password sono già in uso</p>
                 <?php }?>
             <div class="inputbox">
-              <ion-icon name="mail-outline"></ion-icon>
-              <label for="email" class="form-label">Email</label>
-              <input type="text" id="email" name="email" class="form-control" placeholder="email" autocomplete="off">
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id = "email" name = "email" type="text" class="form-control" placeholder="Inserisci la tua email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <label for="password" class="form-label">Password</label>
-                <input type="text" id="password" name="password" class="form-control" placeholder="password" autocomplete="off">
+              <label class="form-label"></label>
+              <input id = "password" name = "password" type="password" class="form-control" placeholder="Inserisci la password">
             </div>
-            <a type="submit" href ="/SportsCenter/Utente/home">Accedi</a>
+            <a href="login"><button type="submit" id="submitButton">Accedi</button></a>
+            </form>
             <div class="login">
-              <p>Non hai un profilo? <a href="/SportsCenter/Utente/registrazione">Registrati</a></p>
+              <p>Non hai un profilo? <a href="registrazione">Registrati</a></p>
             </div>
-          </form>
         </div>
       </div>
     </div>
