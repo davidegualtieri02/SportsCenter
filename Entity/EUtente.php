@@ -25,7 +25,7 @@ class EUtente{
         // anche se qualcuno dovesse ottenere accesso al tuo database, non sarebbe in grado di leggere le password degli utenti.
         $this->nome = $nome;
         $this->cognome = $cognome;
-        $this ->email = $email;
+        $this->email = $email;
         $this->password = $hashPassword; 
         
     }

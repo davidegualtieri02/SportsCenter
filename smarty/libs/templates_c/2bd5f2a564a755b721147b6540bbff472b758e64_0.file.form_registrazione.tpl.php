@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.3.2, created on 2024-07-12 13:27:46
+  from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.3.2',
+  'unifunc' => 'content_66911332036d33_22813599',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2bd5f2a564a755b721147b6540bbff472b758e64' => 
+    array (
+      0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
+      1 => 1720771395,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_66911332036d33_22813599 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -28,46 +51,30 @@
   <link href="/SportsCenter/smarty/libs/css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
   <link href="/SportsCenter/smarty/libs/css/login.css" rel="stylesheet"/>
   <!-- Ionicons -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <?php echo '<script'; ?>
+ type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"><?php echo '</script'; ?>
+>
 
-  {literal}
-  <script>
+  
+  <?php echo '<script'; ?>
+>
     function ready(){
       if (!navigator.cookieEnabled) {
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
       }
     }
-
-    function validateForm() {
-      const password = document.querySelector('input[name="password"]').value;
-
-      const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
-
-      let isValid = true;
-      let errorMessage = '';
-
-      if (!passwordPattern.test(password)) {
-        isValid = false;
-        errorMessage += 'La password deve contenere almeno 6 caratteri, inclusi sia caratteri numerici che non numerici.\n';
-      }
-
-      if (!isValid) {
-        alert(errorMessage);
-      }
-
-      return isValid;
-    }
-
-    document.addEventListener("DOMContentLoaded", ready);
-  </script>
-  {/literal}
+  <?php echo '</script'; ?>
+>
+  
     
 </head>
 
 <body>
   <div>
-    <a href="home">
+    <a href="index.html">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
@@ -75,34 +82,34 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
+          <form action="SportsCenter/Utente/registrazione" method="post"> <!--onsubmit="return validateForm()"-->
             <h2>Registrati su SportsCenter</h2>
-            <form id = "myform" action="registrazione" method = "post" onsubmit="return validateForm()">
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label"></label>
-              <input id = "nome" name = "nome" type="text" class="form-control" placeholder="Inserisci il tuo nome">
+              <label class="form-label">Nome</label>
+              <input name = "nome" type="text" class="form-control" placeholder="inserisci il tuo nome">
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label class="form-label"></label>
-              <input id = "cognome" name = "cognome" type="text" class="form-control" placeholder="Inserisci il tuo cognome">
+              <label class="form-label">Cognome</label>
+              <input name = "cognome" type="text" class="form-control" placeholder="inserisci il tuo cognome">
             </div>
             <div class="inputbox">
               <ion-icon name="mail-outline"></ion-icon>
-              <label class="form-label"></label>
-              <input id = "email" name = "email" type="text" class="form-control" placeholder="Inserisci l'email">
+              <label class="form-label">Email</label>
+              <input name = "email" type="text" class="form-control" placeholder="inserisci l'email">
             </div>
             <div class="inputbox">
               <ion-icon name="lock-closed-outline"></ion-icon>
-              <label class="form-label"></label>
-              <input id = "password" name = "password" type="password" class="form-control" placeholder="Inserisci la password">
+              <label class="form-label">Password</label>
+              <input name = "password" type="text" class="form-control" placeholder="inserisci password">
             </div>
-            <a href="registrazione"><button type="submit" id="submitButton">Registrati</button></a>
-            </form> 
+            <a  type="submit" href = "/SportsCeneter/Utente/login" >Registrati</a>
             <p></p>
             <div class="login">
-              <p>Hai già un profilo? <a href="login">Login</a></p>
+              <p>Hai già un profilo? <a href="/SportsCeneter/Utente/login">Login</a></p>
             </div>
+          </form>
         </div>
       </div>
     </div>
@@ -110,19 +117,27 @@
   <!-- End registration section -->
 
   <!-- Scripts -->
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
-  <script>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
     function openNav() {
       document.getElementById("myNav").classList.toggle("menu_width");
       document
         .querySelector(".custom_menu-btn")
         .classList.toggle("menu_btn-style");
     }
-  </script>
+  <?php echo '</script'; ?>
+>
 </body>
 
 </html>
 
 
 
+<?php }
+}

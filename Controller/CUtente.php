@@ -43,6 +43,7 @@ class CUtente {
     /**
      * Metodo che permette all'utente di compilare una form per accedere al proprio account
      */
+/* DA AGORA
     public static function login(){
         if(UCookie::cookieSettato('PHPSESSID')){// verifica se un cookie con chiave 'PHPSESSID' è presente nell'array $_COOKIE, cioè è stato settato
             if(session_status()==PHP_SESSION_NONE){//  se la sessione non è iniziata
@@ -51,16 +52,44 @@ class CUtente {
             }
         }
         if(USession ::isSetElementoSessione('utenteRegistrato')){//verifica se un elemento con chiave utenteRegistrato è stato inserito nell'array superglobale $_SESSION
-            header('Location: /SportsCenter/UtenteRegistrato/home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
+            header('Location: home');// nel caso è presente nell'array , l'utente viene reindirizzato alla pagina home 
         }
         $view = new VUtente();// se l'elemento con chiave Utente è presente in $_SESSION , viene cretao un oggetto VUtente e viene mostrata una form per far si che l'utente faccia il login 
         $view->MostraLoginFormUtente();
 
     }
+*/
+
     /**
      * Metodo che verifica se l'email e la password esistono se non esistono crea un utente con quelle credenziali.
      * @return void
      */
+
+//DA DAIEG
+    public static function login(){
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $view = new VUtente();
+            $view->MostraLoginFormUtente();
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            //USession::setElementoSessione('email', UMetodiHTTP::post('email'));
+            //USession::setElementoSessione('password', UMetodiHTTP::post('password'));
+            $utente = FPersistentManager::recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
+            $idUtente = $utente->getId();
+            $nomeUtente = $utente->getNome();
+            USession::getIstanza()::setElementoSessione('utenteRegistrato', $idUtente);
+            //echo $idUtente;
+            //var_dump($_POST);
+            //var_dump($_SESSION);
+            //echo $utente->getPassword();
+            static::VerificaLogin();
+            //$view = new VUtente();
+            //$view->home($nomeUtente);
+
+        }
+    }
+
+/* DA AGORA   
     public static function registrazione(){
         $view = new VUtente();
         if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false){// in questa riga di codice vengono verificate le credenziali
@@ -71,10 +100,44 @@ class CUtente {
         }else{
             $view->erroreRegistrazione();//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
         }
-     /**
-     * Metodo per uscire dal profilo , viene reindirizzato l'utente alla pagina di login 
-     */
     }
+*/  
+    
+//DA DAIEG
+    public static function registrazione(){
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $view = new VUtente();
+            $view->MostraFormRegistrazione();
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            //var_dump($_POST);
+            // Verifica se sono stati inviati tutti i campi necessari
+            if (isset($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'])) {
+                // Recupera i dati inviati dal form
+                $nome = UMetodiHTTP::post('nome');
+                $cognome = UMetodiHTTP::post('cognome');
+                $email = UMetodiHTTP::post('email');
+                $password = UMetodiHTTP::post('password');
+        
+                // Crea un oggetto EUtenteRegistrato con i dati recuperati
+                $utenteRegistrato = new EUtenteRegistrato($nome, $cognome, $email, $password);
+        
+                // Carica l'oggetto utente nel database o in un'altra forma di persistenza
+                FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);
+                
+                // Mostra un messaggio di conferma o redireziona l'utente a una pagina successiva
+                //echo "Utente registrato: " . $_POST['nome'];
+            } else {
+                // Gestisci caso in cui non sono stati inviati tutti i campi necessari
+                echo "Errore: tutti i campi sono obbligatori.";
+        }
+    
+        // Dopo aver gestito il form, mostra nuovamente il form di login o altro contenuto
+        $view = new VUtente();
+        $view->MostraLoginFormUtente();
+        }
+    }
+
     public static function logout(){
         USession::getIstanza();
         USession::annullaSessione();
@@ -92,7 +155,7 @@ class CUtente {
         if($email){
             $utenteRegistrato = FPersistentManager::getIstanza()->recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
             //questo if qui sotto controlla se la password di un utenteregistrato ottenuta da getpassword è uguale ad una password digitata dall'utente ed inviata tramite una richiesta HTTP POST al server 
-            if(password_verify(UMetodiHTTP::post('password'),$utenteRegistrato->getPassword())){
+            if(password_verify(UMetodiHTTP::post('password'),FPersistentManager::getPWutente($utenteRegistrato))){
                 if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
                     $view->erroreLogin(); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
                 }elseif(USession::getStatoSessione() == PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
@@ -100,13 +163,15 @@ class CUtente {
                     USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getId());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
-                    header ('Location: /SportsCenter/UtenteRegistrato/home');
+                    header('Location: https://www.google.it/');
                 }
             }else {
-                $view->erroreLogin();
+                header('Location: https://www.facebook.com/');
+                //$view->erroreLogin();
             }
         }else{
-            $view->erroreLogin();// se l'email non esiste viene dato un errore di login 
+            header('Location: https://www.instagram.com/');
+            //$view->erroreLogin();// se l'email non esiste viene dato un errore di login 
         }
     }
     /**
@@ -126,12 +191,17 @@ class CUtente {
      }
 
     public static function home(){
-        if(CUtente::Loggato()){
-            $view = new VUtente();
-            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
-            $nomeUtente = $idUtente->getNome();
-            $view->home($nomeUtente);
-        }
+        //echo "Errore";
+        //if(CUtente::Loggato()){
+            //$view = new VUtente();
+            //$idUtente = USession::getIstanza()::getElementoSessione('utenteRegistrato');
+            //$nomeUtente = $idUtente->getNome();
+            //$view->home($nomeUtente);
+        //}
+        //else{
+            //header('Location: https://www.google.it/');
+        //}
+        var_dump($_SESSION['utenteRegistrato']);
     }
 
     public static function profilo(){
