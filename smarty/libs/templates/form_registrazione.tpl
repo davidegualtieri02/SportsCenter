@@ -38,6 +38,28 @@
         alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
       }
     }
+    
+    function validateForm() { 
+      const password = document.querySelector('input[name="password"]').value;
+
+      const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+
+      let isValid = true;
+      let errorMessage = '';
+
+      if (!passwordPattern.test(password)) {
+        isValid = false;
+        errorMessage += 'La password deve contenere almeno 6 caratteri, inclusi sia caratteri numerici che non numerici.\n';
+      }
+
+      if (!isValid) {
+        alert(errorMessage);
+      }
+
+      return isValid;
+    }
+
+    document.addEventListener("DOMContentLoaded", ready);
   </script>
   {/literal}
     
