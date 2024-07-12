@@ -117,6 +117,7 @@
           </div>
           <div class="col-md-6">
             <div class="text-center mb-4">
+              
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>

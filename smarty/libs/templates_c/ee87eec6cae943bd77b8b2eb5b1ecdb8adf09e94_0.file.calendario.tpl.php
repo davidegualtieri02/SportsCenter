@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 23:39:37
-  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl' */
+/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
+  from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6691a299344d25_58680778',
+  'unifunc' => 'content_6691a0e346da07_88780716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ee87eec6cae943bd77b8b2eb5b1ecdb8adf09e94' => 
+    '8382db24aab8b7a77cdff7fc0a8faaf4fe30e2dd' => 
     array (
-      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl',
-      1 => 1720820372,
+      0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl',
+      1 => 1720819895,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6691a299344d25_58680778 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
+function content_6691a0e346da07_88780716 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -156,7 +156,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
                 <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro
               <?php } else { ?>
-                <?php echo smarty_function_math(array('equation'=>"x - (x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzoCampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
+                <?php echo smarty_function_math(array('equation'=>"x - (x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzocampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
 
                 Prezzo originale: <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro, prezzo scontato per utenti tesserati: <?php echo $_smarty_tpl->tpl_vars['prezzo_scontato']->value;?>
