@@ -1,7 +1,8 @@
 <?php
+require_once(__DIR__ . "/../install/StartSmarty.php");
 class VPrenotaCampo{
    private $smarty;
-   private function __construct(){
+   public function __construct(){
          $this->smarty = StartSmarty::configuration();
         }
    public function getTitolo(){
@@ -42,13 +43,13 @@ class VPrenotaCampo{
      $this->smarty->display('./smarty/libs/templates/confermaPrenotazione.tpl');
 
    }
-   public function MostraCalendario($nomeUtente, $id_tesseraUtente, $idCampo, $titoloCampo, $prezzoCampo, $imageCampo){
+   public function MostraCalendario($nomeUtente, $id_tesseraUtente, $idCampo, $titoloCampo, $prezzoCampo){
      $this->smarty->assign('nomeUtente',$nomeUtente);
      $this->smarty->assign('id_tesseraUtente',$id_tesseraUtente);
      $this->smarty->assign('campo',$idCampo);
      $this->smarty->assign('titoloCampo',$titoloCampo);
      $this->smarty->assign('prezzoCampo',$prezzoCampo);
-     $this->smarty->assign('imageCampo',$imageCampo);
+     //$this->smarty->assign('imageCampo',$imageCampo);
      $this->smarty->display('./smarty/libs/templates/calendario.tpl');
    }
    public function MostraOrari($nomeUtente,$id_tesseraUtente,$idCampo,$titoloCampo,$prezzoCampo,$imageCampo,$giorno){
@@ -101,9 +102,8 @@ class VPrenotaCampo{
      $this->smarty->display('./Smarty/libs/templates/annulla_prenotazione.tpl');
    }
 
-   public function MostraCampiUtente($campi,$utente){
-    $this->smarty->assign('campi',$campi);
-    $this->smarty->assign('Utente',$utente);
+   public function MostraCampiUtente($utente){
+    //$this->smarty->assign('utente',$utente);
     $this->smarty->display('./smarty/libs/templates/servizi.tpl');
 
 

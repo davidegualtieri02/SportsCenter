@@ -13,13 +13,14 @@ class CUtente {
                 USession::getIstanza();// questa riga di codice ,questo metodo crea la sessione
             }
         }
-        if (USession::isSetElementoSessione('utenteRegistrato')){// isSetElementoSessione('Utente') controlla se esiste un elemento chiamato 'Utente' nell'array superglobale $_SESSION ovvero nella sessione PHP corrente
+        if(USession::isSetElementoSessione('utenteRegistrato')){// isSetElementoSessione('Utente') controlla se esiste un elemento chiamato 'Utente' nell'array superglobale $_SESSION ovvero nella sessione PHP corrente
             //se questo elemento esiste , significa che l'utente è loggato e $loggato viene impostato a true
-            $loggato= true;
+            $loggato = true;
             self::Bannato();// se loggato = true attraverso questo metodo Bannato() vediamo se l'utente è stato bannato 
+
         }
         if(!$loggato){ // se l'utente non è ancora loggato , cioè $loggato = false
-            header('Location: /SportsCenter/Utente/login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
+            header('Location: login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
             exit;// viene terminato l'esecuzione dello script per farsi che l'utente venga reindirizzato alla pagina di login
         }
         return true; // viene ritornato true se l'utente è loggato correttamente
@@ -32,7 +33,7 @@ class CUtente {
     {
         $IDUtente = USession::getElementoSessione('utenteRegistrato');//IDUtente assume come valore il valore della chiave Utente in $_SESSION , cioè assume come valore il valore dell'ID dell'utente
         $utenteRegistrato = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $IDUtente); // $Utenteregistrato punterà ad utente registrato , cioè è una variabile che contiene un utente , poichè recuperaOggetto recupera un oggetto fornendo la classe e l'ID dell'oggetto 
-        if($utenteRegistrato->Bannato()){
+        if(FPersistentManager::isBanned($utenteRegistrato)){
             $view = new VUtente(); // se l'utente è bannato viene creato un oggetto VUtente e viene chiusa e distrutta la sessione perchè giustamente un utente bannato non può prenotare un campo 
             USession::annullaSessione();
             USession::distruggiSessione();
@@ -67,22 +68,26 @@ class CUtente {
 
 //DA DAIEG
     public static function login(){
+        $view = new VUtente();
         if($_SERVER["REQUEST_METHOD"] == "GET"){
-            $view = new VUtente();
             $view->MostraLoginFormUtente();
         }
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
             //USession::setElementoSessione('email', UMetodiHTTP::post('email'));
             //USession::setElementoSessione('password', UMetodiHTTP::post('password'));
-            $utente = FPersistentManager::recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
-            $idUtente = $utente->getId();
-            $nomeUtente = $utente->getNome();
-            USession::getIstanza()::setElementoSessione('utenteRegistrato', $idUtente);
+            if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))){
+                $utente = FPersistentManager::recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
+                $idUtente = $utente->getId();
+                $nomeUtente = $utente->getNome();
+                USession::getIstanza()::setElementoSessione('utenteRegistrato', $idUtente);
             //echo $idUtente;
             //var_dump($_POST);
             //var_dump($_SESSION);
             //echo $utente->getPassword();
-            static::VerificaLogin();
+                static::VerificaLogin();
+            }else{
+                $view->erroreLogin();
+            }
             //$view = new VUtente();
             //$view->home($nomeUtente);
 
@@ -101,40 +106,40 @@ class CUtente {
             $view->erroreRegistrazione();//metodo da implementare in VUtenteRegistrato . Se le credenziali esistono viene restituito un errore di registrazione 
         }
     }
-*/  
+*/
     
 //DA DAIEG
     public static function registrazione(){
+        $view = new VUtente();
         if($_SERVER["REQUEST_METHOD"] == "GET"){
-            $view = new VUtente();
             $view->MostraFormRegistrazione();
         }
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //var_dump($_POST);
             // Verifica se sono stati inviati tutti i campi necessari
             if (isset($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'])) {
-                // Recupera i dati inviati dal form
-                $nome = UMetodiHTTP::post('nome');
-                $cognome = UMetodiHTTP::post('cognome');
-                $email = UMetodiHTTP::post('email');
-                $password = UMetodiHTTP::post('password');
-        
-                // Crea un oggetto EUtenteRegistrato con i dati recuperati
-                $utenteRegistrato = new EUtenteRegistrato($nome, $cognome, $email, $password);
-        
-                // Carica l'oggetto utente nel database o in un'altra forma di persistenza
-                FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);
+                if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))==false){
+                    // Recupera i dati inviati dal form
+                    $nome = UMetodiHTTP::post('nome');
+                    $cognome = UMetodiHTTP::post('cognome');
+                    $email = UMetodiHTTP::post('email');
+                    $password = UMetodiHTTP::post('password');
                 
+                    // Crea un oggetto EUtenteRegistrato con i dati recuperati
+                    $utenteRegistrato = new EUtenteRegistrato($nome, $cognome, $email, $password);
+        
+                    // Carica l'oggetto utente nel database o in un'altra forma di persistenza
+                    FPersistentManager::getIstanza()->uploadOgg($utenteRegistrato);
+                    $view->MostraLoginFormUtente();
+                }else{
+                    $view->erroreRegistrazione();
+                }
                 // Mostra un messaggio di conferma o redireziona l'utente a una pagina successiva
                 //echo "Utente registrato: " . $_POST['nome'];
-            } else {
+            }else{
                 // Gestisci caso in cui non sono stati inviati tutti i campi necessari
                 echo "Errore: tutti i campi sono obbligatori.";
-        }
-    
-        // Dopo aver gestito il form, mostra nuovamente il form di login o altro contenuto
-        $view = new VUtente();
-        $view->MostraLoginFormUtente();
+            }
         }
     }
 
@@ -142,7 +147,11 @@ class CUtente {
         USession::getIstanza();
         USession::annullaSessione();
         USession::distruggiSessione();
-        header('Location: /SportsCenter/Utente/login');
+        header('Location: index');
+    }
+    public static function index(){
+        $view = new VUtente();
+        $view->index();
     }
 
 /**
@@ -156,18 +165,22 @@ class CUtente {
             $utenteRegistrato = FPersistentManager::getIstanza()->recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
             //questo if qui sotto controlla se la password di un utenteregistrato ottenuta da getpassword è uguale ad una password digitata dall'utente ed inviata tramite una richiesta HTTP POST al server 
             if(password_verify(UMetodiHTTP::post('password'),FPersistentManager::getPWutente($utenteRegistrato))){
-                if($utenteRegistrato->isBanned()){// se le password sono uguali viene verificato se l'utente è bannato
-                    $view->erroreLogin(); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
-                }elseif(USession::getStatoSessione() == PHP_SESSION_NONE){// altrimenti se la sessione non è iniziata 
-                    USession::getIstanza();// viene ridata un istanza sessione 
-                    USession::setElementoSessione('utenteRegistrato',$utenteRegistrato->getId());// e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
+                if(FPersistentManager::isBanned($utenteRegistrato)){// se le password sono uguali viene verificato se l'utente è bannato
+                    $view->loginBan(); // forse questo metodo fa vedere una pagina che mi dice che io utente sono stato bannato
+                }elseif(USession::getStatoSessione() == PHP_SESSION_ACTIVE){// altrimenti se la sessione non è iniziata 
+                    //USession::getIstanza();// viene ridata un istanza sessione 
+                    USession::setElementoSessione('utenteRegistrato',FPersistentManager::getId($utenteRegistrato));
+                    $nomeUtente = FPersistentManager::getNome($utenteRegistrato);
+                    //var_dump($_SESSION);
+                    // e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
-                    header('Location: https://www.google.it/');
+                    header('Location: home');
+                    //$view->home($nomeUtente);
                 }
             }else {
-                header('Location: https://www.facebook.com/');
-                //$view->erroreLogin();
+                //header('Location: https://www.facebook.com/');
+                $view->erroreLogin(); 
             }
         }else{
             header('Location: https://www.instagram.com/');
@@ -185,23 +198,24 @@ class CUtente {
             $NuovaPass = UMetodiHTTP::post('password'); // la nuova password viene posta come valore della chiave password nell'array $_POST
             $utente->setPassword($NuovaPass);
             FPersistentManager::getIstanza()->updatePasswordUtente($utente);
-            header ('Location: /SportsCenter/UtenteRegistrato/home');
+            header ('Location: home');
 
         }
      }
 
     public static function home(){
         //echo "Errore";
-        //if(CUtente::Loggato()){
-            //$view = new VUtente();
-            //$idUtente = USession::getIstanza()::getElementoSessione('utenteRegistrato');
-            //$nomeUtente = $idUtente->getNome();
-            //$view->home($nomeUtente);
-        //}
-        //else{
-            //header('Location: https://www.google.it/');
-        //}
-        var_dump($_SESSION['utenteRegistrato']);
+        if(CUtente::Loggato()){
+            $view = new VUtente();
+            $idUtente = USession::getIstanza()::getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(),$idUtente);
+            $nomeUtente = FPersistentManager::getNome($utente);
+            $view->home($nomeUtente);
+        }
+        else{
+            header('Location: https://www.google.it/');
+        }
+        //var_dump($_SESSION['utenteRegistrato']);
     }
 
     public static function profilo(){

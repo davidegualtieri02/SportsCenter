@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-12 22:03:09
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb304823552_37586071',
+  'unifunc' => 'content_66918bfd8f1d69_48354132',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '933ea727321eec63358a65f44dca69edcbd96cd3' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl',
-      1 => 1720626627,
+      1 => 1720814586,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -83,19 +83,19 @@ function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -120,22 +120,22 @@ function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl)
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
+                <a class="nav-link" href="home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
+                <a class="nav-link" href="prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                <a class="nav-link" href="servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                <a class="nav-link" href="contattaci">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
+                <a class="nav-link" href="profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/index">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
               </li>
             </ul>
           </div>
@@ -157,10 +157,10 @@ function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl)
             </h1>
             <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
-              <a href="/SportsCenter/Utente/servizi" class="btn-1">
+              <a href = "/SportsCenter/PrenotaCampo/servizi" class="btn-1">
                 Prenota ora
               </a>
-              <a href="/SportsCenter/Utente/recensioni" class="btn-1">
+              <a href="/../Recensione/recensioni" class="btn-1">
                 Recensioni
               </a>
             </div>
@@ -582,16 +582,16 @@ function content_668eb304823552_37586071 (Smarty_Internal_Template $_smarty_tpl)
               <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/">Logout</a>

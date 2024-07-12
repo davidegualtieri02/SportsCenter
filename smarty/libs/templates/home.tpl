@@ -58,19 +58,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>Tel: (+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">
+                <a class="nav-link" href="contattaci">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -95,22 +95,22 @@
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
+                <a class="nav-link" href="home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
+                <a class="nav-link" href="prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                <a class="nav-link" href="servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                <a class="nav-link" href="contattaci">Contattaci</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
+                <a class="nav-link" href="profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/">Logout</a>
+                <a class="nav-link" href="logout">Logout</a>
               </li>
             </ul>
           </div>
@@ -131,10 +131,10 @@
             </h1>
             <p>Prenota un campo del nostro centro sportivo. Se non hai l'attrezzatura necessaria, te la diamo noi! Tutto in qualche click</p>
             <div class="btn-box">
-              <a href="/SportsCenter/Utente/servizi" class="btn-1">
+              <a href = "/SportsCenter/PrenotaCampo/servizi" class="btn-1">
                 Prenota ora
               </a>
-              <a href="/SportsCenter/Utente/recensioni" class="btn-1">
+              <a href="/../Recensione/recensioni" class="btn-1">
                 Recensioni
               </a>
             </div>
