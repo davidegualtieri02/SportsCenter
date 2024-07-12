@@ -28,7 +28,7 @@ class CFrontController{
                 //metodo non trovato
                 header('Location: /SportsCenter/Utente/home');
             }
-        //metodo non trovato
+        //controller non trovato
         header('Location: /SportsCenter/Utente/home');
         }
     }
