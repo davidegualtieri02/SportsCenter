@@ -1,24 +1,23 @@
 <?php
-//use DateTime; //??
-require_once("EUtenteRegistrato.php");
+
+//require_once("EUtenteRegistrato.php");
 class ERecensione{
     private int $id_recensione = 0;
-    private int $valutazione;
     private string $commento;
-    private int $id_campo;
-    protected EUtenteRegistrato $utenteRegistrato;
-    private DateTime $data; //DateTime o String??
-    private $removed = false;
-    private array $images;
+    private string $id_campo;
+    protected int $id_utenteRegistrato;
+    private string $data; 
+    //private bool $removed = false;
+    private int $id_image;
     
     private static $entità = ERecensione::class;
 
-    public function __construct($valutazione,$commento,$id_campo, EUtenteRegistrato $utenteRegistrato,$data){
-        $this->valutazione = $valutazione;
+    public function __construct($commento,$data,$id_utenteRegistrato,$id_campo,$id_image){
         $this->commento = $commento;
         $this->id_campo = $id_campo;
-        $this->id_utenteRegistrato = $utenteRegistrato->getId();
+        $this->id_utenteRegistrato = $id_utenteRegistrato;
         $this->data = $data;
+        $this->id_image = $id_image;
     }
 
     public static function getEntità():string{
@@ -30,19 +29,13 @@ class ERecensione{
     public function setIdRecensione($id_recensione){
         $this->id_recensione = $id_recensione;
     }
-    public function getValutazione(){
-        return $this->valutazione;
-    }
-    public function setValutazione($valutazione){
-        $this->valutazione = $valutazione;
-    }
     public function getCommento(){
         return $this->commento;
     }
     public function setCommento($commento){
         $this->commento = $commento;
     }
-    public function getTime(){
+    public function getData(){
         return $this->data;
     }
     public function setTime(){
@@ -60,8 +53,8 @@ class ERecensione{
     public function setBan(bool $removed):void{
         $this->removed = $removed;
     }
-    public function getUtente(){
-        return $this->utenteRegistrato;
+    public function getIdUtente(){
+        return $this->id_utenteRegistrato;
     }
     public function setUtente(EUtenteRegistrato $utenteRegistrato): void{
         $this->utenteRegistrato = $utenteRegistrato;
@@ -69,9 +62,9 @@ class ERecensione{
     public function getIdCampo(){
         return $this->id_campo;
     }
-    public function getIdUtente(){
-        return $this->utenteRegistrato->getId();
-    }
+    //public function getIdUtente(){
+       //return $this->utenteRegistrato->getId();
+    //}
     public function setImages($images){
         $this->images= $images;
     }
@@ -97,6 +90,9 @@ class ERecensione{
             $this->images[] = $image;
             $image->setRecensione($this);
         }
+    }
+    public function getIdImage(){
+        return $this->id_image;
     }
      //metodo toString esiste predefinito
 }

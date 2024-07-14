@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 15:10:28
+/* Smarty version 4.3.2, created on 2024-07-14 19:31:57
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_66912b44b0e374_45098230',
+  'unifunc' => 'content_66940b8d9cc8e2_10898400',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3dd99b1e0bd4e18192c0dd624f473975be613a47' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/form_registrazione.tpl',
-      1 => 1720784698,
+      1 => 1720978316,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66912b44b0e374_45098230 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66940b8d9cc8e2_10898400 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -96,7 +96,7 @@ function content_66912b44b0e374_45098230 (Smarty_Internal_Template $_smarty_tpl)
 
 <body>
   <div>
-    <a href="home">
+    <a href="/SportsCenter/Utente/index">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->

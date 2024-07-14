@@ -1,175 +1,99 @@
-CREATE TABLE Utente(
-    id_utente INT AUTO_INCREMENT PRIMARY KEY, 
-    nome VARCHAR(50),
-    cognome VARCHAR(50),
-    password VARCHAR(50),
-    email VARCHAR(50)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci; 
-CREATE TABLE UtenteRegistrato(
+-- Assicurati che non ci siano tabelle esistenti con lo stesso nome
+DROP TABLE IF EXISTS Prenotazione;
+DROP TABLE IF EXISTS Image;
+DROP TABLE IF EXISTS Attrezzatura;
+DROP TABLE IF EXISTS Campo;
+DROP TABLE IF EXISTS Tessera;
+DROP TABLE IF EXISTS UtenteRegistrato;
+
+-- Crea la tabella UtenteRegistrato
+CREATE TABLE UtenteRegistrato (
     id_utenteRegistrato INT AUTO_INCREMENT PRIMARY KEY,
-    id_utente INT, 
-    nome VARCHAR(50),
-    cognome VARCHAR (50),
-    password VARCHAR(50),
-    email VARCHAR(50),
-    ban TINYINT(1) NOT NULL,
-    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente) 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE UtenteTesserato(
-    id_utenteTesserato INT AUTO_INCREMENT PRIMARY KEY,
-    id_utente INT,
-    nome VARCHAR (50),
-    cognome VARCHAR (50),
-    password VARCHAR (50),
-    email VARCHAR(50),
-    ban TINYINT NOT NULL,
-    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Amministratore(
-    id_amministratore INT AUTO_INCREMENT PRIMARY KEY,
-    id_utente INT,
-    nome VARCHAR (50),
-    cognome VARCHAR (50),
-    password VARCHAR (50),
-    email VARCHAR(50),
-    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Tessera(
-    id_tessera INT AUTO_INCREMENT PRIMARY KEY,
-    id_utenteRegistrato INT,
-    Data_Inizio DATE,
-    Data_Scadenza DATE,
-    FOREIGN KEY (id_utente) REFERENCES UtenteRegistrato(id_utenteRegistrato)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Campo(
-    id_campo INT AUTO_INCREMENT PRIMARY KEY,
-    copertura VARCHAR (50),
-    titoloCampo VARCHAR(50),
-    prezzo INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CampoBasket(
-    id_campoBasket INT AUTO_INCREMENT PRIMARY KEY,
-    id_campo INT,
-    copertura VARCHAR (50),
-    pavimento VARCHAR (50),
-    fotoCampo VARBINARY(255),
-    titoloCampo VARCHAR(50),
-    prezzo INT,
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CampoCalcio(
-    id_campoCalcio INT AUTO_INCREMENT PRIMARY KEY,
-    id_campo INT,
-    copertura VARCHAR (50),
-    fotocampo VARBINARY(255),
-    titoloCampo VARCHAR(50),
-    prezzo INT,
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CampoPadel(
-    id_campoPadel INT AUTO_INCREMENT PRIMARY KEY,
-    id_campo INT,
-    copertura VARCHAR(50),
-    fotocampo VARBINARY(255),
-    titoloCampo VARCHAR(50),
-    prezzo INT,
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CampoPallavolo(
-    id_campoPallavolo INT AUTO_INCREMENT PRIMARY KEY,
-    id_campo INT,
-    copertura VARCHAR(50),
-    pavimento VARCHAR(50),
-    fotocampo VARBINARY(255),
-    titoloCampo VARCHAR(50),
-    prezzo INT,
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CampoTennis(
-    id_campoTennis INT AUTO_INCREMENT PRIMARY KEY,
-    id_campo INT,
-    copertura VARCHAR(50),
-    terreno VARCHAR(50),
-    fotocampo VARBINARY(255),
-    titoloCampo VARCHAR(50),
-    prezzo INT,
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Attrezzatura(
-    id_attrezzatura INT AUTO_INCREMENT PRIMARY KEY
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE AttrezzaturaCalcio(
-    id_attrezzaturaCalcio INT AUTO_INCREMENT PRIMARY KEY,
-    id_attrezzatura INT,
-    numPalloni_Calcio INT,
-    numCasacca INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE AttrezzaturaTennis(
-    id_attrezzaturaTennis INT AUTO_INCREMENT PRIMARY KEY,
-    id_attrezzatura INT,
-    numPalla_Tennis INT,
-    numRacchetta_Tennis INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE AttrezzaturaPadel(
-    id_attrezzaturaPadel INT AUTO_INCREMENT PRIMARY KEY,
-    id_attrezzatura INT,
-    numPalla_Padel INT,
-    numRacchetta_Padel INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE AttrezzaturaBasket(
-    id_attrezzaturaBasket INT AUTO_INCREMENT PRIMARY KEY,
-    id_attrezzatura INT,
-    numPalla_Basket INT,
-    numCasacca INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE AttrezzaturaPallavolo(
-    id_attrezzaturaPallavolo INT AUTO_INCREMENT PRIMARY KEY,
-    id_attrezzatura INT,
-    numPalla_Pallavolo INT,
-    FOREIGN KEY (id_attrezzatura) REFERENCES Attrezzatura(id_attrezzatura)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE Prenotazione(
-    id_prenotazione INT AUTO_INCREMENT PRIMARY KEY,
-    data DATE ,
-    orario INT,
-    pagata TINYINT(1),
-    id_campo INT,
-    id_attrezzatura INT,
-    id_utente INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
-CREATE TABLE CartadiPagamento(
-    id_cartadiPagamento INT AUTO_INCREMENT PRIMARY KEY,
-    Nome_Titolare VARCHAR(50),
-    Cognome_Titolare VARCHAR (50),
-    Numero_Carta INT,
-    Data_Scadenza DATE,
-    CVV INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
+    nome VARCHAR(50) NOT NULL,
+    cognome VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    ban BOOLEAN DEFAULT FALSE,
+    id_tessera INT DEFAULT 0
+);
+
+-- Crea la tabella Tessera
+CREATE TABLE Tessera (
+    id_tessera INT PRIMARY KEY,
+    id_utenteRegistrato INT NOT NULL,
+    Data_Inizio DATE NOT NULL,
+    Data_Scadenza DATE NOT NULL,
+    FOREIGN KEY (id_utenteRegistrato) REFERENCES UtenteRegistrato(id_utenteRegistrato)
+);
+
+-- Delimitatore per i trigger
+DELIMITER //
+
+-- Trigger after insert
+CREATE TRIGGER after_insert_trigger
+AFTER INSERT ON Tessera
+FOR EACH ROW
+BEGIN
+    UPDATE UtenteRegistrato
+    SET id_tessera = NEW.id_tessera
+    WHERE id_utenteRegistrato = NEW.id_utenteRegistrato;
+END;
+//
+
+-- Trigger before insert
+CREATE TRIGGER before_insert_tessera
+BEFORE INSERT ON Tessera
+FOR EACH ROW
+BEGIN
+    SET NEW.id_tessera = NEW.id_utenteRegistrato;
+END;
+//
+
+-- Ripristina il delimitatore
+DELIMITER ;
+
+-- Crea la tabella Image
+CREATE TABLE Image (
+    id_image INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    grandezza VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    imageData LONGBLOB NOT NULL
+);
+
+
+-- Crea la tabella Campo
+CREATE TABLE Campo (
+    id_campo VARCHAR(50) PRIMARY KEY,
+    titoloCampo VARCHAR(255) NOT NULL,
+    prezzo INT NOT NULL
+);
+
 CREATE TABLE Recensione (
     id_recensione INT AUTO_INCREMENT PRIMARY KEY,
-    commento VARCHAR(50),
-    valutazione INT,
-    DataOra DATETIME,
-    removed TINYINT(1),
-    id_utente INT,
-    image LONGBLOB,
-    id_campo INT,
-    FOREIGN KEY (id_utente) REFERENCES Utente(id_utente),
-    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-CREATE TABLE Image(
-    id_image INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(50),
-    grandezza VARCHAR(50),
-    tipi VARCHAR(50),
-    imageData VARBINARY(255),
-    id_recensione INT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE =utf8_unicode_ci;
+    commento VARCHAR(1000),
+    giorno VARCHAR(50),
+    id_utenteRegistrato INT,
+    id_campo VARCHAR(50),
+    id_image INT,
+    FOREIGN KEY (id_utenteRegistrato) REFERENCES UtenteRegistrato(id_utenteRegistrato),
+    FOREIGN KEY (id_campo) REFERENCES Campo(id_campo),
+    FOREIGN KEY (id_image) REFERENCES Image(id_image)
+);
+
 CREATE TABLE Orario(
-    id_orario INT AUTO_INCREMENT PRIMARY KEY,
-    orario INT
-)
+    orario INT NOT NULL PRIMARY KEY
+);
+
+-- Crea la tabella Prenotazione
+CREATE TABLE Prenotazione (
+    id_prenotazione INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    orario INT NOT NULL,
+    pagata TINYINT(1),
+    id_campo VARCHAR(50) NOT NULL,
+    attrezzatura BOOLEAN DEFAULT FALSE,
+    id_utenteRegistrato INT NOT NULL,
+    FOREIGN KEY (orario) REFERENCES Orario(orario),
+    FOREIGN KEY (id_utenteRegistrato) REFERENCES UtenteRegistrato(id_utenteRegistrato)
+);

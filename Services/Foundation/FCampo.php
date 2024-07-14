@@ -89,4 +89,5 @@ class FCampo{
         return $dichiarazione->rowCount()===0;//ritorna true se non ci sono righe nell'array dichiarazione , cioè se il campo è libero in quella data e in quell'orario
         // altrimenti ritorna false e $dichiarazione contiene un elemento contenente l'id del campo, la data e l'orario.
     }
+
 }

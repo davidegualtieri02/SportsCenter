@@ -186,8 +186,8 @@ class FPersistentManager{
         return $risultato;
     }
     
-    public static function orariDisponibili($giorno){
-        $risultato= FPrenotazione::orariDisponibili($giorno);
+    public static function orariDisponibili($giorno,$campo){
+        $risultato= FPrenotazione::OrariDisponibili($giorno,$campo);
         return $risultato;
 
     }
@@ -776,7 +776,54 @@ class FPersistentManager{
     public static function getNome($ut){
         return FUtenteRegistrato::getNome($ut);
     }
+    public static function getCognome($ut){
+        return FUtenteRegistrato::getCognome($ut);
+    }
     public static function getId_tessera($ut){
         return FUtenteRegistrato::getId_tessera($ut);
     }
+    public static function getTitolo($campo){
+        return FCampo::getTitolo($campo);
+    }
+
+    //-----------------------------IMAGE VALIDATION---------------------------
+
+    /*
+    public static function manageImages($uploadedImage, $post, $idUser){
+        $tmpName = $uploadedImage['tmp_name'][0];
+        $file = [
+            'name' => $uploadedImage['name'][0],
+            'type' => $uploadedImage['type'][0],
+            'size' => $uploadedImage['size'][0],
+            'tmp_name' => $tmpName,
+            'error' => $uploadedImage['error'][0]
+        ];
+
+
+
+
+        //foreach($uploadedImages['tmp_name'] as $index => $tmpName){
+            //$file = [
+            //'name' => $uploadedImages['name'][$index],
+            //'type' => $uploadedImages['type'][$index],
+            //'size' => $uploadedImages['size'][$index],
+            //'tmp_name' => $tmpName,
+            //'error' => $uploadedImages['error'][$index]
+        //];
+        
+        //check if the uploaded image is ok 
+        $checkUploadImage = self::uploadImage($file);
+        if($checkUploadImage == 'UPLOAD_ERROR_OK' || $checkUploadImage == 'TYPE_ERROR' || $checkUploadImage == 'SIZE_ERROR'){
+            self::deletePost($post->getId(), $idUser);
+            break;
+        }else{
+            $checkUploadImage = self::uploadImagePost($checkUploadImage, $post);
+        }
+    }
+    return $checkUploadImage;
+    }
+    */
+
+
+
 }

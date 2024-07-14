@@ -31,7 +31,7 @@
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
    <link href="/SportsCenter/smarty/libs/css/index.css" rel="stylesheet" />
    <link href="/SportsCenter/smarty/libs/css/contattaci.css" rel="stylesheet" />
-
+{literal}
    <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -40,7 +40,7 @@
         }
         document.addEventListener("DOMContentLoaded", ready);
     </script>
-
+{/literal}
 </head>
 
 <body>
@@ -49,7 +49,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
             <img src="/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -58,19 +58,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
-                  <span>Tel: (+39) 0862 123456</span>
+                  <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -96,22 +96,22 @@
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="home">Home</a>
+                <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="prenotazioni">Prenotazioni</a>
+                <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="servizi">Servizi<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">Contattaci</a>
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="profilo">Profilo</a>
+                <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index">Logout</a>
+                <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
               </li>
             </ul>
           </div>
@@ -119,6 +119,20 @@
           </nav>
         </div>
       </div>
+      <div class="slider_container">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 offset-md-6 offset-md-5">
+          <div class="detail-box">
+            <h2>
+              Prenota un campo da SportsCenter
+            </h2>
+            <p>La nostra ampia gamma di servizi vede campi da calcio, padel, tennis, pallavolo e basket. Tutti sia all'aperto sia al chiuso, per vivere il tuo sport preferito al meglio in ogni periodo dell'anno. <br><br>Inoltre, se non hai l'attrezzatura necessaria, te la diamo noi! <br>Tutto in qualche click!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     </section>
     <!-- end slider section -->
   </div>
@@ -153,7 +167,7 @@
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_calcio2.tpl">
+            <a href="MostraCalendario/calcio2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -167,7 +181,7 @@
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel1.tpl">
+            <a href="MostraCalendario/padel1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -181,7 +195,7 @@
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_padel2.tpl">
+            <a href="MostraCalendario/padel2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -195,7 +209,7 @@
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis1.tpl">
+            <a href="MostraCalendario/tennis1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -209,7 +223,7 @@
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_tennis2.tpl">
+            <a href="MostraCalendario/tennis2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -223,7 +237,7 @@
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo1.tpl">
+            <a href="MostraCalendario/pallavolo1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -237,7 +251,7 @@
             PALLAVOLO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_pallavolo2.tpl">
+            <a href="MostraCalendario/pallavolo2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -251,7 +265,7 @@
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket1.tpl">
+            <a href="MostraCalendario/basket1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -265,7 +279,7 @@
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="calendario_basket2.tpl">
+            <a href="MostraCalendario/basket2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -305,16 +319,16 @@
               <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -323,15 +337,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>

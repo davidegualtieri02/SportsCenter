@@ -30,7 +30,7 @@
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  {literal}
   <script>
     function ready(){
       if (!navigator.cookieEnabled) {
@@ -39,11 +39,12 @@
     }
     document.addEventListener("DOMContentLoaded", ready);
   </script>
+  {/literal}
 </head>
 
 <body>
   <div>
-    <a href="home">
+    <a href="/SportsCenter/Utente/index">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
@@ -55,13 +56,13 @@
             <h2>Accedi a SportsCenter</h2>
             <form id = "myform" action="login" method = "post" onsubmit="return validateForm()">
             {if $error == true}
-              <p style="color: red; margin-left: 11%">credenziali errate</p>
+              <p style="color: red; margin-left: 11%">Attenzione: credenziali errate.</p>
               {/if}
             {if $ban == true}
-              <p style="color: red; margin-left: 7%">L'utente che sta provando ad accedere è bannato</p>
+              <p style="color: red; margin-left: 7%">Attenzione: l'utente che sta provando ad accedere risulta bannato.</p>
               {/if}
               {if $regErr == true}
-                <p style="color: red; margin-left: 7%">email o password sono già in uso</p>
+                <p style="color: red; margin-left: 7%">Attenzione: email o password già in uso.</p>
                 {/if}
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
@@ -76,7 +77,7 @@
             <a href="login"><button type="submit" id="submitButton">Accedi</button></a>
             </form>
             <div class="login">
-              <p>Non hai un profilo? <a href="registrazione">Registrati</a></p>
+              <p><br>Non hai un profilo? <a href="registrazione">Registrati</a></p>
             </div>
         </div>
       </div>

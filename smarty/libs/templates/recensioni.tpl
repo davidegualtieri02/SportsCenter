@@ -30,6 +30,7 @@
   <!-- responsive style -->
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
   </style>
+  {literal}
   <script>
   function ready(){
       if (!navigator.cookieEnabled) {
@@ -38,6 +39,7 @@
   }
   document.addEventListener("DOMContentLoaded", ready);
 </script>
+  {/literal}
 </head>
 
 <body class="sub_page about_page">
@@ -46,7 +48,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
             <img src="/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -55,19 +57,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -92,22 +94,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.tpl">Profilo</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.tpl">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -132,14 +134,14 @@
         </div>
       </div>
 
-      {foreach from=$recensioni item=$recensione}
+      {foreach $recensioni as $recensione}
       <div class="box">
         <div class="detail-box">
-          <h4>{$recensione.utente}</h4>
-          <p>{$recensione.testo}</p>
-          <p><strong>Campo:</strong> {$recensione.campo}</p>
-          <p><strong>Data della recensione:</strong> {$recensione.data_recensione}</p>
-          <p><strong>Valutazione:</strong> {$recensione.valutazione}</p>
+          <h5>Recensione rilasciata da: {$recensione.nomeUtente}</h5>
+          <p><strong>Commento:</strong> {$recensione.commento}</p>
+          <p><strong>Campo:</strong> {$recensione.titoloCampo}</p>
+          <p><strong>Data della recensione:</strong> {$recensione.giorno}</p>
+          <img src="data:{$recensione.tipoImg};base64,{$recensione.encodedDataImg}" alt="{$nomeImg}" style="width: 60%; height: auto;"><p><br></p>
         </div>
       </div>
       {/foreach}
@@ -159,74 +161,73 @@
             Qualche info su SportsCenter
           </h6>
           <p>
-            In realtà non esiste nessun centro sportivo, è il progetto per un esame universitario.
+            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
           </p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>
-            Menù
+            Menu
           </h6>
           <ul>
-            <li class=" ">
-              <a class="" href="home.tpl">Home</a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="profilo.tpl">Profilo</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="index.tpl">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
-        
         <div class="col-md-3">
           <h6>
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
-              <span>Via Vetoio, Coppito 1, L'Aquila</span>
+              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
-          <div class="info_social">
-            <div>
-              <a href="">
-                <img src="/SportsCenter/smarty/libs/images/facebook-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="/SportsCenter/smarty/libs/images/twitter-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="/SportsCenter/smarty/libs/images/linkedin.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="/SportsCenter/smarty/libs/images/instagram.png" alt="">
-              </a>
-            </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <a href="https://www.facebook.com/univaq.it">
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/univaq.it">
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://x.com/univaq">
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.tiktok.com/">
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+            </a>
           </div>
         </div>
       </div>
@@ -234,6 +235,7 @@
   </section>
 
   <!-- end info section -->
+
 
   <!-- footer section -->
   <section class="container-fluid footer_section ">
@@ -246,8 +248,6 @@
 
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
-  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/profilo.js"></script>
-
+  <script type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"></script>
 </body>
-
 </html>

@@ -31,7 +31,7 @@
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+{literal}
   <script>
     function ready() {
       if (!navigator.cookieEnabled) {
@@ -40,9 +40,9 @@
     }
 
     function validateForm() {
-      const cardNumber = document.querySelector('input[name="numero"]').value;
-      const cvv = document.querySelector('input[name="codice"]').value;
-      const expiryDate = document.querySelector('input[name="data"]').value;
+      const cardNumber = document.querySelector('input[name="numerocarta"]').value;
+      const cvv = document.querySelector('input[name="cvv"]').value;
+      const expiryDate = document.querySelector('input[name="datascadenza"]').value;
 
       const cardNumberPattern = /^\d{16}$/;
       const cvvPattern = /^\d{3}$/;
@@ -64,12 +64,13 @@
       if (!expiryDatePattern.test(expiryDate)) {
         isValid = false;
         errorMessage += 'La data di scadenza deve essere nel formato MM/AAAA.\n';
-      } else {
+      } 
+      else {
         const [month, year] = expiryDate.split('/').map(Number);
         const today = new Date();
-        const expiry = new Date(year, month - 1, today.getDate());
-
-        if (expiry <= today) {
+        const expiry = new Date(year, month - 1, 1); // Imposta il giorno a 1 per evitare problemi con i mesi che hanno meno giorni
+         
+        if (expiry.getTime() <= today.getTime()) {
           isValid = false;
           errorMessage += 'La data di scadenza non deve essere uguale o precedente alla data odierna.\n';
         }
@@ -84,12 +85,12 @@
 
     document.addEventListener("DOMContentLoaded", ready);
   </script>
-
+{/literal}
 </head>
 
 <body>
   <div>
-    <a href="/SportsCenter/">
+    <a href="/SportsCenter/PrenotaCampo/servizi">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
@@ -97,34 +98,38 @@
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="/SportsCenter/PrenotaCampo/MostraConfermaPrenotazione" onsubmit="return validateForm()">
+          <form action="/SportsCenter/PrenotaCampo/MostraPagamento/{$idCampo}/{$giorno}/{$orario}/{$attrezzatura}" method="post" onsubmit="return validateForm()">
+            <input type="hidden" name="idCampo" value="{$idCampo}">
+            <input type="hidden" name="selected_day" value="{$giorno}">
+            <input type="hidden" name="selected_time" value="{$orario}">
+            <input type="hidden" name="hidden_attrezzatura" value="{$attrezzatura}">
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="nome" value="{$NomeTitolare}" required>
-              <label for="">Nome</label>
+              <label class="form-label"></label>
+              <input id="nometitolare" type="text" name="nometitolare" class="form-control" placeholder="Nome titolare" required>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="cognome" value="{$cognomeTitolare}" required>
-              <label for="">Cognome</label>
+              <label class="form-label"></label>
+              <input id="cognometitolare" type="text" name="cognometitolare" class="form-control" placeholder="Cognome titolare" required>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" name="numero" value="{$numeroCarta}" required>
-              <label for="">Numero della carta</label>
+              <label class="form-label"></label>
+              <input id="numerocarta" type="text" name="numerocarta" class="form-control" placeholder="Numero della carta" required>
             </div>
             <div class="inputbox">
               <ion-icon name="calendar-outline"></ion-icon>
-              <input type="text" name="data" value="{$dataScadenza}" required>
-              <label for="">Data di scadenza (MM/AAAA)</label>
+              <label class="form-label"></label>
+              <input id="datascadenza" type="text" name="datascadenza" class="form-control" placeholder="Data di scadenza (MM/AAAA)"required>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" name="codice" value="{$cvv}" required>
-              <label for="">CVV (XYZ)</label>
+              <label class="form-label"></label>
+              <input id="cvv" type="password" name="cvv" class="form-control" placeholder="CVV (XYZ)"required>
             </div>
-            <button type="submit">Conferma e paga</button>
+            <a href = "/SportsCenter/PrenotaCampo/MostraPagamento/{$idCampo}/{$giorno}/{$orario}/{$attrezzatura}"><button type="submit">Conferma e paga</button></a>
           </form>
         </div>
       </div>
@@ -146,5 +151,4 @@
 </body>
 
 </html>
-
 

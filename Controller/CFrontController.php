@@ -6,7 +6,7 @@ class CFrontController {
         $uriParts = explode('/', $requestUri);
         array_shift($uriParts);
         $nomeController = !empty($uriParts[0]) ? ucfirst($uriParts[0]) : 'Utente';
-        $nomeMetodo = !empty($uriParts[1]) ? $uriParts[1] : 'login';
+        $nomeMetodo = !empty($uriParts[1]) ? $uriParts[1] : 'index';
         $classeController = 'C'.$nomeController;
         $fileController = __DIR__."/{$classeController}.php";
 

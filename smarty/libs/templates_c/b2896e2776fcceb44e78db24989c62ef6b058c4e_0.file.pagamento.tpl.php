@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-14 20:36:13
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/pagamento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb304ae57b4_72537582',
+  'unifunc' => 'content_66941a9da55249_02613431',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2896e2776fcceb44e78db24989c62ef6b058c4e' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/pagamento.tpl',
-      1 => 1720621979,
+      1 => 1720982171,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb304ae57b4_72537582 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66941a9da55249_02613431 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -36,21 +36,21 @@ function content_668eb304ae57b4_72537582 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
 
   <!-- Custom styles -->
-  <link href="css/style.css" rel="stylesheet" />
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link href="css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
-  <link href="css/login.css" rel="stylesheet"/>
-  <link href="css/pagamento.css" rel="stylesheet"/>
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
+  <link href="/SportsCenter/smarty/libs/css/login.css" rel="stylesheet"/>
+  <link href="/SportsCenter/smarty/libs/css/pagamento.css" rel="stylesheet"/>
   <!-- Ionicons -->
   <?php echo '<script'; ?>
  type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
@@ -68,16 +68,13 @@ function content_668eb304ae57b4_72537582 (Smarty_Internal_Template $_smarty_tpl)
     }
 
     function validateForm() {
-      const cardNumber = document.querySelector('input[name="numero"]').value;
-      const cvv = document.querySelector('input[name="codice"]').value;
-      const expiryDate = document.querySelector('input[name="data"]').value;
+      const cardNumber = document.querySelector('input[name="numerocarta"]').value;
+      const cvv = document.querySelector('input[name="cvv"]').value;
+      const expiryDate = document.querySelector('input[name="datascadenza"]').value;
 
-      const cardNumberPattern = /^\d<?php echo 16;?>
-$/;
-      const cvvPattern = /^\d<?php echo 3;?>
-$/;
-      const expiryDatePattern = /^(0[1-9]|1[0-2])\/\d<?php echo 4;?>
-$/;
+      const cardNumberPattern = /^\d{16}$/;
+      const cvvPattern = /^\d{3}$/;
+      const expiryDatePattern = /^(0[1-9]|1[0-2])\/\d{4}$/;
 
       let isValid = true;
       let errorMessage = '';
@@ -95,12 +92,13 @@ $/;
       if (!expiryDatePattern.test(expiryDate)) {
         isValid = false;
         errorMessage += 'La data di scadenza deve essere nel formato MM/AAAA.\n';
-      } else {
+      } 
+      else {
         const [month, year] = expiryDate.split('/').map(Number);
         const today = new Date();
-        const expiry = new Date(year, month - 1, today.getDate());
-
-        if (expiry <= today) {
+        const expiry = new Date(year, month - 1, 1); // Imposta il giorno a 1 per evitare problemi con i mesi che hanno meno giorni
+         
+        if (expiry.getTime() <= today.getTime()) {
           isValid = false;
           errorMessage += 'La data di scadenza non deve essere uguale o precedente alla data odierna.\n';
         }
@@ -121,46 +119,58 @@ $/;
 
 <body>
   <div>
-    <a href="index.html">
-      <img src="images/logo.png" alt="SportsCenter"></a>
+    <a href="/SportsCenter/PrenotaCampo/servizi">
+      <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->
   <section class="login_section layout_padding">
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form action="/SportsCenter/PrenotaCampo/MostraConfermaPrenotazione" onsubmit="return validateForm()">
+          <form action="/SportsCenter/PrenotaCampo/MostraPagamento/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['orario']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['attrezzatura']->value;?>
+" method="post" onsubmit="return validateForm()">
+            <input type="hidden" name="idCampo" value="<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+">
+            <input type="hidden" name="selected_day" value="<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+">
+            <input type="hidden" name="selected_time" value="<?php echo $_smarty_tpl->tpl_vars['orario']->value;?>
+">
+            <input type="hidden" name="hidden_attrezzatura" value="<?php echo $_smarty_tpl->tpl_vars['attrezzatura']->value;?>
+">
             <h2>Inserisci i dati della carta</h2>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <label for="username" class="form-label">Username</label>
-              <input type="text" id="username" name="username" class="form-control" placeholder="Username" autocomplete="off">
+              <label class="form-label"></label>
+              <input id="nometitolare" type="text" name="nometitolare" class="form-control" placeholder="Nome titolare" required>
             </div>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
-              <input type="text" name="cognome" value="<?php echo $_smarty_tpl->tpl_vars['cognomeTitolare']->value;?>
-" required>
-              <label for="">Cognome</label>
+              <label class="form-label"></label>
+              <input id="cognometitolare" type="text" name="cognometitolare" class="form-control" placeholder="Cognome titolare" required>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" name="numero" value="<?php echo $_smarty_tpl->tpl_vars['numeroCarta']->value;?>
-" required>
-              <label for="">Numero della carta</label>
+              <label class="form-label"></label>
+              <input id="numerocarta" type="text" name="numerocarta" class="form-control" placeholder="Numero della carta" required>
             </div>
             <div class="inputbox">
               <ion-icon name="calendar-outline"></ion-icon>
-              <input type="text" name="data" value="<?php echo $_smarty_tpl->tpl_vars['dataScadenza']->value;?>
-" required>
-              <label for="">Data di scadenza (MM/AAAA)</label>
+              <label class="form-label"></label>
+              <input id="datascadenza" type="text" name="datascadenza" class="form-control" placeholder="Data di scadenza (MM/AAAA)"required>
             </div>
             <div class="inputbox">
               <ion-icon name="card-outline"></ion-icon>
-              <input type="text" name="codice" value="<?php echo $_smarty_tpl->tpl_vars['cvv']->value;?>
-" required>
-              <label for="">CVV (XYZ)</label>
+              <label class="form-label"></label>
+              <input id="cvv" type="password" name="cvv" class="form-control" placeholder="CVV (XYZ)"required>
             </div>
-            <button type="submit">Conferma e paga</button>
+            <a href = "/SportsCenter/PrenotaCampo/MostraPagamento/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['orario']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['attrezzatura']->value;?>
+"><button type="submit">Conferma e paga</button></a>
           </form>
         </div>
       </div>
@@ -170,10 +180,10 @@ $/;
 
   <!-- Scripts -->
   <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
 >
@@ -188,7 +198,6 @@ $/;
 </body>
 
 </html>
-
 
 <?php }
 }

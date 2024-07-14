@@ -11,15 +11,41 @@ class CTesseramento{
 
      //  Durante la fase GET, mostra il form vuoto. Durante la fase POST, valida i dati e salva l'utente nel database.      
     public static function MostraTesseramento(){
+        $view = new VTesseramento();
         if(CUtente::Loggato()){
-            $view = new VTesseramento();
             //recupera l'id dell'utente dalla sessione
             $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
             $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato',$idUtente);
             //con questi due metodi unserialize  e Leggivalore otteniamo l'utente loggato dalla sessione
-           //ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
-        
-            if(UServer::getRichiestaMetodo()=="GET"){
+            //ripristina una stringa in un oggetto. Quindi 'utente' viene trasformato da stringa a oggetto utente e viene preso l'utente dall'oggetto sessione
+            $nomeUtente = $utente->getNome();
+            $cognomeUtente = $utente->getCognome();
+            $emailUtente = $utente->getEmail();
+            $id_tesseraUtente = FPersistentManager::getId_tessera($utente);
+            if ($id_tesseraUtente == '0'){
+                if(UServer::getRichiestaMetodo() == "GET"){
+                    $view->MostraFormTesseramento($nomeUtente,$cognomeUtente,$emailUtente);
+                }
+                if(UServer::getRichiestaMetodo() == "POST"){
+                    $datetimeinizio = new DateTime();
+                    $data_inizio = $datetimeinizio->format('Y-m-d');
+                    // Modifica direttamente $datetimeinizio
+                    $datetimeinizio->modify('+1 year');
+                    $data_scadenza = $datetimeinizio->format('Y-m-d');
+                    $tessera = new ETessera($idUtente, $data_scadenza, $data_inizio);
+                    FPersistentManager::uploadOgg($tessera);
+                    header('Location: /SportsCenter/Utente/profilo');
+                }
+            }
+            else{
+                header('Location: /SportsCenter/Utente/home');
+            }
+        }
+    }
+/*
+
+            }
+            if(UServer::getRichiestaMetodo() == "GET"){
                 $view ->MostraModuloTesseramento($idUtente); // viene mostrata la form per il tesseramento
             }
             elseif(UServer::getRichiestaMetodo()=="POST"){
@@ -44,9 +70,8 @@ class CTesseramento{
         }else{
             header('Location: /SportsCenter/Utente/login');
             exit;
-        }  
-          
-    }   
+        }
+          */
     
     //se l'utente è tesserato al posto di tesseramento sulla sbarra in alto abbiamo annulla tesseramento e questo caso d'uso annulla il tesseramento
     /**public static function annullaTesseramento($idtessera,$idUtente,$dataScadenza){

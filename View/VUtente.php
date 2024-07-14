@@ -2,8 +2,7 @@
 require_once(__DIR__ . "/../install/StartSmarty.php");
 class VUtente{
     private $smarty;
-    public function __construct()
-    {
+    public function __construct(){
         $this->smarty = StartSmarty::configuration();
     }
     static function getNome(){
@@ -78,13 +77,19 @@ class VUtente{
         $this->smarty->display('./smarty/libs/templates/profilo.tpl');
     }
 
-    public function prenotazioniUtente($listaPrenotazioni){
+    public function prenotazioniUtente($nomeUtente,$listaPrenotazioni){
+        $this->smarty->assign('nomeUtente', $nomeUtente);
         $this->smarty->assign('listaPrenotazioni', $listaPrenotazioni);
         $this->smarty->display('./smarty/libs/templates/prenotazioni.tpl');
     }
     public function index(){
         $this->smarty->display('./smarty/libs/templates/index.tpl');
     }
+
+    public function contatti(){
+        $this->smarty->display('./smarty/libs/templates/contatti.tpl');
+    }
+
 }
 
 

@@ -7,7 +7,7 @@ class ETessera{
     private int $id_utenteRegistrato;
     private static $entità = ETessera ::class;
 
-    public function __construct($id_utenteRegistrato, $dataScadenza,$dataInizio){
+    public function __construct($id_utenteRegistrato, $dataScadenza, $dataInizio){
         $this->dataScadenza = $dataScadenza;
         $this->dataInizio = $dataInizio;
         $this->id_utenteRegistrato = $id_utenteRegistrato;
@@ -21,7 +21,7 @@ class ETessera{
     public function setIdTessera($id){
         $this->id_tessera = $id;
     }
-    public static function getEntità():string{
+    public static function getEntità(){
         return self::$entità;
     }
     public  function getDataScadenza(){

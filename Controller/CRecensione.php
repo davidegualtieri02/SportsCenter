@@ -5,12 +5,39 @@ class CRecensione{
      * e permette di allegare anche foto del campo sportivo in caso l'utente voglia farlo, altrimenti può solo scrivere la recensione
      * @param $idcampo è il campo di cui si vuole scrivere una recensione 
      */
-    public static function scriviRecensione($prenotazione,$idcampo){
+    public static function scriviRecensione($id_prenotazione){
+        $view = new VRecensione();
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
-        $view = new VRecensione;
-        $utente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-        $campo = $pm::recuperaOggetto(ECampo::getEntità(),$idcampo);
+        $idUtente = $sessione->getElementoSessione('utenteRegistrato');
+        $prenotazione = $pm::recuperaOggetto(EPrenotazione::getEntità(),$id_prenotazione);
+        $idCampo = $prenotazione->getIdCampo();
+        $campo = $pm::recuperaOggetto(ECampo::getEntità(),$idCampo);
+        if(UServer::getRichiestaMetodo() == "POST"){
+            //print_r($_POST);
+            $messaggio = UMetodiHTTP::post('recensione_text');
+            $datetime = new DateTime();
+            $giorno = $datetime->format('Y-m-d');
+            //$imm = UMetodiHTTP::files('recensione_image');
+            //print_r($imm);
+            //$recensione = new ERecensione($messaggio,$giorno,$idUtente,$idCampo);
+            //$pm::uploadOgg($recensione);
+            //header('Location: /SportsCenter/Recensione/mostraRecensioni');
+            if (isset($_FILES['recensione_image'])) {
+                // Recupera i dettagli del file
+                $nome = $_FILES['recensione_image']['name'];
+                $grandezza = $_FILES['recensione_image']['size'];
+                $tipo = $_FILES['recensione_image']['type'];
+                $imageData = file_get_contents($_FILES['recensione_image']['tmp_name']);
+                $immagine = new EImage($nome,$grandezza,$tipo,$imageData);
+                FPersistentManager::uploadOgg($immagine);
+                $id_image = FEntityManager::$db->lastInsertId();
+                $recensione = new ERecensione($messaggio,$giorno,$idUtente,$idCampo, $id_image);
+                $pm::uploadOgg($recensione);
+                header('Location: /SportsCenter/Recensione/mostraRecensioni');
+            }
+        }
+        /*
         $prenotazione = $sessione::getElementoSessione('id_prenotazione');
         if(Userver::getRichiestaMetodo() == "GET"){
         //se il metodo di richiesta è GET viene mostrato il form per una nuova recensione, cioè il server manda al browser dell'utente  la form per recensire il campo
@@ -45,8 +72,8 @@ class CRecensione{
                 $pm::updateOgg(FRecensione::getTabella(),'image',$immagini,'id_utenteRegistrato',$utente->getId()); // al posto del valore della colonna image poniamo le immagini relative al commento 
         }
                     
-                //l'utente non ha prenotato questo campo , viene mostrato un messaggio di errore
-        }  
+                //l'utente non ha prenotato questo campo , viene mostrato un messaggio di errore*/
+    }  
             
      //MostraPrenotazione sta su CPrenotaCampo
     
@@ -106,15 +133,77 @@ class CRecensione{
      * Metodo che mostra le recensioni di tutti i campi una volta cliccato sul 'recensioni campo' nella home
      */
     public static function mostraRecensioni(){
+        $view = new VRecensione();
         $pm = FPersistentManager::getIstanza();
         $sessione = USession::getIstanza();
-        $view = new VRecensione();
+        $idUtente = $sessione->getElementoSessione('utenteRegistrato');
         if(CUtente::Loggato()){
-            $idUtente = unserialize($sessione->LeggiValore('utenteRegistrato'));
-            $recensioni = $pm::RecuperaTuple(FPrenotazione::getTabella());
+            $recensioniinordine = $pm::RecuperaTuple(FRecensione::getTabella());
+            $recensioni = array_reverse($recensioniinordine);
             if(UServer::getRichiestaMetodo() == 'GET'){
+                foreach ($recensioni as &$recensione) {
+                    $idCampo = $recensione['id_campo'];
+                    $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                    $titoloCampo = $campo->getTitolo();
+                    $recensione['titoloCampo'] = $titoloCampo;
+                    $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $recensione['id_utenteRegistrato']);
+                    $nomeUtente = $utente->getNome();
+                    $recensione['nomeUtente'] = $nomeUtente;
+                    $image = FPersistentManager::recuperaOggetto('EImage', $recensione['id_image']);
+                    $nomeImg = $image->getNome();
+                    $recensione['nomeImg'] = $nomeImg;
+                    $grandezzaImg = $image->getGrandezza();
+                    $recensione['grandezzaImg'] = $grandezzaImg;
+                    $tipoImg = $image->getTipo();
+                    $recensione['tipoImg'] = $tipoImg;
+                    $imageDataImg = $image->getImageData();
+                    $encodedDataImg = $image->getEncodedData();
+                    $recensione['encodedDataImg'] = $encodedDataImg;
+                }
+                unset($recensione);
                 $view->MostraRecensioni($recensioni,$idUtente);
             }
         }
+
+
+            /*
+            $recensioniinordine = $pm::RecuperaTuple(FRecensione::getTabella());
+            $recensioni = array_reverse($recensioniinordine);
+            if(UServer::getRichiestaMetodo() == 'GET'){
+                foreach ($recensioni as &$recensione) {
+                    $idCampo = $recensione['id_campo'];
+                    $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                    $titoloCampo = $campo->getTitolo();
+                    $recensione['titoloCampo'] = $titoloCampo;
+                    $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $recensione['id_utenteRegistrato']);
+                    $nomeUtente = $utente->getNome();
+                    $recensione['nomeUtente'] = $nomeUtente;
+                    $image = FPersistentManager::recuperaOggetto('EImage', $recensione['id_image']);
+                    $nomeImg = $image->getNome();
+                    $recensione['nomeImg'] = $nomeImg;
+                    $grandezzaImg = $image->getGrandezza();
+                    $recensione['grandezzaImg'] = $grandezzaImg;
+                    $tipoImg = $image->getTipo();
+                    $recensione['tipoImg'] = $tipoImg;
+                    $imageDataImg = $image->getImageData();
+                    $encodedDataImg = $image->getEncodedData();
+                    $recensione['encodedDataImg'] = $encodedDataImg;
+                }
+                unset($recensione);
+                $view->MostraRecensioniNoLog($recensioni);
+            }
+        }*/
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+

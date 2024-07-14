@@ -17,7 +17,7 @@ class FEntityManager{
     //come dovrebbe essere in realtà
 
     private static $istanza;
-    private static $db;
+    public static $db;
 
     private function __construct(){// quando il costruttore è privato non può essere invocato fuori dalla classe ma solo dentro 
         //la classe stessa, quindi non possiamo richiamare un oggetto FEntityManager fuori la classe ma solo dentro tale classe EntityManager
@@ -305,14 +305,17 @@ class FEntityManager{
      * il metodo fa questo dunque:controlla se l'id dell'utente nella prima tupla del risultato della query è lo stesso id posto come parametro nel metodo.
      * se si ritorna true altrimenti false.
      */
-    public static function VerificaCreatore($risultatoQuery,$idUtente){//risultatoQuery è il risultato di una query , IdUtente è l'id dell'utente. Questo metodo verifica se  l'id dell'utente posto come parametro al metodo è uguale ad un id posto in una tupla di una tabella  del database, cioè stiamo vedendo se per esempio un commento di un utente che ha un certo id è stato fatto da quell'utente controllando l'id posto come parametro con id posti nelle tuple della tabella commenti.
-        if(self::esisteNelDB($risultatoQuery) && $risultatoQuery[0] [FUtente::getChiave() == $idUtente]){ // self::esisteNelDB(risultatoQuery) questa funzione controlla se il risultatoQuery, che è un array dove ogni elemento dell'array è un array a sua volta che contiene delle tuple, esiste nel database, cioè controlla che i dati restituiti dalla query (cioè risultatoQuery)corrispondono effettivamente a delle tuple presenti nel database
-            //  se il risultato della query esiste nel db,con $risultatoQuery[0] ect... si controlla se l'ID dell'utente nel primo elemento (della tupla)(dell'array , Id utente è il valore  nella prima colonna della tupla) del risultato della query (cioè un array) corrisponde a $idUtente.
-            return true; // se gli id corrispondono si ritorna true
-        }else{
-            return false;//se non corrispondono si ritorna false
-        }
+    public static function VerificaCreatore($risultatoQuery, $idUtente) {
+    // Controlla se il risultato della query esiste nel database
+    if (self::esisteNelDB($risultatoQuery) && isset($risultatoQuery[0][FUtenteRegistrato::getChiave()]) && $risultatoQuery[0][FUtenteRegistrato::getChiave()] == $idUtente) {
+        // Se il risultato della query esiste e l'ID utente corrisponde, ritorna true
+        return true;
+    } else {
+        // Altrimenti, ritorna false
+        return false;
     }
+}
+
     /**
      * Metodo che ritorna un array con dentro le tuple che hanno una certa stringa specificata nel parametro del metodo come valore di un certo attributo delle tuple stesse , attributo specificato anche esso nei parametri del metodo.
      * @param string $tabella si riferisce alla tabella del db da cui si vuole recuperare i dati.

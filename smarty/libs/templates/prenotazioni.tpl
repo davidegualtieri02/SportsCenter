@@ -29,6 +29,7 @@
   <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+  {literal}
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -37,6 +38,7 @@
         }
         document.addEventListener("DOMContentLoaded", ready);
     </script>
+  {/literal}
 </head>
 
 <body class="sub_page about_page">
@@ -45,7 +47,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.html">
+          <a class="navbar-brand" href="home">
             <img src="/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
@@ -54,19 +56,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.html">
+                <a class="nav-link" href="contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -91,22 +93,22 @@
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.html">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.html">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.html">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.html">Profilo</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -129,12 +131,9 @@
       <div class="box">
         <div class="detail-box">
           {foreach $listaPrenotazioni as $prenotazione}
-          <ol> 
-            <li>
-              <p>Prenotazione: {$prenotazione->getIdPrenotazione()}; data: {$prenotazione->getData()}; orario: {$prenotazione->getOrario()}; {$prenotazione->getIdCampo()}
-              <a class="btn btn-primary" href="scrivi_recensione.tpl" id="tesseramento-button">Recensisci</a>
-            </p>
-          </ol>
+              <p>Codice prenotazione: {$prenotazione.id_prenotazione}; data: {$prenotazione.data}; orario: {$prenotazione.orario}:00; campo: {$prenotazione.titoloCampo}.<br>
+              <a class="btn btn-primary" href="/SportsCenter/PrenotaCampo/MostraPrenotazione/{$prenotazione.id_prenotazione}" id="tesseramento-button">Dettagli</a>
+            </p><br>
           {/foreach}
         </div>
       </div>
@@ -161,20 +160,23 @@
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.html">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.html">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.html">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.html">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="login_form.html">Login</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -183,15 +185,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.html">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.html">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.html">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
@@ -229,7 +231,8 @@
   <!-- footer section -->
   <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
     </p>
   </section>
   <!-- footer section -->

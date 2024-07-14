@@ -109,3 +109,12 @@ require_once("FAttrezzatura.php");
 //print_r(FAttrezzatura::getOgg(1));
 
 require_once("FImage.php");
+
+
+
+require_once("FPrenotazione.php");
+//FUNZIONA
+print_r(FPrenotazione::OrariDisponibili("2024-07-25"));
+
+
+

@@ -215,6 +215,13 @@ class FUtenteRegistrato{
         return $risultato[0]['nome'];
     }
 
+    public static function getCognome($ut){
+        //$risultato = self::getUtenteByEmail($ut->getEmail());
+        //return $risultato->getPassword();
+        $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
+        return $risultato[0]['cognome'];
+    }
+
     public static function getId_tessera($ut){
         $risultato = FEntityManager::getIstanza()->recuperaOggetto(FUtenteRegistrato::getTabella(),'id_utenteRegistrato',self::getId($ut));
         return $risultato[0]['id_tessera'];

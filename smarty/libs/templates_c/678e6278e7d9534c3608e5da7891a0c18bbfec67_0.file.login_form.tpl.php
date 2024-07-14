@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 16:15:23
+/* Smarty version 4.3.2, created on 2024-07-14 19:32:21
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/login_form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_66913a7b785a42_10107648',
+  'unifunc' => 'content_66940ba566b9d3_88101566',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '678e6278e7d9534c3608e5da7891a0c18bbfec67' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/login_form.tpl',
-      1 => 1720793717,
+      1 => 1720978277,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66940ba566b9d3_88101566 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +57,7 @@ function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '<script'; ?>
  nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"><?php echo '</script'; ?>
 >
-
+  
   <?php echo '<script'; ?>
 >
     function ready(){
@@ -68,11 +68,12 @@ function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl)
     document.addEventListener("DOMContentLoaded", ready);
   <?php echo '</script'; ?>
 >
+  
 </head>
 
 <body>
   <div>
-    <a href="home">
+    <a href="/SportsCenter/Utente/index">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
@@ -84,13 +85,13 @@ function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl)
             <h2>Accedi a SportsCenter</h2>
             <form id = "myform" action="login" method = "post" onsubmit="return validateForm()">
             <?php if ($_smarty_tpl->tpl_vars['error']->value == true) {?>
-              <p style="color: red; margin-left: 11%">credenziali errate</p>
+              <p style="color: red; margin-left: 11%">Attenzione: credenziali errate.</p>
               <?php }?>
             <?php if ($_smarty_tpl->tpl_vars['ban']->value == true) {?>
-              <p style="color: red; margin-left: 7%">L'utente che sta provando ad accedere è bannato</p>
+              <p style="color: red; margin-left: 7%">Attenzione: l'utente che sta provando ad accedere risulta bannato.</p>
               <?php }?>
               <?php if ($_smarty_tpl->tpl_vars['regErr']->value == true) {?>
-                <p style="color: red; margin-left: 7%">email o password sono già in uso</p>
+                <p style="color: red; margin-left: 7%">Attenzione: email o password già in uso.</p>
                 <?php }?>
             <div class="inputbox">
               <ion-icon name="person-outline"></ion-icon>
@@ -105,7 +106,7 @@ function content_66913a7b785a42_10107648 (Smarty_Internal_Template $_smarty_tpl)
             <a href="login"><button type="submit" id="submitButton">Accedi</button></a>
             </form>
             <div class="login">
-              <p>Non hai un profilo? <a href="registrazione">Registrati</a></p>
+              <p><br>Non hai un profilo? <a href="registrazione">Registrati</a></p>
             </div>
         </div>
       </div>

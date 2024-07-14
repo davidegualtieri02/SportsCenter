@@ -1,15 +1,15 @@
 <?php
-use DateTime; //Utilizzo di una classe di default
+//use DateTime; //Utilizzo di una classe di default
 //use Doctrine\ORM \Mapping as ORM;
 
 class EPrenotazione {
     private int $id_prenotazione = 0;
-    private DateTime $data;
+    private string $data;
     private int $orario; //L'orario non è di tipo DateTime perchè gli orari disponibili saranno predefiniti all'ora spaccata (es. ore 18, ore 19, ore 20, etc.)
     private bool $pagata;
-    private $id_campo; //ID dell'oggetto Campo
-    private $id_attrezzatura; //ID dell'oggetto Attrezzatura
-    private $id_utenteRegistrato;
+    private string $id_campo; //ID dell'oggetto Campo
+    private bool $id_attrezzatura; //ID dell'oggetto Attrezzatura
+    private int $id_utenteRegistrato;
     private static $entità = EPrenotazione::class;
 
     public function __construct($data,$orario,$pagata,$id_campo,$id_attrezzatura,$id_utenteRegistrato){
@@ -20,10 +20,10 @@ class EPrenotazione {
         $this->id_attrezzatura = $id_attrezzatura;
         $this->id_utenteRegistrato = $id_utenteRegistrato;
     }
-    public function getData():DateTime{
+    public function getData(){
         return $this->data;
     }
-    public function setData(DateTime $data):void{
+    public function setData($data):void{
         $this->data = $data;
     }
     public function getOrario(){
@@ -42,9 +42,9 @@ class EPrenotazione {
         return $this->id_prenotazione;
     }
     public function setIdPrenotazione($id_prenotazione):void{
-        $this->data = $id_prenotazione;
+        $this->id_prenotazione = $id_prenotazione;
     }
-    public static function getEntità():string{
+    public static function getEntità(){
         return self::$entità;
     }
     public function getIdCampo(){

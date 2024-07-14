@@ -67,7 +67,7 @@
 
 <body>
   <div>
-    <a href="home">
+    <a href="/SportsCenter/Utente/index">
       <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter"></a>
   </div>
   <!-- Registration section -->

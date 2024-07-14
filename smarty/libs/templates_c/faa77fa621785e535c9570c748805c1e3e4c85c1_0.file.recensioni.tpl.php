@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-14 20:03:48
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/recensioni.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb304b11583_09057267',
+  'unifunc' => 'content_66941304b9b4d4_27739457',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'faa77fa621785e535c9570c748805c1e3e4c85c1' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/recensioni.tpl',
-      1 => 1720534287,
+      1 => 1720980220,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66941304b9b4d4_27739457 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 
@@ -36,22 +36,22 @@ function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
   </style>
   <?php echo '<script'; ?>
 >
@@ -71,8 +71,8 @@ function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl)
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
-            <img src="images/logo.png" alt="" />
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
+            <img src="/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
             </span>
@@ -80,20 +80,20 @@ function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/location.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/call.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/envelope.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -117,22 +117,22 @@ function content_668eb304b11583_09057267 (Smarty_Internal_Template $_smarty_tpl)
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="profilo.tpl">Profilo</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.tpl">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -165,16 +165,18 @@ $_smarty_tpl->tpl_vars['recensione']->do_else = false;
 ?>
       <div class="box">
         <div class="detail-box">
-          <h4><?php echo $_smarty_tpl->tpl_vars['recensione']->value['utente'];?>
-</h4>
-          <p><?php echo $_smarty_tpl->tpl_vars['recensione']->value['testo'];?>
+          <h5>Recensione rilasciata da: <?php echo $_smarty_tpl->tpl_vars['recensione']->value['nomeUtente'];?>
+</h5>
+          <p><strong>Commento:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['commento'];?>
 </p>
-          <p><strong>Campo:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['campo'];?>
+          <p><strong>Campo:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['titoloCampo'];?>
 </p>
-          <p><strong>Data della recensione:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['data_recensione'];?>
-</p>
-          <p><strong>Valutazione:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['valutazione'];?>
-</p>
+          <p><strong>Data della recensione:</strong> <?php echo $_smarty_tpl->tpl_vars['recensione']->value['giorno'];?>
+</p><br>
+          <img src="data:<?php echo $_smarty_tpl->tpl_vars['recensione']->value['tipoImg'];?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['recensione']->value['encodedDataImg'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['nomeImg']->value;?>
+" style="width: 60%; height: auto;">
         </div>
       </div>
       <?php
@@ -196,74 +198,73 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             Qualche info su SportsCenter
           </h6>
           <p>
-            In realtà non esiste nessun centro sportivo, è il progetto per un esame universitario.
+            In realtà non esiste alcun centro sportivo, è il progetto per un esame universitario.
           </p>
         </div>
         <div class="col-md-2 offset-md-1">
           <h6>
-            Menù
+            Menu
           </h6>
           <ul>
-            <li class=" ">
-              <a class="" href="home.tpl">Home</a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="profilo.tpl">Profilo</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="index.tpl">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
-        
         <div class="col-md-3">
           <h6>
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="">
-              <img src="images/location-white.png" alt="">
-              <span>Via Vetoio, Coppito 1, L'Aquila</span>
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
+              <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="">
-              <img src="images/call-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="">
-              <img src="images/mail-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
-          <div class="info_social">
-            <div>
-              <a href="">
-                <img src="images/facebook-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/twitter-logo-button.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/linkedin.png" alt="">
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img src="images/instagram.png" alt="">
-              </a>
-            </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <a href="https://www.facebook.com/univaq.it">
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/univaq.it">
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://x.com/univaq">
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+            </a>
+          </div>
+          <div>
+            <a href="https://www.tiktok.com/">
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+            </a>
           </div>
         </div>
       </div>
@@ -271,6 +272,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </section>
 
   <!-- end info section -->
+
 
   <!-- footer section -->
   <section class="container-fluid footer_section ">
@@ -282,17 +284,14 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   <!-- footer section -->
 
   <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/profilo.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"><?php echo '</script'; ?>
 >
-
 </body>
-
-</html>
-<?php }
+</html><?php }
 }

@@ -8,6 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>SportsCenter</title>
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
   <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
@@ -98,12 +99,20 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <p style="font-size: 18px;">Dati della prenotazione:</p>
+            <p>Utente: {$nomeUtente}</p>
             <p>Data: {$data}</p>
-            <p>Ora: {$ora}</p>
+            <p>Ora: {$ora}:00</p>
             <p>Attività: {$titoloCampo}</p>
-            <p>Costo: {$prezzoCampo}</p>
-            <p>Attrezzatura: {if $attrezzatura}Sì{else}No{/if}</p>
-            <p>Pagamento: Pagamento effettuato con successo</p>
+            <p>Costo: {$prezzoCampo} euro</p>
+            <p>Attrezzatura: 
+              {if $attrezzatura == 'true'}
+                Sì
+              {/if}
+              {if $attrezzatura == 'false'}
+                No
+              {/if}
+            </p>
+            <p>Pagamento: Pagamento effettuato con successo.</p>
           </div>
         </div>
       </div>

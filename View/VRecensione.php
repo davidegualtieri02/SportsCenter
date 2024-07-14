@@ -1,16 +1,14 @@
 <?php
+require_once(__DIR__ . "/../install/StartSmarty.php");
 class VRecensione{
     private $smarty;
-    private function __construct(){
+    public function __construct(){
         $this->smarty = StartSmarty::configuration();
     }
-    static function getMessaggio(){
-        return UMetodiHTTP::post('messaggio');
+    public static function getMessaggio(){
+        return UMetodiHTTP::post('recensione_text');
     }
-    static function getValutazione(){
-        return UMetodiHTTP::post('valutazione');
-    }
-    static function getData(){
+    public static function getData(){
         return UMetodiHTTP::post('data');
     }
 
@@ -25,6 +23,12 @@ class VRecensione{
         $this->smarty->assign('idUtente',$idUtente);
         $this->smarty->display('./smarty/libs/templates/recensioni.tpl');
     }
+
+    public function MostraRecensioniNoLog($recensioni){
+        $this->smarty->assign('recensioni',$recensioni);
+        $this->smarty->display('./smarty/libs/templates/recensioniNoLog.tpl');
+    }
+
     public function MostraPrenotazioni($prenotazioni,$utente){
         $this->smarty->assign('prenotazioni',$prenotazioni);
         $this->smarty->assign('Utente',$utente);

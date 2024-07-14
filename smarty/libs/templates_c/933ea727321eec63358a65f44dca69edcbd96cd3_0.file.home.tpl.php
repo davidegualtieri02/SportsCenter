@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 22:03:09
+/* Smarty version 4.3.2, created on 2024-07-14 20:13:22
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_66918bfd8f1d69_48354132',
+  'unifunc' => 'content_669415427aab17_10580348',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '933ea727321eec63358a65f44dca69edcbd96cd3' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/home.tpl',
-      1 => 1720814586,
+      1 => 1720980655,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669415427aab17_10580348 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
-
+ 
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -54,6 +54,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
    <link href="/SportsCenter/smarty/libs/css/index.css" rel="stylesheet" />
    <link href="/SportsCenter/smarty/libs/css/contattaci.css" rel="stylesheet" />
+   
 
    <?php echo '<script'; ?>
 >
@@ -83,19 +84,19 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
-                  <span>Tel: (+39) 0862 123456</span>
+                  <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -119,17 +120,17 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="d-flex flex-column flex-lg-row align-items-center">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="home">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="prenotazioni">Prenotazioni</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="servizi">Servizi</a>
+                <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci">Contattaci</a>
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="profilo">Profilo</a>
@@ -160,7 +161,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
               <a href = "/SportsCenter/PrenotaCampo/servizi" class="btn-1">
                 Prenota ora
               </a>
-              <a href="/../Recensione/recensioni" class="btn-1">
+              <a href="/SportsCenter/Recensione/mostraRecensioni" class="btn-1">
                 Recensioni
               </a>
             </div>
@@ -189,8 +190,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             CALCIO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/calcio1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -204,8 +204,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             CALCIO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/calcio2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -219,8 +218,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             PADEL ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/padel1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -234,8 +232,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             PADEL AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/padel2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -249,8 +246,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             TENNIS ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/tennis1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -264,8 +260,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             TENNIS AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/tennis2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -279,8 +274,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             PALLAVOLO ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/pallavolo1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -294,8 +288,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             PALLAVOLO AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/pallavolo2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -309,8 +302,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             BASKET ALL'APERTO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/basket1">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -324,8 +316,7 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             BASKET AL CHIUSO
           </h6>
           <div class="link_box">
-            <a href="/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario">
+            <a href="/SportsCenter/PrenotaCampo/MostraCalendario/basket2">
               <img src="/SportsCenter/smarty/libs/images/link.png" alt="">
             </a>
             <h6>
@@ -585,16 +576,16 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
               <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -603,15 +594,15 @@ function content_66918bfd8f1d69_48354132 (Smarty_Internal_Template $_smarty_tpl)
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>

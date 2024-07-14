@@ -1,9 +1,32 @@
 <?php
+require_once(__DIR__ . "/../install/StartSmarty.php");
 class VAmministratore{
     private $smarty;
-    private function __construct(){
+    public function __construct(){
         $this->smarty = StartSmarty::configuration();
     }
+
+    public function homeAdmin($nomeUtente,$emailUtente){
+        $this->smarty->assign('nomeUtente',$nomeUtente);
+        $this->smarty->display('./smarty/libs/templates/homeAdmin.tpl');
+    }
+
+    public function listaUtenti($listaUtenti){
+        $this->smarty->assign('listaUtenti',$listaUtenti);
+        $this->smarty->display('./smarty/libs/templates/utentiAdmin.tpl');
+    }
+
+    public function listaPrenotazioni($listaPrenotazioni){
+        $this->smarty->assign('listaPrenotazioni', $listaPrenotazioni);
+        $this->smarty->display('./smarty/libs/templates/prenotazioniAdmin.tpl');
+    }
+
+    public function listaRecensioni($recensioni){
+        $this->smarty->assign('recensioni', $recensioni);
+        $this->smarty->display('./smarty/libs/templates/recensioniAdmin.tpl');
+    }
+
+
     public function MostraloginForm(){
         $this->smarty->display('Amministratore-login.tpl'); //NON ESISTE, va messo login.tpl?
     }

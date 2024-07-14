@@ -1,5 +1,8 @@
 /* Additional CSS to change text color on hover */
 .contact_nav .nav-item a:hover span {
- color: white;
+ color: black;
+}
+.info_section .container .row .col-md-3 a:hover span{
+	color: #c9c9c9 ;
 }
   

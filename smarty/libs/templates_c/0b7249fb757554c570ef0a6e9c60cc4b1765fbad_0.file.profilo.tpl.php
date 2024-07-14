@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-14 20:14:52
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/profilo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb3048124a9_34820689',
+  'unifunc' => 'content_6694159c75feb9_15906887',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0b7249fb757554c570ef0a6e9c60cc4b1765fbad' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/profilo.tpl',
-      1 => 1720427587,
+      1 => 1720980890,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6694159c75feb9_15906887 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
-
+ 
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -36,39 +36,43 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+   <link href="/SportsCenter/smarty/libs/css/index.css" rel="stylesheet" />
+   <link href="/SportsCenter/smarty/libs/css/contattaci.css" rel="stylesheet" />
   <style>
     .about_section {
-      background-image: url('images/ragazzi.png');
+      background-image: url('/SportsCenter/smarty/libs/images/ragazzi.png');
       background-size: cover;
       background-position: center;
     }
   </style>
-  <?php echo '<script'; ?>
+   
+   <?php echo '<script'; ?>
 >
-  function ready(){
-      if (!navigator.cookieEnabled) {
-          alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-      }
-  }
-  document.addEventListener("DOMContentLoaded", ready);
-<?php echo '</script'; ?>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    <?php echo '</script'; ?>
 >
+
 </head>
 
 <body class="sub_page about_page">
@@ -77,8 +81,8 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
-            <img src="images/logo.png" alt="" />
+          <a class="navbar-brand" href="home">
+            <img src="images/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
             </span>
@@ -86,20 +90,20 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/location.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/call.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
-                  <img src="images/envelope.png" alt="" />
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
               </li>
@@ -123,22 +127,22 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
               <div class="d-flex flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="home.tpl">Home</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="prenotazioni.tpl">Prenotazioni</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="servizi.tpl">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contattaci.tpl">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item active">
-                    <a class="nav-link" href="profilo.tpl">Profilo<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="index.tpl">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -163,7 +167,7 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
         <div class="detail-box">
           <h2>
             Di seguito, trovi tutti i tuoi dati:
-          </h2>
+          </h2><br>
           <ul>
             <li>Nome: <?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
 </li>
@@ -178,7 +182,9 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
 </li>
             <?php }?>
           </ul>
-          <a class="btn btn-primary" href="tesseramento.tpl" id="tesseramento-button">Tesseramento</a>
+          <?php if ($_smarty_tpl->tpl_vars['id_tesseraUtente']->value == 0) {?>
+          <a class="btn btn-primary" href="/SportsCenter/Tesseramento/MostraTesseramento" id="tesseramento-button">Tesseramento</a>
+          <?php }?>
         </div>
       </div>
     </div>
@@ -204,20 +210,23 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
             Menu
           </h6>
           <ul>
-            <li class=" active">
-              <a class="" href="index.tpl">Home<span class="sr-only">(current)</span></a>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="prenotazioni.tpl">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="servizi.tpl">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="contattaci.tpl">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="login_form.tpl">Login</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -226,16 +235,16 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
-              <img src="images/location-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="images/call-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="images/mail-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
@@ -243,22 +252,22 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
         <div class="col-md-3">
           <div>
             <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
             </a>
           </div>
         </div>
@@ -272,19 +281,20 @@ function content_668eb3048124a9_34820689 (Smarty_Internal_Template $_smarty_tpl)
   <!-- footer section -->
   <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
     </p>
   </section>
   <!-- footer section -->
 
   <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- type="text/javascript" src="js/index.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/index.js"><?php echo '</script'; ?>
 >
 </body>
 

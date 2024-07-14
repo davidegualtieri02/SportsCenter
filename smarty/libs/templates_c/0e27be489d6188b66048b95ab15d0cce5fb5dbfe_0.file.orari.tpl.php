@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-14 20:32:51
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/orari.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb304855016_70178933',
+  'unifunc' => 'content_669419d3376d66_17429135',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0e27be489d6188b66048b95ab15d0cce5fb5dbfe' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/orari.tpl',
-      1 => 1720627607,
+      1 => 1720981969,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb304855016_70178933 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669419d3376d66_17429135 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
 ?>
 <!DOCTYPE html>
@@ -34,11 +34,11 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
     <meta name="author" content="">
     <title>SportsCenter</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-    <link href="css/orari.css" rel="stylesheet">
+    <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet">
+    <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet">
+    <link href="/SportsCenter/smarty/libs/css/orari.css" rel="stylesheet">
     <?php echo '<script'; ?>
 >
         function ready(){
@@ -51,39 +51,39 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
 >
 </head>
 <body class="sub_page">
-    <div class="hero_area">
-        <header class="header_section">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand" href="/SportsCenter/Utente/home">
-                        <img src="images/logo.png" alt="">
-                        <span>SportsCenter</span>
-                    </a>
-                    <div class="contact_nav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
-                                    <img src="images/location.png" alt="">
-                                    <span>Location</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">
-                                    <img src="images/call.png" alt="">
-                                    <span>Tel: +393661830182</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contattaci.tpl">
-                                    <img src="images/envelope.png" alt="">
-                                    <span>daiegrom@gmail.com</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
+            <img src="/SportsCenter/smarty/libs/images/logo.png" alt="">
+            <span>SportsCenter</span>
+          </a>
+          <div class="contact_nav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/location.png" alt="">
+                  <span>Location</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/call.png" alt="">
+                  <span>(+39) 0862 123456</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
+                  <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="">
+                  <span>info@sportscenter.com</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
         <section class="slider_section position-relative">
             <div class="container">
                 <div class="custom_nav2">
@@ -98,19 +98,19 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
                                         <a class="nav-link" href="/SportsCenter/Utente/home">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+                                        <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/SportsCenter/Utente/home/index">Logout</a>
+                                        <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -125,48 +125,83 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfil
         <div class="container">
             <div class="heading_container"></div>
             <div class="layout_padding2-top">
+                <form id="timeForm" method="post" action="/SportsCenter/PrenotaCampo/MostraOrari/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+">
+                <input type="hidden" name="idCampo" value="<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Seleziona un orario per il giorno: <?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+                        <h3>Seleziona un orario per il giorno: <br><?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
 </h3>
                         <!-- Tabella degli orari -->
-                        <form id="timeForm" method="post" action="/SportsCenter/PrenotaCampo/MostraOrari">
                             <table class="orari-table">
                                 <thead>
-                                    <tr>
-                                        <th>Ore disponibili</th>
-                                    </tr>
+                                    <h5 style="color: #90EE90; ">
+                                    <br><br>Ore disponibili:
+                                    </h5>
                                 </thead>
+                                <style>
+                                  .disabled {
+                                    color: #ccc;
+                                    pointer-events: none;
+                                  }
+                                </style>
+                                <?php echo '<script'; ?>
+>
+                                    function selectTime(cell) {
+                                    if (!cell.classList.contains('disabled')) {
+                                        alert('Hai selezionato: ' + cell.getAttribute('data-time'));
+                                    }
+                                }
+                                <?php echo '</script'; ?>
+>
                                 <tbody>
-                                    <?php
-$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
-if (true) {
-for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_5_iteration <= 16; $__section_i_5_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+                                  <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['orari']->value, 'ora', false, 'key');
+$_smarty_tpl->tpl_vars['ora']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['ora']->value) {
+$_smarty_tpl->tpl_vars['ora']->do_else = false;
 ?>
-                                    <?php if ($_smarty_tpl->tpl_vars['i']->value%4 == 0) {?><tr><?php }?>
-                                    <td onclick="selectTime(this)" data-time="<?php echo $_smarty_tpl->tpl_vars['i']->value+8;?>
-:00"><?php echo $_smarty_tpl->tpl_vars['i']->value+8;?>
-:00</td>
-                                    <?php if ($_smarty_tpl->tpl_vars['i']->value%4 == 3) {?></tr><?php }?>
-                                    <?php
+                                    <?php if ($_smarty_tpl->tpl_vars['key']->value%4 == 0) {?><tr><?php }?>
+                                <td onclick="selectTime(this)" data-time="<?php echo $_smarty_tpl->tpl_vars['ora']->value['orario'];?>
+" <?php if (!$_smarty_tpl->tpl_vars['ora']->value['disponibile']) {?>class="disabled"<?php }?>>
+                                      <?php echo $_smarty_tpl->tpl_vars['ora']->value['orario'];?>
+
+                                </td>
+                                    <?php if ($_smarty_tpl->tpl_vars['key']->value%4 == 3 || $_smarty_tpl->tpl_vars['key']->value == count($_smarty_tpl->tpl_vars['orari']->value)-1) {?></tr><?php }?>
+                                  <?php
 }
-}
-?>
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </tbody>
                             </table>
-                            
-                            <input type="hidden" name="selected_time" id="selected_time" value="">
                             <input type="hidden" name="selected_day" value="<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
 ">
-                            <a type="submit" class="btn btn-avanti float-right" href ="/SportsCenter/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario/<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
-/orari/<?php echo $_smarty_tpl->tpl_vars['selected_time']->value;?>
-/attrezzatura">Avanti</a>
-                        </form>
+                            <input type="hidden" name="selected_time" id="selected_time">
                     </div>
                     <div class="col-md-6">
+                        <?php if ($_smarty_tpl->tpl_vars['idCampo']->value == "calcio1") {?> 
+                          <img src="/SportsCenter/smarty/libs/images/campocalcio.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "calcio2") {?>
+                          <img src="/SportsCenter/smarty/libs/images/campocalciointerno.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "padel1") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campopadelaperto.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "padel2") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campopadelchiuso.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "tennis1") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campotennisaperto.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "tennis2") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campotennischiuso.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "pallavolo1") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campopallavoloaperto.jpeg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "pallavolo2") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campopallavolochiuso.jpg" alt="">
+                        <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "basket1") {?>
+                        <img src="/SportsCenter/smarty/libs/images/campobasket.jpg" alt="">
+                        <?php } else { ?>
+                        <img src="/SportsCenter/smarty/libs/images/campobasketinterno.jpg" alt="">
+                        <?php }?>
                         <div class="text-center mb-4">
-                            <img src="images/campobasket.jpg" alt="" style="max-width: 100%; height: auto;">
                         </div>
                         <div class="campo-description">
                             <h3>Descrizione del campo:</h3>
@@ -177,21 +212,28 @@ for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                                 <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro
                             <?php } else { ?>
-                                <?php echo smarty_function_math(array('equation'=>"x-(x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzocampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
+                                <?php echo smarty_function_math(array('equation'=>"x-(x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzoCampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
  
                                 Prezzo originale : <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro , prezzo scontato per utenti tesserati : <?php echo $_smarty_tpl->tpl_vars['prezzo_scontato']->value;?>
  euro.
                             <?php }?>
                             </p>
+                            <!-- Pulsante "Avanti" allineato a destra -->
+                            <a href = "/SportsCenter/PrenotaCampo/MostraOrari/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+/<?php echo $_smarty_tpl->tpl_vars['giorno']->value;?>
+"><button class="btn btn-avanti float-right" type="submit">Avanti</button></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+        </div>
         </div>
     </section>
 
-    <section class="info_section layout_padding2-top">
+   <!-- info section -->
+
+  <section class="info_section layout_padding2-top">
 
     <div class="container">
       <div class="row">
@@ -212,19 +254,19 @@ for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
               <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/prenotazioni">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/profilo">Profilo</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/home/logout">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -233,16 +275,16 @@ for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
-              <img src="images/location-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="images/call-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="images/mail-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
           </div>
@@ -250,22 +292,22 @@ for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
         <div class="col-md-3">
           <div>
             <a href="https://www.facebook.com/univaq.it">
-              <img src="images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/facebook_small_logo.png" alt="Logo Facebook" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.instagram.com/univaq.it">
-              <img src="images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/instagram_small_logo.png" alt="Logo Instagram" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://x.com/univaq">
-              <img src="images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/twitter_small_logo.png" alt="Logo Twitter" width=10% height=auto>
             </a>
           </div>
           <div>
             <a href="https://www.tiktok.com/">
-              <img src="images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
+              <img src="/SportsCenter/smarty/libs/images/tiktok_small_logo.png" alt="Logo TikTok" width=10% height=auto>
             </a>
           </div>
         </div>
@@ -273,18 +315,26 @@ for ($__section_i_5_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
     </div>
   </section>
 
-    <section class="container-fluid footer_section">
-        <p>&copy; 2024 Tutti i diritti sono riservati. Disegnato da<a href="https://html.design/">Frack,daieg e das</a></p>
-    </section>
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
+    </p>
+  </section>
+  <!-- footer section -->
 
     <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- type="text/javascript" src="js/orari.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/orari.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
 >

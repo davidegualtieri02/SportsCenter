@@ -13,11 +13,11 @@ class CAmministratore{
                 USession::getIstanza();
             }
         }
-        if (USession::isSetElementoSessione('Amministratore')){
+        if (USession::isSetElementoSessione('utenteRegistrato')){
             $loggato= true;
         }
         if(!$loggato){
-            header('Location: /SportsCenter/Amministratore/login');
+            header('Location: https://www.google.it');
             exit;
         }
         return true;
@@ -48,6 +48,121 @@ class CAmministratore{
         USession::distruggiSessione();
         header('Location: /SportsCenter/Amministratore/login');
     }
+
+    public static function homeAdmin(){
+        if(CUtente::Loggato()){
+            $view = new VAmministratore();
+            $idUtente = USession::getIstanza()::getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(),$idUtente);
+            $nomeUtente = $utente->getNome();
+            $view->homeAdmin($nomeUtente,$emailUtente);
+        }
+        else{
+            header('Location: /SportsCenter/Utente/login');
+        }
+        //var_dump($_SESSION['utenteRegistrato']);
+    }
+
+    public static function listaUtenti(){
+        if(CUtente::Loggato()){
+            $view = new VAmministratore();
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
+            $nomeUtente = $utente->getNome();
+            $listaUtenticonAdmin = FPersistentManager::getIstanza()->recuperaTuple(FUtenteRegistrato::getTabella());
+            $listaUtenti = array_slice($listaUtenticonAdmin,1);
+            $view->listaUtenti($listaUtenti);
+
+
+            /*
+            $listaPrenotazioniinordine = FPersistentManager::getIstanza()->recuperaoggetti(FPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
+            //print_r($listaPrenotazioni);
+            $listaPrenotazioni = array_reverse($listaPrenotazioniinordine);
+            foreach ($listaPrenotazioni as &$prenotazione) {
+                $idCampo = $prenotazione['id_campo'];
+                $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                $titoloCampo = $campo->getTitolo();
+                $prenotazione['titoloCampo'] = $titoloCampo;
+            }    
+            unset($prenotazione);
+            $view->prenotazioniUtente($nomeUtente,$listaPrenotazioni);*/
+        }
+    }
+
+
+    public static function listaPrenotazioni(){
+        if(CUtente::Loggato()){
+            $view = new VAmministratore();
+            $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
+            //$nomeUtente = $utente->getNome();
+            $listaPrenotazioniinordine = FPersistentManager::getIstanza()->recuperaTuple(FPrenotazione::getTabella());
+            $listaPrenotazioni = array_reverse($listaPrenotazioniinordine);
+            foreach ($listaPrenotazioni as &$prenotazione) {
+                $idCampo = $prenotazione['id_campo'];
+                $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                $titoloCampo = $campo->getTitolo();
+                $prenotazione['titoloCampo'] = $titoloCampo;
+                $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $prenotazione['id_utenteRegistrato']);
+                $nomeUtente = $utente->getNome();
+                $prenotazione['nomeUtente'] = $nomeUtente;
+                $cognomeUtente = $utente->getCognome();
+                $prenotazione['cognomeUtente'] = $cognomeUtente;
+                $emailUtente = $utente->getEmail();
+                $prenotazione['emailUtente'] = $emailUtente;
+            }    
+            unset($prenotazione);
+            $view->listaPrenotazioni($listaPrenotazioni);
+        }
+    }
+
+    public static function annullaPrenotazione($id_prenotazione,$id_utenteRegistrato) {
+        if (CUtente::Loggato()){
+            $idUtente = USession::getElementoSessione('utenteRegistrato');
+            FPersistentManager::deletePrenotazione($id_prenotazione,$id_utenteRegistrato);
+            ;
+            header("Location: /SportsCenter/Amministratore/listaPrenotazioni");
+        }
+    }
+
+
+    public static function listaRecensioni(){
+        $view = new VAmministratore();
+        $pm = FPersistentManager::getIstanza();
+        $sessione = USession::getIstanza();
+        $idUtente = $sessione->getElementoSessione('utenteRegistrato');
+        if(CUtente::Loggato()){
+            $recensioniinordine = $pm::RecuperaTuple(FRecensione::getTabella());
+            $recensioni = array_reverse($recensioniinordine);
+            if(UServer::getRichiestaMetodo() == 'GET'){
+                foreach ($recensioni as &$recensione) {
+                    $idCampo = $recensione['id_campo'];
+                    $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                    $titoloCampo = $campo->getTitolo();
+                    $recensione['titoloCampo'] = $titoloCampo;
+                    $utente = FPersistentManager::recuperaOggetto('EUtenteRegistrato', $recensione['id_utenteRegistrato']);
+                    $nomeUtente = $utente->getNome();
+                    $recensione['nomeUtente'] = $nomeUtente;
+                    $image = FPersistentManager::recuperaOggetto('EImage', $recensione['id_image']);
+                    $nomeImg = $image->getNome();
+                    $recensione['nomeImg'] = $nomeImg;
+                    $grandezzaImg = $image->getGrandezza();
+                    $recensione['grandezzaImg'] = $grandezzaImg;
+                    $tipoImg = $image->getTipo();
+                    $recensione['tipoImg'] = $tipoImg;
+                    $imageDataImg = $image->getImageData();
+                    $encodedDataImg = $image->getEncodedData();
+                    $recensione['encodedDataImg'] = $encodedDataImg;
+                }
+                unset($recensione);
+                $view->listaRecensioni($recensioni);
+            }
+        }
+    }
+
+
+
+
     /**
      * metodo che verifica se esiste l'email inserita e per questa email verifica la password. Se tutto è corretto , viene creata la sessione e l'amministratore
      * viene reindirizzato alla homepage
@@ -79,12 +194,11 @@ class CAmministratore{
      * @param $idUtente si riferisce all'id dell'utente da bannare
      */
     public static function banUtente($idUtente){
-        if(CAmministratore::Loggato()){
-            $utente = FPersistentManager::getIstanza()->recuperaOggetto(EUtente::getEntità(),$idUtente);
+        if(CUtente::Loggato()){
+            $utente = FPersistentManager::getIstanza()->recuperaOggetto(EUtenteRegistrato::getEntità(),$idUtente);
             if($utente !== null){
-                $utente->setBan(true);
                 FPersistentManager::getIstanza()->updateBanUtente($utente);
-                header('Location : /SportsCenter/Amministratore/home');
+                header('Location: /SportsCenter/Amministratore/listaUtenti');
             }
         }
     }

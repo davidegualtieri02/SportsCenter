@@ -20,7 +20,7 @@ class CUtente {
 
         }
         if(!$loggato){ // se l'utente non è ancora loggato , cioè $loggato = false
-            header('Location: login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
+            header('Location: /SportsCenter/Utente/login');// attraverso questo metodo l'utente viene reindirizzato alla pagina di login 
             exit;// viene terminato l'esecuzione dello script per farsi che l'utente venga reindirizzato alla pagina di login
         }
         return true; // viene ritornato true se l'utente è loggato correttamente
@@ -69,22 +69,22 @@ class CUtente {
 //DA DAIEG
     public static function login(){
         $view = new VUtente();
-        if($_SERVER["REQUEST_METHOD"] == "GET"){
+        if(UServer::getRichiestaMetodo() == "GET"){
             $view->MostraLoginFormUtente();
         }
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(UServer::getRichiestaMetodo() == "POST"){
             //USession::setElementoSessione('email', UMetodiHTTP::post('email'));
             //USession::setElementoSessione('password', UMetodiHTTP::post('password'));
             if(FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'))){
                 $utente = FPersistentManager::recuperaUtenteDaEmail(UMetodiHTTP::post('email'));
-                $idUtente = $utente->getId();
+                $idUtente = FPersistentManager::getId($utente);
                 $nomeUtente = $utente->getNome();
                 USession::getIstanza()::setElementoSessione('utenteRegistrato', $idUtente);
             //echo $idUtente;
             //var_dump($_POST);
             //var_dump($_SESSION);
             //echo $utente->getPassword();
-                static::VerificaLogin();
+                static::VerificaLogin($idUtente);
             }else{
                 $view->erroreLogin();
             }
@@ -111,10 +111,10 @@ class CUtente {
 //DA DAIEG
     public static function registrazione(){
         $view = new VUtente();
-        if($_SERVER["REQUEST_METHOD"] == "GET"){
+        if(UServer::getRichiestaMetodo() == "GET"){
             $view->MostraFormRegistrazione();
         }
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (UServer::getRichiestaMetodo() == "POST") {
             //var_dump($_POST);
             // Verifica se sono stati inviati tutti i campi necessari
             if (isset($_POST['nome'], $_POST['cognome'], $_POST['email'], $_POST['password'])) {
@@ -158,7 +158,7 @@ class CUtente {
  * metodo che verifica se esiste l'email inserita  e per questa email verifica la password. Se tutto è corretto , viene creata la sessione e l'utente registrato
  * viene reindirizzato alla homepage
  */
-    public static function VerificaLogin(){
+    public static function VerificaLogin($idUtente){
         $view = new VUtente();
         $email = FPersistentManager::getIstanza()->VerificaEmailUtente(UMetodiHTTP::post('email'));
         if($email){
@@ -175,7 +175,12 @@ class CUtente {
                     // e viene posto l'id dell'utente registrato , cioè l'id dell'utente di cui è stata verificata la password, viene posto nell'array superglobale $_SESSION
                     //la riga sopra serve per far si che il sistema può utilizzare questo ID per identificare l'utente nelle richieste future(le richieste future sono invio di moduli,logout ect..), cioè in ogni richiesta che l'utente fa (quando un utente interagisce con un applicazione web , ogni azione che richiede una comunicazione con il server genera una nuova richiesta HTTP) , mantenendo cosi lo stato di autenticazione.
                     //Mantenere lo stato di autenticazione è importante per assicurare che le operazioni siano eseguite nel contesto dell'utente corretto
-                    header('Location: home');
+                    if ($idUtente == 1){
+                        header('Location: /SportsCenter/Amministratore/homeAdmin');
+                    }
+                    else{
+                        header('Location: home');
+                    }
                     //$view->home($nomeUtente);
                 }
             }else {
@@ -209,11 +214,11 @@ class CUtente {
             $view = new VUtente();
             $idUtente = USession::getIstanza()::getElementoSessione('utenteRegistrato');
             $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(),$idUtente);
-            $nomeUtente = FPersistentManager::getNome($utente);
+            $nomeUtente = $utente->getNome();
             $view->home($nomeUtente);
         }
         else{
-            header('Location: https://www.google.it/');
+            header('Location: login');
         }
         //var_dump($_SESSION['utenteRegistrato']);
     }
@@ -223,20 +228,38 @@ class CUtente {
             $view = new VUtente();
             $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
             $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
-            $nomeUtente = $utente['nome'];
-            $cognomeUtente = $utente['cognome'];
-            $emailUtente = $utente['email'];
-            $id_tesseraUtente = $utente['id_tessera'];
+            $nomeUtente = $utente->getNome();
+            $cognomeUtente = $utente->getCognome();
+            $emailUtente = $utente->getEmail();
+            $id_tesseraUtente = FPersistentManager::getId_tessera($utente);
             $view->profilo($nomeUtente,$cognomeUtente,$emailUtente,$id_tesseraUtente);
         }
     }
 
-    public static function prenotazioniUtente(){
+    public static function prenotazioni(){
         if(CUtente::Loggato()){
             $view = new VUtente();
             $idUtente = USession::getIstanza()->getElementoSessione('utenteRegistrato');
-            $listaPrenotazioni = FPersistentManager::getIstanza()->recuperaoggetti(FPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
-            $view->prenotazioniUtente($listaPrenotazioni);
+            $utente = FPersistentManager::getIstanza()->recuperaoggetto(EUtenteRegistrato::getEntità(), $idUtente);
+            $nomeUtente = $utente->getNome();
+            $listaPrenotazioniinordine = FPersistentManager::getIstanza()->recuperaoggetti(FPrenotazione::getTabella(), 'id_utenteRegistrato', $idUtente);
+            //print_r($listaPrenotazioni);
+            $listaPrenotazioni = array_reverse($listaPrenotazioniinordine);
+            foreach ($listaPrenotazioni as &$prenotazione) {
+                $idCampo = $prenotazione['id_campo'];
+                $campo = FPersistentManager::recuperaOggetto('ECampo', $idCampo);
+                $titoloCampo = $campo->getTitolo();
+                $prenotazione['titoloCampo'] = $titoloCampo;
+            }    
+            unset($prenotazione);
+            $view->prenotazioniUtente($nomeUtente,$listaPrenotazioni);
         }
     }
+
+    public static function contatti(){
+        $view = new VUtente();
+        $view->contatti();
+    }
+
+
 }

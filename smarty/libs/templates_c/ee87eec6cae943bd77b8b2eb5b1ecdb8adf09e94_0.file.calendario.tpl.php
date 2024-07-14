@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-12 23:32:19
-  from '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl' */
+/* Smarty version 4.3.2, created on 2024-07-14 20:26:23
+  from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6691a0e346da07_88780716',
+  'unifunc' => 'content_6694184f494a51_18828430',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '8382db24aab8b7a77cdff7fc0a8faaf4fe30e2dd' => 
+    'ee87eec6cae943bd77b8b2eb5b1ecdb8adf09e94' => 
     array (
-      0 => '/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/templates/calendario.tpl',
-      1 => 1720819895,
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/calendario.tpl',
+      1 => 1720981581,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6691a0e346da07_88780716 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Desktop/PPIW/Progetto/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
+function content_6694184f494a51_18828430 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),));
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -54,6 +54,8 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
     <?php echo '</script'; ?>
 >
     
+}
+    
 </head>
 <body class="sub_page">
   <div class="hero_area">
@@ -67,19 +69,19 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="">
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
@@ -106,16 +108,16 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
                     <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -129,7 +131,8 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
     <div class="container">
       <div class="heading_container"></div>
       <div class="layout_padding2-top">
-      <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
+      <form id = "dateForm" method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+">
         <input type="hidden" name="idCampo" value="<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
 ">
         <div class="row">
@@ -143,7 +146,29 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
               <div id="divCal" class="calendar"></div>
             </div>
           </div>
+          <input type="hidden" id="selectedDayInput" name="selectedDay">
           <div class="col-md-6">
+            <?php if ($_smarty_tpl->tpl_vars['idCampo']->value == "calcio1") {?> 
+              <img src="/SportsCenter/smarty/libs/images/campocalcio.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "calcio2") {?>
+              <img src="/SportsCenter/smarty/libs/images/campocalciointerno.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "padel1") {?>
+            <img src="/SportsCenter/smarty/libs/images/campopadelaperto.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "padel2") {?>
+            <img src="/SportsCenter/smarty/libs/images/campopadelchiuso.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "tennis1") {?>
+            <img src="/SportsCenter/smarty/libs/images/campotennisaperto.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "tennis2") {?>
+            <img src="/SportsCenter/smarty/libs/images/campotennischiuso.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "pallavolo1") {?>
+            <img src="/SportsCenter/smarty/libs/images/campopallavoloaperto.jpeg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "pallavolo2") {?>
+            <img src="/SportsCenter/smarty/libs/images/campopallavolochiuso.jpg" alt="">
+            <?php } elseif ($_smarty_tpl->tpl_vars['idCampo']->value == "basket1") {?>
+            <img src="/SportsCenter/smarty/libs/images/campobasket.jpg" alt="">
+            <?php } else { ?>
+            <img src="/SportsCenter/smarty/libs/images/campobasketinterno.jpg" alt="">
+            <?php }?>
             <div class="text-center mb-4">
             </div>
             <div class="campo-description">
@@ -156,21 +181,16 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
                 <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro
               <?php } else { ?>
-                <?php echo smarty_function_math(array('equation'=>"x - (x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzocampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
+                <?php echo smarty_function_math(array('equation'=>"x - (x * y / 100)",'x'=>$_smarty_tpl->tpl_vars['prezzoCampo']->value,'y'=>30,'assign'=>"prezzo_scontato"),$_smarty_tpl);?>
 
                 Prezzo originale: <?php echo $_smarty_tpl->tpl_vars['prezzoCampo']->value;?>
  euro, prezzo scontato per utenti tesserati: <?php echo $_smarty_tpl->tpl_vars['prezzo_scontato']->value;?>
  euro.
               <?php }?>
               </p>
-              <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
-                <input type="hidden" name="idCampo" value="<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-">
-              </form>
               <!-- Pulsante "Avanti" allineato a destra -->
-              <a class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
-/calendario/<?php echo $_smarty_tpl->tpl_vars['selected_day']->value;?>
-/orari">Avanti</a>
+              <a href = "/SportsCenter/PrenotaCampo/MostraCalendario/<?php echo $_smarty_tpl->tpl_vars['idCampo']->value;?>
+"><button class="btn btn-avanti float-right" type="submit">Avanti</button></a>
             </div>
           </div>
         </div>
@@ -205,16 +225,16 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
               <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -223,15 +243,15 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="i/SportsCenter/smarty/libs/images/call-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
@@ -263,16 +283,17 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
     </div>
   </section>
 
-  <!-- end info section -->  
-  
-    <!-- footer section -->
-    <section class="container-fluid footer_section ">
-      <p>
-        &copy; 2024 Tutti i diritti sono riservati. Realizzato da
-        <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
-      </p>
-    </section>
-    <!-- footer section -->
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
+    </p>
+  </section>
+  <!-- footer section -->
 
   <?php echo '<script'; ?>
  type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
@@ -285,16 +306,5 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/Users/diegoromanelli/Deskto
 >
     
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-<?php }
+</html><?php }
 }

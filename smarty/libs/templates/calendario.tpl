@@ -17,7 +17,7 @@
   <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet">
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet">
   <link rel="stylesheet" href="/SportsCenter/smarty/libs/css/calendario.css">
-
+{literal}
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -26,6 +26,8 @@
         }
         document.addEventListener("DOMContentLoaded", ready);
     </script>
+    {/literal}
+}
     
 </head>
 <body class="sub_page">
@@ -33,26 +35,26 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="/SportsCenter/home">
+          <a class="navbar-brand" href="/SportsCenter/Utente/home">
             <img src="/SportsCenter/smarty/libs/images/logo.png" alt="">
             <span>SportsCenter</span>
           </a>
           <div class="contact_nav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="">
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="">
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="SportsCenter/home/contattaci">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="">
                   <span>info@sportscenter.com</span>
                 </a>
@@ -79,16 +81,16 @@
                     <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -102,7 +104,7 @@
     <div class="container">
       <div class="heading_container"></div>
       <div class="layout_padding2-top">
-      <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
+      <form id = "dateForm" method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario/{$idCampo}">
         <input type="hidden" name="idCampo" value="{$idCampo}">
         <div class="row">
           <div class="col-md-6"> <!--div colonna del calendario-->
@@ -115,9 +117,30 @@
               <div id="divCal" class="calendar"></div>
             </div>
           </div>
+          <input type="hidden" id="selectedDayInput" name="selectedDay">
           <div class="col-md-6">
+            {if $idCampo == "calcio1"} 
+              <img src="/SportsCenter/smarty/libs/images/campocalcio.jpg" alt="">
+            {elseif $idCampo == "calcio2"}
+              <img src="/SportsCenter/smarty/libs/images/campocalciointerno.jpg" alt="">
+            {elseif $idCampo == "padel1"}
+            <img src="/SportsCenter/smarty/libs/images/campopadelaperto.jpg" alt="">
+            {elseif $idCampo == "padel2"}
+            <img src="/SportsCenter/smarty/libs/images/campopadelchiuso.jpg" alt="">
+            {elseif $idCampo == "tennis1"}
+            <img src="/SportsCenter/smarty/libs/images/campotennisaperto.jpg" alt="">
+            {elseif $idCampo == "tennis2"}
+            <img src="/SportsCenter/smarty/libs/images/campotennischiuso.jpg" alt="">
+            {elseif $idCampo == "pallavolo1"}
+            <img src="/SportsCenter/smarty/libs/images/campopallavoloaperto.jpeg" alt="">
+            {elseif $idCampo == "pallavolo2"}
+            <img src="/SportsCenter/smarty/libs/images/campopallavolochiuso.jpg" alt="">
+            {elseif $idCampo == "basket1"}
+            <img src="/SportsCenter/smarty/libs/images/campobasket.jpg" alt="">
+            {else $idCampo == "basket2"}
+            <img src="/SportsCenter/smarty/libs/images/campobasketinterno.jpg" alt="">
+            {/if}
             <div class="text-center mb-4">
-              
             </div>
             <div class="campo-description">
               <h3>Descrizione del campo:</h3>
@@ -131,11 +154,8 @@
                 Prezzo originale: {$prezzoCampo} euro, prezzo scontato per utenti tesserati: {$prezzo_scontato} euro.
               {/if}
               </p>
-              <form method="post" action="/SportsCenter/PrenotaCampo/MostraCalendario">
-                <input type="hidden" name="idCampo" value="{$idCampo}">
-              </form>
               <!-- Pulsante "Avanti" allineato a destra -->
-              <a class="btn btn-avanti float-right" href = "/SportsCenter/Utente/home/servizi/{$idCampo}/calendario/{$selected_day}/orari">Avanti</a>
+              <a href = "/SportsCenter/PrenotaCampo/MostraCalendario/{$idCampo}"><button class="btn btn-avanti float-right" type="submit">Avanti</button></a>
             </div>
           </div>
         </div>
@@ -170,16 +190,16 @@
               <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
               <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/">Logout</a>
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -188,15 +208,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
-              <img src="i/SportsCenter/smarty/libs/images/call-white.png" alt="">
+            <a href="/SportsCenter/Utente/contatti">
+              <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
@@ -228,16 +248,17 @@
     </div>
   </section>
 
-  <!-- end info section -->  
-  
-    <!-- footer section -->
-    <section class="container-fluid footer_section ">
-      <p>
-        &copy; 2024 Tutti i diritti sono riservati. Realizzato da
-        <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
-      </p>
-    </section>
-    <!-- footer section -->
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
+    </p>
+  </section>
+  <!-- footer section -->
 
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"></script>
@@ -245,13 +266,3 @@
     
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+ 
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -29,6 +29,8 @@
   <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+   <link href="/SportsCenter/smarty/libs/css/index.css" rel="stylesheet" />
+   <link href="/SportsCenter/smarty/libs/css/contattaci.css" rel="stylesheet" />
   <style>
     .about_section {
       background-image: url('/SportsCenter/smarty/libs/images/ragazzi.png');
@@ -36,14 +38,16 @@
       background-position: center;
     }
   </style>
-  <script>
-  function ready(){
-      if (!navigator.cookieEnabled) {
-          alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
-      }
-  }
-  document.addEventListener("DOMContentLoaded", ready);
-</script>
+   {literal}
+   <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+{/literal}
 </head>
 
 <body class="sub_page about_page">
@@ -52,8 +56,8 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="home.tpl">
-            <img src="ima/SportsCenter/smarty/libs/images/logo.png" alt="" />
+          <a class="navbar-brand" href="home">
+            <img src="images/SportsCenter/smarty/libs/images/logo.png" alt="" />
             <span>
               SportsCenter
             </span>
@@ -61,19 +65,19 @@
           <div class="contact_nav" id="">
             <ul class="navbar-nav ">
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/location.png" alt="" />
                   <span>Location</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/call.png" alt="" />
                   <span>(+39) 0862 123456</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contattaci.tpl">
+                <a class="nav-link" href="/SportsCenter/Utente/contatti">
                   <img src="/SportsCenter/smarty/libs/images/envelope.png" alt="" />
                   <span>info@sportscenter.com</span>
                 </a>
@@ -104,16 +108,16 @@
                     <a class="nav-link" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/servizi">Servizi</a>
+                    <a class="nav-link" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/Utente/contattaci">Contattaci</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/contatti">Contatti</a>
                   </li>
                   <li class="nav-item active">
                     <a class="nav-link" href="/SportsCenter/Utente/profilo">Profilo<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/SportsCenter/">Logout</a>
+                    <a class="nav-link" href="/SportsCenter/Utente/logout">Logout</a>
                   </li>
                 </ul>
               </div>
@@ -137,7 +141,7 @@
         <div class="detail-box">
           <h2>
             Di seguito, trovi tutti i tuoi dati:
-          </h2>
+          </h2><br>
           <ul>
             <li>Nome: {$nomeUtente}</li>
             <li>Cognome: {$cognomeUtente}</li>
@@ -148,7 +152,9 @@
             <li>ID tessera: {$id_tesseraUtente}</li>
             {/if}
           </ul>
-          <a class="btn btn-primary" href="tesseramento.tpl" id="tesseramento-button">Tesseramento</a>
+          {if $id_tesseraUtente == 0}
+          <a class="btn btn-primary" href="/SportsCenter/Tesseramento/MostraTesseramento" id="tesseramento-button">Tesseramento</a>
+          {/if}
         </div>
       </div>
     </div>
@@ -175,19 +181,22 @@
           </h6>
           <ul>
             <li class="">
-              <a class="" href="/SportsCenter/home">Home</a>
+              <a class="" href="/SportsCenter/Utente/home">Home</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/prenotazioni">Prenotazioni</a>
+              <a class="" href="/SportsCenter/Utente/prenotazioni">Prenotazioni</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/servizi">Servizi</a>
+              <a class="" href="/SportsCenter/PrenotaCampo/servizi">Servizi</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/contattaci">Contattaci</a>
+              <a class="" href="/SportsCenter/Utente/contatti">Contatti</a>
             </li>
             <li class="">
-              <a class="" href="/SportsCenter/login">Login</a>
+              <a class="" href="/SportsCenter/Utente/profilo">Profilo</a>
+            </li>
+            <li class="">
+              <a class="" href="/SportsCenter/Utente/logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -196,15 +205,15 @@
             Contattaci
           </h6>
           <div class="info_link-box">
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/location-white.png" alt="">
               <span>Via Vetoio, Edificio Coppito 1, 67100 L'Aquila</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/call-white.png" alt="">
               <span>(+39) 0862 123456</span>
             </a>
-            <a href="contattaci.tpl">
+            <a href="/SportsCenter/Utente/contatti">
               <img src="/SportsCenter/smarty/libs/images/mail-white.png" alt="">
               <span>info@sportscenter.com</span>
             </a>
@@ -242,7 +251,8 @@
   <!-- footer section -->
   <section class="container-fluid footer_section ">
     <p>
-      &copy; 2024 Tutti i diritti sono riservati. Realizzato da Francis, Das & Daieg. E come semo?</a>
+      &copy; 2024 Tutti i diritti sono riservati. Realizzato da
+      <a href="https://www.trend-online.com/wp-content/uploads/2024/03/gerry-scotti-compagna.jpg">Francis, Das e Daieg</a>
     </p>
   </section>
   <!-- footer section -->

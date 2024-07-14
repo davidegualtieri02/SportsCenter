@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-10 18:12:52
+/* Smarty version 4.3.2, created on 2024-07-14 20:23:46
   from '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/tesseramento.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668eb3048ae3e4_57816226',
+  'unifunc' => 'content_669417b2e927d6_17642614',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfcc0d13f9631986305a9bdfd048199699d47af4' => 
     array (
       0 => '/Applications/XAMPP/xamppfiles/htdocs/SportsCenter/smarty/libs/templates/tesseramento.tpl',
-      1 => 1720530373,
+      1 => 1720981424,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668eb3048ae3e4_57816226 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669417b2e927d6_17642614 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
-<html lang="it">
+<html lang="en">
+
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -35,33 +36,91 @@ function content_668eb3048ae3e4_57816226 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="author" content="" />
 
   <title>SportsCenter</title>
-  <link rel="icon" href="images/logo.png" type="image/x-icon" />
+  <link rel="icon" href="/SportsCenter/smarty/libs/images/logo.png" type="image/x-icon" />
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="/SportsCenter/smarty/libs/css/bootstrap.css" />
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-
-  <!-- fonts style -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
     rel="stylesheet" />
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <!-- Custom tesseramento styles -->
-  <link href="css/tesseramento.css" rel="stylesheet" />
-  <!-- Custom login styles -->
-  <link rel="stylesheet" href="css/login.css">
+
+  <!-- Custom styles -->
+  <link href="/SportsCenter/smarty/libs/css/style.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/responsive.css" rel="stylesheet" />
+  <link href="/SportsCenter/smarty/libs/css/registrazione.css" rel="stylesheet" /> <!-- Include registrazione.css for registration form styles -->
+  <link href="/SportsCenter/smarty/libs/css/login.css" rel="stylesheet"/>
+  <link href="/SportsCenter/smarty/libs/css/pagamento.css" rel="stylesheet"/>
+  <!-- Ionicons -->
+  <?php echo '<script'; ?>
+ type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"><?php echo '</script'; ?>
+>
+
+  <?php echo '<script'; ?>
+>
+    function ready() {
+      if (!navigator.cookieEnabled) {
+        alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+      }
+    }
+
+    function validateForm() {
+      const cardNumber = document.querySelector('input[name="numerocarta"]').value;
+      const cvv = document.querySelector('input[name="cvv"]').value;
+      const expiryDate = document.querySelector('input[name="datascadenza"]').value;
+
+      const cardNumberPattern = /^\d{16}$/;
+      const cvvPattern = /^\d{3}$/;
+      const expiryDatePattern = /^(0[1-9]|1[0-2])\/\d{4}$/;
+
+      let isValid = true;
+      let errorMessage = '';
+
+      if (!cardNumberPattern.test(cardNumber)) {
+        isValid = false;
+        errorMessage += 'Il numero di carta deve contenere esattamente 16 cifre numeriche.\n';
+      }
+
+      if (!cvvPattern.test(cvv)) {
+        isValid = false;
+        errorMessage += 'Il codice CVV deve contenere esattamente 3 cifre numeriche.\n';
+      }
+
+      if (!expiryDatePattern.test(expiryDate)) {
+        isValid = false;
+        errorMessage += 'La data di scadenza deve essere nel formato MM/AAAA.\n';
+      } 
+      else {
+        const [month, year] = expiryDate.split('/').map(Number);
+        const today = new Date();
+        const expiry = new Date(year, month - 1, 1); // Imposta il giorno a 1 per evitare problemi con i mesi che hanno meno giorni
+         
+        if (expiry.getTime() <= today.getTime()) {
+          isValid = false;
+          errorMessage += 'La data di scadenza non deve essere uguale o precedente alla data odierna.\n';
+        }
+      }
+
+      if (!isValid) {
+        alert(errorMessage);
+      }
+
+      return isValid;
+    }
+
+    document.addEventListener("DOMContentLoaded", ready);
+  <?php echo '</script'; ?>
+>
 
 </head>
 
 <body>
   <div>
-    <a href="index.html">
-      <img src="images/logo.png" alt="SportsCenter">
+    <a href="/SportsCenter/Utente/profilo">
+      <img src="/SportsCenter/smarty/libs/images/logo.png" alt="SportsCenter">
     </a>
   </div>
   
@@ -70,77 +129,84 @@ function content_668eb3048ae3e4_57816226 (Smarty_Internal_Template $_smarty_tpl)
     <div class="container">
       <div class="form-box">
         <div class="form-value">
-          <form id="tesseramentoForm" method="post" action="CTesseramento.php?action=MostraConfermaTesseramento">
-            <h2>Modulo di Tesseramento</h2>
+            <h4>Modulo di Tesseramento</h4>
             <div class="inputbox">
-              <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['nome']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="nome">Nome</label>
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="nome" type="text" name="nome" class="form-control" placeholder="" value="<?php echo $_smarty_tpl->tpl_vars['nomeUtente']->value;?>
+" readonly>
             </div>
             <div class="inputbox">
-              <input type="text" id="cognome" name="cognome" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['cognome']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="cognome">Cognome</label>
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="nome" type="text" name="conome" class="form-control" placeholder="" value="<?php echo $_smarty_tpl->tpl_vars['cognomeUtente']->value;?>
+" readonly>
             </div>
             <div class="inputbox">
-              <input type="email" id="email" name="email" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['email']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="email">Email</label>
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="email" type="text" name="email" class="form-control" placeholder="" value="<?php echo $_smarty_tpl->tpl_vars['emailUtente']->value;?>
+" readonly>
             </div>
-            <h3>Dati della Carta di Pagamento</h3>
+            <form action="/SportsCenter/Tesseramento/MostraTesseramento" method="post" onsubmit="return validateForm()">
+            <h4>Inserisci i dati della carta</h4>
             <div class="inputbox">
-              <input type="text" id="cartaNome" name="cartaNome" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['nomeTitolare']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="cartaNome">Nome del Titolare</label>
-            </div>
-            <div class="inputbox">
-              <input type="text" id="cartaCognome" name="cartaCognome" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['cognomeTitolare']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="cartaCognome">Cognome del Titolare</label>
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="nometitolare" type="text" name="nometitolare" class="form-control" placeholder="Nome titolare" required>
             </div>
             <div class="inputbox">
-              <input type="text" id="cartaNumero" name="cartaNumero" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['numeroCarta']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="cartaNumero">Numero della Carta</label>
+              <ion-icon name="person-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="cognometitolare" type="text" name="cognometitolare" class="form-control" placeholder="Cognome titolare" required>
             </div>
             <div class="inputbox">
-              <input type="text" id="cvv" name="cvv" value="<?php echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['cvv']->value, ENT_QUOTES, 'UTF-8', true);?>
-" required placeholder=" ">
-              <label for="cvv">Codice CVV</label>
+              <ion-icon name="card-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="numerocarta" type="text" name="numerocarta" class="form-control" placeholder="Numero della carta" required>
             </div>
             <div class="inputbox">
-              <input type="text" id="costo" name="costo" value="150 €" readonly placeholder=" ">
-              <label for="costo">Costo del Tesseramento</label>
+              <ion-icon name="calendar-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="datascadenza" type="text" name="datascadenza" class="form-control" placeholder="Data di scadenza (MM/AAAA)"required>
             </div>
-            <button type="submit">Tesserati</button>
+            <div class="inputbox">
+              <ion-icon name="card-outline"></ion-icon>
+              <label class="form-label"></label>
+              <input id="cvv" type="password" name="cvv" class="form-control" placeholder="CVV (XYZ)"required>
+            </div>
+            <div class="inputbox">
+              <input type="text" id="costo" name="costo" value="Costo: 150 €" readonly placeholder="">
+              <label for="costo"></label>
+            </div>
+            <a href = "/SportsCenter/Tesseramento/MostraTesseramento"><button type="submit">Conferma e tesserati</button></a>
           </form>
         </div>
       </div>
     </div>
   </section>
+  <!-- End registration section -->
 
   <!-- Scripts -->
   <?php echo '<script'; ?>
- type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"><?php echo '</script'; ?>
->
-  <?php echo '<script'; ?>
- type="text/javascript" src="js/jquery-3.4.1.min.js"><?php echo '</script'; ?>
->
-  <?php echo '<script'; ?>
- type="text/javascript" src="js/bootstrap.js"><?php echo '</script'; ?>
+ type="text/javascript" src="/SportsCenter/smarty/libs/js/bootstrap.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
 >
     function openNav() {
       document.getElementById("myNav").classList.toggle("menu_width");
-      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
     }
   <?php echo '</script'; ?>
 >
 </body>
+
 </html>
+
 <?php }
 }
