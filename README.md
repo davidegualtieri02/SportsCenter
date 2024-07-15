@@ -24,7 +24,7 @@ Inoltre, SportsCenter offre la possibilità di diventare, tramite il versamento 
 
 Requisiti per l’installazione su server locali:
 
-1. Installare xampp ([XAMPP Download](https://www.apachefriends.org/it/download.html)) sulla macchina (compreso php);
+1. Installare xampp ([XAMPP Download](https://www.apachefriends.org/it/download.html)) sulla macchina (compresi php, phpMyAdmin);
 1. Installare composer([Composer Download](https://getcomposer.org/download/)) sulla macchina.
 
 ## Guida all’installazione
@@ -36,6 +36,10 @@ Requisiti per l’installazione su server locali:
 1. Aprire il terminal nella cartella dell’applicazione (che di default è `xampp/htdocs/SportsCenter` per Windows e `opt/lampp/htdocs/SportsCenter per Linux` ed eseguire il comando `composer install`;
 
 1. Cambiare i parametri in `config/config.php` in base alle impostazioni del proprio Xampp e MySQL;
+
+1. Caricare il file `install/sportscenter.sql` nel database MySQL tramite phpMyAdmin su localhost/phpMyAdmin per avere un DB di base;
+
+1. Prima di procedere con il lancio dell'applicazione, assicurarsi di avere attiva la riscrittura delle URL nel server di Apache. Per controllare, aprire il file di configurazione httpd.conf di Apache e ricercare la seguente linea: "LoadModule rewrite_module modules/mod_rewrite.so" e assicurarsi non ci sia "#" a inizio riga. Inoltre, sempre nel file di configurazione, assicurarsi vi sia "AlloeOverride All"
 
 1. Aprire il browser e digitare nella barra URL `localhost/SportsCenter` per utilizzare l’applicazione.
 
