@@ -39,7 +39,7 @@ Requisiti per l’installazione su server locali:
 
 1. Caricare il file `install/sportscenter.sql` nel database MySQL tramite phpMyAdmin su `localhost/phpMyAdmin` per avere un DB di base;
 
-1. Prima di procedere con il lancio dell'applicazione, assicurarsi di avere attiva la riscrittura delle URL nel server di Apache. Per controllare, aprire il file di configurazione httpd.conf di Apache e ricercare la seguente linea: "LoadModule rewrite_module modules/mod_rewrite.so" e assicurarsi non ci sia "#" a inizio riga. Inoltre, sempre nel file di configurazione, assicurarsi vi sia "AlloeOverride All"
+1. Prima di procedere con il lancio dell'applicazione, assicurarsi di avere attiva la riscrittura delle URL nel server di Apache. Per controllare, aprire il file di configurazione httpd.conf di Apache e ricercare la seguente linea: "LoadModule rewrite_module modules/mod_rewrite.so" e assicurarsi non ci sia "#" a inizio riga. Inoltre, sempre nel file di configurazione, assicurarsi vi sia "AllowOverride All"
 
 1. Aprire XAMPP: attivare Apache e MySQL.
    
